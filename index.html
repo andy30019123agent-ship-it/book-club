@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>每晚讀書會｜book-club</title>
-<meta name="description" content="每天晚上一本書的深度書摘，像參與一場讀書會。">
+<meta name="description" content="每天晚上一本書的深度書摘，像走進一間線上圖書館。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
@@ -226,19 +226,281 @@
       }
     }
 </style>
+<style>
+:root {
+      --theme-growth: #5B6E4F;
+      --theme-career: #3E5C76;
+      --theme-people: #96604A;
+      --theme-logic: #6B5B7B;
+      --book-cover-text: #F5EFE0;
+    }
+    .library-shell {
+      max-width: 68rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .library-header {
+      max-width: 42rem;
+      margin: 0 0 48px;
+    }
+    .library-title {
+      font-size: clamp(1.9rem, 5vw, 2.4rem);
+      line-height: 1.35;
+      margin: 0 0 8px;
+    }
+    .library-subtitle {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin: 0 0 24px;
+    }
+    .library-stats {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin: 0;
+    }
+    .library-stats .stat-num {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--ink);
+      margin: 0 0.15em;
+    }
+    .shelf-section, .upcoming-section {
+      margin: 0 0 48px;
+    }
+    .upcoming-title {
+      font-size: 1.35rem;
+      margin: 0 0 24px;
+    }
+    .shelf-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .theme-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-chip {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      min-height: 44px;
+      padding: 0.4em 1em;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .filter-chip.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--paper);
+    }
+    .shelf-search {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 16px;
+      min-height: 44px;
+      min-width: 200px;
+      flex: 0 1 240px;
+      padding: 0.4em 1em;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 24px;
+    }
+    .shelf-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .book-cover-link {
+      display: block;
+      width: 100%;
+      border-bottom: none;
+    }
+    .book-cover-link:hover {
+      border-bottom: none;
+    }
+    .book-cover {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      max-width: clamp(140px, 22vw, 180px);
+      aspect-ratio: 2 / 3;
+      margin: 0 auto;
+      border-radius: 6px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      transition: filter 200ms, transform 200ms;
+    }
+    .book-cover-link:hover .book-cover {
+      transform: translateY(-4px);
+      filter: brightness(0.95);
+    }
+    .cover-growth { background: var(--theme-growth); }
+    .cover-career { background: var(--theme-career); }
+    .cover-people { background: var(--theme-people); }
+    .cover-logic { background: var(--theme-logic); }
+    .cover-rule {
+      position: absolute;
+      top: 14px;
+      left: 12px;
+      right: 12px;
+      height: 1px;
+      background: color-mix(in srgb, var(--paper) 30%, transparent);
+    }
+    .cover-title {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 9cqi, 1.05rem);
+      line-height: 1.35;
+      color: var(--book-cover-text);
+      margin-top: 20px;
+    }
+    .cover-author {
+      font-size: 0.7rem;
+      color: color-mix(in srgb, var(--book-cover-text) 85%, transparent);
+    }
+    .cover-tag, .cover-date-on-cover {
+      font-size: 0.68rem;
+      color: color-mix(in srgb, var(--book-cover-text) 75%, transparent);
+      margin-bottom: 4px;
+    }
+    .cover-spine {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 0 6px 6px 0;
+    }
+    .cover-growth .cover-spine { background: color-mix(in srgb, var(--theme-growth) 80%, black); }
+    .cover-career .cover-spine { background: color-mix(in srgb, var(--theme-career) 80%, black); }
+    .cover-people .cover-spine { background: color-mix(in srgb, var(--theme-people) 80%, black); }
+    .cover-logic .cover-spine { background: color-mix(in srgb, var(--theme-logic) 80%, black); }
+    .book-cover.is-upcoming {
+      opacity: 0.55;
+    }
+    .shelf-item.is-upcoming-item {
+      cursor: default;
+    }
+    .shelf-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+    @media (max-width: 480px) {
+      .shelf-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+</style>
 </head>
 <body>
 <div id="progress-bar"></div>
 <button id="theme-toggle" aria-label="切換日夜模式">☾</button>
 
-<main class="page-shell">
+<main class="library-shell">
 
-  <section class="empty-state">
-    <p>今晚的書摘還在準備中，明天 7 點見。</p>
+  <header class="library-header">
+    <h1 class="library-title">每晚讀書會</h1>
+    <p class="library-subtitle ui-label">一晚一本，慢慢讀成一座圖書館</p>
+    <p class="library-stats ui-label">已上架 <span class="stat-num">1</span> 本 ・ 本週新進 <span class="stat-num">1</span> 本</p>
+  </header>
+
+  <section class="shelf-section">
+    <div class="shelf-controls">
+      <div class="theme-filters ui-label" role="group" aria-label="主題篩選"><button type="button" class="filter-chip is-active" data-filter-theme="all">全部</button><button type="button" class="filter-chip" data-filter-theme="自我成長">自我成長</button><button type="button" class="filter-chip" data-filter-theme="職場成長">職場成長</button><button type="button" class="filter-chip" data-filter-theme="人際關係">人際關係</button><button type="button" class="filter-chip" data-filter-theme="邏輯思考">邏輯思考</button></div>
+      <input type="search" id="shelf-search" class="shelf-search" placeholder="書名或作者" aria-label="搜尋書名或作者">
+    </div>
+    <div class="shelf-grid">
+    <div class="shelf-item" data-theme="自我成長" data-search="原子習慣 詹姆斯・克利爾（james clear）">
+      <a class="book-cover-link" href="books/atomic-habits.html" aria-label="原子習慣｜詹姆斯・克利爾（James Clear）">
+        <div class="book-cover cover-growth">
+      <span class="cover-rule"></span>
+      <span class="cover-title">原子習慣</span>
+      <span class="cover-author ui-label">詹姆斯・克利爾（James Clear）</span>
+      <span class="cover-tag ui-label">自我成長</span>
+      <span class="cover-spine"></span>
+    </div>
+      </a>
+      <span class="shelf-date ui-label">2026-07-04</span>
+    </div>
+    </div>
+    <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>
   </section>
 
+  <section class="upcoming-section">
+    <h2 class="upcoming-title">即將上架</h2>
+    <div class="shelf-grid">
+    <div class="shelf-item is-upcoming-item">
+      <div class="book-cover cover-career is-upcoming">
+      <span class="cover-rule"></span>
+      <span class="cover-title">深度工作力</span>
+      <span class="cover-date-on-cover ui-label">2026-07-05</span>
+      <span class="cover-spine"></span>
+    </div>
+    </div>
+    <div class="shelf-item is-upcoming-item">
+      <div class="book-cover cover-people is-upcoming">
+      <span class="cover-rule"></span>
+      <span class="cover-title">被討厭的勇氣</span>
+      <span class="cover-date-on-cover ui-label">2026-07-06</span>
+      <span class="cover-spine"></span>
+    </div>
+    </div>
+    <div class="shelf-item is-upcoming-item">
+      <div class="book-cover cover-logic is-upcoming">
+      <span class="cover-rule"></span>
+      <span class="cover-title">快思慢想</span>
+      <span class="cover-date-on-cover ui-label">2026-07-07</span>
+      <span class="cover-spine"></span>
+    </div>
+    </div>
+    <div class="shelf-item is-upcoming-item">
+      <div class="book-cover cover-growth is-upcoming">
+      <span class="cover-rule"></span>
+      <span class="cover-title">與成功有約：高效能人士的七個習慣</span>
+      <span class="cover-date-on-cover ui-label">2026-07-08</span>
+      <span class="cover-spine"></span>
+    </div>
+    </div>
+    <div class="shelf-item is-upcoming-item">
+      <div class="book-cover cover-people is-upcoming">
+      <span class="cover-rule"></span>
+      <span class="cover-title">人性的弱點</span>
+      <span class="cover-date-on-cover ui-label">2026-07-09</span>
+      <span class="cover-spine"></span>
+    </div>
+    </div>
+    <div class="shelf-item is-upcoming-item">
+      <div class="book-cover cover-career is-upcoming">
+      <span class="cover-rule"></span>
+      <span class="cover-title">原則：生活和工作</span>
+      <span class="cover-date-on-cover ui-label">2026-07-10</span>
+      <span class="cover-spine"></span>
+    </div>
+    </div>
+    </div>
+  </section>
   <footer>
-    <p class="ui-label">每晚 19:00，一本書的深讀。</p>
+    <p class="ui-label">每晚 19:00，Telegram 見。</p>
   </footer>
 </main>
 <script>
@@ -267,6 +529,37 @@
         var max = h.scrollHeight - h.clientHeight;
         bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
       });
+    })();
+</script>
+<script>
+(function () {
+      var search = document.getElementById('shelf-search');
+      var chips = document.querySelectorAll('.filter-chip');
+      var items = document.querySelectorAll('.shelf-item[data-theme]');
+      var empty = document.getElementById('shelf-empty');
+      var activeTheme = 'all';
+      function apply() {
+        var q = (search.value || '').trim().toLowerCase();
+        var visible = 0;
+        items.forEach(function (item) {
+          var matchTheme = activeTheme === 'all' || item.getAttribute('data-theme') === activeTheme;
+          var matchSearch = !q || item.getAttribute('data-search').indexOf(q) !== -1;
+          var show = matchTheme && matchSearch;
+          item.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (empty) empty.hidden = visible !== 0;
+      }
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('is-active'); });
+          chip.classList.add('is-active');
+          activeTheme = chip.getAttribute('data-filter-theme');
+          apply();
+        });
+      });
+      if (search) search.addEventListener('input', apply);
+      apply();
     })();
 </script>
 </body>

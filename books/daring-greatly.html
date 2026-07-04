@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>脆弱的力量｜拾頁</title>
+<meta name="description" content="你以為示弱是輸家的事，所以拼命武裝自己不讓人看穿——但真相反過來：所有你最想要的東西（親密、信任、被真心接住）都只長在「敢讓人看見真實的你」那塊地上。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="daring-greatly" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-25</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>脆弱的力量</h1>
+  <p class="title-en">Daring Greatly</p>
+  <p class="byline">布芮尼・布朗（Brené Brown）｜2012</p>
+  <p class="hook">你以為示弱是輸家的事，所以拼命武裝自己不讓人看穿——但真相反過來：所有你最想要的東西（親密、信任、被真心接住）都只長在「敢讓人看見真實的你」那塊地上。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>布芮尼・布朗是休士頓大學的社會工作研究者，本來研究的是一個聽起來很正向的主題——「人際連結」。她想搞懂：是什麼讓人與人之間產生深刻的連結？但研究做著做著，資料一直把她推向一個她完全不想面對的方向。</p>
+<p>她發現，那些擁有強烈連結感、覺得自己「值得被愛」的人，跟那些老是覺得「我不夠好」的人，最大的差別是——<strong>前者願意讓自己被看見，願意示弱。</strong>脆弱（vulnerability）這個她本能想迴避的東西，竟然是連結的入口。這個結論讓身為「控制狂＋研究者」的她整個崩潰，她自己形容那是一場「靈魂的崩壞」，甚至因此去做了心理治療。</p>
+<p>2010 年，她把這些發現濃縮成一場 TEDxHouston 演講《脆弱的力量》——這場演講意外爆紅，成為 TED 史上最多人看的演講之一，累積數千萬觀看。她一夕之間從默默無聞的學者變成全球關注的對象。2012 年出版的這本書，就是那場演講的完整版。</p>
+<p>書名「Daring Greatly（全力以赴地冒險）」取自羅斯福總統 1910 年的一段演講，也就是後來著名的「競技場上的人（The Man in the Arena）」——榮耀不屬於場邊的批評者，而屬於那個滿臉塵土、流血流汗、真正進場搏鬥的人，就算他失敗，至少他是「敢於全力以赴」。布朗用這個意象定調全書：<strong>真正的勇氣，是明知會受傷，還是願意進場、願意被看見。</strong></p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「為什麼我總覺得自己不夠好，還要拼命假裝一切都好？」——這是布朗研究裡最普遍的痛。我們活在一個她稱為「永不滿足（never enough）」的文化裡：不夠瘦、不夠成功、不夠聰明、不夠完美。為了掩蓋這份「不夠」，我們穿上盔甲——完美主義、逞強、麻木、犬儒、冷嘲熱諷。</p>
+<p>但布朗的殘酷發現是：<strong>那身保護你不受傷的盔甲，同時也擋掉了你最渴望的東西。</strong>你把自己包得密不透風，確實沒人能傷你，但也沒人能真正靠近你、愛到真實的你。</p>
+<p>這本書要回答的是：<strong>要怎麼放下盔甲、允許自己被看見，卻不被羞恥感擊垮？</strong>它談的是一件反直覺的事——在人際關係裡，示弱不是軟弱，是最大的勇氣，也是所有深刻連結的必要條件。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、脆弱不是軟弱，是勇氣最準確的度量</h3>
+<p>布朗給脆弱一個精準定義：<strong>不確定、風險、以及情感上的暴露。</strong>當你告白、當你分享一個沒把握的點子、當你第一次說「我愛你」、當你承認「我需要幫忙」——你都處在脆弱裡，因為結果不確定、你有可能受傷、而且你把真實的自己攤開了。</p>
+<p>我們的文化把脆弱等同於軟弱，但布朗的研究資料顯示完全相反。她問過無數人「你上一次看到別人展現脆弱是什麼時候，你覺得那是軟弱嗎？」——幾乎所有人都能回想起某個「有人在你面前示弱」的時刻，而且他們用的形容詞是「勇敢」「真實」「動人」，沒有人說「軟弱」。<strong>弔詭的是：我們崇拜別人的脆弱，卻覺得自己的脆弱是恥辱。</strong></p>
+<p><strong>機制</strong>：脆弱之所以是連結的核心，是因為連結需要「被真正看見」，而被看見必然帶著風險——你不知道對方會不會接住你。沒有這份風險，就沒有真實的親密，只有表演。布朗說，脆弱是愛、歸屬感、喜悅、創造力、信任的「發源地」——所有這些好東西，都得穿過脆弱這道門。</p>
+<p><strong>限制</strong>：布朗特別澄清，脆弱不是「毫無保留地把一切攤給所有人」。她說真正的脆弱是有界線的——你把真實的自己給「值得的人」、給那些「贏得了聽你故事資格」的人，不是逢人就掏心掏肺。過度分享不是脆弱，是另一種尋求關注的防衛。</p>
+<h3>二、羞恥感：那個讓你不敢被看見的東西</h3>
+<p>布朗花了十幾年專門研究羞恥（shame），她把它跟「罪惡感（guilt）」清楚分開。<strong>罪惡感是「我做了一件壞事」，羞恥是「我這個人很糟」。</strong>罪惡感針對行為，還有救（我可以改）；羞恥針對存在本身，讓人想躲、想消失。</p>
+<p>她的關鍵洞見：<strong>羞恥是脆弱最大的敵人。</strong>正是因為怕羞恥（怕被看穿「我不夠好」），我們才穿上盔甲、拒絕示弱。羞恥的核心恐懼是「如果別人看見真正的我，就不會愛我了」——所以我們拼命藏。</p>
+<p>布朗發現羞恥有三個特徵：它靠三樣東西壯大——<strong>祕密、沉默、批判</strong>。你越把它藏著、越不敢說、越覺得只有自己這麼糟，羞恥就越強大。而破解它的解藥，正好是反過來——<strong>把它說出來，尤其是說給一個有同理心、能接住你的人聽。</strong>她稱這個能力為「羞恥韌性（shame resilience）」：不是不再有羞恥感，而是能在羞恥襲來時，認出它、講出來、不被它定義。</p>
+<p><strong>機制</strong>：羞恥在黑暗和孤立中生長，在被同理的光照下枯萎。當你鼓起勇氣說「我覺得自己很失敗」，而對方回你「我懂，我也有過」——那一刻，「只有我這麼糟」的謊言就破了。這是為什麼說出來這麼關鍵。</p>
+<p><strong>反例／限制</strong>：但這也解釋了為什麼示弱要挑對象。對一個會拿你的脆弱來羞辱你、或冷漠以對的人示弱，只會加深羞恥。布朗強調：分享脆弱前，先確認對方有沒有能力接住——這不是不信任，是自我保護。</p>
+<h3>三、完美主義是盔甲，不是追求卓越</h3>
+<p>這是布朗最戳中現代人的一段。她說：<strong>「完美主義不是『追求卓越』，它是一種盔甲——是我們背著到處走的二十噸重盾牌，以為它保護我們，其實是它拖著我們飛不起來。」</strong></p>
+<p>她把完美主義的核心邏輯拆穿：它其實是一種恐懼——「如果我看起來夠完美、做得夠完美，我就能避開或減少被批評、被羞辱的痛。」注意，完美主義的驅動力不是「我想變更好」（那是健康的追求），而是「我怕被別人怎麼看」——它是<strong>別人導向</strong>的，關心的是「他們會怎麼評價我」，不是「我怎麼成長」。</p>
+<p><strong>機制</strong>：完美主義之所以是連結的殺手，是因為它讓你永遠不敢示弱——你必須維持「毫無破綻」的形象，於是永遠戴著面具，永遠不讓人看見真實。而沒有真實，就沒有親密。更慘的是，完美主義還會讓人癱瘓：因為怕做不完美，乾脆不做（拖延、不敢開始、不敢交出作品）。</p>
+<p><strong>反例</strong>：布朗不是叫你擺爛、放棄品質。她區分「健康的奮鬥（自我導向：我想做好）」和「完美主義（他人導向：我怕被看衰）」。前者讓你成長，後者讓你窒息。分辨的方法是問：你努力是因為「想變好」，還是因為「怕別人怎麼想」？</p>
+<h3>四、全心投入的生活：把脆弱活成一種選擇</h3>
+<p>布朗把那些「覺得自己值得被愛、活得踏實」的人，稱為過著「全心投入（wholehearted）」生活的人。她研究這群人，整理出他們的共同特質——不是他們沒有恐懼、沒有自我懷疑，而是他們選擇了一種不同的活法。</p>
+<p>其中最關鍵的一項是：<strong>他們相信「我已經夠好了（I am enough）」，同時仍願意成長。</strong>這兩件事看似矛盾，其實是全書的心臟——你不需要「先變完美才值得被愛」，你現在、帶著所有不完美，就值得。正是這份「我夠好了」的底氣，讓他們敢於示弱——因為就算示弱後被拒絕，也不會擊垮「我這個人的價值」。</p>
+<p>她還談到一個現代人特有的病：「預支的失落（foreboding joy）」——在最幸福的時刻反而焦慮，害怕好事會被奪走（抱著熟睡的孩子，突然閃過「萬一他出事怎麼辦」）。這也是一種對脆弱的逃避——因為完全享受喜悅，等於把自己攤開來承受「可能失去」的風險，太可怕，所以我們用擔憂來「預演災難」自保。布朗的解藥是「感恩」——不是正向思考，而是刻意在幸福時刻練習感激，把「怕失去」轉成「珍惜此刻」。</p>
+<p><strong>機制</strong>：全心投入不是一個你「達到」的狀態，是一個你每天「選擇」的練習——選擇示弱勝過武裝，選擇「我夠好」勝過「我不夠」，選擇感恩勝過恐懼。它跟羅斯福那段「競技場」的意象扣在一起：重點不是你會不會受傷（一定會），是你願不願意還是進場。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>四個概念是一個完整的循環。最核心的敵人是<strong>羞恥</strong>——那個「我不夠好、被看見就會被拋棄」的恐懼；為了對抗羞恥，我們穿上<strong>完美主義等盔甲</strong>，把自己武裝到滴水不漏；但盔甲同時擋掉了<strong>脆弱</strong>——而脆弱正是所有連結、愛、歸屬感的唯一入口；所以真正的出路，是培養「羞恥韌性」、放下盔甲、選擇<strong>全心投入地示弱</strong>。</p>
+<p>整本書的主張可以濃縮成一句：<strong>你最想逃避的脆弱，正是通往你最渴望的連結的那道門。</strong>武裝讓你安全但孤獨，示弱讓你有風險但能被真正愛到。這不是要你莽撞地掏心，是要你認清——沒有脆弱，就沒有真正的親密，這是無法繞過的代價。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「不敢在會議上提出不成熟的想法」為例）</strong>：</p>
+<ol><li>認出盔甲：你的沉默不是「沒想法」，是完美主義在保護你——怕講錯被笑</li><li>小步示弱：試著說「這個想法我還沒想很完整，但想丟出來討論」——先承認不確定，反而卸下壓力</li><li>分辨動機：你想把報告做到滴水不漏，是「想做好」還是「怕被挑剔」？如果是後者，那是恐懼在驅動，不是卓越</li><li>給犯錯留空間：帶團隊時，自己先示範承認「這件事我判斷錯了」——你的示弱會讓團隊敢說真話</li></ol>
+<p><strong>生活版（以「不敢在關係裡表達真實需求」為例）</strong>：</p>
+<ol><li>認出你在武裝：「反正說了也沒用」「我不需要別人」——這些常是怕受傷的盔甲，不是真的獨立</li><li>挑對人示弱：先確認對方是「能接住你」的人，再說出真實的需要（「我最近其實很需要你陪」）</li><li>說出羞恥：下次覺得「我好失敗、好丟臉」時，找一個信任的人講出來——羞恥見光就會縮小</li><li>練習感恩對抗「怕失去」：在幸福時刻，別急著擔心它會消失，刻意停下來說「我很感激現在」</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「示弱＝逢人就掏心掏肺、什麼都講」</strong>——布朗明確反對。真正的脆弱是有界線的，你把真實給「贏得資格、能接住你」的人。對不安全的對象過度分享，不是勇敢，是另一種尋求關注的防衛。</li><li><strong>「脆弱的力量＝正向思考、告訴自己一切都好」</strong>——完全不是。布朗談的是「敢於面對不確定和被傷害的風險」，這跟粉飾太平、假裝樂觀相反。她甚至批判那種強迫正能量的文化，認為它讓人更不敢承認真實的痛。</li><li><strong>「完美主義是好的、代表我有高標準」</strong>——布朗把完美主義和「健康的追求卓越」清楚切開。前者被恐懼（怕別人怎麼看）驅動、讓人癱瘓；後者被成長（我想更好）驅動、讓人前進。誤把完美主義當美德，正是很多人痛苦的根源。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《被討厭的勇氣》（岸見一郎）：兩本都在談「別為別人的評價而活」。阿德勒從「課題分離」切入（別人怎麼看是別人的事），布朗從「羞恥韌性」切入（別讓別人的眼光定義你的價值）——一個給你哲學的底氣，一個給你情感的方法。</li><li>《非暴力溝通》（盧森堡）：盧森堡教「說出真實的感受與需要」，本質上就是一種示弱的技術——把「你很過分」換成「我很受傷」，正是布朗說的放下盔甲。兩本一個講「為什麼要示弱」，一個講「示弱時具體怎麼說」。</li><li>《原子習慣》（詹姆斯・克利爾）：看似無關，其實互補——布朗談的「我已經夠好了」正是克利爾說的「身分認同」的情感基礎。你得先相信自己值得，才有動力為「想成為的人」持續投票。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「脆弱不是輸，也不是贏；它是有勇氣現身，並讓自己被看見——即使結果無法掌控。」（Vulnerability is not winning or losing; it's having the courage to show up and be seen when we have no control over the outcome.）</li><li>「唯有讓真實的自己被看見，我們才可能擁有真正的連結。」（原意：連結只存在於我們願意被看見的地方。）</li><li>「完美主義不是追求卓越的健康動力，它是一面二十噸重的盾牌，我們以為它在保護，其實是它拖著我們飛不起來。」（Perfectionism is a twenty-ton shield that we lug around, thinking it will protect us, when in fact it's the thing that's really preventing us from being seen.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你平常穿的是哪一種「盔甲」——完美主義？逞強不求助？冷嘲熱諷？麻木？想一個具體場景：那身盔甲擋掉了你不受的傷，但它同時擋掉了你想要的什麼？</li><li>想一件你一直藏著、覺得「只有我這麼糟」的事。布朗說羞恥靠「祕密、沉默、批判」壯大。如果你把它說給一個你信任、能接住你的人聽，你猜會發生什麼？是什麼讓你到現在還沒說？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "daring-greatly";
+      var TITLE = "脆弱的力量";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

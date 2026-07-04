@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>金字塔原理｜拾頁</title>
+<meta name="description" content="你的報告不是內容不夠好，是順序錯了。別人聽不懂，往往不是因為你講太少，而是你把結論藏在最後、讓人一路猜你到底想說什麼。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-pyramid-principle" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-24</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>金字塔原理</h1>
+  <p class="title-en">The Pyramid Principle</p>
+  <p class="byline">芭芭拉・明托（Barbara Minto）｜1978</p>
+  <p class="hook">你的報告不是內容不夠好，是順序錯了。別人聽不懂，往往不是因為你講太少，而是你把結論藏在最後、讓人一路猜你到底想說什麼。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>芭芭拉・明托是麥肯錫（McKinsey）歷史上第一位女性顧問，1963 年進公司。她很快發現一件事：麥肯錫的顧問個個聰明絕頂，分析能力一流，但寫出來的報告卻常常讓客戶看得一頭霧水——不是想法不好，是「表達的結構」爛。於是公司乾脆把「教全歐洲顧問怎麼把話講清楚」這個任務交給她。</p>
+<p>明托花了多年研究「清楚的思考與表達到底長什麼樣」，最後歸納出一套方法，1978 年寫成《金字塔原理》。這本書沒有華麗的故事，它幾乎是一本工具書，卻成為全球商業界、顧問業、乃至無數上班族的寫作聖經，幾十年長銷不墜。在那個報告、備忘錄、簡報主宰職場溝通的年代，明托做的事情本質上是：把「怎麼讓別人一聽就懂」變成一套可以學、可以教的規則，而不是靠天分。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「為什麼我明明想清楚了，寫出來、講出來別人卻抓不到重點？」</p>
+<p>明托的診斷很犀利：問題不在你的想法，在你「呈現想法的順序」。人腦一次只能處理有限的資訊，如果你按照「自己思考的順序」（先鋪陳、再分析、最後才講結論）來表達，聽的人會在一堆細節裡迷路，急得想問「所以你到底要說什麼？」。這本書要教的，是反過來——<strong>先給結論，再給支撐</strong>，並且把所有想法組織成一座清楚的金字塔。它回答的是職場最基本卻最少人做對的事：怎麼讓你的溝通，別人不費力就懂。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、金字塔結構：先講結論，再往下展開理由</h3>
+<p>這是全書的核心。明托說，任何清楚的表達，想法之間都應該長成一座金字塔：<strong>最頂端是你唯一的核心結論</strong>，下面一層是支撐這個結論的幾個理由，每個理由底下再展開更細的證據。讀者永遠是「先接到頂端的答案，再視需要往下看支撐」。</p>
+<p>這跟我們的直覺剛好相反。我們習慣「說書式」地鋪陳：背景、經過、分析……最後才揭曉結論。但明托指出，讀者在還沒拿到結論前，根本不知道你這些細節是要導向哪裡，只能被動地在腦中亂拼。<strong>先講結論</strong>，等於先給讀者一個「盒子」，後面所有資訊他都知道該往哪個格子放。<strong>機制</strong>：符合大腦「先框架、後細節」的處理方式，大幅降低理解的力氣。<strong>限制</strong>：先講結論的前提是你<strong>真的想清楚結論了</strong>——很多人不敢先講結論，正是因為自己心裡也還一團亂；金字塔逼你先把自己想通。</p>
+<h3>二、同一層的想法：要嘛「歸納」，要嘛「演繹」</h3>
+<p>金字塔的每一層，想法不能隨便並排。明托說，一群支撐上層的想法，彼此關係只有兩種合法形式。一種是<strong>演繹</strong>：像三段論一樣，前提一、前提二、所以結論（「所有 A 都會 B，這是 A，所以它會 B」）。另一種是<strong>歸納</strong>：把同一類的幾件事並列，共同指向一個總結（「市場在萎縮、成本在上升、對手在削價——所以我們該退出這條產品線」）。</p>
+<p>多數人的報告之所以亂，是因為同一層裡混雜了不同邏輯關係的東西，讀者理不清它們為什麼被放在一起。<strong>機制</strong>：明確的邏輯關係讓讀者能預期、能追蹤你的推理，不用自己補洞。<strong>限制</strong>：演繹讀起來嚴謹但冗長（每步都要交代），歸納讀起來俐落但需要「這幾點確實同屬一類」站得住腳——用哪種要看場合，商業寫作明托多半偏好歸納，因為它更快讓人抓到重點。</p>
+<h3>三、MECE：分類要「不重疊、不遺漏」</h3>
+<p>金字塔同一層的幾個要點，明托要求它們符合 <strong>MECE</strong> 原則——彼此<strong>互斥（Mutually Exclusive，不重疊）</strong>、合起來<strong>窮盡（Collectively Exhaustive，不遺漏）</strong>。翻成白話：你把一件事拆成幾塊時，這幾塊不能互相打架、重複，加起來又要剛好涵蓋全部、沒有漏掉的角落。</p>
+<p>比方你要分析「營收為什麼下滑」，如果理由列成「A 客戶流失、產品老舊、北區業績差」——這就不 MECE，因為「A 客戶流失」和「北區業績差」可能重疊，而且分類的維度混亂。乾淨的做法是選定一個維度（比如按「量 × 價」拆，或按「新客 vs 舊客」拆），確保不重不漏。<strong>機制</strong>：MECE 的分類讓你的分析既沒有邏輯破洞（不遺漏），也沒有重複計算（不重疊），聽的人會覺得「你想得真周全」。<strong>限制</strong>：MECE 是理想，現實中很難做到絕對完美；它更像一把「檢查你有沒有想漏或想重」的尺，而非死板的教條。</p>
+<h3>四、SCQA：用一個「故事」把讀者拉進來</h3>
+<p>光有金字塔還不夠，明托設計了一套開場公式，讓你的文章一開頭就勾住讀者，叫 <strong>SCQA</strong>：<strong>情境（Situation）</strong>——先講一個對方都同意、沒有爭議的背景；<strong>衝突（Complication）</strong>——點出情境裡出現了什麼變化或問題，製造張力；<strong>疑問（Question）</strong>——這個衝突自然引出讀者心中的疑問；<strong>答案（Answer）</strong>——你的核心結論，正好回答那個疑問，也就是金字塔的頂端。</p>
+<p>這套公式的巧妙在於，它不是硬邦邦地丟結論，而是先用「情境＋衝突」勾出讀者自己心裡的問題，讓他<strong>產生想知道答案的渴望</strong>，然後你的結論才登場。<strong>機制</strong>：人對「自己想問的問題」的答案最買帳；SCQA 幫你製造出那個問題。<strong>限制</strong>：SCQA 的順序可以靈活調換（有時先講衝突更抓人），重點是四個元素齊全、且真的接得上讀者關心的疑問，不是死背順序。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>四個概念是一套完整的作業流程：<strong>金字塔結構</strong>是骨架（先結論、後支撐）；<strong>演繹／歸納</strong>規定了骨架上「縱向」的推理該怎麼串（上下層之間為什麼成立）；<strong>MECE</strong> 規定了「橫向」的分類該怎麼擺（同一層之間不重不漏）；最後 <strong>SCQA</strong> 負責「入口」——把讀者從他熟悉的情境，一步步引到你金字塔的頂端結論。先想清楚結論（塔頂），用 MECE 把理由分乾淨（橫向），用演繹或歸納把層與層接好（縱向），再用 SCQA 設計一個勾人的開場。從「怎麼想清楚」到「怎麼講清楚」，一條龍。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「寫一封讓主管三秒懂的報告」為例）</strong>：</p>
+<ol><li>動筆前先問自己：「如果只能講一句話，我的結論是什麼？」寫不出來就代表還沒想清楚，別急著寫。</li><li>把結論放<strong>第一段</strong>（別藏到最後），然後在底下列出三個以內的支撐理由。</li><li>檢查那幾個理由 MECE 不 MECE：有沒有重疊？加起來有沒有漏掉關鍵面向？</li><li>開頭用 SCQA 鋪一句：「我們原本 X（情境），但現在出現 Y（衝突），所以問題是 Z——我的建議是……（結論）。」</li><li>每個理由底下，才放數據和細節，讓想深究的人往下看。</li></ol>
+<p><strong>生活版（以「跟另一半提一個重要決定」為例）</strong>：</p>
+<ol><li>別從一堆前情鋪陳講起，先講你的結論：「我想我們該搬到離公司近一點的地方。」</li><li>接著給三個不重疊的理由（通勤、預算、生活圈），別把同一件事講三遍。</li><li>開頭先用一句對方也同意的現況（情境）＋最近的變化（衝突）帶進來，對方會更願意聽。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「金字塔原理只是一套寫作排版技巧」</strong>——不對。明托強調它首先是<strong>思考</strong>工具：逼你先把結論想清楚、把邏輯理乾淨，寫作只是思考清楚後的自然產物。想不清楚，套再多模板都沒用。</li><li><strong>「先講結論＝把話講得很衝、很武斷」</strong>——不是。先講結論是幫讀者建立框架，語氣照樣可以婉轉；重點在「順序」不在「態度」。</li><li><strong>「MECE 一定要做到完美無缺」</strong>——它是理想與檢查工具，不是要你陷入分類強迫症。用它抓大漏洞和明顯重複就夠，不必為了 100% MECE 鑽牛角尖。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《一分鐘經理人》一類的商業溝通書：多半教「態度」與「技巧」，而明托補上最缺的一塊——底層的<strong>邏輯結構</strong>。想讓表達有骨架，明托是地基。</li><li>《讓創意更有黏性》（希思兄弟）：兩本都在談「怎麼讓別人記住你的訊息」。希思兄弟偏重「怎麼說得難忘」（故事、意外、情感），明托偏重「怎麼排得清楚」（結構、邏輯）——一個管黏性，一個管條理，互補。</li><li>《快思慢想》（康納曼）：明托的「先給框架再給細節」其實呼應了大腦認知負荷的原理——康納曼解釋了為什麼人腦需要金字塔這種省力的結構，讀了會更懂明托方法背後的道理。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「讀者一次只能吸收一個想法——所以請先告訴他那個最重要的想法。」（大意，出自金字塔結構一章）</li><li>「如果你沒辦法把結論寫成一句話，那代表你還沒真正想清楚。」（大意）</li><li>「清楚的寫作，來自清楚的思考——反過來不成立。」（大意：Clear writing is a function of clear thinking.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你最近一次「講了半天別人還是抓不到重點」的經驗——如果當時第一句話就先講結論，情況會不會不一樣？</li><li>你自己寫報告或訊息時，是習慣「先鋪陳再揭曉結論」，還是「先給結論再解釋」？哪一種其實是為了讓<strong>你自己</strong>比較好講、而不是讓<strong>對方</strong>比較好懂？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-pyramid-principle";
+      var TITLE = "金字塔原理";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

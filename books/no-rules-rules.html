@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>零規則｜拾頁</title>
+<meta name="description" content="你的公司規則越訂越多，往往不是因為員工爛，而是因為不信任。Netflix 賭了一把相反的：先找到最強的人，然後把規則拿掉。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="no-rules-rules" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-28</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>零規則</h1>
+  <p class="title-en">No Rules Rules</p>
+  <p class="byline">里德・海斯汀、艾琳・梅爾（Reed Hastings & Erin Meyer）｜2020</p>
+  <p class="hook">你的公司規則越訂越多，往往不是因為員工爛，而是因為不信任。Netflix 賭了一把相反的：先找到最強的人，然後把規則拿掉。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>里德・海斯汀是 Netflix 的共同創辦人與執行長。Netflix 從一家郵寄租 DVD 的小公司，一路蛻變成串流巨頭、再變成自製內容的娛樂帝國——每一次轉身都可能翻車，但它一次次活下來、還越長越大。海斯汀認為，撐住這一切劇烈變化的，不是某個商業策略，而是 Netflix 那套「反直覺到近乎危險」的企業文化。</p>
+<p>但海斯汀知道，一個 CEO 自誇自家文化，說服力有限。所以他找了共同作者艾琳・梅爾——一位專門研究「跨國文化差異」的商學院教授（《文化地圖》作者）。梅爾用外部研究者的眼光去質疑、驗證、挑戰海斯汀的說法，甚至到 Netflix 全球辦公室訪談員工，找出這套文化在不同國家水土不服的地方。這種「當事人＋懷疑論者」的雙作者結構，讓 2020 年出版的《零規則》不淪為老王賣瓜，而是一場誠實的辯論。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「公司要怎麼在高速變化的世界裡，同時保持<strong>創新的速度</strong>和<strong>執行的品質</strong>？」</p>
+<p>傳統管理的答案是「訂更多流程、更多規則、更多審核」——但海斯汀說，這套在工廠時代（求穩定、防錯誤）有用的邏輯，到了創意產業（求突破、拚速度）反而是毒藥。規則能防止小錯，卻也扼殺了大創新。這本書要回答的是：有沒有可能反過來——<strong>不靠規則管人，而靠自由與責任驅動人</strong>？Netflix 的整套文化，就是這個大膽假設的實驗結果。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、人才密度：一切的地基，先讓團隊「只剩高手」</h3>
+<p>海斯汀說，Netflix 所有反常規的做法，都建立在一個前提上：<strong>人才密度（talent density）</strong>——團隊裡每一個人都是頂尖高手。他打了個比方：一顆爛蘋果會壞掉整籃，一個表現平庸、態度消極的人，會拖慢整個團隊的節奏、拉低所有人的標準。</p>
+<p>Netflix 因此走「精簡但頂尖」路線：寧可用少數超強的人、付市場最高薪，也不要一堆平庸的人。因為當身邊全是高手，人會自我要求、彼此激勵，管理成本反而變低。<strong>機制</strong>：高手不需要被盯，他們有內在動力和判斷力，這讓後面「拿掉規則」變得可能。<strong>限制／反例</strong>：這套只在「創意密集、看重卓越產出」的產業成立；如果是求穩定、零容錯的工作（例如工廠安全、醫療流程），規則和標準化反而才是對的——海斯汀自己也誠實承認這點。</p>
+<h3>二、坦誠：把「有話直說」變成制度，而不是美德</h3>
+<p>高人才密度之後，第二根支柱是<strong>坦誠（candor）</strong>。Netflix 要求員工彼此之間、上下之間，都要當面給誠實的回饋，包括對老闆——藏著不說反而被視為對同事不忠。</p>
+<p>但海斯汀清楚知道「直說」很容易變成「傷人」，所以他把回饋規範成 <strong>4A</strong> 原則。給回饋的一方要：<strong>帶著幫助的意圖（Aim to assist）</strong>、<strong>提出可執行的建議（Actionable）</strong>；接收回饋的一方要：<strong>表達感謝（Appreciate）</strong>、然後<strong>自行決定接受或不接受（Accept or discard）</strong>。最後這點很關鍵——回饋是禮物，但收不收由你，不是命令。<strong>機制</strong>：公開的坦誠讓問題浮上檯面、被即時修正，而不是在背後累積成怨氣。Netflix 還有「陽光化（sunshining）」——把自己的錯誤攤在陽光下講，反而增加信任。<strong>限制</strong>：坦誠文化極度依賴前提——只有在人才密度高、彼此善意的環境才行得通；若團隊裡有人只想藉「坦誠」之名攻擊人，這套會變成職場霸凌的溫床。梅爾也指出，這套在某些「不習慣當面直言」的文化（如日本、荷蘭的反差）需要大幅調整。</p>
+<h3>三、拿掉控制：把規則換成「情境」</h3>
+<p>有了高手、又能坦誠溝通，海斯汀才敢做最激進的一步——<strong>移除控制（remove controls）</strong>。最有名的兩個例子：Netflix 取消了休假規定（「休假政策就是沒有政策」，你自己看著辦），也取消了差旅與報銷規則，只留一句話——「<strong>以 Netflix 的最大利益行事（act in Netflix's best interest）</strong>」。</p>
+<p>背後的管理哲學叫「<strong>情境管理，而非控制（context, not control）</strong>」。主管的工作不是訂規則、審批、盯梢，而是把「決策所需的背景資訊、目標、風險」講清楚，然後<strong>放手讓第一線的人自己判斷</strong>。海斯汀說，好的主管應該追求的不是「我批准了多少決定」，而是「我的團隊在沒有我的情況下，做出了多少好決定」。<strong>機制</strong>：最靠近問題的人擁有最多資訊，讓他決策，速度和品質都更好；而自由本身就是對高手最好的激勵。<strong>限制</strong>：這只有在人才密度夠高時才安全——把方向盤交給不夠成熟的駕駛，等於災難。規則拿掉的前提，永遠是「換上了值得信任的人」。</p>
+<h3>四、留任測試：用高標準守住人才密度</h3>
+<p>自由的代價是高標準。Netflix 有個著名（也殘酷）的做法叫<strong>留任測試（Keeper Test）</strong>：主管定期問自己——「如果團隊裡的某個人明天說要離職跳槽，我會不會拚命把他留下來？」如果答案是「不會、甚至鬆一口氣」，那就該給對方一筆優渥的資遣費，好聚好散，把位子空出來給更強的人。</p>
+<p>海斯汀提出一句刺耳但誠實的話：Netflix 不是一個家庭，而是一支<strong>職業運動隊</strong>。家庭講的是無條件包容，球隊講的是「每個位置都要最好的球員」。<strong>機制</strong>：不斷用留任測試汰換，才能長期維持第一根支柱——人才密度不掉，前面所有自由才撐得住。<strong>限制／爭議</strong>：這是全書最受批評的一點——它對員工冷酷、缺乏安全感，梅爾也在書裡直言，這種高壓的「表現至上」在很多重視工作保障的文化中會引發強烈反彈。它是 Netflix 的選擇，不是放諸四海的真理。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>這四根支柱是嚴格的因果順序，不能跳步。第一步：把<strong>人才密度</strong>拉到最高（只留高手），這是所有一切的地基。地基穩了，才敢推第二步：導入<strong>坦誠</strong>文化，讓高手之間有話直說、快速修正。有了信任與資訊流動，才敢走第三步：<strong>移除控制</strong>，用「情境」取代「規則」，把決策權下放。而自由一旦放出去，就必須用第四步：<strong>留任測試</strong>的高標準回頭守住人才密度，形成一個正向循環。海斯汀反覆強調：<strong>順序錯了會出事</strong>——沒有先建立人才密度和坦誠就貿然拿掉規則，等於把公司交給混亂。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「當一個少管、但團隊更強的主管」為例）</strong>：</p>
+<ol><li>少下命令，多給「情境」：交辦事情時，把目標、背景、風險和判斷依據講清楚，然後放手讓對方決定怎麼做。</li><li>練習 4A 回饋：給意見時先確認自己是「為了幫他」（Aim to assist），並且給得出<strong>具體可做</strong>的建議，而不是抱怨。</li><li>帶頭「陽光化」自己的錯誤——主管先坦承犯錯，團隊才敢跟著誠實。</li><li>偶爾對自己做留任測試（用來檢視「我有沒有在幫團隊維持高標準」，而不是用來威脅人）。</li></ol>
+<p><strong>生活版（以「教養或帶新手」為例）</strong>：</p>
+<ol><li>別急著訂一堆規矩，先問「對方有沒有能力和意願自己判斷」——能力夠，就給情境、放手讓他學著決定。</li><li>給回饋時套用 4A：帶著善意、講得具體、也接受對方最後可以選擇不採納。</li><li>記住海斯汀的順序課：信任要建立在「對方真的能扛」之上，不是盲目放手。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「零規則＝公司放任、什麼都不管」</strong>——完全相反。Netflix 拿掉的是「流程規則」，換上的是<strong>更高的標準、更強的坦誠、更清楚的情境</strong>。它是用「文化」這種更難的東西取代規則，不是躺平。</li><li><strong>「這套文化任何公司都該照抄」</strong>——海斯汀和梅爾自己反覆提醒，這套只適合「創意密集、求突破」的產業，且高度依賴人才密度；工廠、醫院這類求穩定零容錯的場域照抄會出大事。</li><li><strong>「坦誠就是想說什麼就說什麼」</strong>——不是。坦誠有嚴格框架（4A），核心是善意與建設性；把它當成攻擊人的藉口，正是把這套文化用歪。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《文化地圖》（艾琳・梅爾）：本書共同作者的成名作。《零規則》裡談各國員工對「坦誠」「權威」反應不同的部分，理論根基全來自這本。想懂為什麼 Netflix 文化在不同國家水土不服，讀它。</li><li>《OKR：做最重要的事》（杜爾）：兩本都在解「怎麼在不靠層層管控的情況下讓組織對齊」。OKR 用透明的目標對齊，Netflix 用情境與文化對齊——手段不同，但都反對用僵化流程綁死聰明人。</li><li>《從優秀到卓越》（柯林斯）：柯林斯的「先找對人上車」和 Netflix 的「人才密度」根本是同一句話。柯林斯給的是研究結論，海斯汀給的是把它推到極致的實戰版本。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「我們是一支職業球隊，不是一個家庭。」（We're a team, not a family.）</li><li>「以 Netflix 的最大利益行事。」（Act in Netflix's best interest.）——這句話就是他們整本員工手冊。</li><li>「當你增加人才密度，你就能減少控制；當你增加坦誠，你就能移除更多規則。」（大意，貫穿全書的公式）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你待過最「規則多」的環境——那些規則到底是在防範少數的爛人，還是連累了多數的好人？如果拿掉一半規則，會更好還是更糟？</li><li>海斯汀說「順序不能錯：先有人才密度和坦誠，才能拿掉規則」。你覺得你身邊的團隊，卡在哪一步——是人不夠強、還是不敢有話直說？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "no-rules-rules";
+      var TITLE = "零規則";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

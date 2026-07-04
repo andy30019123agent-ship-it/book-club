@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>反脆弱｜拾頁</title>
+<meta name="description" content="「脆弱」的相反不是「堅固」——堅固只是不怕摔，真正的相反，是摔了反而變更強。你的人生，是玻璃杯還是肌肉？">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="antifragile" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-22</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>反脆弱</h1>
+  <p class="title-en">Antifragile</p>
+  <p class="byline">納西姆・塔雷伯（Nassim Nicholas Taleb）｜2012</p>
+  <p class="hook">「脆弱」的相反不是「堅固」——堅固只是不怕摔，真正的相反，是摔了反而變更強。你的人生，是玻璃杯還是肌肉？</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>寫完《黑天鵝效應》、又親眼看著 2008 金融海嘯應驗了自己的警告之後，塔雷伯陷入一個新的困擾：他成功地告訴世界「大災難無法預測」，但這聽起來太消極了——難道我們只能被動挨打？</p>
+<p>《反脆弱》就是他給出的正面答案，也是他自認一生思想的核心之作（他說前面幾本書都只是這本書的鋪墊）。塔雷伯的知識背景很怪：他既是華爾街的資深交易員，又是鑽研機率的學者，同時痴迷古希臘羅馬的斯多葛哲學、地中海的古老智慧、以及健身房裡的重量訓練。這些看似不搭的東西，在這本書裡被他熔成一爐。</p>
+<p>他寫作的時代，正是人類前所未有地想「控制一切、優化一切、消滅一切波動」的年代——金融要用模型消滅風險、醫療要用藥物壓下每個症狀、教育要把每一步都規劃好、父母要幫孩子鋪平所有顛簸。塔雷伯認為這整套「求穩」的現代病，正在製造出史上最脆弱的系統。這本書是一記當頭棒喝：<strong>你越想消滅波動，就越脆弱。</strong></p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「面對一個充滿意外、無法預測的世界，我到底該怎麼安排自己，才不會被下一隻黑天鵝擊垮，甚至還能因它受益？」</p>
+<p>塔雷伯的突破，是發現我們的語言缺了一個詞。「脆弱（fragile）」的相反是什麼？大多數人會說「堅固」「強韌」。但塔雷伯說錯了——<strong>堅固的東西只是「不受傷」，它面對衝擊頂多維持原狀，不會變更好。</strong>真正的相反，應該是「受到衝擊反而變更強」的東西。這種東西沒有名字，所以他造了一個字：<strong>反脆弱（antifragile）。</strong></p>
+<p>痛點對號入座：如果你總是想把生活安排得滴水不漏、一有意外就崩潰、把所有雞蛋放進「看起來最穩」的籃子——這本書會告訴你，那種「穩」是假的，它只是把風險藏起來、越積越大，等著某天一次爆給你看。真正的安全，來自擁抱小波動、保留餘裕、讓自己有「摔了會變強」的體質。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、三元組：脆弱、強韌、反脆弱</h3>
+<p>這是全書的骨架。塔雷伯用三個希臘神話意象，把世界上所有事物分成三類：</p>
+<p><strong>脆弱＝達摩克利斯之劍。</strong>頭上懸著一把用馬鬃吊著的劍，隨時可能掉下來要你的命。脆弱的東西怕波動、怕意外、怕壓力——玻璃杯、過度負債的公司、只會一種技能的員工，都是這類。它們平時看起來好好的，一次衝擊就粉碎。</p>
+<p><strong>強韌／堅固＝鳳凰。</strong>燒死了會從灰燼中重生，回到原樣。強韌的東西不怕衝擊，但也僅止於「回到原點」——一塊石頭、一個保守但不成長的系統。</p>
+<p><strong>反脆弱＝海德拉（九頭蛇）。</strong>你砍掉牠一顆頭，牠會長出兩顆。<strong>衝擊不只傷不了牠，還讓牠變更強。</strong></p>
+<p><strong>機制</strong>：怎麼判斷一個東西屬於哪一類？塔雷伯給了一個簡單的測試：<strong>如果我希望它「別出事、別有意外」，它就是脆弱的；如果我其實「希望有點波動、有點壓力」，它就是反脆弱的。</strong>你會希望運去的包裹一路平順（脆弱的瓷器），但你會希望自己的肌肉承受一點重量壓力（反脆弱，重訓後長更壯）。</p>
+<p><strong>限制</strong>：三類不是絕對標籤，而是「程度」與「情境」。同一個東西在不同壓力量級下表現不同——小壓力讓肌肉變強（反脆弱），但一次車禍的巨大衝擊照樣讓你骨折（脆弱）。反脆弱幾乎都有一個「劑量範圍」。</p>
+<h3>二、槓鈴策略：兩頭極端，中間留白</h3>
+<p>既然世界不可測，該怎麼配置自己的資源？塔雷伯的答案不是「取中庸、押中等風險」，而是反直覺的<strong>槓鈴（barbell）</strong>：像舉重的槓鈴一樣，重量全壓在兩端，中間空著。</p>
+<p>具體來說：<strong>把絕大部分（比如 85~90%）放在極度安全、無聊到不會出事的地方；剩下一小部分（10~15%）押在高風險、但「最多賠光這一小塊、卻可能爆賺幾十倍」的地方。完全避開中間那種「看似穩健、其實暗藏大雷」的選項。</strong></p>
+<p><strong>書中原理</strong>：為什麼避開中間？因為「中等風險」最會騙人——它給你一種安全感，卻對你算不準的極端事件毫無防護。2008 年賠最慘的，正是那些自以為在做「穩健中等風險投資」的人。而槓鈴的美在於：安全的那一頭讓你「就算兩手空空的下注全滅也死不了」，冒險的那一頭則讓你「保留了被正面黑天鵝砸中的機會」。你把下檔的損失鎖死，把上檔的獲利放開——這就是反脆弱的形狀。</p>
+<p><strong>機制</strong>：這叫「不對稱性」——壞的一面有限、好的一面無限。塔雷伯說，反脆弱的本質就是這種不對稱：<strong>受益多於受損。</strong></p>
+<p><strong>限制</strong>：槓鈴不是叫你亂賭。冒險的那一頭必須是「輸也輸得起、贏可能贏很大」的下注，不是拿全部身家去梭哈。搞錯比例，槓鈴就變成自殺。</p>
+<h3>三、以負為進（Via Negativa）：減法比加法聰明</h3>
+<p>塔雷伯借用一個神學詞彙 via negativa——與其定義「神是什麼」（做不到），不如說「神不是什麼」。他把它變成一條行動準則：<strong>要讓一個系統變好，「拿掉壞東西」通常比「加上好東西」更有效、更可靠。</strong></p>
+<p>我們天生偏愛加法——生病了想加藥、公司不好想加專案、生活不順想加更多努力。但塔雷伯指出，<strong>知識最穩固的部分是「否定」</strong>：我們不太確定什麼能讓你長壽，但很確定抽菸、久坐、糖吃太多會害你。所以健康最有效的做法，往往不是吃什麼補品，而是「戒掉」那些明顯有害的東西。</p>
+<p><strong>書中原理</strong>：他特別點名醫療界的「醫源性傷害（iatrogenics）」——由醫治本身造成的傷害。歷史上放血療法害死無數人（包括可能加速了美國國父華盛頓的死亡），正是「積極介入」反而致命的例子。塔雷伯的原則是：<strong>當傷害明確、好處不明時，什麼都別做，往往才是最好的做法。</strong>他把那種「看到問題就忍不住要插手」的衝動，叫做「天真的干預主義」。</p>
+<p><strong>機制</strong>：為什麼減法更可靠？因為「拿掉一個已知的壞東西」，後果清楚、風險低；而「加上一個新東西」，總會帶來你想不到的副作用（二階後果）。減法讓系統回歸它本來就強韌的樣子。</p>
+<p><strong>限制</strong>：via negativa 不是叫你什麼都不做、消極擺爛。它是叫你<strong>把有限的行動力，優先花在「移除明顯的壞」上，而不是急著堆疊「不確定的好」</strong>。</p>
+<h3>四、林迪效應：活得久的，會活得更久</h3>
+<p>對於「什麼東西值得信任、值得投入」，塔雷伯給了一個好用到不行的判準：<strong>林迪效應（Lindy Effect）。</strong></p>
+<p>對於「會腐壞」的東西（人、貓、車子），活越久離死越近。但對於「不會腐壞」的東西——一個觀念、一本書、一項技術、一種制度——<strong>它已經存在的時間，就是它未來還會存在多久的最好預測。</strong>一本流傳了 2000 年的經典（如《伊索寓言》），很可能再流傳 2000 年；一本今年爆紅的暢銷書，明年可能就沒人記得。</p>
+<p><strong>機制</strong>：時間是最誠實、最無情的過濾器。任何脆弱、無用、經不起考驗的東西，早就被時間淘汰掉了——<strong>還活著，本身就是通過了無數次隨機衝擊的證明。</strong>所以塔雷伯選書讀古典、選飲食學老祖宗、對「最新、最潮、剛發明」的東西保持懷疑。老東西的存活，是反脆弱的鐵證。</p>
+<p><strong>限制</strong>：林迪效應只適用於「不會自然腐壞」的抽象事物，別亂套到會老化的實體。而且它是機率上的傾向，不是保證——偶爾也有真正的創新是嶄新的好東西。它給你的是「預設懷疑新潮、預設尊重古老」的傾向，不是絕對真理。</p></section>
+<section><h2>整本書的邏輯骨架</h2>
+<p>整本書從一個定義出發，展開成一套生存策略。<strong>「三元組」</strong>是世界觀——先學會把身邊每件事分類成脆弱、強韌、反脆弱，你才知道哪些會在混亂中垮掉、哪些會受益。認清之後，<strong>「槓鈴策略」</strong>是資源配置法——用「極安全＋極冒險」的兩端結構，把損失鎖死、把機會放開，讓不對稱性站在你這邊。<strong>「以負為進」</strong>是行動原則——變強的路徑不是拚命加東西，而是先移除明顯的脆弱源。而<strong>「林迪效應」</strong>是選擇的羅盤——在不確定該信什麼時，讓時間替你篩選，尊重那些歷經考驗還活著的東西。</p>
+<p>貫穿全書的一句話是：<strong>別去預測風暴，去打造一艘風暴來時反而跑更快的船。</strong>這正好接續了《黑天鵝》的結論——既然黑天鵝不可測，那就別再徒勞地猜它，而是把自己變成「越亂越強」的體質。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「打造抗風險的職涯」為例）</strong>：</p>
+<ol><li>槓鈴你的職涯：一頭是穩定的本業收入（安全端），另一頭撥一點時間精力做「賠了無所謂、成了可能翻身」的嘗試（副業、寫作、學新技能、認識新圈子）；避開那種「賭上全部、失敗就沒退路」的中間豪賭</li><li>以負為進：與其一直加班加專案，先問「有沒有哪些會議、任務、關係是明顯在消耗我、該砍掉的」——移除脆弱源，比堆疊努力更有效</li><li>追求可選性（optionality）：多保留幾條「可以選、但不強迫」的路——它們平時不花什麼成本，卻讓你在意外來臨時有得挑</li></ol>
+<p><strong>生活版（以「身心的反脆弱」為例）</strong>：</p>
+<ol><li>給身體一點壓力：重量訓練、偶爾斷食、爬山流汗——適度的壓力讓身體變更強（反脆弱），過度保護反而讓人虛弱</li><li>財務留餘裕：別把每月收入花到見底、別把行程排到全滿——冗餘和留白不是浪費，是黑天鵝來時的緩衝</li><li>對「消除所有不適」的衝動踩剎車：不是每個小病都要吃藥、不是每個顛簸都要立刻擺平；有些波動，是讓你變強的養分</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「反脆弱就是堅強、抗壓」</strong>——這是全書最想糾正的誤解。堅強／堅固只是「受衝擊後回到原樣」，反脆弱是「受衝擊後變更強」。混為一談，就丟失了塔雷伯造這個詞的全部意義。</li><li><strong>「所以要主動去追求混亂和災難」</strong>——不是。反脆弱要的是「小而頻繁的壓力」（像重訓的重量、市場的小波動），不是「一次致命的巨災」。關鍵永遠是那個「劑量」與「不對稱」——下檔要鎖死。搞成「去梭哈、去對賭」就完全讀反了。</li><li><strong>「這是投資理財書」</strong>——槓鈴、不對稱這些概念雖然源自金融，但塔雷伯講的是一套涵蓋健康、教育、政治、人生的通用哲學。只當理財書讀，格局就小了。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《黑天鵝效應》（塔雷伯本人）：這本書的上集，先讀它才知道「為什麼世界不可測」；《反脆弱》則是「那該怎麼辦」的解方。兩本一體，順序讀下來最完整。</li><li>《原子習慣》（克利爾）：兩本都相信「微小、頻繁」的力量勝過「宏大、一次性」的計畫——克利爾談每天 1% 的複利，塔雷伯談小壓力累積出的反脆弱體質。一個講建設習慣，一個講面對混亂，精神相通。</li><li>斯多葛哲學（塞內卡、馬可・奧理略）：塔雷伯自承反脆弱的思想根源之一。斯多葛派主張「事先在心裡演練最壞的情況、把可失去的都當成借來的」——正是一種古老的情緒反脆弱術。讀完這本，回頭讀古人會很有共鳴。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「風會吹熄蠟燭，卻能助長火勢。」（Wind extinguishes a candle and energizes fire.）——你要當火，別當蠟燭。</li><li>「脆弱的東西喜歡安寧，反脆弱的東西從混亂中成長。」（The fragile wants tranquility, the antifragile grows from disorder.）</li><li>「我們把玻璃杯做得更堅固，卻忘了有些東西本該從被搖晃中獲益。」（大意，出自書中對「過度保護反而致脆」的論述。）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>盤點你的人生：哪一塊是「玻璃杯」（一次意外就會碎）、哪一塊是「肌肉」（壓力反而讓它變強）？有沒有哪個你以為很穩的地方，其實只是風險還沒引爆？</li><li>用「以負為進」重看你最近想「加更多努力」解決的問題：有沒有可能，真正的解法其實是「拿掉某個東西」，而不是再加什麼？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "antifragile";
+      var TITLE = "反脆弱";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

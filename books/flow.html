@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心流｜拾頁</title>
+<meta name="description" content="你以為快樂是放假、躺平、什麼都不做。但研究發現：人最投入、最忘我的時刻，幾乎都發生在「有點難、要全力應付」的時候——不是休息，是全神貫注。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="flow" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-11</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>心流</h1>
+  <p class="title-en">Flow: The Psychology of Optimal Experience</p>
+  <p class="byline">米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）｜1990</p>
+  <p class="hook">你以為快樂是放假、躺平、什麼都不做。但研究發現：人最投入、最忘我的時刻，幾乎都發生在「有點難、要全力應付」的時候——不是休息，是全神貫注。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>契克森米哈伊的名字很難唸（他自己開玩笑說唸成「chicks-send-me-high」就好），但他問的問題誰都懂：人到底什麼時候才真正快樂？</p>
+<p>他會盯上這個問題，跟他的童年有關。他是匈牙利人，二戰時還是小孩，親眼看著身邊的大人——原本體面、有身分的成年人——在戰爭裡失去一切之後，整個人跟著垮掉，變得空洞、失魂落魄。但他也注意到，有少數人即使什麼都沒了，眼神裡還是有光，還撐得住。這個對比在他心裡留了一輩子：<strong>到底是什麼，讓一個人的內在世界不會跟著外在一起崩塌？</strong></p>
+<p>戰後他跑到美國唸心理學。當時的心理學要嘛在研究精神疾病，要嘛在研究老鼠壓桿——很少人認真研究「一個健康的人怎樣才算活得好」。他偏要研究這個。他訪談了幾百個藝術家、運動員、棋手、外科醫生、甚至工廠工人，問他們「什麼時候覺得最投入、最值得活」。這些人做的事天差地遠，但描述那個狀態時用的詞卻高度一致——彷彿被一股水流帶著走，毫不費力卻又全神貫注。他借用他們的話，把這個狀態命名為 <strong>flow，心流</strong>。1990 年這本書出版，成了正向心理學的奠基之作，也讓「心流」變成全世界都在用的詞。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「為什麼我明明在放鬆，卻覺得空虛？為什麼有些累人的事，做完反而讓我充滿電？」</p>
+<p>大多數人以為快樂＝爽＝不用出力。所以我們追求的是沙發、手機、追劇、放空。但契克森米哈伊用一套嚴謹的研究方法戳破了這個假設：<strong>人生最好的時刻，通常不是被動、放鬆、什麼都不用做的時候，而是身心被拉到極限、全力去完成某件困難又值得的事的時候。</strong></p>
+<p>他不是在說「別休息、去拚命」。他是在說：你一直誤解了快樂的來源。真正的滿足感不是外界給你的，是你「投入」時，自己心裡長出來的。這本書就是在教你怎麼刻意製造那種投入狀態——不只在工作，也在關係、身體、思考裡。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、心流：全神貫注到忘記自己的那個狀態</h3>
+<p>先講清楚心流到底長什麼樣。契克森米哈伊歸納出幾個共同特徵：你面對一個明確的目標、每一步都有立即的回饋、注意力完全集中到雜念擠不進來、行動和意識融為一體（想都不用想手就動了）、對「自我」的意識消失（你忘了在意別人怎麼看你）、時間感扭曲（一抬頭三小時過去了），而且——這件事本身就是獎賞，不為別的，做著就爽。</p>
+<p>他研究這個用了一個很巧的方法，叫「經驗抽樣法」：給受試者戴一個呼叫器，一天隨機響幾次，響了就馬上記下「你現在在做什麼、心情如何」。這樣蒐集到幾十萬筆真實生活的切片，而不是事後回想的美化版。資料顯示，人回報心流最多的場合，往往不是躺著看電視，而是在攀岩、下棋、動手術、演奏、認真工作的時候。</p>
+<p><strong>為什麼成立</strong>：人的注意力是有限的「精神能量」。平常我們的意識裡雜訊很多——焦慮、比較、東想西想，他叫這個「精神熵」（psychic entropy），一種內在的混亂。而心流是相反狀態：當一件夠難的事把你全部的注意力都吃掉，意識裡騰不出空間給雜念，內在瞬間變得井然有序，那種「秩序感」本身就是深層的滿足。</p>
+<p><strong>限制</strong>：心流不保證道德或健康。一個賭徒、一個沉迷電玩的人也可能進入心流。心流是強大的「引擎」，但它不決定方向——你把它裝在什麼事情上，才決定它讓你變好還是變糟。</p>
+<h3>二、心流通道：難度和能力要「剛剛好打架」</h3>
+<p>心流不是隨便就有的，它出現在一個很窄的甜蜜點上。契克森米哈伊畫了一張經典的圖：橫軸是你的「能力」，縱軸是任務的「挑戰難度」。</p>
+<p>如果挑戰遠高於你的能力——你會焦慮（比如叫新手直接去爬懸崖）。如果你的能力遠高於挑戰——你會無聊（叫高手去做小學算術）。只有當難度和能力<strong>大致相當、又都拉得夠高</strong>的時候，你才會掉進中間那條「心流通道」。</p>
+<p>這解釋了一件很反直覺的事：<strong>無聊和焦慮，其實是同一個問題的兩面</strong>——都是難度和能力沒對上。這也是為什麼心流會「上癮」得健康：一旦你進入心流、把某件事做熟了，原本的挑戰對你變簡單，你會開始覺得無聊，於是自然想找更難的版本。能力和挑戰就這樣一起往上爬。這是一台會逼你不斷成長的機器。</p>
+<p><strong>實用價值</strong>：下次你對某件事提不起勁，先別罵自己懶。問兩個問題：是太難讓我焦慮到想逃（那就把它拆小、降難度）？還是太簡單讓我無聊（那就加碼、給自己設限或加規則）？調整的是「難度」這個旋鈕，不是硬逼自己的意志力。</p>
+<h3>三、自成目的：把「為了別的」變成「為了本身」</h3>
+<p>契克森米哈伊用了一個關鍵詞：<strong>autotelic，自成目的</strong>（auto＝自己，telos＝目的）。意思是一件事的目的就是它本身，不是為了之後的獎賞。</p>
+<p>書裡有個讓人印象深刻的例子：一位在阿爾卑斯山區的老婦人瑟拉菲娜，一輩子在放牛、擠奶、種田。你以為那是苦役，但她說她最享受的就是照顧牛、去果園、擠奶——那些在我們眼中無聊的雜務，她做得津津有味，因為她在每件小事裡都找到了投入的方式。另一個例子是工廠裝配線上的工人瑞可，同一個動作一天要重複幾百次，多數人做到麻木，他卻把它變成一場跟自己比賽的遊戲：不斷微調手法、計時、想辦法縮短每一次的秒數，把一個枯燥的崗位過成了奧運選手的訓練。</p>
+<p><strong>機制</strong>：同樣一件事，是苦役還是心流，關鍵不在事情本身，在你有沒有替它設一個「屬於你的挑戰」。外在獎賞（薪水、稱讚）拿走之後你就不想做的事，是「外求目的」；拿走獎賞你還是想做的，才是「自成目的」。後者才是快樂真正取之不盡的泉源，因為它不依賴別人給你什麼。</p>
+<p><strong>限制</strong>：不是每件事都能硬凹成心流，有些爛工作就是爛工作。但契克森米哈伊的重點是：能被你「重新設計成有挑戰」的事，遠比你以為的多。</p>
+<h3>四、工作的弔詭：我們最快樂的地方，卻最想逃離</h3>
+<p>書裡有一個發現特別打臉現代人。經驗抽樣的資料顯示：<strong>人們在工作時回報心流的比例，遠高於休閒的時候</strong>——上班時大約一半的時間處在心流，休閒時只有不到兩成。但弔詭的是，同樣這些人，嘴上卻一直說「真希望現在不用上班」。</p>
+<p>為什麼會這樣？因為工作天生具備心流的條件：有明確目標、有規則、有即時回饋、難度通常配得上你的技能。而「休閒」——尤其是被動休閒，像漫無目的滑手機、看電視——反而缺乏這些條件，容易讓人掉進精神熵的混亂裡，看完一晚上短影片只覺得更空。</p>
+<p><strong>這對你的意義</strong>：問題不是「工作 vs 休息」，是「主動 vs 被動」。真正能充電的休閒，是那些需要投入技能的——運動、彈琴、下廚、園藝、認真讀一本書。癱著不動的娛樂爽在當下，但很少讓人事後覺得「這段時間活得很好」。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>把四個概念接起來，是一條很清楚的鏈：注意力是有限的<strong>精神能量</strong>（起點）→ 亂花它，意識就陷入焦慮雜念的「精神熵」；把它全部投進一件事，就進入井然有序的<strong>心流</strong>（狀態）→ 但心流只發生在<strong>難度與能力相當</strong>的甜蜜點，太難焦慮、太簡單無聊（條件）→ 想讓心流從偶爾發生變成常態，關鍵是把事情變成<strong>自成目的</strong>，替再平凡的事都設一個屬於自己的挑戰（方法）→ 最終目標是養成一個「<strong>自成目的的自我</strong>」，一個不管環境給什麼，都能替自己找到投入方式的人（歸宿）。</p>
+<p>整本書其實在回答童年那個問題：外在世界可以奪走你的一切，但只要你懂得如何駕馭自己的注意力，你就能在任何處境裡，替自己的內在建立秩序。這是誰也拿不走的能力。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（把一份無聊的工作變出心流）</strong>：</p>
+<ol><li>設微目標：別把任務當「做完就好」，替每個段落設一個屬於你的挑戰——這份報表，能不能比上次快 20 分鐘做完？這封回信，能不能寫得讓對方一次就懂？</li><li>製造回饋：無聊的工作往往缺即時回饋，那就自己造。計時、記錄、跟昨天的自己比。</li><li>調難度旋鈕：卡住焦慮就把任務拆到你搞得定的最小塊；無聊到想睡就替自己加規則、加限制、加速度。</li><li>清掉雜訊：心流最怕被打斷。關通知、留一段不被切斷的完整時間，比多花兩小時有用。</li></ol>
+<p><strong>生活版（把休息時間真正變成充電）</strong>：</p>
+<ol><li>分清主動與被動休閒：睡前那一小時，是滑到眼睛痠（被動），還是做一件需要投入的事（主動）？</li><li>挑一個「自成目的」的嗜好：運動、樂器、下廚、手作——標準是「拿掉打卡和曬照，你還是想做」。</li><li>給嗜好設進度：心流需要能力持續往上長。這個月的難度，要比上個月高一點點，才不會做膩。</li><li>小處練專注：連洗碗、走路都可以是心流。把全部注意力放在當下這個動作上，你會發現連雜務都變得不那麼難熬。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「心流＝放鬆、進入化境毫不費力」</strong>——恰恰相反。心流常發生在你身心被拉到極限、全力應付的時候。它「感覺」毫不費力，是因為你太投入而忘了費力，不是因為它真的輕鬆。躺平永遠進不了心流。</li><li><strong>「只要一直做喜歡的事就會有心流」</strong>——不對。你再愛的事，做到爛熟、毫無挑戰，一樣會無聊。心流靠的是難度與能力的動態平衡，不是「喜歡」兩個字。</li><li><strong>「有了心流，人生就會快樂」</strong>——契克森米哈伊沒這麼天真。心流是強力引擎，但方向要你自己給。裝在賭博、電玩、甚至傷害別人的事情上，一樣會有心流。快樂還需要「這件事值不值得投入一生」這層意義的判斷，那是書後半在談的。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《恆毅力》（達克沃斯）：達克沃斯自己指出，刻意練習（辛苦的準備）和心流（忘我的表現）是一體兩面——高手用汗水堆出來的刻意練習，才換得比賽時的心流。想懂「投入當下」讀契氏，想懂「長期堅持」讀達氏，兩本正好一橫一縱。</li><li>《原子習慣》（克利爾）：習慣解決的是「怎麼讓好行為自動發生」，心流解決的是「行為發生時怎麼投入得更深」。習慣是骨架，心流是骨架裡跑的血。</li><li>《當下的力量》（托勒）：兩本都在講「活在此刻」，但路線完全不同。契氏走科學實證，靠「主動投入一件難事」把你拉進當下；托勒走靈性內觀，靠「停止思考、純粹覺察」把你帶回當下。一個往外做，一個往內看。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「人生最好的時刻，通常不是被動、接收、放鬆的時候……而是一個人的身心被拉伸到極限，去自願完成某件困難而值得的事的時候。」（The best moments usually occur when a person's body or mind is stretched to its limits in a voluntary effort to accomplish something difficult and worthwhile.）</li><li>「控制意識，就是控制生活品質；其餘的一切，都由此決定。」（Control of consciousness determines the quality of life.）</li><li>「快樂不是發生在你身上的事，它不是你能買到或命令來的……它取決於你如何詮釋發生在你身上的一切。」（Happiness is not something that happens... it depends on how we interpret what happens to us.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你上一次「一抬頭發現三小時過去了」是在做什麼？那件事符合心流的哪些條件（明確目標？即時回饋？難度剛好）？你能不能把它變成生活裡更常出現的固定安排？</li><li>檢視你的休息時間：有多少比例是「被動」的（滑手機、追劇），多少是「主動」的（運動、動手、學習）？如果被動的偏多，你願意用一個主動嗜好，換掉睡前那一小時嗎？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "flow";
+      var TITLE = "心流";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>設計你的小習慣｜拾頁</title>
+<meta name="description" content="想養成運動習慣，別立志「每天做 20 下伏地挺身」。福格說：先從「上完廁所做 2 下」開始，做完還要對自己歡呼一下。聽起來很蠢，但這個史丹佛實驗室的方法，恰恰打中了習慣真正的開關——不是意志力，是情緒。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="tiny-habits" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-31</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>設計你的小習慣</h1>
+  <p class="title-en">Tiny Habits</p>
+  <p class="byline">BJ・福格（BJ Fogg）｜2019</p>
+  <p class="hook">想養成運動習慣，別立志「每天做 20 下伏地挺身」。福格說：先從「上完廁所做 2 下」開始，做完還要對自己歡呼一下。聽起來很蠢，但這個史丹佛實驗室的方法，恰恰打中了習慣真正的開關——不是意志力，是情緒。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>福格是史丹佛大學的行為科學家，主持一個叫「行為設計實驗室」的研究單位，鑽研「人為什麼會做出某個行為」這件事，超過二十年。他不是心靈雞湯作家，是把行為當成一門可以拆解、可以設計的科學在做的人。</p>
+<p>他在矽谷的影響力其實藏在很多產品背後。多年來，一大批科技公司的產品設計者上過他的課、學過他的行為模型——包括後來共同創辦 Instagram 的其中一位。也就是說，那些讓你忍不住一直滑、一直用的 App，背後有一部分就來自福格教的行為設計原理。這件事有點微妙：同一套「怎麼讓人養成習慣」的科學，可以被用來設計讓你上癮的產品，也可以反過來，被你自己拿來養成真正對你好的習慣。這本 2019 年出版的書，就是福格把二十年研究，親手交到「你自己」手上的版本——讓你當自己行為的設計師，而不是被別人設計。</p>
+<p>比起同期談習慣的暢銷書，福格的路線有兩個很鮮明的招牌：一是「小到不可思議」的起點，二是「情緒」而非「重複次數」才是養成習慣的真正關鍵。這兩點，讓他的方法在一堆習慣書裡自成一格。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「為什麼我下定決心要養成的好習慣，總是撐不了幾天就垮了？」</p>
+<p>多數人把答案歸咎於「我不夠自律、意志力太弱」。福格的回答很乾脆：<strong>別怪你的意志力，是你的方法設計錯了。</strong>你把目標訂得太大（每天跑五公里、每天讀一小時），大到必須靠意志力硬撐——而意志力像潮水，有高有低，一旦退潮，習慣就崩了。真正能長久的習慣，設計上根本不該依賴意志力。</p>
+<p>這本書要回答的是：如果你屢屢立志、屢屢失敗，覺得自己天生沒有毅力——問題不在你這個人，在你不懂習慣「怎麼運作」。福格要給你的，是一套把行為拆解到可以精準設計的科學方法，讓好習慣小到你「不可能失敗」，然後自然長大。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、福格行為模型：行為＝動機 × 能力 × 提示</h3>
+<p>這是福格整套理論的地基，一條公式：<strong>B＝MAP</strong>。任何一個行為（Behavior）要發生，需要三個要素在「同一個時刻」同時到位——動機（Motivation，你有多想做）、能力（Ability，這件事對你有多容易）、提示（Prompt，有東西提醒你現在做）。</p>
+<p>三者缺一，行為就不會發生。你想早起運動（有動機），但鬧鐘沒響（沒提示），不會動；鬧鐘響了、你也想（有提示有動機），但外面下大雪、健身房超遠（能力太低、太難），還是不會動。這三個旋鈕的組合，決定了一個行為到底會不會真的發生。</p>
+<p><strong>最關鍵的洞見在動機和能力的關係</strong>：福格畫了一條「行動線」。當一件事很難（能力低），你需要很高的動機才會去做；但當一件事很容易（能力高），只要一點點動機就足夠推動你。這帶出他整套方法的核心策略——<strong>與其苦苦拉高那條靠不住的動機，不如把行為變簡單，讓需要的動機降到極低。</strong>因為動機會波動、不可靠，能力（把事情變簡單）卻是你能穩定控制的。</p>
+<p><strong>限制</strong>：這個模型不預設你「想改什麼」，它只描述行為怎麼發生。方向對不對、該不該養這個習慣，得你自己判斷。它是引擎，不是方向盤。</p>
+<h3>二、動機靠不住：別把房子蓋在潮水上</h3>
+<p>福格花了很大力氣打破一個現代人的迷信——「只要我夠有動力、夠有決心，就能改變」。</p>
+<p>他說，動機是所有要素裡「最不可靠」的一個。它像海浪，有高潮也有低谷。你在一月一日、在看完一部勵志影片後、在被醫生警告之後，動機會衝上高點——這叫「動機浪潮」。但問題是，浪一定會退。那些「動機高漲時」立下的宏大計畫（每天健身一小時、每天寫作兩千字），一旦浪退了，就撐不住了。多數人的新年新希望死在二月，不是因為他們是廢物，是因為他們把整棟房子蓋在會退潮的沙灘上。</p>
+<p><strong>破解之道</strong>：福格的策略不是「想辦法讓動機一直很高」（那不可能），而是「設計一個就算動機很低也做得到的行為」。如果你的運動習慣小到「只做 2 下伏地挺身」，那即使某天你累爆、心情爛透、一點動力都沒有，你還是做得到——因為它需要的動機趨近於零。這樣一來，習慣就不再受動機潮汐的擺佈。他甚至反過來利用動機浪潮：趁動機高漲時，別去「拚命執行大目標」，而是去「設計好你的小習慣系統和環境」，因為設計系統這件事，剛好需要在有動力的時候做。</p>
+<p><strong>限制</strong>：這不是說動機完全沒用。動機高的時候是啟動改變、建立系統的好時機。福格反對的是「把長期習慣的成敗，押在短暫的動機上」。</p>
+<h3>三、把習慣縮到「小得不可思議」：兩下伏地挺身的祕密</h3>
+<p>這是福格最著名、也最容易被當笑話的一招——<strong>把新習慣縮到小到不可能失敗的程度</strong>。</p>
+<p>想養成運動？別訂「每天做 20 下伏地挺身」，訂「做 2 下」。想開始用牙線？別要求「每天全口清潔」，要求「清一顆牙」。想開始寫作？別立志「每天寫一頁」，先「打開文件、寫一句話」。福格自己的招牌習慣就是這麼來的——他規定自己「每次上完廁所，就做兩下伏地挺身」，幾年下來，這個荒謬的小起點竟長成了一天幾十下的習慣。</p>
+<p>為什麼要小到這麼誇張？福格的邏輯有兩層。第一，<strong>小到不需要動機</strong>——2 下伏地挺身，你再累、再懶都做得到，於是它能穿越動機的低潮期，天天成立。第二，<strong>小是為了先「種下」而非「做多」</strong>。你的目標不是靠這 2 下練出肌肉，而是先讓「運動」這件事在你的生活裡「生根」，變成一個穩定、自動、不費力的存在。一旦根扎穩了，數量自然會長——很多天你做完 2 下會順手多做幾下，但關鍵是「即使不想多做，2 下也保住了習慣不斷線」。</p>
+<p><strong>機制</strong>：這招巧妙地繞開了人最大的敵人——啟動的阻力。一件事之所以做不下去，往往卡在「開始」那一下。當門檻低到荒謬，「開始」就毫無壓力，而通常只要開始了，慣性就會帶你往前走。</p>
+<p><strong>限制</strong>：小習慣是為了「養成穩定的行為模式」，不是直接達成大成果。如果你需要的是「這個月減五公斤」這種有明確量化目標的成果，小習慣是打地基的方法，不是速成的捷徑。它先給你一個不會斷的根，成果是根長大後的事。</p>
+<h3>四、情緒才是習慣的黏著劑：做完立刻「慶祝」</h3>
+<p>這是福格跟其他習慣理論最不一樣、也最反直覺的主張。一般人以為習慣是靠「重複次數」養成的——所謂「做滿 21 天就成習慣」。福格明確反對這個說法。他的核心信念是：<strong>是情緒創造習慣，不是重複的頻率。</strong></p>
+<p>他的邏輯是這樣：大腦會「記住」並自動重複那些讓它「感覺良好」的行為。一個行為之所以會固化成習慣，關鍵不在你重複了幾次，而在你每次做完後，大腦有沒有嚐到一點正向情緒。所以他發明了一個看起來很蠢、卻是整套方法「祕密武器」的動作——<strong>慶祝</strong>（他稱之為 Shine，讓內心發光一下）。</p>
+<p>具體怎麼做？每次你完成那個小習慣的當下——做完 2 下伏地挺身、清完那一顆牙——立刻給自己一個小小的正向情緒：在心裡（或出聲）說「我做到了！」、握拳比個「Yes!」、對自己微笑、想像聽到歡呼。就這麼一個兩秒鐘的動作，福格說，它會在你的大腦裡替這個行為「焊上」一份好感覺，讓大腦標記「這件事做起來爽，值得再做」。這份即時的正向情緒，才是把行為黏成習慣的真正膠水。</p>
+<p><strong>機制</strong>：這背後是神經科學的「行為強化」——大腦會強化「緊接著獎賞」的行為。而最快、最不花錢、隨時可得的獎賞，就是你自己給自己的一份好情緒。你不需要等外在成果（那太慢、太不確定），你可以在「做完的那一秒」就自己發獎。</p>
+<p><strong>限制</strong>：對很多人來說，「對自己歡呼」一開始尷尬得要命，會覺得幼稚。但福格強調這正是最多人略過、也最可惜的一步——慶祝不是可有可無的裝飾，它是讓習慣真正扎根的核心機制。跳過它，習慣就少了黏著劑。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>福格的方法是一條完整的「行為設計」流水線，串起來是這樣：先用<strong>福格行為模型（B＝MAP）</strong>理解一個行為需要動機、能力、提示同時到位——這是世界觀。接著他點破一個致命錯誤：多數人拚命去拉那個最不可靠的<strong>動機</strong>，結果被動機的潮汐反覆背叛——這是打破迷思。既然動機靠不住，那就轉去操作可控的「能力」——把習慣<strong>縮到小得不可能失敗</strong>，讓它低到不需要動機也能成立——這是核心策略。然後配上一個穩定的<strong>提示</strong>（把新習慣「錨定」在一個既有的日常動作後面，像「上完廁所後」），讓它有東西自動觸發。最後，用<strong>慶祝</strong>注入即時的正向情緒，把這個行為真正焊進大腦——這是讓它長久的關鍵一步。</p>
+<p>他有一個好記的配方公式：「<strong>做完 A（既有習慣當提示），我就做 B（小到不行的新行為），然後立刻慶祝。</strong>」小小地開始、穩穩地觸發、開心地收尾——習慣就這樣被設計出來，而不是靠意志力硬熬出來。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（養成一個工作好習慣，以「每天整理待辦」為例）</strong>：</p>
+<ol><li>縮到最小：別訂「每天做完整的工作規劃」，先訂「每天打開電腦後，寫下今天最重要的一件事」。小到你再忙都做得到。</li><li>錨定提示：把它綁在一個你天天必做的動作後面——「泡好第一杯咖啡、坐下的那一刻，就寫那一件事」。用既有習慣當自動觸發器，不靠記憶。</li><li>立刻慶祝：寫完那一行，在心裡對自己說「搞定，好的開始！」給自己一個小小的好情緒。別小看這兩秒，它是讓明天還想做的關鍵。</li><li>讓它自然長大：習慣穩了之後，你會發現自己常常順手多寫兩三件——但即使只寫一件，習慣也保住了，永遠不斷線。</li></ol>
+<p><strong>生活版（養成一個生活習慣，以「多喝水」為例）</strong>：</p>
+<ol><li>縮到最小：別訂「每天喝 2000cc」，先訂「每天早上刷完牙，喝一口水」。一口就好。</li><li>錨定提示：把「喝一口水」牢牢綁在「刷完牙」這個每天鐵定會做的動作後面——刷牙就是你的鬧鐘。</li><li>立刻慶祝：喝完那口，對鏡子裡的自己笑一下、比個讚。是的，會有點蠢，但這正是讓大腦記住「這件事有好感覺」的祕訣。</li><li>對付壞習慣就反著來：想戒睡前滑手機？福格的做法是「拆掉提示、增加難度」——把手機充電器移出臥室，讓那個觸發你滑手機的提示直接消失。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「習慣要靠重複 21 天養成」</strong>——福格明確反對這個流傳最廣的說法。他主張是「情緒」而非「重複次數」在創造習慣：一個讓你做完就有好感覺的行為，可能很快就固化；而一個你重複很多次卻毫無正向情緒的行為，永遠長不成習慣。所以他才那麼強調「慶祝」——那不是花招，是機制本身。</li><li><strong>「習慣愈大、愈狠，效果愈好」</strong>——恰恰相反。福格認為訂太大的目標，正是多數人失敗的主因，因為大目標需要高動機，而動機會退潮。把習慣縮到「小得可笑」不是妥協，是刻意的設計——先求生根不斷線，再談長大。</li><li><strong>「慶祝那一步很幼稚，可以省略」</strong>——這是最多人犯、也最可惜的錯。福格反覆強調，慶祝是他整套方法裡最容易被跳過、卻最關鍵的一環。少了那份即時的正向情緒，行為就少了黏進大腦的膠水。覺得尷尬可以低調做，但別省。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《原子習慣》（克利爾）：兩本是同主題最常被拿來比較的雙璧，而且高度互補。克利爾的框架更全面（提示、渴望、回應、獎賞四法則、身分認同、環境設計），福格則更聚焦、更強調兩件事——「小到不可思議的起點」和「用情緒／慶祝來焊接習慣」。克利爾也在書裡向福格致敬。想要完整地圖讀克利爾，想要最小可行的起步儀式讀福格。</li><li>《恆毅力》（達克沃斯）：達克沃斯講「長期堅持一個大目標」的心理力量，聽起來很靠意志力；福格剛好補上「怎麼堅持而不靠意志力硬撐」的操作——把要堅持的行為設計得小到不費力。一個給你北極星，一個給你不會斷的腳步。</li><li>《心態致勝》（杜維克）：福格的「慶祝」和杜維克的「成長心態」暗中呼應——慶祝的是「你做到了、你進步了」的過程，而不是「你多有天分」的結果。兩者都在教你把注意力放在「可控的努力與進步」上，並從中得到正向回饋。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「要改變行為，別想著改變自己——去改變你的環境和設計。」（原文精神：To change behavior, redesign your environment and make the behavior tiny — don't rely on willpower.）</li><li>「是情緒創造了習慣，不是重複的次數。」（Emotions create habits. Not repetition. Not frequency.）</li><li>「先讓自己成功地做到小事，微小的成功會像種子一樣，長成巨大的改變。」（原文精神：Help yourself succeed by starting tiny; small successes grow.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>挑一個你一直想養成、卻總是失敗的習慣。用福格的方法把它「縮到小得可笑」——小到你今天再累、再沒動力都一定做得到，那個版本會是什麼？（提示：不是「每天運動」，是「穿上運動鞋」那種等級。）</li><li>「做完就立刻慶祝」這一步，你會不會覺得尷尬、幼稚、想跳過？如果會，是什麼讓你抗拒對自己歡呼——會不會這份「不好意思肯定自己」，其實正是你一直難以維持好習慣的隱藏原因之一？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "tiny-habits";
+      var TITLE = "設計你的小習慣";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

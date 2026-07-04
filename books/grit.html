@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>恆毅力｜拾頁</title>
+<meta name="description" content="我們一邊嘴上說「天分沒什麼了不起」，一邊偷偷崇拜天才。但研究發現：決定誰能走到最後的，不是天分有多高，而是一個更樸素、更可練的東西——跌倒後爬起來、再繼續走的能力。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="grit" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-15</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>恆毅力</h1>
+  <p class="title-en">Grit: The Power of Passion and Perseverance</p>
+  <p class="byline">安琪拉・達克沃斯（Angela Duckworth）｜2016</p>
+  <p class="hook">我們一邊嘴上說「天分沒什麼了不起」，一邊偷偷崇拜天才。但研究發現：決定誰能走到最後的，不是天分有多高，而是一個更樸素、更可練的東西——跌倒後爬起來、再繼續走的能力。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>達克沃斯不是含著金湯匙、一路順風的學霸典型。她小時候常被父親念「你又不是天才」——這句話大概在她心裡種下了一輩子要回答的問題。</p>
+<p>她一開始走的是很主流的路：唸完名校，進了麥肯錫當顧問，年紀輕輕就領著漂亮薪水。但她做得不快樂，二十七歲那年做了一個嚇壞身邊人的決定——辭掉顧問工作，跑去紐約公立學校教七年級數學。就是在講台上，她發現了一件讓她困惑的事：<strong>數學考最好的，往往不是她眼中最「聰明」的那幾個孩子。</strong>有些反應很快的學生成績平平，有些起步慢的孩子卻靠著死磕，一路追上來。天分和成就之間，明顯還隔著什麼東西。</p>
+<p>為了搞清楚那個「東西」是什麼，她又轉行，跑去賓州大學唸心理學博士，師從正向心理學之父塞利格曼。她跑遍各種「淘汰率很高」的場合做研究——西點軍校、拼字比賽、業務團隊、貧困學區的學校——想找出「誰會撐到最後」的共同特質。答案濃縮成一個詞：<strong>grit，恆毅力</strong>。她因為這系列研究拿到了有「天才獎」之稱的麥克阿瑟獎——一個研究「別靠天才」的人，拿了天才獎，本身就是個好笑又動人的註腳。這本書 2016 年出版，成了全球暢銷書。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「為什麼有些人明明沒那麼聰明、沒那麼有天分，卻能一路走到頂，而許多天資更好的人半途就不見了？」</p>
+<p>我們的文化太迷信天分了。看到誰成功，第一反應是「他一定很有天賦」——因為這個解釋最省事，也讓我們自己不成功時有台階下（反正我沒那個天分）。達克沃斯要挑戰的正是這個懶惰的答案。她的核心主張很簡單：<strong>長期的成就，靠的不是短跑衝刺的天賦，而是馬拉松式的堅持。</strong>能不能對一個目標「持續熱愛 ＋ 不放棄地努力」很多年，比你起跑時多聰明重要得多。</p>
+<p>如果你曾經因為「我好像沒天分」而放棄；如果你三分鐘熱度、什麼都學一半——這本書會告訴你，你缺的不是天賦，是把一件事撐久的方法，而那是可以練的。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、恆毅力＝熱情 ＋ 毅力，而且是「長期」的那種</h3>
+<p>先定義清楚。恆毅力有兩個成分：<strong>對長期目標的熱情（passion）</strong>，和<strong>堅持到底的毅力（perseverance）</strong>。注意——是「長期」。達克沃斯特別強調，熱情不是指「有多狂熱、多激動」，而是指「有多持久、多專一」。</p>
+<p>這個區分很重要。很多人以為自己很有熱情，因為他們常常對新事物一見鍾情、燃燒得很旺——但那把火燒三個月就滅了，換下一個目標。這不叫熱情，這叫喜新厭舊。真正的恆毅力，是你能對「同一個」大目標，年復一年地保持在意，即使它已經不新鮮、不刺激了。她甚至自己編了一份「恆毅力量表」，量的不是你此刻多有幹勁，而是你「幾年來能不能守著一個方向不變心」。</p>
+<p><strong>機制</strong>：達克沃斯用「目標階層」來解釋。恆毅力高的人，心裡有一個很高的「頂層目標」（比如「幫助孩子透過教育翻身」），底下掛著一堆中層、低層的小目標，全部都指向那個頂端。小目標可以隨時換、可以失敗，但頂層那顆北極星不動。所以他們看起來很有定力——不是因為他們死腦筋，而是因為他們心裡有一個穩定的方向感，讓所有努力都在往同一個地方累積。</p>
+<p><strong>限制</strong>：恆毅力不是「打死不放手」。死守一個明顯錯誤的目標，那叫固執不叫恆毅力。她也承認，人生某些低層目標本來就該果斷放棄——關鍵是分清楚：你放棄的是通往北極星的其中一條爛路，還是連北極星本身都扔了。</p>
+<h3>二、西點軍校的「野獸營」：能撐下來的，量表算得出來</h3>
+<p>達克沃斯最有名的研究場景是西點軍校。每年新生入學前要熬過一個叫「野獸營」（Beast Barracks）的魔鬼訓練——七週高壓、高淘汰。西點錄取這些人時，用的是一套超複雜的「綜合評分」，把學業、體能、領導力全算進去。照理說這套精密的分數應該最能預測誰撐得住。</p>
+<p>結果呢？那套綜合評分幾乎預測不了誰會中途退訓。反而是達克沃斯讓新生填的那份簡單「恆毅力量表」，預測力明顯更好——恆毅力分數高的人，撐過野獸營的比例顯著更高。體能沒有比較強、SAT 沒有比較高的孩子，只要恆毅力夠，就是比別人更能咬牙撐下去。</p>
+<p><strong>這個研究的價值</strong>：它說明了一件反直覺的事——在「會不會淘汰」這種撐耐力的場合，決定勝負的不是你有多優秀的硬實力，而是你摔倒後還願不願意再站起來。她後來在全國拼字比賽、在業務團隊、在艱困學區的老師身上，一次又一次驗證了同一個規律。</p>
+<h3>三、努力算兩次：達克沃斯的成就公式</h3>
+<p>這是全書最關鍵、也最能安慰人的一段。達克沃斯提出兩條簡單的公式：</p>
+<p><strong>天分 × 努力 ＝ 技能；技能 × 努力 ＝ 成就。</strong></p>
+<p>看懂了嗎？努力在裡面出現了兩次。第一次，努力把你的天分「兌現」成真正的技能（天分只是潛力，不練永遠是紙上談兵）；第二次，努力再把你的技能「兌現」成實際的成就（會很多東西，不去用、不去產出，一樣沒成果）。所以在數學上，<strong>努力對成就的貢獻，是天分的兩倍。</strong></p>
+<p>她講了一個很戳人的觀察，叫「天分偏誤」。她做過實驗：告訴人們有兩個表現一樣好的音樂家，一個是「天生好手」，一個是「後天苦練」——結果大家嘴上都說欣賞努力的人，實際評分卻偏心那個天生好手。我們表面歌頌努力，骨子裡卻崇拜天才。為什麼？因為「天分」這個解釋讓我們舒服——如果成功靠的是天分，那我不成功就不是我的錯；但如果成功靠的是努力，那我沒做到，就只能怪自己不夠拚了。</p>
+<p><strong>限制</strong>：這不是說天分不存在、不重要。達克沃斯從沒否認人有資質差異。她說的是，在我們能控制的範圍內，努力的槓桿遠比我們願意承認的大——而且它是少數你真的握在手裡的東西。</p>
+<h3>四、刻意練習：不是「練久」，是「練對」</h3>
+<p>那「努力」到底怎麼努力？埋頭苦幹一萬小時就行嗎？達克沃斯借用心理學家艾瑞克森的研究說：不是。真正讓人變強的是「<strong>刻意練習</strong>」，它跟「隨便重複」有四個差別：設定一個超出你目前能力的「拉伸目標」、練習時全神貫注、立刻得到回饋、然後針對錯誤反覆修正、再把改好的地方練到熟。</p>
+<p>她在全國拼字比賽的孩子身上看到這個規律：走得最遠的孩子，不是「花最多時間」的，也不是純粹「找樂子讀書」的，而是花最多時間在「刻意練習」——去啃自己還不會的難字、被考倒、記下來、再攻。這種練習又累又不好玩，甚至有點痛苦，但它的效果遠勝於輕鬆愉快地重讀已經會的東西。</p>
+<p><strong>這裡有個漂亮的連結</strong>：刻意練習很辛苦，但頂尖高手在「正式上場」時，反而常常進入毫不費力的心流狀態。達克沃斯的解釋是——刻意練習是幕後那些咬牙切齒的準備，心流是台上那看似輕鬆的發揮；沒有前者的汗水，就沒有後者的行雲流水。兩者不衝突，是一體的。</p>
+<h3>五、從裡到外，恆毅力可以「養」出來</h3>
+<p>最讓人安心的是：恆毅力不是天生註定的，它可以培養。達克沃斯給了由內而外的四個階段：</p>
+<p><strong>興趣</strong>——恆毅力的起點是熱愛，但她打破了「追隨你的熱情」這個雞湯。熱情很少是一見鍾情、天上掉下來的；它多半是「先接觸、再慢慢養出來」的。你得先允許自己去嘗試、去玩，讓興趣有時間發芽，而不是苦等一個從天而降的天命。</p>
+<p><strong>練習</strong>——愛上之後，用刻意練習讓自己一天比一天強。技能的進步本身會回頭餵養你的熱情。</p>
+<p><strong>目的</strong>——把手上的事，連結到「對別人有益」的更大意義。她講了那個經典的砌磚工寓言：三個砌磚工被問在做什麼，第一個說「我在砌磚」，第二個說「我在蓋一座教堂」，第三個說「我在建造神的殿堂」。做同樣的活，第三個人的恆毅力最強，因為他看見的是意義，不是磚頭。能把工作跟「幫助他人」掛上鉤的人，撐得最久。</p>
+<p><strong>希望</strong>——這是貫穿始終的一種「摔倒了會再爬起來」的信念。它跟杜維克的「成長心態」、塞利格曼的「習得的樂觀」是親戚：相信努力能改變處境，於是遇到挫折不會癱在原地，而是想「我還能怎麼做」。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>整本書的骨架是這樣：先用一條公式（<strong>努力算兩次</strong>）說服你「別再拿天分當藉口」，把焦點從你控制不了的天賦，搬到你控制得了的努力上——這是心態的鬆綁。接著定義恆毅力＝<strong>長期的熱情 ＋ 毅力</strong>，並用西點、拼字比賽的硬數據證明它真的能預測誰走到最後——這是把概念坐實。然後拆解努力的品質，告訴你有效的努力叫<strong>刻意練習</strong>，不是瞎忙——這是方法。最後給出<strong>興趣→練習→目的→希望</strong>這條養成路徑，證明恆毅力不是天生的性格，而是可以由裡到外一步步培養的能力——這是希望與出路。</p>
+<p>一句話收攏：成就＝你選定一個值得的方向，然後用對的方法，堅持得夠久。天分只決定起跑線，恆毅力決定終點。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（把三分鐘熱度變成長期累積）</strong>：</p>
+<ol><li>找出你的北極星：問自己「我做的這些事，最終是為了什麼更大的目標？」把它寫下來當頂層目標，之後每個小任務都對照它，你會突然有定力。</li><li>每天安排一段「刻意練習」：不是重複你已經會的，而是專挑你會卡住、會出錯的難點去攻，練完立刻檢討。哪怕每天只有 30 分鐘。</li><li>連結意義：想清楚你的工作最終幫到了誰。看得見受益的人，你就撐得住枯燥。</li></ol>
+<p><strong>生活版（培養一個能持久的興趣）</strong>：</p>
+<ol><li>先玩再愛：別等「找到真正的熱情」才開始。挑一個有點好奇的事，給它三個月的探索期，允許自己還不擅長。</li><li>訂「難事規則」：達克沃斯家有個規矩——每個人都要選一件需要刻意練習的難事（樂器、運動皆可），可以自己選，但選了就不准在「不順、想放棄」的當下退出，至少做完一個週期。這條規則對大人一樣有用。</li><li>分清「放棄一條路」和「放棄目標」：某件事讓你痛苦想退出時，先問——我是受不了通往目標的這條爛路，還是連目標本身都不想要了？前者可以換路，後者才是真的該收手。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「恆毅力＝永不放棄、死守到底」</strong>——這是最大的誤讀。達克沃斯明確說過，人生很多低層目標本來就該果斷放棄，把力氣省下來給真正重要的北極星。恆毅力守的是「頂層方向」，不是「每一條具體的路」。分不清這個，就會把固執當毅力。</li><li><strong>「達克沃斯說天分不重要」</strong>——她從沒這樣講。她承認天分真實存在、也有影響。她說的是天分被高估、努力被低估，而且努力是你少數能掌控的變數。這是務實，不是否認現實。</li><li><strong>「有恆毅力就一定會成功」</strong>——恆毅力大幅提高勝率，但不是保證書。方向錯了、時運不濟，再堅持也可能落空。它是必要條件，不是萬靈丹。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《心態致勝》（杜維克）：兩本是最佳拍檔。杜維克解釋「為什麼有人願意堅持」——因為他相信能力能成長（成長心態）；達克沃斯則接手講「這份堅持長期會累積成什麼」。想懂堅持的心理源頭讀杜維克，想懂堅持的長期威力讀達克沃斯。</li><li>《心流》（契克森米哈伊）：達克沃斯親自把兩者接起來——刻意練習是台下咬牙的苦功，心流是台上忘我的發揮，一辛苦一享受，缺一不可。</li><li>《原子習慣》（克利爾）：恆毅力回答「為什麼要撐下去」（有北極星、有意義），原子習慣回答「怎麼撐下去而不靠意志力硬耗」（設計系統讓堅持自動發生）。動機讀達氏，方法讀克氏。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「我們的潛力是一回事，我們如何運用它，是另一回事。」（Our potential is one thing. What we do with it is quite another.）</li><li>「熱情不是激烈，是持久。」（原文精神：Enthusiasm is common. Endurance is rare. — 熱情人人有，能撐下去的才稀有。）</li><li>「摔倒後爬起來，比從不摔倒更重要。」（原文精神：Grit is about falling down seven times and getting up eight.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你有沒有一件「三分鐘熱度」的往事——當初很興奮，後來放掉了？回頭看，你放棄的是「一條走不通的路」，還是「連方向都沒了」？如果重來，你會怎麼分辨？</li><li>用達克沃斯的四階段檢視你正在做的一件事：你對它還有「興趣」嗎？你有在「刻意練習」還是在原地打轉？它連結到什麼更大的「目的」？遇到挫折時你抱的是「希望」還是放棄——四項裡最弱的是哪一項，你能怎麼補？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "grit";
+      var TITLE = "恆毅力";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

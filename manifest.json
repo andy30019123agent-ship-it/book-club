@@ -1,5 +1,194 @@
 [
   {
+    "date": "2026-07-31",
+    "slug": "tiny-habits",
+    "title": "設計你的小習慣",
+    "author": "BJ・福格（BJ Fogg）",
+    "theme": "自我成長",
+    "hook": "想養成運動習慣，別立志「每天做 20 下伏地挺身」。福格說：先從「上完廁所做 2 下」開始，做完還要對自己歡呼一下。聽起來很蠢，但這個史丹佛實驗室的方法，恰恰打中了習慣真正的開關——不是意志力，是情緒。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/tiny-habits.html"
+  },
+  {
+    "date": "2026-07-30",
+    "slug": "factfulness",
+    "title": "真確",
+    "author": "漢斯・羅斯林（Hans Rosling）",
+    "theme": "邏輯思考",
+    "hook": "一道關於世界的常識題，黑猩猩隨便亂猜都比你答得好——不是你笨，是你的大腦裝了十套會扭曲事實的濾鏡。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/factfulness.html"
+  },
+  {
+    "date": "2026-07-29",
+    "slug": "captivate",
+    "title": "如何讓人喜歡我",
+    "author": "凡妮莎・范愛德華茲（Vanessa Van Edwards）",
+    "theme": "人際關係",
+    "hook": "你以為魅力是天生的、有些人就是有、學不來——其實「討人喜歡」是一組可拆解的技術，連你打招呼的第一句、手放哪裡、問什麼問題，都有可以練的公式。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/captivate.html"
+  },
+  {
+    "date": "2026-07-28",
+    "slug": "no-rules-rules",
+    "title": "零規則",
+    "author": "里德・海斯汀、艾琳・梅爾（Reed Hastings & Erin Meyer）",
+    "theme": "職場成長",
+    "hook": "你的公司規則越訂越多，往往不是因為員工爛，而是因為不信任。Netflix 賭了一把相反的：先找到最強的人，然後把規則拿掉。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/no-rules-rules.html"
+  },
+  {
+    "date": "2026-07-27",
+    "slug": "the-power-of-now",
+    "title": "當下的力量",
+    "author": "艾克哈特・托勒（Eckhart Tolle）",
+    "theme": "自我成長",
+    "hook": "你大部分的痛苦，其實不是眼前正在發生的事造成的——是你腦中那個停不下來的聲音，反覆咀嚼過去的懊悔和未來的擔憂。托勒問了一個嚇人的問題：那個一直在說話的聲音，真的是「你」嗎？",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-power-of-now.html"
+  },
+  {
+    "date": "2026-07-26",
+    "slug": "poor-charlies-almanack",
+    "title": "窮查理的普通常識",
+    "author": "查理・蒙格（Charlie Munger，Peter Kaufman 編）",
+    "theme": "邏輯思考",
+    "hook": "巴菲特說，讓他從猩猩變成人的，是身邊這位夥伴。蒙格一輩子只做一件事——蒐集各學科最強的道理，裝進同一顆腦袋。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/poor-charlies-almanack.html"
+  },
+  {
+    "date": "2026-07-25",
+    "slug": "daring-greatly",
+    "title": "脆弱的力量",
+    "author": "布芮尼・布朗（Brené Brown）",
+    "theme": "人際關係",
+    "hook": "你以為示弱是輸家的事，所以拼命武裝自己不讓人看穿——但真相反過來：所有你最想要的東西（親密、信任、被真心接住）都只長在「敢讓人看見真實的你」那塊地上。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/daring-greatly.html"
+  },
+  {
+    "date": "2026-07-24",
+    "slug": "the-pyramid-principle",
+    "title": "金字塔原理",
+    "author": "芭芭拉・明托（Barbara Minto）",
+    "theme": "職場成長",
+    "hook": "你的報告不是內容不夠好，是順序錯了。別人聽不懂，往往不是因為你講太少，而是你把結論藏在最後、讓人一路猜你到底想說什麼。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-pyramid-principle.html"
+  },
+  {
+    "date": "2026-07-23",
+    "slug": "the-productivity-project",
+    "title": "最有生產力的一年",
+    "author": "克里斯・貝利（Chris Bailey）",
+    "theme": "自我成長",
+    "hook": "一個大學畢業生推掉兩份好工作，花整整一年拿自己做實驗——每週工作 90 小時 vs 20 小時、清晨 5 點半起床、每天冥想。他得到的結論很反直覺：生產力的重點從來不是「做更多」，而是「做完你真正在意的事」。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-productivity-project.html"
+  },
+  {
+    "date": "2026-07-22",
+    "slug": "antifragile",
+    "title": "反脆弱",
+    "author": "納西姆・塔雷伯（Nassim Nicholas Taleb）",
+    "theme": "邏輯思考",
+    "hook": "「脆弱」的相反不是「堅固」——堅固只是不怕摔，真正的相反，是摔了反而變更強。你的人生，是玻璃杯還是肌肉？",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/antifragile.html"
+  },
+  {
+    "date": "2026-07-21",
+    "slug": "start-with-why",
+    "title": "先問，為什麼？",
+    "author": "賽門・西奈克（Simon Sinek）",
+    "theme": "人際關係",
+    "hook": "為什麼有人一開口大家就想追隨，有人條件更好卻沒人買單？差別不在你做什麼、做得多好，而在你有沒有先講清楚「你為什麼而做」——人買的從來不是產品，是你的信念。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/start-with-why.html"
+  },
+  {
+    "date": "2026-07-20",
+    "slug": "measure-what-matters",
+    "title": "OKR：做最重要的事",
+    "author": "約翰・杜爾（John Doerr）",
+    "theme": "職場成長",
+    "hook": "你的團隊很忙，但忙不等於在做對的事。OKR 不是又一套 KPI 表格，而是逼所有人先回答一句話：這一季，什麼才是真正最重要的？",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/measure-what-matters.html"
+  },
+  {
+    "date": "2026-07-19",
+    "slug": "mindset",
+    "title": "心態致勝",
+    "author": "卡蘿・杜維克（Carol Dweck）",
+    "theme": "自我成長",
+    "hook": "誇孩子「你好聰明」聽起來是好事，杜維克卻用實驗證明：這句話反而會讓他變得更怕失敗、更不敢挑戰。差別只在一個字——你相信能力是「固定的」，還是「能長出來的」。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/mindset.html"
+  },
+  {
+    "date": "2026-07-18",
+    "slug": "the-black-swan",
+    "title": "黑天鵝效應",
+    "author": "納西姆・塔雷伯（Nassim Nicholas Taleb）",
+    "theme": "邏輯思考",
+    "hook": "一隻被餵養一千天的火雞，每天都更相信人類愛牠——直到感恩節前一天。你對世界的信心，是不是也建立在「還沒出事」上？",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-black-swan.html"
+  },
+  {
+    "date": "2026-07-17",
+    "slug": "crucial-conversations",
+    "title": "關鍵對話",
+    "author": "凱瑞・派特森 等（Kerry Patterson et al.）",
+    "theme": "人際關係",
+    "hook": "面對最重要的對話，你的本能幾乎都是錯的——要嘛忍到爆炸、要嘛話講太重。這本書告訴你：關係好壞不看你多會相處，看你在最難開口的那一刻怎麼開口。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/crucial-conversations.html"
+  },
+  {
+    "date": "2026-07-16",
+    "slug": "give-and-take",
+    "title": "給予",
+    "author": "亞當・格蘭特（Adam Grant）",
+    "theme": "職場成長",
+    "hook": "職場成功排行榜的最底層是「給予者」——但最頂層也是。差別不在他們給不給，而在他們怎麼給、給了會不會被吃乾抹淨。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/give-and-take.html"
+  },
+  {
+    "date": "2026-07-15",
+    "slug": "grit",
+    "title": "恆毅力",
+    "author": "安琪拉・達克沃斯（Angela Duckworth）",
+    "theme": "自我成長",
+    "hook": "我們一邊嘴上說「天分沒什麼了不起」，一邊偷偷崇拜天才。但研究發現：決定誰能走到最後的，不是天分有多高，而是一個更樸素、更可練的東西——跌倒後爬起來、再繼續走的能力。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/grit.html"
+  },
+  {
+    "date": "2026-07-14",
+    "slug": "great-mental-models",
+    "title": "思考的框架",
+    "author": "沙恩・帕里什（Shane Parrish）",
+    "theme": "邏輯思考",
+    "hook": "你不是不夠聰明，是腦袋裡只有一兩把工具。手上只有鐵鎚的人，看什麼都像釘子——這本書要給你的是一整箱思考工具。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/great-mental-models.html"
+  },
+  {
+    "date": "2026-07-13",
+    "slug": "nonviolent-communication",
+    "title": "非暴力溝通",
+    "author": "馬歇爾・盧森堡（Marshall Rosenberg）",
+    "theme": "人際關係",
+    "hook": "你以為吵架是因為對方難搞，其實多數衝突都輸在同一件事——你把「觀察」講成了「批評」，話一出口對方就進入防衛，接下來說什麼都沒用了。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/nonviolent-communication.html"
+  },
+  {
+    "date": "2026-07-12",
+    "slug": "thinking-in-bets",
+    "title": "高勝算決策",
+    "author": "安妮・杜克（Annie Duke）",
+    "theme": "職場成長",
+    "hook": "好結果不代表你決策對，壞結果也不代表你判斷錯。你一直用「事情的結局」幫自己打分數，難怪同樣的坑會一直踩。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/thinking-in-bets.html"
+  },
+  {
+    "date": "2026-07-11",
+    "slug": "flow",
+    "title": "心流",
+    "author": "米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）",
+    "theme": "自我成長",
+    "hook": "你以為快樂是放假、躺平、什麼都不做。但研究發現：人最投入、最忘我的時刻，幾乎都發生在「有點難、要全力應付」的時候——不是休息，是全神貫注。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/flow.html"
+  },
+  {
     "date": "2026-07-10",
     "slug": "principles",
     "title": "原則：生活和工作",

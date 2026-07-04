@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>如何讓人喜歡我｜拾頁</title>
+<meta name="description" content="你以為魅力是天生的、有些人就是有、學不來——其實「討人喜歡」是一組可拆解的技術，連你打招呼的第一句、手放哪裡、問什麼問題，都有可以練的公式。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="captivate" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-07-29</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>如何讓人喜歡我</h1>
+  <p class="title-en">Captivate</p>
+  <p class="byline">凡妮莎・范愛德華茲（Vanessa Van Edwards）｜2017</p>
+  <p class="hook">你以為魅力是天生的、有些人就是有、學不來——其實「討人喜歡」是一組可拆解的技術，連你打招呼的第一句、手放哪裡、問什麼問題，都有可以練的公式。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>凡妮莎・范愛德華茲最有意思的地方，是她的出發點：她自封為「康復中的尷尬人（recovering awkward person）」。她從小是那種社交場合會手足無措、不知道手該放哪、聊天永遠冷場的人。別人眼中的「社交天分」，對她來說是一門完全的外語。</p>
+<p>所以她做了一件很工程師的事——<strong>既然學不會，那就把它拆解成公式來研究。</strong>她創辦了一個叫「Science of People」的行為研究實驗室，專門用科學方法拆解人際互動：她們錄下上千段對話、分析 TED 演講為什麼有些爆紅有些沒人看、研究微表情、追蹤肢體語言、做行為實驗。她的信念是：<strong>魅力不是玄學，是一組可觀察、可測量、可複製的行為。</strong></p>
+<p>這本書 2017 年出版，正好搭上兩股潮流。一是「行為科學普及化」——像《快思慢想》《推力》這類把心理學實驗寫給大眾看的書當紅；二是社群時代下，很多人（尤其內向者、科技從業者）發現自己「線上很行、面對面很卡」，急需一套實用的社交操作手冊。</p>
+<p>范愛德華茲把這本書定位成「人際互動的操作系統」。相對於卡內基的《人性的弱點》講的是原則和態度，她這本更像「拆到動作層級」的技術手冊——具體到你進一個房間該站哪、第一句話該說什麼、怎麼問問題能讓對方眼睛發亮。它的價值不在深刻的人性洞察，在「可執行性」——這是一本你讀完當天就能拿去用的書。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>「為什麼有些人一進場就自帶光環、聊幾句就跟誰都熟，我卻總是站在角落尬聊、被人三分鐘就忘記？」——這是每個覺得自己「不擅長社交」的人的痛。傳統的建議是「做自己就好」「多練習就好」——但這對真正卡關的人根本沒用，因為它沒告訴你「具體要做什麼」。</p>
+<p>范愛德華茲的核心主張是：<strong>社交魅力不是人格特質，是一套技能。</strong>既然是技能，就有具體的方法可以學，就像學騎腳踏車或學一門語言——你不需要「天生會」，你需要的是正確的公式和練習。</p>
+<p>這本書要回答的是：<strong>在人際互動的每一個關鍵環節——第一印象、聊天、建立連結、讓人記得你——具體有哪些可以照做的方法？</strong>它特別適合那些「知道要對人好、卻不知道手該怎麼放」的人：內向者、工程腦、社恐、或單純想在職場人際更游刃有餘的人。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、第一印象是可以「設計」的：前幾秒決定一切</h3>
+<p>范愛德華茲引用大量研究指出，人對你的第一印象在見面的<strong>極短時間內</strong>就形成，而且之後很難翻轉——這叫「初始效應」。所以她主張，別把第一印象交給運氣，要主動設計。</p>
+<p>她拆出幾個具體的操作。第一，<strong>讓雙手可見</strong>。她引用研究說明，人類的大腦有一套古老的威脅偵測機制——看不到你的手，潛意識會警戒（你手上會不會有武器？）。所以雙手插口袋、藏在桌下，會讓你顯得不可信；把手露出來、甚至見面時大方伸手，會讓對方潛意識放鬆。</p>
+<p>第二，<strong>善用觸發第一印象的黃金位置</strong>。她建議在社交場合別急著鑽進人群深處，而是站在能被看見、又方便交談的「入口附近但不擋路」的位置——她甚至研究過派對裡哪個位置最容易展開對話（不是吧台正中央的擁擠處，而是人流動線上的開闊點）。</p>
+<p><strong>機制</strong>：這些技巧的底層邏輯是「降低對方大腦的威脅感、提高安全感」。人在感到安全時才會敞開；第一印象的本質，是在對方的邊緣腦（情緒腦）裡快速建立「這個人安全、值得靠近」的判斷。</p>
+<p><strong>限制</strong>：這套很吃「場合適配」。同樣一個熱情大方的開場，在美式派對很加分，在某些較含蓄的文化或高度正式的場合可能顯得用力過猛。范愛德華茲的方法帶著明顯的美式外向文化色彩，用的時候要按情境調校，別照本宣科。</p>
+<h3>二、對話的引擎：別問「你好嗎」，問能點燃對方的問題</h3>
+<p>范愛德華茲對「閒聊（small talk）」幾乎是宣戰的態度——她認為「你好嗎」「最近忙嗎」「週末過得如何」這類問題是「對話殺手」，因為它們觸發的是罐頭答案（「還好」「就那樣」），大腦根本沒被啟動，聊天自然冷掉。</p>
+<p>她的解方是設計「對話火花（conversation sparkers）」——能讓對方眼睛一亮、忍不住想多說的問題。與其問「最近工作如何」，不如問「最近有什麼讓你興奮的事嗎」；與其問「你做什麼工作」，不如問「你最近在忙什麼有趣的計畫」。差別在於：前者要對方報告現狀（無聊），後者邀請對方分享熱情（來勁）。</p>
+<p>她背後有個神經科學的支撐：當人談到自己真正投入、興奮的事，大腦會分泌<strong>多巴胺</strong>——那種愉悅感會被對方連結到「跟你聊天很開心」，於是他喜歡上跟你相處。換句話說，<strong>讓別人喜歡你的祕訣，不是你多有趣，是你有沒有本事讓對方在你面前變得有趣、變得興奮。</strong></p>
+<p><strong>機制</strong>：這招利用了一個心理學常識——人最愛談的主題是自己，尤其是自己熱愛的事。你問對問題，等於遞給對方一個舞台，而人會愛上那個「讓自己發光的舞台」，連帶愛上搭台子的你。</p>
+<p><strong>反例</strong>：但這不是叫你變成一台「問題機關槍」——連珠炮問問題會像審問。范愛德華茲強調要搭配真誠的傾聽和回應（下一個概念），問了卻沒在聽，比不問還糟。</p>
+<h3>三、破解人的「行為密碼」：讀懂人，才接得住人</h3>
+<p>范愛德華茲花很大篇幅教「解碼」他人——她認為魅力的一半是「表達自己」，另一半是「讀懂對方」。你得先看懂對方是什麼樣的人、此刻什麼狀態，才知道怎麼互動。</p>
+<p>她教的工具之一是辨識<strong>微表情（microexpressions）</strong>——那些一閃即逝、藏不住真實情緒的臉部表情（源自心理學家保羅・艾克曼的研究）。她整理出七種跨文化通用的情緒表情（快樂、悲傷、憤怒、恐懼、驚訝、厭惡、輕蔑），主張學會辨認它們，你就能在對方「嘴上說沒事、臉上寫著不對」時接住他。例如看到對方閃過一絲「輕蔑」（單邊嘴角上揚），你就知道剛剛那句話踩到雷了，該調整方向。</p>
+<p>她也用一套人格框架（借用心理學的「大五人格」等模型）幫你快速判讀對方是偏外向還是內向、重細節還是重大局，好調整你的互動方式——對重細節的人給數據，對重願景的人講故事。</p>
+<p><strong>機制</strong>：這一整套的核心是「同理的精準化」。一般人也會察言觀色，但憑感覺、常出錯；范愛德華茲想做的是把「察言觀色」升級成有依據的解碼，讓你少猜、少誤判。人都喜歡「被讀懂、被接住」的感覺——那正是深度連結的來源。</p>
+<p><strong>限制</strong>：這是全書爭議最大的部分。微表情辨識在科學上其實準確率有限、容易誤讀（真實的臉遠比教科書複雜），把人硬套進人格分類也有貼標籤的風險。范愛德華茲的用法偏「實用啟發」而非「精密診斷」，讀者要小心別變成「自以為讀透別人」的傲慢——當成參考線索可以，當成鐵律會出大錯。</p>
+<h3>四、讓人記得你：成為「被想起」的人</h3>
+<p>范愛德華茲指出，很多人社交的問題不是「當下不討喜」，而是「事後被遺忘」——見面聊得很好，隔天對方完全想不起你是誰。所以她專門處理「難忘度」。</p>
+<p>她的方法之一是打造你的「人際亮點」——一個能讓人記住你的鮮明特質或故事。當別人問「你做什麼的」，與其給一個無聊的職稱，不如給一個有畫面、有故事的回答，讓對方記得住、還想轉述給別人。她也強調<strong>幫別人「發光」會讓你被記得</strong>——你若能讓對方在你面前展現他最好的一面、感覺到自己很棒，他會把那份美好感覺跟你綁在一起。</p>
+<p>她還談「連結升溫」的技巧，例如找到真正的共通點（不是客套的「我也是」，而是挖到你們都真心在乎的東西）、記住並回應對方提過的細節（下次見面問「你上次說的那個計畫後來怎樣了」，殺傷力極大）。</p>
+<p><strong>機制</strong>：記憶的關鍵是「情緒強度」和「獨特性」。平淡的互動不留痕跡，帶著鮮明情緒（驚喜、被理解、被欣賞）和獨特細節的互動才會被存進長期記憶。范愛德華茲的所有技巧，本質上都在提高互動的「情緒濃度」，讓你在對方腦中刻得更深。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>四個概念對應人際互動的四個階段，是一條完整的時間軸。<strong>第一印象</strong>處理「見面的前幾秒」——用可見的手、對的位置、安全的訊號，先讓對方願意靠近；<strong>對話火花</strong>處理「聊起來的那段」——用能點燃對方的問題，讓互動有能量、有多巴胺；<strong>解碼他人</strong>貫穿全程——讓你隨時讀懂對方狀態、動態調整；<strong>難忘度</strong>處理「分開之後」——確保你不只是「當下不錯」，而是「事後被想起」。</p>
+<p>整本書的骨架是一個很務實的主張：<strong>討人喜歡不是一種你「有或沒有」的天賦，而是一連串「可以在每個環節做對的具體動作」。</strong>范愛德華茲反覆傳遞的底層精神是——<strong>魅力的核心不是「讓自己很厲害」，是「讓對方在你面前感覺很好」。</strong>你不是要當房間裡最耀眼的人，你是要當那個「讓別人覺得自己耀眼」的人。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「參加一場不認識人的社交/交流場合」為例）</strong>：</p>
+<ol><li>進場位置：別鑽進角落，站在人流動線上開闊、好交談的點</li><li>手要可見：別插口袋，見面大方一點，讓對方潛意識覺得你安全</li><li>換掉開場白：別問「你做什麼的」，問「最近有沒有在忙什麼有趣的事」</li><li>埋記憶點：被問到自己時，別報職稱，給一個有畫面的故事版本</li><li>後續跟進：記住對方提過的一件事，下次或事後訊息裡提起——「你上次說的 X 後來如何？」</li></ol>
+<p><strong>生活版（以「想跟一個想深交的新朋友升溫」為例）</strong>：</p>
+<ol><li>問對問題：聊到能讓他眼睛發亮的主題就多停留，讓他盡情分享熱情</li><li>真傾聽：問了就專心聽，別急著接自己的話——被聽見的感覺比被逗笑更難忘</li><li>挖真共通點：不要停在客套的「我也喜歡」，挖到你們都真心在乎的東西</li><li>讀情緒：留意他臉上跟嘴上不一致的地方，接住那個「他沒說出口」的狀態</li><li>讓他發光：創造機會讓他展現擅長的一面，他會把「在你面前感覺很好」記成「喜歡你」</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>「這是一套操縱別人的話術」</strong>——范愛德華茲的核心其實相反：魅力來自「真心讓對方感覺好」，不是套路。技巧若沒有真誠的興趣墊底，對方會感覺到那股「表演感」而更提防。工具是為了幫你把善意「傳達出去」，不是拿來假裝善意。</li><li><strong>「照公式做就會受歡迎，不用管內在」</strong>——這些是「入場工具」，幫你跨過尷尬、把互動啟動；但真正的深度關係還是要靠真誠、可靠這些內在品質。把技巧當全部，只會有很多「熱絡的淺交」，長不出深交。</li><li><strong>「微表情、人格解碼很科學、可以看透人」</strong>——這是全書最該打折看的部分。微表情辨識準確率有限、容易誤讀，人格分類也只是粗略參考。當成「多一條線索」可以，當成「我能看穿你」就會傲慢誤判、反而傷關係。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《卡內基人性的弱點》（戴爾・卡內基）：兩本是同一條路的「原則版」和「操作版」。卡內基給的是永恆的原則（真心對人感興趣、記住名字、讓對方覺得重要）；范愛德華茲給的是拆到動作層的公式。卡內基更耐讀、更講態度，Captivate 更即用、更講技術，搭配讀最完整。</li><li>《安靜，就是力量》（蘇珊・坎恩）：專為內向者寫的書。范愛德華茲教內向者「如何在外向的社交規則裡生存」，坎恩則主張「內向本身就是優勢、不必硬變外向」。兩本觀點有張力，一起讀能幫你拿捏「該用技巧調適」和「該接納本性」的界線。</li><li>《脆弱的力量》（布芮尼・布朗）：有意思的對照——Captivate 教你「如何呈現得討喜」，布朗提醒「真正的連結來自願意示弱、被看見真實的你」。前者是入口技術，後者是深度核心；只有技巧會流於表面，只有脆弱會缺乏入場能力，兩者互補。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「你不需要成為房間裡最有趣的人，你只需要成為那個讓別人覺得自己有趣的人。」（精神原句：讓別人在你面前發光，他們就會愛上跟你相處。）</li><li>「魅力不是與生俱來的特質，而是一組可以學習的技能。」（Charisma is not something you're born with; it's a set of learnable skills.）</li><li>「別問『你好嗎』，問一個能點燃對方的問題。」（Ditch "How are you?" for a conversation sparker.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你上一次覺得「跟某人聊得超開心」的經驗——現在拆解一下：那份開心，有多少是因為對方很有趣，有多少是因為對方讓「你」變得有趣、讓你盡情分享了自己？這個發現，對你想怎麼跟人相處有什麼啟發？</li><li>范愛德華茲說魅力是可練的技能。挑一個你最卡的環節（開場？聊天冷場？事後被忘記？），選書裡一個具體方法，這週找一個真實場合試一次——你打算試哪一招、在什麼場合？</li></ol></section>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "captivate";
+      var TITLE = "如何讓人喜歡我";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+</script>
+</body>
+</html>

@@ -43,6 +43,16 @@
 - 只有 hover 連結下劃線淡入與夜間切換的 color transition 200ms；respect prefers-reduced-motion
 - 禁：進場動畫、視差、打字機效果
 
+## 2026-07-04 手法移植附錄：「書桌上的紙」（參考 letusibiza.com，Andy 核准方案 1，只搬手法不搬色）
+
+1. **畫布層（桌面）**：`body` 背景改為桌面色 token——日間 `--desk: #43362A`（溫暖深咖啡桌面），夜間 `--desk: #080A06`（比紙更深一階的深夜）。桌面上永遠看得到。
+2. **紙張層**：頁面內容包在 `.sheet`——`background: var(--paper)`、`border-radius: 24px`、四周 `margin: clamp(12px, 2.5vw, 28px)`（露出桌面邊框）、內部維持原 42rem 內容欄。首頁與書摘頁都套。頁腳可留在桌面上（紙外，文字用 `--paper` 的 70% 透明色）。
+3. **超大細字重標題**：display 級（站名、書摘書名、藏書統計數字）→ `font-weight: 400`＋行高 1.05＋字級放大（站名 clamp(2.6rem,7vw,4.2rem)、書名 clamp(2.2rem,6vw,3.4rem)）。**內文 h2/h3 保留 700**（中文長文掃讀性優先，這是刻意偏離參考站的點）。
+4. **單字體紀律不變**（Noto Serif TC 內文＋Noto Sans TC UI 小標），層級靠尺寸與留白，不加新字體。
+5. **按鈕/chip 成對**：主要動作＝實心 `--accent` 膠囊（radius 999px）；次要/篩選＝1.5px 細框膠囊，選中轉實心。
+6. **口語 hook**：首頁站名下加一句大字 hook「今晚，翻開一本就好。」（原副標降為小字）。
+7. 圓角家族更新：紙張 24px、書封 6px、按鈕/chip 999px、其他卡 10px。陰影仍然全站禁用；紙張與桌面的層次靠色差，不靠陰影。
+
 ## anti-slop 紅線（承 harness/design-playbook.md 第 2 節）
 - 禁 emoji 當結構 icon；主題標籤用文字 chip（細框）
 - 禁裸 hex（一律 var(--token)）；禁漸層、毛玻璃

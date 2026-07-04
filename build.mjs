@@ -161,6 +161,8 @@ function baseStyles() {
       --accent: #8C5A2B;
       --rule: #E4D9C3;
       --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -170,6 +172,7 @@ function baseStyles() {
         --accent: #E8B84B;
         --rule: #2A2F24;
         --card: #1A1F15;
+        --desk: #080A06;
       }
     }
     html[data-theme="dark"] {
@@ -179,6 +182,7 @@ function baseStyles() {
       --accent: #E8B84B;
       --rule: #2A2F24;
       --card: #1A1F15;
+      --desk: #080A06;
     }
     html[data-theme="light"] {
       --paper: #F7F1E3;
@@ -187,12 +191,13 @@ function baseStyles() {
       --accent: #8C5A2B;
       --rule: #E4D9C3;
       --card: #FFFBF0;
+      --desk: #43362A;
     }
     * { box-sizing: border-box; }
-    html { background: var(--paper); }
+    html { background: var(--desk); }
     body {
       margin: 0;
-      background: var(--paper);
+      background: var(--desk);
       color: var(--ink);
       font-family: "Noto Serif TC", "Songti TC", serif;
       font-size: 19px;
@@ -201,6 +206,12 @@ function baseStyles() {
     }
     @media (max-width: 480px) {
       body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
     }
     .page-shell {
       max-width: 42rem;
@@ -228,7 +239,7 @@ function baseStyles() {
       min-width: 44px;
       min-height: 44px;
       border: 1px solid var(--rule);
-      border-radius: 10px;
+      border-radius: 999px;
       background: var(--paper);
       color: var(--ink);
       font-size: 1.2rem;
@@ -250,13 +261,14 @@ function baseStyles() {
     }
     .theme-chip {
       display: inline-block;
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 0.15em 0.7em;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
     }
     h1 {
-      font-size: clamp(1.9rem, 5vw, 2.4rem);
-      line-height: 1.35;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
       margin: 0 0 8px;
     }
     .title-en {
@@ -322,7 +334,7 @@ function baseStyles() {
       justify-content: center;
       min-height: 44px;
       padding: 0.5em 1.2em;
-      border-radius: 10px;
+      border-radius: 999px;
       background: var(--accent);
       color: var(--paper);
       font-family: "Noto Sans TC", sans-serif;
@@ -334,15 +346,23 @@ function baseStyles() {
       opacity: 0.9;
     }
     footer {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid var(--rule);
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
       font-family: "Noto Sans TC", sans-serif;
-      color: var(--ink-soft);
+      color: var(--desk-ink);
       font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
     }
     footer p {
-      margin: 0 0 16px;
+      margin: 0;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
     }
     .empty-state {
       color: var(--ink-soft);
@@ -404,7 +424,14 @@ function baseScript() {
   `.trim();
 }
 
-function pageShell({ title, description, bodyHtml, extraStyles = '', extraScript = '' }) {
+function pageShell({
+  title,
+  description,
+  bodyHtml,
+  deskFooterHtml = '',
+  extraStyles = '',
+  extraScript = '',
+}) {
   return `<!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -422,7 +449,10 @@ ${baseStyles()}
 <body>
 <div id="progress-bar"></div>
 <button id="theme-toggle" aria-label="切換日夜模式">☾</button>
+<div class="sheet">
 ${bodyHtml}
+</div>
+${deskFooterHtml}
 <script>
 ${baseScript()}
 </script>${extraScript ? `\n<script>\n${extraScript}\n</script>` : ''}
@@ -453,15 +483,17 @@ ${contentHtml}
     <p>有想法？直接回 Telegram 訊息，就地開聊。</p>
     <a class="tg-button" href="https://t.me/Andycaiagent_bot">回 TG 聊聊</a>
   </div>
-  <footer>
-    <p><a href="../index.html">← 所有書</a></p>
-  </footer>
 </main>`;
+
+  const deskFooterHtml = `<footer>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>`;
 
   return pageShell({
     title: `${book.title}｜book-club`,
     description: book.hook,
     bodyHtml: body,
+    deskFooterHtml,
   });
 }
 
@@ -545,13 +577,19 @@ function libraryStyles() {
       margin: 0 0 48px;
     }
     .library-title {
-      font-size: clamp(1.9rem, 5vw, 2.4rem);
-      line-height: 1.35;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
+      line-height: 1.05;
       margin: 0 0 8px;
+    }
+    .library-hook {
+      font-weight: 700;
+      font-size: clamp(1.3rem, 4vw, 1.75rem);
+      margin: 0 0 12px;
     }
     .library-subtitle {
       color: var(--ink-soft);
-      font-size: 1rem;
+      font-size: 0.85rem;
       margin: 0 0 24px;
     }
     .library-stats {
@@ -561,8 +599,9 @@ function libraryStyles() {
     }
     .library-stats .stat-num {
       font-family: "Noto Serif TC", "Songti TC", serif;
-      font-weight: 700;
-      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.05;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       color: var(--ink);
       margin: 0 0.15em;
     }
@@ -591,8 +630,8 @@ function libraryStyles() {
       font-size: 0.9rem;
       min-height: 44px;
       padding: 0.4em 1em;
-      border: 1px solid var(--rule);
-      border-radius: 10px;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
       background: transparent;
       color: var(--ink);
       cursor: pointer;
@@ -763,6 +802,7 @@ function renderIndexPage(books) {
   const headerHtml = `
   <header class="library-header">
     <h1 class="library-title">每晚讀書會</h1>
+    <p class="library-hook">今晚，翻開一本就好。</p>
     <p class="library-subtitle ui-label">一晚一本，慢慢讀成一座圖書館</p>
     <p class="library-stats ui-label">已上架 <span class="stat-num">${eligible.length}</span> 本 ・ 本週新進 <span class="stat-num">${weeklyNew}</span> 本</p>
   </header>`;
@@ -814,15 +854,17 @@ function renderIndexPage(books) {
 ${headerHtml}
 ${shelfHtml}
 ${upcomingHtml}
-  <footer>
-    <p class="ui-label">每晚 19:00，Telegram 見。</p>
-  </footer>
 </main>`;
+
+  const deskFooterHtml = `<footer>
+  <p class="ui-label">每晚 19:00，Telegram 見。</p>
+</footer>`;
 
   return pageShell({
     title: '每晚讀書會｜book-club',
     description: '每天晚上一本書的深度書摘，像走進一間線上圖書館。',
     bodyHtml: body,
+    deskFooterHtml,
     extraStyles: libraryStyles(),
     extraScript: eligible.length ? libraryScript() : '',
   });

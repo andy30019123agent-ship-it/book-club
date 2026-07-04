@@ -385,6 +385,41 @@ function baseStyles() {
       display: block;
       margin-bottom: 4px;
     }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -462,6 +497,10 @@ ${baseScript()}
 }
 
 // ---------- page builders ----------
+function favButtonHtml(slug) {
+  return `<button type="button" class="fav-btn" data-slug="${escapeAttr(slug)}" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>`;
+}
+
 function renderBookPage(book) {
   const themeChip = `<span class="theme-chip ui-label">${book.theme}</span>`;
   const dateLabel = `<span class="ui-label">${book.date}</span>`;
@@ -471,6 +510,7 @@ function renderBookPage(book) {
 
   const body = `
 <main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a>${favButtonHtml(book.slug)}</div>
   <div class="meta-row">${dateLabel}${themeChip}${readingTime}</div>
   <h1>${book.title}</h1>
   ${titleEn}
@@ -490,10 +530,11 @@ ${contentHtml}
 </footer>`;
 
   return pageShell({
-    title: `${book.title}｜book-club`,
+    title: `${book.title}｜拾頁`,
     description: book.hook,
     bodyHtml: body,
     deskFooterHtml,
+    extraScript: favScript(),
   });
 }
 
@@ -526,6 +567,7 @@ function formatMonthDay(dateStr) {
 function renderTonightCard(book, isToday) {
   return `
     <a class="tonight-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html">
+      ${favButtonHtml(book.slug)}
       <span class="tonight-body">
         <span class="tonight-badge ui-label">${isToday ? '今晚的書' : '最新上架'}</span>
         <span class="tonight-title">${inline(book.title)}</span>
@@ -542,7 +584,8 @@ function renderTonightCard(book, isToday) {
 function renderCatalogCard(book, no) {
   const searchKey = escapeAttr(`${book.title} ${book.author}`.toLowerCase());
   return `
-    <a class="catalog-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html" data-theme="${escapeAttr(book.theme)}" data-search="${searchKey}">
+    <a class="catalog-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html" data-theme="${escapeAttr(book.theme)}" data-search="${searchKey}" data-slug="${escapeAttr(book.slug)}">
+      ${favButtonHtml(book.slug)}
       <span class="catalog-body">
         <span class="catalog-index ui-label">No.${String(no).padStart(3, '0')}・${book.theme}・${formatMonthDay(book.date)}</span>
         <span class="catalog-title">${inline(book.title)}</span>
@@ -576,22 +619,21 @@ function libraryStyles() {
     .library-title {
       margin: 0;
       font-weight: 400;
-      line-height: 1.1;
-      font-size: clamp(2.3rem, 7vw, 3.4rem);
-      letter-spacing: 0.01em;
+      line-height: 1.05;
+      font-size: clamp(3rem, 10vw, 4.4rem);
+      letter-spacing: 0.14em;
     }
-    .library-hook {
-      margin: 0.9rem 0 1.1rem;
-      font-family: "Noto Serif TC", "Songti TC", serif;
-      font-size: clamp(1.1rem, 3.4vw, 1.35rem);
-      color: var(--ink);
-      opacity: 0.92;
+    .library-rule {
+      width: 3.2rem;
+      height: 1px;
+      background: var(--accent);
+      margin: 1.1rem 0 0.9rem;
     }
     .library-stats {
       margin: 0;
       color: var(--ink-soft);
       font-size: 0.84rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
     }
     .section-label {
       margin: 0 0 1.1rem;
@@ -611,6 +653,7 @@ function libraryStyles() {
     .cover-logic { --c: var(--theme-logic); }
 
     .tonight-card, .catalog-card {
+      position: relative;
       display: flex;
       background: var(--card);
       border: 1px solid var(--rule);
@@ -624,8 +667,20 @@ function libraryStyles() {
       border-left-color: var(--c, var(--accent));
       transform: translateY(-2px);
     }
+    .tonight-card:active, .catalog-card:active {
+      transform: translateY(0) scale(0.995);
+    }
+    .tonight-card .fav-btn, .catalog-card .fav-btn {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      background: transparent;
+      border-color: transparent;
+    }
+    .tonight-card .fav-btn:hover, .catalog-card .fav-btn:hover { border-color: var(--accent); }
+    .tonight-body, .catalog-body { padding-right: 2.4rem; }
     @media (prefers-reduced-motion: reduce) {
-      .tonight-card:hover, .catalog-card:hover { transform: none; }
+      .tonight-card:hover, .catalog-card:hover, .tonight-card:active, .catalog-card:active { transform: none; }
     }
 
     .tonight-card {
@@ -799,33 +854,86 @@ function libraryStyles() {
 function libraryScript() {
   return `
     (function () {
-      var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
+      var themeChips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip[data-filter-theme]'));
+      var favChip = document.querySelector('.filter-chip[data-filter-fav]');
       var search = document.getElementById('shelf-search');
       var cards = Array.prototype.slice.call(document.querySelectorAll('.catalog-card'));
       var emptyMsg = document.getElementById('shelf-empty');
-      if (!cards.length || (!chips.length && !search)) return;
+      if (!cards.length) return;
       var activeTheme = 'all';
+      var favOnly = false;
+      function favList() {
+        try { return JSON.parse(localStorage.getItem('yedu-favs')) || []; } catch (e) { return []; }
+      }
       function apply() {
         var q = search ? search.value.trim().toLowerCase() : '';
+        var favs = favList();
         var visible = 0;
         cards.forEach(function (card) {
           var okTheme = activeTheme === 'all' || card.getAttribute('data-theme') === activeTheme;
           var okSearch = !q || card.getAttribute('data-search').indexOf(q) !== -1;
-          var show = okTheme && okSearch;
+          var okFav = !favOnly || favs.indexOf(card.getAttribute('data-slug')) !== -1;
+          var show = okTheme && okSearch && okFav;
           card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
-        if (emptyMsg) emptyMsg.hidden = visible !== 0;
+        if (emptyMsg) {
+          emptyMsg.textContent = favOnly && visible === 0
+            ? '還沒有收藏——點卡片右上角的書籤試試'
+            : '書架上還沒有這本，跟我說書名就補';
+          emptyMsg.hidden = visible !== 0;
+        }
       }
-      chips.forEach(function (chip) {
+      window.__applyShelf = apply;
+      themeChips.forEach(function (chip) {
         chip.addEventListener('click', function () {
-          chips.forEach(function (c) { c.classList.remove('is-active'); });
+          themeChips.forEach(function (c) { c.classList.remove('is-active'); });
           chip.classList.add('is-active');
           activeTheme = chip.getAttribute('data-filter-theme');
           apply();
         });
       });
+      if (favChip) {
+        favChip.addEventListener('click', function () {
+          favOnly = !favOnly;
+          favChip.classList.toggle('is-active', favOnly);
+          favChip.setAttribute('aria-pressed', favOnly ? 'true' : 'false');
+          apply();
+        });
+      }
       if (search) search.addEventListener('input', apply);
+    })();
+  `;
+}
+
+function favScript() {
+  return `
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var slug = btn.getAttribute('data-slug');
+          var favs = load();
+          var i = favs.indexOf(slug);
+          if (i === -1) favs.push(slug); else favs.splice(i, 1);
+          localStorage.setItem(KEY, JSON.stringify(favs));
+          btns.forEach(refresh);
+          if (window.__applyShelf) window.__applyShelf();
+        });
+      });
     })();
   `;
 }
@@ -841,13 +949,13 @@ function renderIndexPage(books) {
 
   const featured = eligible[0] || null;
   const past = eligible.slice(1);
-  const showControls = eligible.length >= 5;
+  const showControls = past.length >= 1;
 
   const headerHtml = `
   <header class="library-header">
-    <h1 class="library-title">每晚讀書會</h1>
-    <p class="library-hook">今晚，翻開一本就好。</p>
-    <p class="library-stats ui-label">已上架 ${eligible.length} 本 ・ 每晚 19:00 更新</p>
+    <h1 class="library-title">拾頁</h1>
+    <div class="library-rule" aria-hidden="true"></div>
+    <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 ${eligible.length} 本</p>
   </header>`;
 
   let tonightHtml = '';
@@ -878,7 +986,7 @@ function renderIndexPage(books) {
               t === '全部' ? 'all' : t
             }">${t}</button>`
         )
-        .join('')}</div>
+        .join('')}<button type="button" class="filter-chip filter-chip--fav" data-filter-fav aria-pressed="false">我的收藏</button></div>
       <input type="search" id="shelf-search" class="shelf-search" placeholder="書名或作者" aria-label="搜尋書名或作者">
     </div>`
       : '';
@@ -914,12 +1022,12 @@ ${upcomingHtml}
 </footer>`;
 
   return pageShell({
-    title: '每晚讀書會｜book-club',
-    description: '每天晚上一本書的深度書摘，像走進一間線上圖書館。',
+    title: '拾頁｜每晚一本書的深度導讀',
+    description: '每晚七點，一本書的深度導讀。自我成長、職場、人際、思考，慢慢讀成一座圖書館。',
     bodyHtml: body,
     deskFooterHtml,
     extraStyles: libraryStyles(),
-    extraScript: showControls && past.length ? libraryScript() : '',
+    extraScript: (showControls ? libraryScript() : '') + favScript(),
   });
 }
 

@@ -231,26 +231,25 @@ function baseStyles() {
       background: var(--accent);
       z-index: 100;
     }
-    #theme-toggle {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      width: 44px;
-      height: 44px;
-      min-width: 44px;
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
       min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
       border: 1px solid var(--rule);
       border-radius: 999px;
       background: var(--paper);
       color: var(--ink);
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
       cursor: pointer;
-      z-index: 100;
-      transition: background-color 200ms, color 200ms;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
     }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
     .meta-row {
       display: flex;
       flex-wrap: wrap;
@@ -463,9 +462,16 @@ function baseScript() {
         if (attr === 'light') return false;
         return matchMedia('(prefers-color-scheme: dark)').matches;
       }
-      function setIcon() { btn.textContent = isDark() ? '☀' : '☾'; }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
       setIcon();
-      btn.addEventListener('click', function () {
+      if (btn) btn.addEventListener('click', function () {
         var next = isDark() ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
@@ -505,7 +511,6 @@ ${baseStyles()}
 </head>
 <body>
 <div id="progress-bar"></div>
-<button id="theme-toggle" aria-label="切換日夜模式">☾</button>
 <div class="sheet">
 ${bodyHtml}
 </div>
@@ -544,6 +549,7 @@ ${contentHtml}
 </main>`;
 
   const deskFooterHtml = `<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
   <p><a href="../index.html">← 所有書</a></p>
 </footer>`;
 
@@ -1321,6 +1327,7 @@ ${upcomingHtml}
 </main>`;
 
   const deskFooterHtml = `<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
   <p class="ui-label">每晚 19:00，Telegram 見。</p>
 </footer>`;
 

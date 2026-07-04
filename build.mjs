@@ -420,6 +420,27 @@ function baseStyles() {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -519,10 +540,6 @@ function renderBookPage(book) {
   <article>
 ${contentHtml}
   </article>
-  <div class="tg-cta">
-    <p>有想法？直接回 Telegram 訊息，就地開聊。</p>
-    <a class="tg-button" href="https://t.me/Andycaiagent_bot">回 TG 聊聊</a>
-  </div>
 </main>`;
 
   const deskFooterHtml = `<footer>
@@ -534,8 +551,52 @@ ${contentHtml}
     description: book.hook,
     bodyHtml: body,
     deskFooterHtml,
-    extraScript: favScript(),
+    extraScript: favScript() + quoteSaveScript(book),
   });
+}
+
+// 書摘頁：金句條目加收藏鈕（存文字進 localStorage yedu-quotes）
+function quoteSaveScript(book) {
+  const slugJs = JSON.stringify(book.slug);
+  const titleJs = JSON.stringify(book.title).replace(/</g, '\\u003c');
+  return `
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = ${slugJs};
+      var TITLE = ${titleJs};
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  `;
 }
 
 // ---------- library (index page) helpers ----------
@@ -565,8 +626,9 @@ function formatMonthDay(dateStr) {
 }
 
 function renderTonightCard(book, isToday) {
+  const searchKey = escapeAttr(`${book.title} ${book.author}`.toLowerCase());
   return `
-    <a class="tonight-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html">
+    <a class="tonight-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html" data-theme="${escapeAttr(book.theme)}" data-search="${searchKey}" data-slug="${escapeAttr(book.slug)}">
       ${favButtonHtml(book.slug)}
       <span class="tonight-body">
         <span class="tonight-badge ui-label">${isToday ? '今晚的書' : '最新上架'}</span>
@@ -774,10 +836,9 @@ function libraryStyles() {
 
     .shelf-controls {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: -1rem 0 2.25rem;
     }
     .theme-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .filter-chip {
@@ -794,7 +855,7 @@ function libraryStyles() {
     }
     .filter-chip.is-active { background: var(--accent); color: var(--paper); }
     .shelf-search {
-      flex: 1 1 12rem;
+      width: 100%;
       min-height: 44px;
       padding: 0 1rem;
       border: 1px solid var(--rule);
@@ -805,6 +866,85 @@ function libraryStyles() {
       font-size: 0.92rem;
     }
     .shelf-search::placeholder { color: var(--ink-soft); }
+
+    .myshelf-section { margin-bottom: 3rem; }
+    .myshelf-list { list-style: none; margin: 0; padding: 0; }
+    .myshelf-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .myshelf-row:last-child { border-bottom: none; }
+    .myshelf-link {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.75rem 0.2rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: none;
+    }
+    .myshelf-link:hover .myshelf-name { color: var(--accent); }
+    .myshelf-name {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+    .myshelf-author { font-size: 0.8rem; color: var(--ink-soft); }
+    .fav-btn--row {
+      position: static;
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-color: transparent;
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .qshelf-section { margin-bottom: 3rem; }
+    .qshelf-list { list-style: none; margin: 0; padding: 0; }
+    .qshelf-row {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.95rem 3rem 0.95rem 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+    .qshelf-quote {
+      margin: 0 0 0.4rem;
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }
+    .qshelf-src { margin: 0; font-size: 0.78rem; }
+    .qshelf-src a {
+      color: var(--ink-soft);
+      border-bottom: none;
+    }
+    .qshelf-src a:hover { color: var(--accent); }
+    .qshelf-remove {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .qshelf-remove:hover { color: var(--accent); }
 
     .upcoming-list { list-style: none; margin: 0; padding: 0; }
     .upcoming-row {
@@ -857,7 +997,7 @@ function libraryScript() {
       var themeChips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip[data-filter-theme]'));
       var favChip = document.querySelector('.filter-chip[data-filter-fav]');
       var search = document.getElementById('shelf-search');
-      var cards = Array.prototype.slice.call(document.querySelectorAll('.catalog-card'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.tonight-card, .catalog-card'));
       var emptyMsg = document.getElementById('shelf-empty');
       if (!cards.length) return;
       var activeTheme = 'all';
@@ -913,6 +1053,7 @@ function favScript() {
       function load() {
         try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
       }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
       function refresh(btn) {
         var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
         btn.classList.toggle('is-fav', on);
@@ -920,20 +1061,52 @@ function favScript() {
         btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
       }
       var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      function renderShelf() {
+        var section = document.getElementById('myshelf');
+        var list = document.getElementById('myshelf-list');
+        if (!section || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        section.hidden = mine.length === 0;
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
       btns.forEach(function (btn) {
         refresh(btn);
         btn.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          var slug = btn.getAttribute('data-slug');
-          var favs = load();
-          var i = favs.indexOf(slug);
-          if (i === -1) favs.push(slug); else favs.splice(i, 1);
-          localStorage.setItem(KEY, JSON.stringify(favs));
-          btns.forEach(refresh);
-          if (window.__applyShelf) window.__applyShelf();
+          toggle(btn.getAttribute('data-slug'));
         });
       });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
     })();
   `;
 }
@@ -949,7 +1122,7 @@ function renderIndexPage(books) {
 
   const featured = eligible[0] || null;
   const past = eligible.slice(1);
-  const showControls = past.length >= 1;
+  const showControls = eligible.length >= 1;
 
   const headerHtml = `
   <header class="library-header">
@@ -957,6 +1130,34 @@ function renderIndexPage(books) {
     <div class="library-rule" aria-hidden="true"></div>
     <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 ${eligible.length} 本</p>
   </header>`;
+
+  const themes = ['全部', '自我成長', '職場成長', '人際關係', '邏輯思考'];
+  const controlsHtml = showControls
+    ? `
+  <div class="shelf-controls">
+    <input type="search" id="shelf-search" class="shelf-search" placeholder="搜尋書名或作者" aria-label="搜尋書名或作者">
+    <div class="theme-filters" role="group" aria-label="主題篩選">${themes
+      .map(
+        (t, i) =>
+          `<button type="button" class="filter-chip${i === 0 ? ' is-active' : ''}" data-filter-theme="${
+            t === '全部' ? 'all' : t
+          }">${t}</button>`
+      )
+      .join('')}<button type="button" class="filter-chip filter-chip--fav" data-filter-fav aria-pressed="false">我的收藏</button></div>
+  </div>`
+    : '';
+
+  const myshelfHtml = showControls
+    ? `
+  <section class="myshelf-section" id="myshelf" hidden>
+    <h2 class="section-label">我的書櫃</h2>
+    <ul class="myshelf-list" id="myshelf-list"></ul>
+  </section>
+  <section class="qshelf-section" id="qshelf" hidden>
+    <h2 class="section-label">金句集</h2>
+    <ul class="qshelf-list" id="qshelf-list"></ul>
+  </section>`
+    : '';
 
   let tonightHtml = '';
   if (featured) {
@@ -975,30 +1176,18 @@ function renderIndexPage(books) {
 
   let catalogHtml = '';
   if (past.length) {
-    const themes = ['全部', '自我成長', '職場成長', '人際關係', '邏輯思考'];
-    const controlsHtml = showControls
-      ? `
-    <div class="shelf-controls">
-      <div class="theme-filters" role="group" aria-label="主題篩選">${themes
-        .map(
-          (t, i) =>
-            `<button type="button" class="filter-chip${i === 0 ? ' is-active' : ''}" data-filter-theme="${
-              t === '全部' ? 'all' : t
-            }">${t}</button>`
-        )
-        .join('')}<button type="button" class="filter-chip filter-chip--fav" data-filter-fav aria-pressed="false">我的收藏</button></div>
-      <input type="search" id="shelf-search" class="shelf-search" placeholder="書名或作者" aria-label="搜尋書名或作者">
-    </div>`
-      : '';
     const cardsHtml = past.map((b, i) => renderCatalogCard(b, eligible.length - (i + 1))).join('');
     catalogHtml = `
   <section class="catalog-section">
-    <h2 class="section-label">藏書目錄</h2>${controlsHtml}
+    <h2 class="section-label">藏書目錄</h2>
     <div class="catalog-list">${cardsHtml}
     </div>
-    <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>
   </section>`;
   }
+  const emptyMsgHtml = showControls
+    ? `
+  <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>`
+    : '';
 
   const upcomingHtml = upcoming.length
     ? `
@@ -1012,8 +1201,11 @@ function renderIndexPage(books) {
   const body = `
 <main class="library-shell">
 ${headerHtml}
+${controlsHtml}
 ${tonightHtml}
+${myshelfHtml}
 ${catalogHtml}
+${emptyMsgHtml}
 ${upcomingHtml}
 </main>`;
 
@@ -1021,14 +1213,63 @@ ${upcomingHtml}
   <p class="ui-label">每晚 19:00，Telegram 見。</p>
 </footer>`;
 
+  const booksData = eligible.map((b) => ({
+    slug: b.slug,
+    title: b.title,
+    author: b.author,
+    theme: b.theme,
+    date: b.date,
+  }));
+  const booksJson = JSON.stringify(booksData).replace(/</g, '\\u003c');
+
   return pageShell({
     title: '拾頁｜每晚一本書的深度導讀',
     description: '每晚七點，一本書的深度導讀。自我成長、職場、人際、思考，慢慢讀成一座圖書館。',
     bodyHtml: body,
     deskFooterHtml,
     extraStyles: libraryStyles(),
-    extraScript: (showControls ? libraryScript() : '') + favScript(),
+    extraScript:
+      `window.__books = ${booksJson};\n` +
+      (showControls ? libraryScript() : '') +
+      favScript() +
+      quoteShelfScript(),
   });
+}
+
+// 首頁：金句集渲染（讀 yedu-quotes，可移除）
+function quoteShelfScript() {
+  return `
+    (function () {
+      var KEY = 'yedu-quotes';
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var section = document.getElementById('qshelf');
+      var list = document.getElementById('qshelf-list');
+      if (!section || !list) return;
+      function render() {
+        var qs = load();
+        section.hidden = qs.length === 0;
+        list.innerHTML = qs.map(function (x, i) {
+          return '<li class="qshelf-row">' +
+            '<p class="qshelf-quote">' + esc(x.q) + '</p>' +
+            '<p class="qshelf-src ui-label"><a href="books/' + esc(x.slug) + '.html">《' + esc(x.title) + '》</a></p>' +
+            '<button type="button" class="qshelf-remove" data-qi="' + i + '" aria-label="從金句集移除">' +
+            '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></li>';
+        }).join('');
+      }
+      list.addEventListener('click', function (e) {
+        var btn = e.target.closest ? e.target.closest('.qshelf-remove') : null;
+        if (!btn) return;
+        var qs = load();
+        qs.splice(Number(btn.getAttribute('data-qi')), 1);
+        localStorage.setItem(KEY, JSON.stringify(qs));
+        render();
+      });
+      render();
+    })();
+  `;
 }
 
 // ---------- main ----------

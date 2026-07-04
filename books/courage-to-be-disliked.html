@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>被討厭的勇氣｜book-club</title>
+<meta name="description" content="傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    #theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: background-color 200ms, color 200ms;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.15em 0.7em;
+    }
+    h1 {
+      font-size: clamp(1.9rem, 5vw, 2.4rem);
+      line-height: 1.35;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    footer p {
+      margin: 0 0 16px;
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<button id="theme-toggle" aria-label="切換日夜模式">☾</button>
+
+<main class="page-shell">
+  <div class="meta-row"><span class="ui-label">2026-07-07</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 14 分鐘</span></div>
+  <h1>被討厭的勇氣</h1>
+  <p class="title-en">嫌われる勇気</p>
+  <p class="byline">岸見一郎、古賀史健｜2013</p>
+  <p class="hook">傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>這本書有兩位作者，卻只寫一個人的思想。</p>
+<p>岸見一郎生於 1956 年，本業是研究古希臘哲學的學者，一路鑽研柏拉圖。1989 年他接觸到阿德勒心理學，人生轉向——從此他既是哲學家也是心理諮商師，成了日本推廣阿德勒思想的第一人。另一位古賀史健是專業寫手，某天讀到岸見談阿德勒的文章，整個人被搖醒，跑去跟岸見說：「我們用對話的形式，把這套思想寫成一本書吧。」於是有了這本以「一位哲學家」和「一個憤世嫉俗的年輕人」連續五個晚上辯論為骨架的作品——刻意仿效蘇格拉底的對話錄。</p>
+<p>那個被寫進書裡的思想家，是阿爾弗雷德・阿德勒（Alfred Adler，1870–1937）。他和佛洛伊德、榮格並稱心理學三巨頭，是「個體心理學」的創始人。阿德勒原本是佛洛伊德圈子裡的核心成員，後來因為理念不合公開決裂——佛洛伊德認為人被過去（尤其童年）決定，阿德勒偏偏主張人是自由的、可以自己選擇未來。在東方，阿德勒的名氣遠不如另外兩位，但他的觀念其實無所不在：後來的卡內基、《與成功有約》的柯維，骨子裡都流著阿德勒的血，他因此被稱為「自我啟發之父」。</p>
+<p>2013 年這本書在日本出版，一路紅遍整個東亞，長年霸榜。它紅的原因很特別——不是因為溫暖療癒，恰恰相反，它讀起來像被人當面潑冷水，卻潑得你清醒。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>它回答一個幾乎人人都問過的問題：「為什麼我沒辦法改變？為什麼我不幸福？」</p>
+<p>大多數人的答案是「因為我的過去」「因為我的個性」「因為原生家庭」「因為那件事傷了我」。這本書的答案冷酷得驚人：<strong>你之所以不幸，是因為你親手選了「不幸」這個選項。</strong>人不是被過去推著走，而是為了某個現在的目的，把自己保持在現狀。所以它敢說一句話——<strong>人隨時可以改變，幸福是一種決定。</strong></p>
+<p>而阿德勒還有一個更大的斷言撐著整本書：<strong>人的所有煩惱，都是人際關係的煩惱。</strong>你的自卑、你的憤怒、你對未來的焦慮，追到底都是「別人」的問題。如果你曾經覺得「我就是這種人、改不了」，或是活得很累、老在意別人怎麼看你——這本書會告訴你，問題不在你的過去，在你此刻的選擇。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、目的論：不是過去造成現在，是現在的目的召喚了過去</h3>
+<p>阿德勒和佛洛伊德最根本的分歧在這裡。佛洛伊德是「決定論」——你今天的樣子，是過去的原因造成的（決定論又叫原因論）。阿德勒反過來，主張「目的論」——你不是被原因推著走，而是<strong>為了達成某個目的，才選了現在的情緒和行為。</strong></p>
+<p>書裡年輕人舉了個朋友的例子：這位朋友多年足不出戶，一走出房間就心悸發抖，說是因為過去受過傷。哲學家的解讀讓人背脊發涼：不是「因為不安，所以出不去」，而是「因為不想出去，所以製造出不安」。窩在房間裡，父母會擔心、會呵護、會把他當特別的存在對待；一旦踏出去，他就變成路人甲。<strong>那份不安，是為了「不出門」這個目的而被製造出來的工具。</strong></p>
+<p>阿德勒還有句更狠的：<strong>「憤怒是可以收放自如的手段。」</strong>想像一位媽媽正扯著嗓子罵女兒，電話突然響了，是女兒學校的老師——媽媽秒切成溫柔客氣的聲音，講完電話掛斷，又立刻對女兒開罵。憤怒不是「忍不住爆發」的東西，是她為了「讓女兒屈服」而拿出來用的道具，需要時拿出，不需要時收回。</p>
+<p><strong>機制在於</strong>：如果過去決定一切，那人就永遠沒救了——被打過的孩子註定不幸、失戀過的人註定不敢再愛。但只要承認「是我為了現在的目的而選擇」，改變的鑰匙就回到自己手上。這正是這套理論最重要，也最容易被誤讀的地方（後面會誠實處理）。</p>
+<h3>二、自卑感不是病，把自卑感當藉口才是病</h3>
+<p>阿德勒本人從小體弱多病、動過手術、還被車撞過兩次，個子矮、成績差。所以他談自卑特別有底氣。他區分兩個聽起來很像、其實天差地別的東西：</p>
+<p><strong>自卑感</strong>是「覺得自己不夠好」的主觀感受，人人都有，而且<strong>是健康的、是進步的燃料</strong>。因為覺得不足，人才會去追求卓越、去補足、去成長。阿德勒說追求優越和自卑感「不是病態，是努力和成長的刺激」。</p>
+<p><strong>自卑情結</strong>則是把自卑感拿來當<strong>逃避的藉口</strong>，公式長這樣：「因為有 A，所以做不到 B。」「因為我學歷低，所以不會成功」「因為我長得不好，所以沒人愛」。表面在自責，骨子裡是<strong>不想去嘗試</strong>——把學歷、外貌搬出來當擋箭牌，就不用面對「試了還是失敗」的風險。</p>
+<p>更微妙的是<strong>優越情結</strong>：有些人自卑到一個程度，不去補足反而開始「假裝優越」——炫耀名牌、猛報自己認識哪個大人物、拚命講當年勇。最反直覺的一種叫<strong>「誇耀不幸」</strong>：有人把自己的悲慘、創傷當武器，用「你不懂我受過的苦」來凌駕別人、支配關係。這種人一旦被同情、被特別對待，就嘗到甜頭，反而捨不得走出不幸。</p>
+<p><strong>限制在哪</strong>：這套區分很鋒利，但在真實的重度創傷面前需要小心——不是每個走不出來的人都在「找藉口」，這點我們留到常見誤讀處理。</p>
+<h3>三、課題分離：斬斷煩惱的那一刀，先問「這是誰的課題」</h3>
+<p>既然一切煩惱都來自人際關係，阿德勒開的第一帖藥叫<strong>課題分離</strong>。方法只有一句話：<strong>分清楚「這是誰的課題」，然後不去干涉別人的課題，也不讓別人干涉你的。</strong></p>
+<p>判斷標準也只有一句：<strong>「這個選擇帶來的結果，最後由誰承擔？」</strong></p>
+<p>書裡的經典比喻是「讀書」。孩子不念書，將來面對後果的是孩子，所以念不念書是<strong>孩子的課題</strong>，父母無權強行介入。父母能做的是「在孩子求助時隨時提供協助」，但不能替他決定。就像那句諺語：<strong>你可以把馬牽到水邊，但不能強迫牠喝水。</strong>喝不喝，是馬的課題。</p>
+<p>由此帶出全書書名的來源——<strong>認可欲求的否定</strong>。我們從小被訓練成「要獲得認可」：做得好被稱讚、做不好被責罵，於是活成了「為了滿足別人期待」的人生。但阿德勒說：<strong>「你不是為了滿足別人的期望而活，別人也不是為了滿足你的期望而活。」</strong>別人怎麼看你、喜不喜歡你，那是<strong>別人的課題</strong>，你管不著也不該管。</p>
+<p>於是那把鑰匙出現了：<strong>「倘若不付出可能被某些人討厭的代價，就無法貫徹自己的生活方式，也無法得到自由。」自由，就是被別人討厭。</strong>這不是叫你去惹人厭，而是說——當你不再被「怕被討厭」綁架，你才第一次真正自由。這就是「被討厭的勇氣」。</p>
+<p><strong>反例與限制</strong>：課題分離最容易被讀成「別人的事都不關我的事」的冷漠，這是嚴重誤讀，後面會拆解。它是解決人際煩惱的<strong>入口</strong>，不是終點。</p>
+<h3>四、從縱向到橫向：不稱讚、不責罵，因為那都是操控</h3>
+<p>課題分離斬斷了糾纏，但阿德勒的目標不是讓人變成孤島。他要你重建一種新的關係模式。</p>
+<p>他把人際關係分兩種：<strong>縱向關係</strong>（上下、高低、支配）和<strong>橫向關係</strong>（雖不相同，但平等）。問題是，連「稱讚」都屬於縱向關係——因為「你做得真棒」這句話，背後藏著一個「有能力的人」對「沒能力的人」的評價，是上對下的姿態。用稱讚和責罵去操控別人（比如稱讚孩子讓他聽話），本質是同一件事：把對方當成可以操縱的下位者。</p>
+<p>阿德勒的替代方案是<strong>鼓勵</strong>，而鼓勵的核心動作是<strong>說「謝謝」</strong>。當有人幫了你，別說「你好棒」（評價），而說「謝謝，我很開心」（表達平等的感謝與貢獻感）。差別在於：稱讚讓對方依賴你的評價而活，感謝讓對方感受到「我對別人有用」。</p>
+<p><strong>機制</strong>：只有站在橫向、平等的位置上，人才可能擁有真正的勇氣——不是為了討好誰、也不是為了贏過誰，而是憑自己的意志行動。</p>
+<h3>五、共同體感覺與甘於平凡的勇氣：幸福的終點站</h3>
+<p>如果說課題分離是入口，那<strong>共同體感覺</strong>（社會意識）就是阿德勒思想的終點與最高目標。</p>
+<p>它的意思是：把<strong>「對自己的執著」轉換成「對他人的關心」</strong>，在人與人的連結中感到「我有一個歸屬」。而歸屬感不是與生俱來、坐等別人給的，是<strong>要靠自己主動投入、主動貢獻去掙來的。</strong></p>
+<p>達成它有三個台階：<strong>接納自我</strong>（不是自我肯定，而是誠實接受「做不到的我」，把焦點放在能改變的事上）、<strong>信賴他人</strong>（無條件相信，即使可能被背叛——因為要不要背叛是對方的課題）、<strong>貢獻他人</strong>（在關係中付出）。三者是一個循環。</p>
+<p>而幸福的定義，阿德勒濃縮成一句：<strong>「幸福就是貢獻感。」</strong>注意——是「感」，是你自己<strong>主觀感覺</strong>到「我對某人、對這個共同體有用」，不需要別人真的認證。</p>
+<p>最後一塊拼圖，是<strong>甘於平凡的勇氣</strong>。年輕人不服氣：「難道要我甘於平凡、當個普通人嗎？」哲學家說：是的。拒絕平凡的人，往往是走不了「認可」這條窄路，就想抄捷徑變成「特別的壞」——用搗蛋、闖禍、擺爛去換取關注。<strong>「甘於平凡，並不等於無能。我們沒有必要刻意炫耀自己的優越性。」</strong>願意做一個普通人，本身就需要勇氣。</p>
+<p>配套的還有一個時間觀：<strong>人生是一連串的「剎那」，不是一條通往某個目的地的線。</strong>不要把「上了大學、找到工作才叫真正開始活」當成人生——那叫「假設性人生」，是最大的謊言。人生是跳舞，不是趕路；把「此時此刻」跳好、活得認真而充實，就夠了。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>這本書的邏輯是一條環環相扣的鏈子，不是散裝金句。</p>
+<p>起點是一句總綱：<strong>一切煩惱都是人際關係的煩惱。</strong>（為什麼要處理人際關係）→ <strong>目的論</strong>先把你從「過去決定一切」的宿命裡放出來，告訴你「你隨時能選、隨時能改」（改變的自由從哪來）→ 但改變路上最大的路障，是<strong>認可欲求</strong>：你太怕被討厭，所以活成別人期待的樣子（障礙是什麼）→ <strong>課題分離</strong>是那把刀，斬斷「別人怎麼看我」的糾纏，換來自由（怎麼斬斷）→ 斬斷後不是變孤島，而是把縱向關係重建成<strong>橫向關係</strong>（斬斷後要蓋什麼）→ 最終走向<strong>共同體感覺</strong>，透過<strong>他者貢獻</strong>得到「貢獻感」，也就是幸福（終點在哪）→ 而這一切，都只發生在<strong>認真活好的「此時此刻」</strong>。</p>
+<p>一句話收攏：<strong>課題分離是人際關係的入口，共同體感覺是出口；中間那段路，靠被討厭的勇氣走完。</strong></p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「總是很在意主管臉色、不敢表達」為例）</strong>：</p>
+<ol><li>課題分離自問：「主管喜不喜歡我、給不給我好臉色，是誰的課題？」——是主管的。你能做的是把事做好（你的課題），他怎麼評價是他的。</li><li>把「我要讓大家滿意」換成「我要對這個團隊有貢獻」——前者是討好（認可欲求），後者是貢獻感，方向完全不同。</li><li>開會時如果有不同意見，練習說出口一次。提醒自己：<strong>有人不認同，正是你活出自己的證據，不是失敗。</strong></li><li>同事幫了你，把「你好強」改成「謝謝，幫了我大忙」——用橫向的感謝取代上下的評價。</li></ol>
+<p><strong>生活版（以「和家人為了『你該怎麼過人生』吵不完」為例）</strong>：</p>
+<ol><li>畫課題界線：他要不要結婚、換工作、怎麼帶小孩——結果由他承擔，就是他的課題，你不強行介入。</li><li>但別把「分離」做成「冷漠」——告訴對方：「這是你的決定，但你需要我，我隨時在。」把馬牽到水邊，不逼牠喝。</li><li>停止用「我為你犧牲這麼多」（誇耀不幸、縱向支配）綁住關係，改成單純表達「我很開心能幫上忙」。</li><li>每天睡前問一句：「今天此時此刻，我有沒有認真活？」而不是「我離某個目標還差多遠？」</li></ol></section>
+<section><h2>常見誤讀</h2>
+<p>這本書爭議很大，最該被誠實對待的就是這一段。</p>
+<ol><li><strong>「心理創傷不存在」＝否認受害者的痛苦？</strong> 這是全書最被砲轟的一句。要講清楚：阿德勒否認的不是「壞事發生過」，也不是「痛不痛」——他否認的是「過去的壞事<strong>機械地、必然地</strong>決定了你的現在」。他的原話是：<strong>「決定我們自己的不是經驗本身，而是我們賦予經驗的意義。」</strong>但這句話用在重度創傷、PTSD、長期受虐上，很容易滑成「都是你自己選的、你不夠努力」的檢討受害者。<strong>誠實的讀法是</strong>：把目的論當成「奪回主導權」的工具——「過去無法改變，但我能改寫它對我的意義」；而不是當成一根打向受苦者的棍子。這本書是哲學勸誡，不是臨床治療手冊，遇到真正的心理創傷，該找的是專業協助，不是硬套一句「創傷不存在」。</li></ol>
+<ol><li><strong>課題分離＝各人自掃門前雪、變得冷漠自私？</strong> 完全相反。課題分離是<strong>入口不是終點</strong>，它的目的是為了走向「共同體感覺」——為了能真正關心別人、貢獻別人，你得先不被「討好與控制」綁架。分離是為了更好地連結，不是為了切斷連結。</li></ol>
+<ol><li><strong>被討厭的勇氣＝可以我行我素、故意惹人厭？</strong> 不是。它不是鼓勵你去當討厭鬼，而是說「<strong>即使可能被討厭，也不放棄做自己</strong>」。是「不怕」，不是「求」。核心是自由，不是任性。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li><strong>《人性的弱點》（卡內基）</strong>：有趣的是，卡內基本人深受阿德勒影響。但兩本方向剛好相反——卡內基教你「如何贏得別人的好感與認可」，阿德勒教你「如何不再需要別人的認可」。一本教你進入關係，一本教你在關係裡保持自由，剛好是同一枚硬幣的兩面，很值得對照著讀（也是我們書單後面的一本）。</li><li><strong>《活出意義來》（弗蘭克）</strong>：同樣是維也納的心理學家，同樣主張「人可以自由選擇面對命運的態度」。弗蘭克從集中營的極端處境提煉出「意義」，阿德勒從日常人際提煉出「貢獻感」——兩人都在回答「人如何在痛苦中依然自由」，弗蘭克更沉重，阿德勒更日常。</li><li><strong>《與成功有約》（柯維）</strong>：柯維的「影響圈與關注圈」，幾乎是課題分離的另一種說法——把力氣花在你能改變的事（你的課題）上，別耗在你控制不了的事上。想把阿德勒落實成方法論，柯維是很好的橋。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「決定我們自己的不是經驗本身，而是我們賦予經驗的意義。」</li><li>「所謂的自由，就是被別人討厭。有人討厭你，正是你行使自由、活出自我的證明。」</li><li>「幸福就是貢獻感。」</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想一件你一直說「因為○○，所以我做不到□□」的事——如果用阿德勒的目的論來看，那個「○○」是真的攔住了你，還是你其實在用它保護自己不去面對某個風險？</li><li>職場或家庭裡，你現在最在意「誰的看法」？試著把它拆成「這是誰的課題」——哪一部分其實根本不是你能控制、也不該你扛的？放下它，你會少一半的累嗎？</li></ol></section>
+  </article>
+  <div class="tg-cta">
+    <p>有想法？直接回 Telegram 訊息，就地開聊。</p>
+    <a class="tg-button" href="https://t.me/Andycaiagent_bot">回 TG 聊聊</a>
+  </div>
+  <footer>
+    <p><a href="../index.html">← 所有書</a></p>
+  </footer>
+</main>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() { btn.textContent = isDark() ? '☀' : '☾'; }
+      setIcon();
+      btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+</body>
+</html>

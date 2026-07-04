@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>原則：生活和工作｜book-club</title>
+<meta name="description" content="一個曾經押錯到破產、跟父親借錢過日子的人，後來管理全世界最大的避險基金。他把中間那段翻身路，濃縮成一條公式：痛苦 ＋ 反思 ＝ 進步。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    #theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: background-color 200ms, color 200ms;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.15em 0.7em;
+    }
+    h1 {
+      font-size: clamp(1.9rem, 5vw, 2.4rem);
+      line-height: 1.35;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    footer p {
+      margin: 0 0 16px;
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<button id="theme-toggle" aria-label="切換日夜模式">☾</button>
+
+<main class="page-shell">
+  <div class="meta-row"><span class="ui-label">2026-07-11</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 15 分鐘</span></div>
+  <h1>原則：生活和工作</h1>
+  <p class="title-en">Principles: Life and Work</p>
+  <p class="byline">瑞・達利歐（Ray Dalio）｜2017</p>
+  <p class="hook">一個曾經押錯到破產、跟父親借錢過日子的人，後來管理全世界最大的避險基金。他把中間那段翻身路，濃縮成一條公式：痛苦 ＋ 反思 ＝ 進步。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>瑞・達利歐 1949 年出生在紐約皇后區，父親是爵士樂手，他自己書讀得不算好，靠打工存錢、12 歲把小費拿去買股票起家。1975 年，他在自己兩房公寓裡創辦了橋水（Bridgewater Associates）——四十多年後，這家公司成了全世界規模最大的避險基金，管理超過一千五百億美元的資產，客戶包括各國央行與退休基金。</p>
+<p>但這本書真正的起點，不是成功，是一次差點毀掉他的慘敗。</p>
+<p>1982 年，達利歐深信一場全球債務危機即將爆發、美國經濟會陷入蕭條。那年八月墨西哥果然違約，債務危機看似被他料中。他非常公開地看空——上國會作證、上電視節目，斬釘截鐵地說會有一場大蕭條。結果完全相反：聯準會出手寬鬆，股市在那個八月觸底，展開往後將近二十年的大多頭。達利歐錯得離譜，賠光了自己和客戶的錢，橋水的員工一個一個走光，最後只剩他一人。他為了付家裡的開銷，跟父親借了幾千美元。</p>
+<p>這是他人生最痛的一擊，也是全書的種子。他後來寫道，那次失敗逼他問自己一個問題：「我怎麼知道我是對的？」（How do I know I'm right?）這個問題，最後長成了一整套決策系統，也長成了這本 2017 年出版、全球熱賣的《原則》。書分三部：他的人生故事、生活的原則、工作的原則。它不是投資書，是一個人把「怎麼面對現實、怎麼做決定」寫成可以照著跑的操作手冊。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>大部分人做決定，靠的是直覺、情緒、和「我覺得應該這樣」。順的時候不知道為什麼順，出事的時候也講不清哪裡錯，於是同樣的坑一踩再踩。達利歐想解決的正是這件事：<strong>怎麼讓「做對決定」這件事，從靠運氣、靠感覺，變成一件可以重複、可以驗證、可以交給別人一起做的事？</strong></p>
+<p>他的答案是「原則」——把每一次遭遇（尤其是痛的那些）煉成一條白紙黑字的規則，下次遇到同類情況直接調用，不必從頭再痛一遍。如果你曾經在同一種人、同一種決策上反覆跌倒；如果你在團隊裡最怕「講真話會傷感情」——這本書會給你一套跟直覺完全相反、但邏輯上站得住的做法。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、痛苦 ＋ 反思 ＝ 進步：把慘敗當成最好的老師</h3>
+<p>這是全書的引擎。達利歐主張，<strong>現實不會因為你不喜歡就消失，你唯一能做的是擁抱它、然後處理它</strong>（Embrace reality and deal with it）。而現實給你的每一次痛——賠錢、被打臉、被拒絕——都不是懲罰，是一個訊號：這裡有一條你還沒搞懂的規則。</p>
+<p>關鍵在中間那個字：反思。痛本身不會讓你進步，痛過之後停下來想「這件事的根本原因是什麼、下次我該定什麼規則」才會。1982 年那次破產如果只換來「我運氣不好」，達利歐就只是個失敗的操盤手；但他換來的是「我不能只賭自己是對的，我得系統性地知道自己可能哪裡錯」，這才有了後來的橋水。</p>
+<p><strong>機制</strong>：多數人面對痛的直覺反應是逃避、否認、找藉口，因為承認錯誤會刺痛自我（ego）。達利歐要你反過來，把痛當成金礦入口。他甚至在橋水做了一個「痛苦按鈕」App，員工難受時按下去記錄，事後回來反思——把「痛」變成一筆可以複盤的資料。</p>
+<p><strong>限制</strong>：這條公式的前提是你願意直視自己的錯，這對很多人是反人性的。做不到反思，痛就只是痛。</p>
+<h3>二、極度求真與極度透明：把話攤在桌上</h3>
+<p>橋水最有名、也最有爭議的文化，是「極度求真」（radical truth）與「極度透明」（radical transparency）。意思是：有什麼想法直接講出來、當面講，不在背後說；公司幾乎所有會議都錄影錄音、開放給員工看，連達利歐自己被下屬批評的信件也公開。</p>
+<p>為什麼要這麼極端？達利歐的邏輯是：<strong>大多數組織的失敗，不是因為沒人看見問題，是因為看見了不敢講、或只敢在茶水間講</strong>。把真相攤在陽光下，錯誤才會被早點抓到、被拿出來一起診斷，而不是爛在檯面下。</p>
+<p><strong>反例與代價很重要</strong>：這套文化極度嚴苛。有調查指出，新進員工在頭 18 個月內離開的比例相當高——很多人受不了那種當眾被指出缺點的壓力。所以達利歐自己也承認，這不是每個人、每間公司都適合的文化。它需要一個前提：批評對事不對人，目的是把事做好，不是為了讓誰難堪。</p>
+<h3>三、五步流程：任何目標都能拆成的通用骨架</h3>
+<p>達利歐把「達成任何目標」抽象成五個步驟，我覺得這是全書最實用的一段：</p>
+<ol><li><strong>設定清楚的目標</strong>（知道你要什麼）</li><li><strong>找出擋路的問題</strong>，而且不能容忍它</li><li><strong>精準診斷問題，挖到根本原因</strong>（不是急著補破洞，是先搞懂為什麼會破）</li><li><strong>設計解決方案</strong>（像寫劇本一樣規劃怎麼做）</li><li><strong>執行到底</strong>，把方案落實出成果</li></ol>
+<p>他特別強調兩件事。第一，這五步要<strong>一步一步照順序來</strong>，最常見的錯是還沒診斷清楚就跳去想解法，結果治標不治本。第二，<strong>幾乎沒有人五種能力都強</strong>——有人擅長訂目標卻不擅長執行，有人很會診斷卻設計不出方案。所以認清自己弱在哪一步，然後找互補的人補上，比硬逼自己樣樣行更聰明。</p>
+<h3>四、可信度加權與創意擇優：不是民主，也不是獨裁</h3>
+<p>一群人一起做決定，怎麼決？多數人只有兩個選項：老闆說了算（獨裁），或一人一票（民主）。達利歐說兩個都爛——獨裁埋沒了聰明人的意見，民主則假裝每個人的判斷一樣值錢，但事實顯然不是。</p>
+<p>他的第三條路叫「可信度加權」（believability-weighted decision making）：<strong>每個人的意見都聽，但權重不一樣，權重看你在這件事上的過往戰績和推理能力</strong>。一個在某領域反覆做對決定、且講得出道理的人，他在那件事上的票就該更重。這套機制加起來，就是橋水的核心理念「創意擇優」（idea meritocracy）——最好的點子勝出，不看它從誰嘴裡說出來。</p>
+<p>為了讓這件事能運作，橋水做了很土但很硬的工具：<strong>「棒球卡」</strong>把每個員工的優缺點像球員數據一樣列出來；<strong>「集點器」（Dot Collector）</strong>則是開會時大家即時互相評分，會後每個人在幾十個面向上的得分一目瞭然。決策不再靠「誰嗓門大」或「誰職位高」，而靠一份公開的、累積出來的可信度資料。</p>
+<h3>五、把自己和公司當一台機器來設計</h3>
+<p>達利歐有個很特別的視角：<strong>把你自己、把你的組織，都當成一台為了達成目標而運轉的機器</strong>。當結果不如預期，你要跳出來，站在機器上方看：是機器的哪個零件（可能就是某個人，甚至是你自己）出了問題？然後像工程師一樣去調整它。</p>
+<p>這裡藏著他說的「兩個你」：一個是<strong>設計機器的你</strong>，一個是<strong>在機器裡幹活的你</strong>。多數人一輩子只當後者，埋頭做事、被結果推著走；達利歐要你常常切換成前者，冷靜地檢視「這台機器（包含我這個零件）該怎麼改，才會產出我要的結果」。把自己客觀化成一個可以優化的對象——這需要他說的「極度開放的心態」（radical open-mindedness），也就是隨時假設「我可能是錯的」，並主動去找比自己懂的人求證。</p></section>
+<section><h2>概念之間怎麼串</h2>
+<p>這五個概念不是散的，是一條環環相扣的鏈。最底層是<strong>擁抱現實</strong>的世界觀——現實至上，痛苦是訊號；由此得出<strong>痛苦＋反思＝進步</strong>的成長引擎。個人要靠反思進步，組織就要靠<strong>極度求真與透明</strong>，因為真相是一切好決策的原料。有了真相，你用<strong>五步流程</strong>去處理問題；在多人協作時，用<strong>可信度加權</strong>決定聽誰的；而支撐這一切的視角，是<strong>把自己與公司當機器</strong>、隨時抽離出來優化。從世界觀（現實）、到方法論（反思、透明）、到操作系統（五步、加權、機器），一路貫穿。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「一次搞砸的專案」為例）</strong>：</p>
+<ol><li>別急著甩鍋或懊惱，先按下心裡的「痛苦按鈕」——把這次的難受記下來，當成一筆待複盤的資料。</li><li>用五步流程回推：目標是什麼？真正擋路的問題是什麼？<strong>根本原因</strong>是什麼（是能力、流程、還是溝通）？</li><li>把診斷結果寫成一條「原則」：例如「凡是跨部門專案，啟動前先開一次對齊會」——下次直接調用。</li><li>開檢討會時試試小規模的「透明」：對事不對人，讓每個人把看到的問題講出來，別讓它爛在私訊裡。</li></ol>
+<p><strong>生活版（以「一段反覆吵架的關係」為例）</strong>：</p>
+<ol><li>把「他就是這種人」換成一台可以觀察的機器：這段關係反覆卡在哪一個環節？</li><li>誠實面對現實，包括自己那部分不好看的原因（這步最痛，也最值錢）。</li><li>每次衝突後花五分鐘反思，煉出一條屬於你們的相處原則，而不是吵完就算了、下次再吵一模一樣的。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<ol><li><strong>把「極度透明」讀成「有話直說、不顧場合」</strong>——這是最危險的誤讀。達利歐要的是不隱瞞、把問題攤開，但他強調要<strong>深思熟慮、對事不對人</strong>，目的是把事做好，不是給你一張「想講什麼就講什麼、傷到人是你玻璃心」的許可證。少了善意與就事論事，透明就變成霸凌。</li><li><strong>以為這套文化人人適用</strong>——不是。橋水的高壓文化淘汰率很高，達利歐自己也承認它嚴苛、不見得適合每間公司。硬把一般團隊改成「開會全程互評打分」，多半水土不服。原則要挑著搬，不是照抄。</li><li><strong>把它當投資聖經</strong>——這本《原則：生活和工作》講的是決策與做人做事，不是選股教學。達利歐的投資心法（像用多個不相關的報酬來源分散風險）在他另一套著作裡，別把兩者混為一談。</li></ol></section>
+<section><h2>延伸對照</h2>
+<ul><li>《與成功有約》（柯維）：同樣談原則導向的人生，但柯維偏內在品格與價值觀養成，達利歐偏外在的決策系統與組織設計。一個修心，一個造機器，互補著讀很過癮。</li><li>《快思慢想》（康納曼）：達利歐要你「假設自己可能是錯的」，康納曼從心理學實證告訴你<strong>為什麼</strong>人這麼容易錯——各種認知偏誤的清單。想懂達利歐那套開放心態的科學根據，讀這本。</li><li>《從 0 到 1》（提爾）等創業經典：談的是「找到別人沒看到的真相」；達利歐則補上「找到之後，怎麼在一群人裡把它執行出來」，正好接續。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「痛苦 ＋ 反思 ＝ 進步。」（Pain + Reflection = Progress.）</li><li>「靠水晶球維生的人，注定要吞下滿嘴碎玻璃。」（He who lives by the crystal ball is destined to eat ground glass.）——講的是把預測講得斬釘截鐵有多危險，這是他 1982 年慘敗換來的教訓。</li><li>「真相——更精確地說，對現實的準確理解——是產生好結果的根本基礎。」（Truth—more precisely, an accurate understanding of reality—is the essential foundation for producing good outcomes.）</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>達利歐 1982 年最大的錯，是把「我判斷會發生」講成「一定會發生」。回想你最近一次投資或工作上的決定，你有沒有問過自己那句「我怎麼知道我是對的」？如果要幫這個決定加一個「可信度加權」，你會多聽誰的意見、為什麼？</li><li>「極度透明」在橋水行得通，但淘汰率很高。在你的職場或家庭裡，你覺得「把話攤開講」的好處和代價各是什麼？有沒有一個你一直不敢攤開、其實攤開會更好的問題？</li></ol></section>
+  </article>
+  <div class="tg-cta">
+    <p>有想法？直接回 Telegram 訊息，就地開聊。</p>
+    <a class="tg-button" href="https://t.me/Andycaiagent_bot">回 TG 聊聊</a>
+  </div>
+  <footer>
+    <p><a href="../index.html">← 所有書</a></p>
+  </footer>
+</main>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() { btn.textContent = isDark() ? '☀' : '☾'; }
+      setIcon();
+      btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+</body>
+</html>

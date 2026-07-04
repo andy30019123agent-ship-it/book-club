@@ -1,0 +1,65 @@
+[
+  {
+    "date": "2026-07-11",
+    "slug": "principles",
+    "title": "原則：生活和工作",
+    "author": "瑞・達利歐（Ray Dalio）",
+    "theme": "職場成長",
+    "hook": "一個曾經押錯到破產、跟父親借錢過日子的人，後來管理全世界最大的避險基金。他把中間那段翻身路，濃縮成一條公式：痛苦 ＋ 反思 ＝ 進步。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/principles.html"
+  },
+  {
+    "date": "2026-07-10",
+    "slug": "how-to-win-friends",
+    "title": "人性的弱點",
+    "author": "戴爾・卡內基（Dale Carnegie）",
+    "theme": "人際關係",
+    "hook": "快 90 年的老書，為什麼還賴在暢銷榜上？因為卡內基抓到一件不會過時的事——人不是邏輯的動物，是渴望被重視的動物。但它也最常被讀成拍馬屁術，這篇幫你分清「真誠」與「操縱」的那條線。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/how-to-win-friends.html"
+  },
+  {
+    "date": "2026-07-09",
+    "slug": "seven-habits",
+    "title": "與成功有約：高效能人士的七個習慣",
+    "author": "史蒂芬・柯維（Stephen Covey）",
+    "theme": "自我成長",
+    "hook": "你以為的成長是「多學幾招做人做事的技巧」，柯維說你搞錯了層次——真正的成功不是換更亮的面具，是把裡面那個人重新長好；而七個習慣其實是一條有次序的路：先能管好自己，才配談與人合作。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/seven-habits.html"
+  },
+  {
+    "date": "2026-07-08",
+    "slug": "thinking-fast-and-slow",
+    "title": "快思慢想",
+    "author": "丹尼爾・康納曼（Daniel Kahneman）",
+    "theme": "邏輯思考",
+    "hook": "你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/thinking-fast-and-slow.html"
+  },
+  {
+    "date": "2026-07-07",
+    "slug": "courage-to-be-disliked",
+    "title": "被討厭的勇氣",
+    "author": "岸見一郎、古賀史健",
+    "theme": "人際關係",
+    "hook": "傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/courage-to-be-disliked.html"
+  },
+  {
+    "date": "2026-07-06",
+    "slug": "deep-work",
+    "title": "深度工作力",
+    "author": "卡爾・紐波特（Cal Newport）",
+    "theme": "職場成長",
+    "hook": "你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/deep-work.html"
+  },
+  {
+    "date": "2026-07-05",
+    "slug": "atomic-habits",
+    "title": "原子習慣",
+    "author": "詹姆斯・克利爾（James Clear）",
+    "theme": "自我成長",
+    "hook": "為什麼你立的目標總是失敗？因為你該修的不是目標，是系統——每天進步 1%，一年後你會強 37 倍。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/atomic-habits.html"
+  }
+]

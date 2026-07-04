@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快思慢想｜book-club</title>
+<meta name="description" content="你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    #theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: background-color 200ms, color 200ms;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.15em 0.7em;
+    }
+    h1 {
+      font-size: clamp(1.9rem, 5vw, 2.4rem);
+      line-height: 1.35;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    footer p {
+      margin: 0 0 16px;
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<button id="theme-toggle" aria-label="切換日夜模式">☾</button>
+
+<main class="page-shell">
+  <div class="meta-row"><span class="ui-label">2026-07-08</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 14 分鐘</span></div>
+  <h1>快思慢想</h1>
+  <p class="title-en">Thinking, Fast and Slow</p>
+  <p class="byline">丹尼爾・康納曼（Daniel Kahneman）｜2011</p>
+  <p class="hook">你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。</p>
+  <article>
+<section><h2>作者與時代背景</h2>
+<p>丹尼爾・康納曼有一個很少見的頭銜：他是一位<strong>心理學家</strong>，卻拿了<strong>諾貝爾經濟學獎</strong>（2002 年）。這件事本身就是這本書的縮影——他一輩子都在做一件事：跑到別人的地盤上，證明那個地盤的根基是錯的。經濟學幾百年來假設人是「理性的」，會冷靜計算利弊、做出最有利的選擇。康納曼用一個又一個實驗證明：人根本不是這樣運作的，我們的判斷充滿系統性的、可預測的錯誤。</p>
+<p>他的故事要從一位早逝的天才夥伴說起。康納曼在希伯來大學遇到阿莫斯・特沃斯基（Amos Tversky），兩人從 1970 年代開始長達數十年的合作，好到「共用一個大腦」——他們甚至用丟銅板決定論文誰的名字放前面。他們一起挖出了人類判斷的種種「偏誤」，開創了「行為經濟學」這整個學門。可惜特沃斯基 1996 年因癌症過世，沒能等到諾貝爾獎（獎不頒給過世者）。康納曼領獎時說，這個獎有一半是他的。</p>
+<p>《快思慢想》出版於 2011 年，是康納曼七十七歲時交出的一生總結。它不是一本輕薄的暢銷書，而是把四十年的研究濃縮成一本給普通人看的厚書。也正因為它誠實到連自己的錯都寫進去（後面會談），它成了理解「人怎麼思考」最重要的一本現代經典。</p></section>
+<section><h2>這本書回答什麼問題</h2>
+<p>一句話：<strong>為什麼聰明人也會一再做出愚蠢的判斷？</strong></p>
+<p>你自認是個理性的人。買股票會做功課、談薪水會盤算、看到新聞會判斷真假。但康納曼要告訴你一個不舒服的真相：你腦中真正在做決定的，往往不是那個你以為的「理性的你」，而是一個跑得飛快、擅長腦補、又極度自信的「直覺的你」。它幫你省了大量力氣，但也在你毫無察覺的情況下，把你推向一個又一個判斷陷阱。</p>
+<p>如果你曾經在股市高點追高、低點殺出；曾經因為第一個看到的數字就錨定了整場談判；曾經對一個只見過三分鐘的人下了「我看得很準」的定論——這本書會像一面照妖鏡，讓你看見那些錯誤不是偶然，而是大腦出廠設定的 bug。看懂它，你不會變成完美的機器，但至少能在關鍵時刻按下暫停鍵。</p></section>
+<section><h2>核心概念深講</h2>
+<h3>一、系統一與系統二：你腦中住著一快一慢兩個人</h3>
+<p>這是全書的地基。康納曼把大腦的運作，比喻成兩個角色分工：</p>
+<p><strong>系統一（快思）</strong>：自動、快速、幾乎不費力。你看到 2+2 會自動蹦出 4、聽到母語會自動聽懂、看到一張憤怒的臉會瞬間讀出對方在生氣——這些都是系統一。它是你的自動駕駛，一天二十四小時開著，替你處理九成以上的日常判斷。</p>
+<p><strong>系統二（慢想）</strong>：費力、緩慢、需要專注。你算 17×24、把車停進一個很窄的車位、填一份複雜的報稅單——這些逼你「動腦」的事，是系統二。它是你以為的那個「理性的你」，但它很懶，能不出動就不出動。</p>
+<p>關鍵在於<strong>兩者的分工關係</strong>：系統一不停地給系統二餵「印象、直覺、感覺」，系統二多半照單全收、簽字放行。只有當系統一遇到搞不定的事，才會把系統二叫醒。問題是——<strong>系統一很常在它明明不該有答案的時候，硬給一個答案</strong>，而懶惰的系統二又懶得查核。你以為的「深思熟慮」，很多其實只是系統一的直覺，披上了系統二的外衣。</p>
+<p>書中一個經典小測驗：「一支球棒和一顆球共 1.1 美元，球棒比球貴 1 美元，請問球多少錢？」大多數人（連名校學生都一樣）脫口而出「10 美分」——這是系統一的直覺答案，而且是<strong>錯的</strong>（正確答案是 5 美分）。你的系統二只要願意花三秒驗算就會抓到錯，但它太懶了，直接放行。這就是人類判斷的縮影。</p>
+<p><strong>限制</strong>：這個「兩個系統」是一種<strong>方便理解的比喻</strong>，腦中並沒有真的兩顆處理器。康納曼自己也強調，這是為了說故事而用的擬人化說法，別把它當成解剖學。</p>
+<h3>二、捷思與偏誤：大腦的抄捷徑，抄出了系統性的錯</h3>
+<p>系統一為了求快，會用一套「捷思法」（heuristics）——用簡單的問題偷偷替換掉困難的問題。這套抄捷徑的機制大多時候好用，但會製造出<strong>可預測的偏誤</strong>。三個最重要的：</p>
+<p><strong>錨定效應（Anchoring）</strong>：你的判斷會被眼前一個不相干的數字「錨」住。實驗中，受試者先轉一個動過手腳的輪盤（停在 10 或 65），再被問「非洲國家佔聯合國的比例是多少？」——轉到 65 的人平均猜 45%，轉到 10 的人平均猜 25%。一個明知是隨機的數字，居然綁架了他們的答案。這解釋了為什麼談判時「誰先開價」這麼重要，也解釋了為什麼標價「原價 3980，特價 1980」這麼有效——3980 就是那個錨。</p>
+<p><strong>可得性偏誤（Availability）</strong>：你判斷一件事有多常見，靠的是「例子有多容易想起來」。空難上新聞，你就高估搭飛機的危險；其實開車危險得多，但車禍不上頭條。凡是<strong>生動、近期、情緒強烈</strong>的事，都會在你腦中被放大。投資人在股災後過度恐慌、在牛市尾聲過度貪婪，很大一部分就是可得性在作祟——最近發生的事，感覺起來機率特別高。</p>
+<p><strong>代表性偏誤（Representativeness）——琳達問題</strong>：這是全書最有名的實驗。研究者描述一位女性：「琳達，31 歲，單身，直言不諱，非常聰明，主修哲學，學生時代熱衷反歧視與社會正義議題，還參加過反核遊行。」然後問：哪個比較可能？（A）琳達是銀行行員；（B）琳達是銀行行員<strong>而且</strong>是女性主義運動者。超過八成的人選 B。但這在邏輯上不可能——「又是行員又是女性主義者」是「行員」的子集合，範圍更小，機率一定更低。人們被那個「很像女性主義者」的描述帶著走，用「像不像」取代了「機率高不高」。這叫「合取謬誤」（conjunction fallacy）：一個故事講得越具體、越合理，我們越覺得它可能，即使具體本身就降低了機率。</p>
+<h3>三、展望理論與損失趨避：賠錢的痛，是賺錢的爽的兩倍</h3>
+<p>這是替康納曼贏得諾貝爾獎的核心理論，也是最貼近投資的一塊。</p>
+<p>傳統經濟學說，一個理性的人在意的是「最終財富」。但康納曼發現，人真正在意的是<strong>相對於某個參考點的「變化」——是賺了還是賠了</strong>，而且對兩者的感受嚴重不對稱。</p>
+<p><strong>損失趨避（Loss Aversion）</strong>：丟掉 100 元的痛苦，強度大約是撿到 100 元快樂的<strong>兩倍</strong>。所以人會為了「避免損失」做出明明不划算的事。書中的賭局：一個銅板，正面你贏 150 元、反面你輸 100 元——期望值明明是正的（划算），但大多數人拒絕玩，因為「輸 100 的痛」蓋過了「贏 150 的爽」。</p>
+<p>這直接解釋了投資人最常犯的錯：<strong>賺錢的股票太早賣（落袋為安、鎖住那份快樂），賠錢的股票死抱不放（賣掉就等於承認損失、那太痛了）</strong>——這叫「處置效應」，恰恰和「汰弱留強」的正確做法相反。損失趨避讓無數人抱著一手爛牌，只為了逃避「實現損失」那一刀的痛。</p>
+<p><strong>限制與反例</strong>：損失趨避不是鐵律。當人已經深陷虧損、退無可退時，反而會變得<strong>極度愛冒險</strong>（賭一把翻本），這也是展望理論預測到的。理解的重點不是「人一定怕輸」，而是「人對得失的感受是扭曲、不對稱的」。</p>
+<h3>四、WYSIATI 與過度自信：你只看見你看見的</h3>
+<p>WYSIATI 是全書我最想你記住的一個縮寫，出自 "What You See Is All There Is"——<strong>「你眼前所見，就是世界的全部」</strong>。</p>
+<p>系統一的一大特性是：它只用<strong>手邊現有的資訊</strong>編故事，而且完全不在乎「我還缺了哪些資訊」。它追求的是故事的<strong>連貫</strong>，不是資訊的<strong>完整</strong>。只要眼前的線索能拼成一個說得通的故事，系統一就會產生強烈的信心——而<strong>信心的來源是故事的連貫度，不是證據的多寡或品質</strong>。</p>
+<p>這就是「過度自信」的根源。我們對一件事有把握，往往只是因為我們<strong>編出了一個順的故事</strong>，卻沒意識到自己根本沒看到全貌。專家預測經常比丟銅板還不準，卻依然充滿自信，就是因為 WYSIATI——他們看見的那一小塊，感覺起來就是全部。</p>
+<p>對投資人，這是最致命的一課：當你聽完一則「這檔一定會漲」的完美說法就心動時，真正該問的是——<strong>「我還有哪些沒看到的？賣方看到什麼是我沒看到的？」</strong> 你眼前那個順到不行的故事，恰恰是你該警惕的訊號。</p>
+<h3>五、回歸平均與規劃謬誤：兩個最實用的小陷阱</h3>
+<p><strong>回歸平均（Regression to the Mean）</strong>：極端的表現，天生就會「自動」向平均靠攏，這純粹是機率，不需要任何原因。但系統一硬要替它找因果。以色列空軍教官發現：飛行員被稱讚後，下次通常表現較差；被責罵後，下次通常較好。教官因此深信「罵有效、誇沒用」。錯了——那只是回歸平均：表現特好之後本來就會回落，表現特爛之後本來就會反彈，跟你罵不罵無關。這個陷阱無所不在：業績暴衝的基金明年多半平庸、狀元進職場未必最強，別把「回歸平均」誤讀成「因果關係」。</p>
+<p><strong>規劃謬誤（Planning Fallacy）</strong>：我們對「自己的計畫要花多久、花多少錢」的估計，總是過度樂觀，因為我們只想像順利的劇本（又是 WYSIATI）。裝修、寫論文、蓋公共工程，幾乎無一例外地超時超支。解法是康納曼說的「<strong>由外而內看</strong>」（outside view）：別問「我這次要多久」，要問「<strong>別人做類似的事，平均花了多久</strong>」——用統計，別用想像。</p></section>
+<section><h2>整本書的邏輯骨架</h2>
+<p>這本書看似零散，其實有一條清楚的主線：<strong>系統一是主角，系統二是配角，而人類的判斷錯誤，幾乎都是系統一抄捷徑、系統二又太懶得查核的結果。</strong></p>
+<p>往下展開成三層：<strong>第一層</strong>是機制（系統一 / 系統二怎麼分工、WYSIATI 怎麼運作）；<strong>第二層</strong>是這個機制製造出的各種偏誤（錨定、可得性、代表性、過度自信、回歸平均、規劃謬誤）；<strong>第三層</strong>是當這套機制碰上「金錢與風險」時的特殊反應（展望理論、損失趨避）。</p>
+<p>最後康納曼還升起一層，談「兩個自我」：<strong>經驗自我</strong>（experiencing self，當下正在感受的你）和<strong>記憶自我</strong>（remembering self，事後回憶並下判斷的你）。他發現我們對一段經歷的記憶，不是由「總體感受」決定，而是由「<strong>最高峰</strong>」加「<strong>結尾</strong>」決定——這叫<strong>峰終定律</strong>（peak-end rule）。一場很痛但結尾不那麼痛的醫療檢查，記憶反而比一場短但結尾很痛的更「不痛」。我們的記憶自我會為了一個美好的結尾，出賣經驗自我的真實感受。這一層把全書從「認知」拉高到「我們到底該追求什麼」的人生哲學層次。</p></section>
+<section><h2>實作指南：明天就能開始</h2>
+<p><strong>職場／投資版</strong>：</p>
+<ol><li><strong>重大決策前，強制叫醒系統二</strong>：任何要動用金錢、或難以回頭的決定，先寫下來、隔一天再看。系統一是即時的，拖延就是逼系統二上場。</li><li><strong>對抗錨定</strong>：談薪水、談合約、下單前，先自己算出「合理區間」再看對方開的價；別讓對方的第一個數字定調。</li><li><strong>用「由外而內」估時程</strong>：接專案別問「我大概要多久」，去查「上次類似的專案實際花了多久」，然後再往上加。</li><li><strong>建一份決策日記</strong>：下投資判斷時，寫下「我為什麼這樣想、我預期會怎樣」。事後回頭對照——這是唯一能戳破過度自信與 WYSIATI 的照妖鏡。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li><strong>對生動的新聞打折</strong>：看到聳動報導先問「這是真的常見，還是只是它容易上頭條？」——拆解可得性偏誤。</li><li><strong>善用峰終定律</strong>：安排旅行、聚會、專案收尾時，特別經營「最高潮」和「結尾」那一段——你和別人記住的，就是這兩點。</li><li><strong>看到「太順的故事」就踩剎車</strong>：無論是投資明牌、還是對某人的第一印象，越是完美順口，越要問「我漏看了什麼」。</li></ol></section>
+<section><h2>常見誤讀</h2>
+<p><strong>一、把「系統一」當成敵人。</strong> 這是最大的誤讀。系統一不是壞蛋，它是你賴以生存的超級專家——沒有它，你連過馬路都會累死。書的重點不是「關掉直覺」，而是「<strong>認得出哪些場合直覺會出錯，在那些場合才叫系統二上場</strong>」。全天候懷疑自己，只會癱瘓。</p>
+<p><strong>二、以為讀完書就能免疫。</strong> 康納曼在書裡誠實到近乎殘忍地說：<strong>他研究了偏誤一輩子，自己照樣會犯。</strong> 知道有錨定效應，不代表你就不會被錨。這本書給的不是「疫苗」，而是「<strong>在關鍵時刻、對別人的判斷、事後諸葛時</strong>」比較容易察覺陷阱的能力。</p>
+<p><strong>三、也是對你最誠實的一點——這本書自己有一部分過時了。</strong> 書中第四章談「促發效應」（priming，例如讓人接觸「老年」相關字詞，走路就會變慢）的一些研究，在 2011 年之後遭遇了心理學界的「<strong>再現性危機</strong>」：許多實驗別人重做時做不出同樣結果。更難得的是，<strong>康納曼本人在 2017 年公開承認</strong>，他當年對這些促發研究「過度自信」了，說如果重寫，他不會那樣寫。這件事反而讓這本書更值得敬重——連作者都親手示範了「過度自信」是怎麼回事。所以讀到促發那幾章，抱著保留態度即可；但全書的核心骨架（系統一 / 二、損失趨避、錨定、可得性、WYSIATI、峰終定律）至今依然穩固。</p></section>
+<section><h2>延伸對照</h2>
+<ul><li><strong>《雜訊》（Noise，康納曼 2021）</strong>：《快思慢想》談的是「偏誤」——判斷系統性地偏向某一邊；《雜訊》談的是「雜訊」——同一個人、同一件事，換個時間或心情就給出不同判斷。前者是箭永遠偏左，後者是箭散得到處都是。想把康納曼的思想補完，這是續集。</li><li><strong>《快思慢想》vs《原子習慣》</strong>：兩本都在談「大腦的自動化」，但方向相反。康納曼告訴你自動化（系統一）如何<strong>害你判斷出錯</strong>；克利爾則教你如何<strong>駕馭自動化</strong>、把好行為變成自動。一本防守、一本進攻，搭起來看很完整。</li><li><strong>《推力》（Nudge，塞勒與桑思坦）</strong>：塞勒是康納曼的學生輩、也是諾貝爾獎得主。如果說康納曼診斷了「人為什麼會做錯決定」，《推力》就是那張「所以我們該怎麼設計環境，順著人性把人推向更好的選擇」的處方箋。</li></ul></section>
+<section class="card-section"><h2>金句</h2>
+<ol><li>「凡是我們理解的事，都會產生一種它必然如此、且早該預料到的錯覺。」（Nothing in life is as important as you think it is, while you are thinking about it.）——關於「聚焦錯覺」：你此刻想著的事，永遠感覺比它實際上更重要。</li><li>「一個可靠的判斷方法，是拿定主意前，先想像未來這個決定失敗了，再回頭問：為什麼？」對應書中金句：「We can be blind to the obvious, and we are also blind to our blindness.」（我們會對顯而易見的事視而不見，而且對自己的視而不見也毫無自覺。）</li><li>「WYSIATI：你所看見的，就是一切。」（What you see is all there is.）——理解過度自信的一把鑰匙。</li></ol></section>
+<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你最近一筆賺錢或賠錢的股票決定：你當時是「因為賺了想鎖住快樂而太早賣」，還是「因為不想承認損失而死抱不放」？如果重來，「損失趨避」在哪個環節最綁架了你？</li><li>挑一個你曾經「很有把握、事後卻錯得離譜」的職場或投資判斷。回頭看，當時是不是有一個「太順的故事」讓你忽略了某些沒看到的資訊（WYSIATI）？如果那時你有一本決策日記，你會寫下什麼、又會漏寫什麼？</li></ol></section>
+  </article>
+  <div class="tg-cta">
+    <p>有想法？直接回 Telegram 訊息，就地開聊。</p>
+    <a class="tg-button" href="https://t.me/Andycaiagent_bot">回 TG 聊聊</a>
+  </div>
+  <footer>
+    <p><a href="../index.html">← 所有書</a></p>
+  </footer>
+</main>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() { btn.textContent = isDark() ? '☀' : '☾'; }
+      setIcon();
+      btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+</body>
+</html>

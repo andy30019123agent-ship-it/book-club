@@ -1039,6 +1039,7 @@ function libraryStyles() {
       color: var(--ink-soft);
     }
     .upcoming-row:last-child { border-bottom: none; }
+    .upcoming-more { margin: 0.7rem 0 0; color: var(--ink-soft); font-size: 0.82rem; }
     .upcoming-date {
       flex: none;
       width: 2.8rem;
@@ -1306,12 +1307,14 @@ function renderIndexPage(books) {
   <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>`
     : '';
 
+  const upcomingShown = upcoming.slice(0, 7);
+  const upcomingRest = upcoming.length - upcomingShown.length;
   const upcomingHtml = upcoming.length
     ? `
   <section class="upcoming-section">
     <h2 class="section-label">即將上架</h2>
-    <ul class="upcoming-list">${upcoming.map(renderUpcomingRow).join('')}
-    </ul>
+    <ul class="upcoming-list">${upcomingShown.map(renderUpcomingRow).join('')}
+    </ul>${upcomingRest > 0 ? `\n    <p class="upcoming-more ui-label">…之後還有 ${upcomingRest} 本，本月已排到 ${formatMonthDay(upcoming[upcoming.length - 1].date)}</p>` : ''}
   </section>`
     : '';
 

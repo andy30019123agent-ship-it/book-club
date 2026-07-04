@@ -275,6 +275,27 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -454,10 +475,9 @@
 
     .shelf-controls {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: -1rem 0 2.25rem;
     }
     .theme-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .filter-chip {
@@ -474,7 +494,7 @@
     }
     .filter-chip.is-active { background: var(--accent); color: var(--paper); }
     .shelf-search {
-      flex: 1 1 12rem;
+      width: 100%;
       min-height: 44px;
       padding: 0 1rem;
       border: 1px solid var(--rule);
@@ -485,6 +505,85 @@
       font-size: 0.92rem;
     }
     .shelf-search::placeholder { color: var(--ink-soft); }
+
+    .myshelf-section { margin-bottom: 3rem; }
+    .myshelf-list { list-style: none; margin: 0; padding: 0; }
+    .myshelf-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .myshelf-row:last-child { border-bottom: none; }
+    .myshelf-link {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.75rem 0.2rem;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: none;
+    }
+    .myshelf-link:hover .myshelf-name { color: var(--accent); }
+    .myshelf-name {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+    .myshelf-author { font-size: 0.8rem; color: var(--ink-soft); }
+    .fav-btn--row {
+      position: static;
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-color: transparent;
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .qshelf-section { margin-bottom: 3rem; }
+    .qshelf-list { list-style: none; margin: 0; padding: 0; }
+    .qshelf-row {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.95rem 3rem 0.95rem 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+    .qshelf-quote {
+      margin: 0 0 0.4rem;
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }
+    .qshelf-src { margin: 0; font-size: 0.78rem; }
+    .qshelf-src a {
+      color: var(--ink-soft);
+      border-bottom: none;
+    }
+    .qshelf-src a:hover { color: var(--accent); }
+    .qshelf-remove {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .qshelf-remove:hover { color: var(--accent); }
 
     .upcoming-list { list-style: none; margin: 0; padding: 0; }
     .upcoming-row {
@@ -544,8 +643,13 @@
     <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 1 本</p>
   </header>
 
+  <div class="shelf-controls">
+    <input type="search" id="shelf-search" class="shelf-search" placeholder="搜尋書名或作者" aria-label="搜尋書名或作者">
+    <div class="theme-filters" role="group" aria-label="主題篩選"><button type="button" class="filter-chip is-active" data-filter-theme="all">全部</button><button type="button" class="filter-chip" data-filter-theme="自我成長">自我成長</button><button type="button" class="filter-chip" data-filter-theme="職場成長">職場成長</button><button type="button" class="filter-chip" data-filter-theme="人際關係">人際關係</button><button type="button" class="filter-chip" data-filter-theme="邏輯思考">邏輯思考</button><button type="button" class="filter-chip filter-chip--fav" data-filter-fav aria-pressed="false">我的收藏</button></div>
+  </div>
+
   <section class="tonight-section">
-    <a class="tonight-card cover-growth" href="books/atomic-habits.html">
+    <a class="tonight-card cover-growth" href="books/atomic-habits.html" data-theme="自我成長" data-search="原子習慣 詹姆斯・克利爾（james clear）" data-slug="atomic-habits">
       <button type="button" class="fav-btn" data-slug="atomic-habits" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
       <span class="tonight-body">
         <span class="tonight-badge ui-label">今晚的書</span>
@@ -560,6 +664,17 @@
     </a>
   </section>
 
+  <section class="myshelf-section" id="myshelf" hidden>
+    <h2 class="section-label">我的書櫃</h2>
+    <ul class="myshelf-list" id="myshelf-list"></ul>
+  </section>
+  <section class="qshelf-section" id="qshelf" hidden>
+    <h2 class="section-label">金句集</h2>
+    <ul class="qshelf-list" id="qshelf-list"></ul>
+  </section>
+
+
+  <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>
 
   <section class="upcoming-section">
     <h2 class="section-label">即將上架</h2>
@@ -606,12 +721,65 @@
     })();
 </script>
 <script>
+window.__books = [{"slug":"atomic-habits","title":"原子習慣","author":"詹姆斯・克利爾（James Clear）","theme":"自我成長","date":"2026-07-04"}];
 
+    (function () {
+      var themeChips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip[data-filter-theme]'));
+      var favChip = document.querySelector('.filter-chip[data-filter-fav]');
+      var search = document.getElementById('shelf-search');
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.tonight-card, .catalog-card'));
+      var emptyMsg = document.getElementById('shelf-empty');
+      if (!cards.length) return;
+      var activeTheme = 'all';
+      var favOnly = false;
+      function favList() {
+        try { return JSON.parse(localStorage.getItem('yedu-favs')) || []; } catch (e) { return []; }
+      }
+      function apply() {
+        var q = search ? search.value.trim().toLowerCase() : '';
+        var favs = favList();
+        var visible = 0;
+        cards.forEach(function (card) {
+          var okTheme = activeTheme === 'all' || card.getAttribute('data-theme') === activeTheme;
+          var okSearch = !q || card.getAttribute('data-search').indexOf(q) !== -1;
+          var okFav = !favOnly || favs.indexOf(card.getAttribute('data-slug')) !== -1;
+          var show = okTheme && okSearch && okFav;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (emptyMsg) {
+          emptyMsg.textContent = favOnly && visible === 0
+            ? '還沒有收藏——點卡片右上角的書籤試試'
+            : '書架上還沒有這本，跟我說書名就補';
+          emptyMsg.hidden = visible !== 0;
+        }
+      }
+      window.__applyShelf = apply;
+      themeChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          themeChips.forEach(function (c) { c.classList.remove('is-active'); });
+          chip.classList.add('is-active');
+          activeTheme = chip.getAttribute('data-filter-theme');
+          apply();
+        });
+      });
+      if (favChip) {
+        favChip.addEventListener('click', function () {
+          favOnly = !favOnly;
+          favChip.classList.toggle('is-active', favOnly);
+          favChip.setAttribute('aria-pressed', favOnly ? 'true' : 'false');
+          apply();
+        });
+      }
+      if (search) search.addEventListener('input', apply);
+    })();
+  
     (function () {
       var KEY = 'yedu-favs';
       function load() {
         try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
       }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
       function refresh(btn) {
         var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
         btn.classList.toggle('is-fav', on);
@@ -619,20 +787,83 @@
         btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
       }
       var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      function renderShelf() {
+        var section = document.getElementById('myshelf');
+        var list = document.getElementById('myshelf-list');
+        if (!section || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        section.hidden = mine.length === 0;
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
       btns.forEach(function (btn) {
         refresh(btn);
         btn.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          var slug = btn.getAttribute('data-slug');
-          var favs = load();
-          var i = favs.indexOf(slug);
-          if (i === -1) favs.push(slug); else favs.splice(i, 1);
-          localStorage.setItem(KEY, JSON.stringify(favs));
-          btns.forEach(refresh);
-          if (window.__applyShelf) window.__applyShelf();
+          toggle(btn.getAttribute('data-slug'));
         });
       });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var section = document.getElementById('qshelf');
+      var list = document.getElementById('qshelf-list');
+      if (!section || !list) return;
+      function render() {
+        var qs = load();
+        section.hidden = qs.length === 0;
+        list.innerHTML = qs.map(function (x, i) {
+          return '<li class="qshelf-row">' +
+            '<p class="qshelf-quote">' + esc(x.q) + '</p>' +
+            '<p class="qshelf-src ui-label"><a href="books/' + esc(x.slug) + '.html">《' + esc(x.title) + '》</a></p>' +
+            '<button type="button" class="qshelf-remove" data-qi="' + i + '" aria-label="從金句集移除">' +
+            '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></li>';
+        }).join('');
+      }
+      list.addEventListener('click', function (e) {
+        var btn = e.target.closest ? e.target.closest('.qshelf-remove') : null;
+        if (!btn) return;
+        var qs = load();
+        qs.splice(Number(btn.getAttribute('data-qi')), 1);
+        localStorage.setItem(KEY, JSON.stringify(qs));
+        render();
+      });
+      render();
     })();
   
 </script>

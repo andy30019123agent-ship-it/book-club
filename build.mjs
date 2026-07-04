@@ -194,6 +194,7 @@ function baseStyles() {
       --desk: #43362A;
     }
     * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
     html { background: var(--desk); }
     body {
       margin: 0;
@@ -868,6 +869,72 @@ function libraryStyles() {
     .shelf-search::placeholder { color: var(--ink-soft); }
 
     .myshelf-section { margin-bottom: 3rem; }
+    .shelf-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+    .shelf-head .section-label { margin: 0; }
+    .see-all {
+      min-height: 44px;
+      padding: 0 1rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+    .see-all:hover { border-color: var(--accent); }
+    .shelf-empty-note {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .myshelf-strip {
+      display: flex;
+      gap: 0.8rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 0.3rem;
+    }
+    .myshelf-strip::-webkit-scrollbar { display: none; }
+    .strip-card {
+      flex: 0 0 10.5rem;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--c, var(--accent));
+      border-radius: 10px;
+      padding: 0.95rem 1rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .strip-card:hover { border-color: var(--accent); border-left-color: var(--c, var(--accent)); transform: translateY(-2px); }
+    .strip-card:active { transform: translateY(0) scale(0.995); }
+    .strip-title {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .strip-author { font-size: 0.75rem; color: var(--ink-soft); }
+    .strip-theme { font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.1em; margin-top: auto; }
     .myshelf-list { list-style: none; margin: 0; padding: 0; }
     .myshelf-row {
       display: flex;
@@ -907,6 +974,16 @@ function libraryStyles() {
     }
 
     .qshelf-section { margin-bottom: 3rem; }
+    .qshelf-rotator {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.95rem 1.1rem;
+      opacity: 1;
+      transition: opacity 280ms ease;
+    }
+    .qshelf-rotator.is-fading { opacity: 0; }
     .qshelf-list { list-style: none; margin: 0; padding: 0; }
     .qshelf-row {
       position: relative;
@@ -1064,13 +1141,30 @@ function favScript() {
       function esc(s) {
         return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
       }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
       function renderShelf() {
-        var section = document.getElementById('myshelf');
+        var strip = document.getElementById('myshelf-strip');
         var list = document.getElementById('myshelf-list');
-        if (!section || !list || !window.__books) return;
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
-        section.hidden = mine.length === 0;
+        var has = mine.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
         list.innerHTML = mine.map(function (b) {
           return '<li class="myshelf-row">' +
             '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
@@ -1079,6 +1173,13 @@ function favScript() {
             '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
+      }
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
       }
       function toggle(slug) {
         var favs = load();
@@ -1149,13 +1250,23 @@ function renderIndexPage(books) {
 
   const myshelfHtml = showControls
     ? `
-  <section class="myshelf-section" id="myshelf" hidden>
-    <h2 class="section-label">我的書櫃</h2>
-    <ul class="myshelf-list" id="myshelf-list"></ul>
+  <section class="myshelf-section" id="myshelf">
+    <div class="shelf-head">
+      <h2 class="section-label">我的書櫃</h2>
+      <button type="button" class="see-all ui-label" id="myshelf-all" hidden aria-expanded="false">觀看全部</button>
+    </div>
+    <div class="myshelf-strip" id="myshelf-strip" hidden></div>
+    <ul class="myshelf-list" id="myshelf-list" hidden></ul>
+    <p class="shelf-empty-note ui-label" id="myshelf-empty">尚未蒐藏</p>
   </section>
-  <section class="qshelf-section" id="qshelf" hidden>
-    <h2 class="section-label">金句集</h2>
-    <ul class="qshelf-list" id="qshelf-list"></ul>
+  <section class="qshelf-section" id="qshelf">
+    <div class="shelf-head">
+      <h2 class="section-label">金句集</h2>
+      <button type="button" class="see-all ui-label" id="qshelf-all" hidden aria-expanded="false">觀看全部</button>
+    </div>
+    <div id="qshelf-rotator" class="qshelf-rotator" hidden></div>
+    <ul class="qshelf-list" id="qshelf-list" hidden></ul>
+    <p class="shelf-empty-note ui-label" id="qshelf-empty">尚未蒐藏</p>
   </section>`
     : '';
 
@@ -1236,7 +1347,7 @@ ${upcomingHtml}
   });
 }
 
-// 首頁：金句集渲染（讀 yedu-quotes，可移除）
+// 首頁：金句集——隨機單句 5 秒輪播＋觀看全部展開（讀 yedu-quotes，可移除）
 function quoteShelfScript() {
   return `
     (function () {
@@ -1245,20 +1356,63 @@ function quoteShelfScript() {
       function esc(s) {
         return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
       }
-      var section = document.getElementById('qshelf');
+      var rotator = document.getElementById('qshelf-rotator');
       var list = document.getElementById('qshelf-list');
-      if (!section || !list) return;
+      var empty = document.getElementById('qshelf-empty');
+      var allBtn = document.getElementById('qshelf-all');
+      if (!rotator || !list) return;
+      var expanded = false;
+      var idx = 0;
+      var timer = null;
+      function quoteHtml(x) {
+        return '<p class="qshelf-quote">' + esc(x.q) + '</p>' +
+          '<p class="qshelf-src ui-label"><a href="books/' + esc(x.slug) + '.html">《' + esc(x.title) + '》</a></p>';
+      }
+      function showQuote(qs, animate) {
+        if (!qs.length) return;
+        var x = qs[idx % qs.length];
+        if (animate) {
+          rotator.classList.add('is-fading');
+          setTimeout(function () {
+            rotator.innerHTML = quoteHtml(x);
+            rotator.classList.remove('is-fading');
+          }, 280);
+        } else {
+          rotator.innerHTML = quoteHtml(x);
+        }
+      }
+      function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+      function startTimer(qs) {
+        stopTimer();
+        if (qs.length < 2 || expanded) return;
+        timer = setInterval(function () {
+          idx = (idx + 1) % qs.length;
+          showQuote(qs, !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        }, 5000);
+      }
       function render() {
         var qs = load();
-        section.hidden = qs.length === 0;
+        var has = qs.length > 0;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        rotator.hidden = !has || expanded;
+        list.hidden = !has || !expanded;
+        allBtn.textContent = expanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        if (!has) { stopTimer(); rotator.innerHTML = ''; list.innerHTML = ''; return; }
+        idx = Math.floor(Math.random() * qs.length);
+        showQuote(qs, false);
+        startTimer(qs);
         list.innerHTML = qs.map(function (x, i) {
-          return '<li class="qshelf-row">' +
-            '<p class="qshelf-quote">' + esc(x.q) + '</p>' +
-            '<p class="qshelf-src ui-label"><a href="books/' + esc(x.slug) + '.html">《' + esc(x.title) + '》</a></p>' +
+          return '<li class="qshelf-row">' + quoteHtml(x) +
             '<button type="button" class="qshelf-remove" data-qi="' + i + '" aria-label="從金句集移除">' +
             '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></li>';
         }).join('');
       }
+      allBtn.addEventListener('click', function () {
+        expanded = !expanded;
+        render();
+      });
       list.addEventListener('click', function (e) {
         var btn = e.target.closest ? e.target.closest('.qshelf-remove') : null;
         if (!btn) return;

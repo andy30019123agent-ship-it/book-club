@@ -404,7 +404,7 @@ function baseScript() {
   `.trim();
 }
 
-function pageShell({ title, description, bodyHtml }) {
+function pageShell({ title, description, bodyHtml, extraStyles = '', extraScript = '' }) {
   return `<!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -417,7 +417,7 @@ function pageShell({ title, description, bodyHtml }) {
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 <style>
 ${baseStyles()}
-</style>
+</style>${extraStyles ? `\n<style>\n${extraStyles}\n</style>` : ''}
 </head>
 <body>
 <div id="progress-bar"></div>
@@ -425,7 +425,7 @@ ${baseStyles()}
 ${bodyHtml}
 <script>
 ${baseScript()}
-</script>
+</script>${extraScript ? `\n<script>\n${extraScript}\n</script>` : ''}
 </body>
 </html>
 `;
@@ -465,66 +465,366 @@ ${contentHtml}
   });
 }
 
+// ---------- library (index page) helpers ----------
+function themeKey(theme) {
+  const map = {
+    自我成長: 'growth',
+    職場成長: 'career',
+    人際關係: 'people',
+    邏輯思考: 'logic',
+  };
+  return map[theme] || 'growth';
+}
+
+function escapeAttr(str) {
+  return String(str).replace(/"/g, '&quot;');
+}
+
+function shiftDate(dateStr, deltaDays) {
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + deltaDays);
+  return d.toISOString().slice(0, 10);
+}
+
+function formatMonthDay(dateStr) {
+  const [, m, d] = dateStr.split('-');
+  return `${Number(m)}/${Number(d)}`;
+}
+
+function renderBookCover(book, { showMeta, dim }) {
+  const key = themeKey(book.theme);
+  const inner = showMeta
+    ? `<span class="cover-rule"></span>
+      <span class="cover-title">${inline(book.title)}</span>
+      <span class="cover-author ui-label">${inline(book.author)}</span>
+      <span class="cover-tag ui-label">${book.theme}</span>
+      <span class="cover-spine"></span>`
+    : `<span class="cover-rule"></span>
+      <span class="cover-title">${inline(book.title)}</span>
+      <span class="cover-date-on-cover ui-label">${book.date}</span>
+      <span class="cover-spine"></span>`;
+  return `<div class="book-cover cover-${key}${dim ? ' is-upcoming' : ''}">
+      ${inner}
+    </div>`;
+}
+
+function renderShelfItem(book) {
+  const searchKey = escapeAttr(`${book.title} ${book.author}`.toLowerCase());
+  return `
+    <div class="shelf-item" data-theme="${escapeAttr(book.theme)}" data-search="${searchKey}">
+      <a class="book-cover-link" href="books/${book.slug}.html" aria-label="${escapeAttr(book.title)}｜${escapeAttr(book.author)}">
+        ${renderBookCover(book, { showMeta: true, dim: false })}
+      </a>
+      <span class="shelf-date ui-label">${book.date}</span>
+    </div>`;
+}
+
+function renderUpcomingItem(book) {
+  return `
+    <div class="shelf-item is-upcoming-item">
+      ${renderBookCover(book, { showMeta: false, dim: true })}
+    </div>`;
+}
+
+function libraryStyles() {
+  return `
+    :root {
+      --theme-growth: #5B6E4F;
+      --theme-career: #3E5C76;
+      --theme-people: #96604A;
+      --theme-logic: #6B5B7B;
+      --book-cover-text: #F5EFE0;
+    }
+    .library-shell {
+      max-width: 68rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .library-header {
+      max-width: 42rem;
+      margin: 0 0 48px;
+    }
+    .library-title {
+      font-size: clamp(1.9rem, 5vw, 2.4rem);
+      line-height: 1.35;
+      margin: 0 0 8px;
+    }
+    .library-subtitle {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin: 0 0 24px;
+    }
+    .library-stats {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin: 0;
+    }
+    .library-stats .stat-num {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--ink);
+      margin: 0 0.15em;
+    }
+    .shelf-section, .upcoming-section {
+      margin: 0 0 48px;
+    }
+    .upcoming-title {
+      font-size: 1.35rem;
+      margin: 0 0 24px;
+    }
+    .shelf-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .theme-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-chip {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      min-height: 44px;
+      padding: 0.4em 1em;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .filter-chip.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--paper);
+    }
+    .shelf-search {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 16px;
+      min-height: 44px;
+      min-width: 200px;
+      flex: 0 1 240px;
+      padding: 0.4em 1em;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 24px;
+    }
+    .shelf-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .book-cover-link {
+      display: block;
+      width: 100%;
+      border-bottom: none;
+    }
+    .book-cover-link:hover {
+      border-bottom: none;
+    }
+    .book-cover {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      max-width: clamp(140px, 22vw, 180px);
+      aspect-ratio: 2 / 3;
+      margin: 0 auto;
+      border-radius: 6px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      transition: filter 200ms, transform 200ms;
+    }
+    .book-cover-link:hover .book-cover {
+      transform: translateY(-4px);
+      filter: brightness(0.95);
+    }
+    .cover-growth { background: var(--theme-growth); }
+    .cover-career { background: var(--theme-career); }
+    .cover-people { background: var(--theme-people); }
+    .cover-logic { background: var(--theme-logic); }
+    .cover-rule {
+      position: absolute;
+      top: 14px;
+      left: 12px;
+      right: 12px;
+      height: 1px;
+      background: color-mix(in srgb, var(--paper) 30%, transparent);
+    }
+    .cover-title {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 9cqi, 1.05rem);
+      line-height: 1.35;
+      color: var(--book-cover-text);
+      margin-top: 20px;
+    }
+    .cover-author {
+      font-size: 0.7rem;
+      color: color-mix(in srgb, var(--book-cover-text) 85%, transparent);
+    }
+    .cover-tag, .cover-date-on-cover {
+      font-size: 0.68rem;
+      color: color-mix(in srgb, var(--book-cover-text) 75%, transparent);
+      margin-bottom: 4px;
+    }
+    .cover-spine {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 0 6px 6px 0;
+    }
+    .cover-growth .cover-spine { background: color-mix(in srgb, var(--theme-growth) 80%, black); }
+    .cover-career .cover-spine { background: color-mix(in srgb, var(--theme-career) 80%, black); }
+    .cover-people .cover-spine { background: color-mix(in srgb, var(--theme-people) 80%, black); }
+    .cover-logic .cover-spine { background: color-mix(in srgb, var(--theme-logic) 80%, black); }
+    .book-cover.is-upcoming {
+      opacity: 0.55;
+    }
+    .shelf-item.is-upcoming-item {
+      cursor: default;
+    }
+    .shelf-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+    @media (max-width: 480px) {
+      .shelf-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  `.trim();
+}
+
+function libraryScript() {
+  return `
+    (function () {
+      var search = document.getElementById('shelf-search');
+      var chips = document.querySelectorAll('.filter-chip');
+      var items = document.querySelectorAll('.shelf-item[data-theme]');
+      var empty = document.getElementById('shelf-empty');
+      var activeTheme = 'all';
+      function apply() {
+        var q = (search.value || '').trim().toLowerCase();
+        var visible = 0;
+        items.forEach(function (item) {
+          var matchTheme = activeTheme === 'all' || item.getAttribute('data-theme') === activeTheme;
+          var matchSearch = !q || item.getAttribute('data-search').indexOf(q) !== -1;
+          var show = matchTheme && matchSearch;
+          item.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (empty) empty.hidden = visible !== 0;
+      }
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('is-active'); });
+          chip.classList.add('is-active');
+          activeTheme = chip.getAttribute('data-filter-theme');
+          apply();
+        });
+      });
+      if (search) search.addEventListener('input', apply);
+      apply();
+    })();
+  `.trim();
+}
+
 function renderIndexPage(books) {
   const today = todayTaipei();
   const eligible = books
     .filter((b) => b.date <= today)
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  const upcoming = books
+    .filter((b) => b.date > today)
+    .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
 
-  let featureHtml;
-  if (eligible.length === 0) {
-    featureHtml = `
-  <section class="empty-state">
-    <p>今晚的書摘還在準備中，明天 7 點見。</p>
-  </section>`;
-  } else {
-    const feature = eligible[0];
-    featureHtml = `
-  <section>
-    <div class="meta-row">
-      <span class="ui-label">${feature.date}</span>
-      <span class="theme-chip ui-label">${feature.theme}</span>
-      <span class="ui-label">閱讀 ${feature.reading_time} 分鐘</span>
-    </div>
-    <h1><a href="books/${feature.slug}.html">${feature.title}</a></h1>
-    <p class="byline">${feature.author}｜${feature.year}</p>
-    <p class="hook">${inline(feature.hook)}</p>
-  </section>`;
-  }
+  const weekStart = shiftDate(today, -6);
+  const weeklyNew = eligible.filter((b) => b.date >= weekStart).length;
 
-  const archiveItems = eligible
+  const headerHtml = `
+  <header class="library-header">
+    <h1 class="library-title">每晚讀書會</h1>
+    <p class="library-subtitle ui-label">一晚一本，慢慢讀成一座圖書館</p>
+    <p class="library-stats ui-label">已上架 <span class="stat-num">${eligible.length}</span> 本 ・ 本週新進 <span class="stat-num">${weeklyNew}</span> 本</p>
+  </header>`;
+
+  const themes = ['全部', '自我成長', '職場成長', '人際關係', '邏輯思考'];
+  const filterChipsHtml = themes
     .map(
-      (b) => `
-    <li>
-      <span class="archive-date">${b.date}</span>
-      <a href="books/${b.slug}.html">${b.title}</a>
-      <span class="ui-label"> ｜ ${b.theme}</span>
-    </li>`
+      (t, i) =>
+        `<button type="button" class="filter-chip${i === 0 ? ' is-active' : ''}" data-filter-theme="${
+          t === '全部' ? 'all' : t
+        }">${t}</button>`
     )
     .join('');
 
-  const archiveHtml = eligible.length
+  let shelfHtml;
+  if (eligible.length === 0) {
+    const message = upcoming.length
+      ? `圖書館開幕中，第一本書 ${formatMonthDay(upcoming[0].date)} 晚上 7 點上架`
+      : '圖書館開幕中，敬請期待第一本書上架';
+    shelfHtml = `
+  <section class="shelf-section">
+    <p class="empty-state">${message}</p>
+  </section>`;
+  } else {
+    const shelfItems = eligible.map(renderShelfItem).join('');
+    shelfHtml = `
+  <section class="shelf-section">
+    <div class="shelf-controls">
+      <div class="theme-filters ui-label" role="group" aria-label="主題篩選">${filterChipsHtml}</div>
+      <input type="search" id="shelf-search" class="shelf-search" placeholder="書名或作者" aria-label="搜尋書名或作者">
+    </div>
+    <div class="shelf-grid">${shelfItems}
+    </div>
+    <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>
+  </section>`;
+  }
+
+  const upcomingHtml = upcoming.length
     ? `
-  <section>
-    <h2>歸檔</h2>
-    <ul class="archive-list">${archiveItems}
-    </ul>
+  <section class="upcoming-section">
+    <h2 class="upcoming-title">即將上架</h2>
+    <div class="shelf-grid">${upcoming.map(renderUpcomingItem).join('')}
+    </div>
   </section>`
     : '';
 
   const body = `
-<main class="page-shell">
-${featureHtml}
-${archiveHtml}
+<main class="library-shell">
+${headerHtml}
+${shelfHtml}
+${upcomingHtml}
   <footer>
-    <p class="ui-label">每晚 19:00，一本書的深讀。</p>
+    <p class="ui-label">每晚 19:00，Telegram 見。</p>
   </footer>
 </main>`;
 
   return pageShell({
     title: '每晚讀書會｜book-club',
-    description: '每天晚上一本書的深度書摘，像參與一場讀書會。',
+    description: '每天晚上一本書的深度書摘，像走進一間線上圖書館。',
     bodyHtml: body,
+    extraStyles: libraryStyles(),
+    extraScript: eligible.length ? libraryScript() : '',
   });
 }
 

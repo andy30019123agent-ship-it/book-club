@@ -5,7 +5,7 @@ title_en: Principles: Life and Work
 author: 瑞・達利歐（Ray Dalio）
 year: 2017
 theme: 職場成長
-date: 2026-07-11
+date: 2026-07-10
 reading_time: 15
 hook: 一個曾經押錯到破產、跟父親借錢過日子的人，後來管理全世界最大的避險基金。他把中間那段翻身路，濃縮成一條公式：痛苦 ＋ 反思 ＝ 進步。
 ---

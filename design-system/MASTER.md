@@ -18,6 +18,13 @@
 - `--rule: #2A2F24`
 - `--card: #1A1F15`
 
+### 主題書封色（圖書館目錄頁書封用；日夜共用，深色上配 --paper-tone 文字）
+- `--theme-growth: #5B6E4F`（自我成長＝苔綠）
+- `--theme-career: #3E5C76`（職場成長＝墨藍）
+- `--theme-people: #96604A`（人際關係＝赭紅）
+- `--theme-logic: #6B5B7B`（邏輯思考＝暮紫）
+- 書封文字一律 `#F5EFE0`（暖米，四色上對比皆 ≥4.5:1）
+
 ## 字體
 - 標題與內文：`"Noto Serif TC", "Songti TC", serif`（Google Fonts，僅載 400/700 兩字重）
 - UI 小標（日期、主題 chip、閱讀時間）：`"Noto Sans TC", sans-serif`

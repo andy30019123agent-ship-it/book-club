@@ -5,7 +5,7 @@ title_en: Deep Work
 author: 卡爾・紐波特（Cal Newport）
 year: 2016
 theme: 職場成長
-date: 2026-07-06
+date: 2026-07-05
 reading_time: 14
 hook: 你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。
 ---

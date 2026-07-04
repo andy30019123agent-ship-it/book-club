@@ -5,7 +5,7 @@ title_en: Thinking, Fast and Slow
 author: 丹尼爾・康納曼（Daniel Kahneman）
 year: 2011
 theme: 邏輯思考
-date: 2026-07-08
+date: 2026-07-07
 reading_time: 14
 hook: 你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。
 ---

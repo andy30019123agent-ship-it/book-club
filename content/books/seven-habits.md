@@ -5,7 +5,7 @@ title_en: The 7 Habits of Highly Effective People
 author: 史蒂芬・柯維（Stephen Covey）
 year: 1989
 theme: 自我成長
-date: 2026-07-09
+date: 2026-07-08
 reading_time: 14
 hook: 你以為的成長是「多學幾招做人做事的技巧」，柯維說你搞錯了層次——真正的成功不是換更亮的面具，是把裡面那個人重新長好；而七個習慣其實是一條有次序的路：先能管好自己，才配談與人合作。
 ---

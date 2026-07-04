@@ -5,7 +5,7 @@ title_en: Atomic Habits
 author: 詹姆斯・克利爾（James Clear）
 year: 2018
 theme: 自我成長
-date: 2026-07-05
+date: 2026-07-04
 reading_time: 13
 hook: 為什麼你立的目標總是失敗？因為你該修的不是目標，是系統——每天進步 1%，一年後你會強 37 倍。
 ---

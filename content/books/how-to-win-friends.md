@@ -5,7 +5,7 @@ title_en: How to Win Friends and Influence People
 author: 戴爾・卡內基（Dale Carnegie）
 year: 1936
 theme: 人際關係
-date: 2026-07-10
+date: 2026-07-09
 reading_time: 14
 hook: 快 90 年的老書，為什麼還賴在暢銷榜上？因為卡內基抓到一件不會過時的事——人不是邏輯的動物，是渴望被重視的動物。但它也最常被讀成拍馬屁術，這篇幫你分清「真誠」與「操縱」的那條線。
 ---

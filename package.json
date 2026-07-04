@@ -1,0 +1,14 @@
+{
+  "name": "book-club",
+  "version": "1.0.0",
+  "private": true,
+  "description": "每晚讀書會靜態網站產生器",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "deploy": "gh-pages -d site"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

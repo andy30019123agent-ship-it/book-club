@@ -523,39 +523,39 @@ function formatMonthDay(dateStr) {
   return `${Number(m)}/${Number(d)}`;
 }
 
-function renderBookCover(book, { showMeta, dim }) {
-  const key = themeKey(book.theme);
-  const inner = showMeta
-    ? `<span class="cover-rule"></span>
-      <span class="cover-title">${inline(book.title)}</span>
-      <span class="cover-author ui-label">${inline(book.author)}</span>
-      <span class="cover-tag ui-label">${book.theme}</span>
-      <span class="cover-spine"></span>`
-    : `<span class="cover-rule"></span>
-      <span class="cover-title">${inline(book.title)}</span>
-      <span class="cover-date-on-cover ui-label">${book.date}</span>
-      <span class="cover-spine"></span>`;
-  return `<div class="book-cover cover-${key}${dim ? ' is-upcoming' : ''}">
-      ${inner}
-    </div>`;
+function renderTonightCard(book, isToday) {
+  return `
+    <a class="tonight-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html">
+      <span class="tonight-body">
+        <span class="tonight-badge ui-label">${isToday ? '今晚的書' : '最新上架'}</span>
+        <span class="tonight-title">${inline(book.title)}</span>
+        <span class="tonight-author">${inline(book.author)}・${book.theme}</span>
+        <span class="tonight-hook">${inline(book.hook)}</span>
+        <span class="tonight-foot">
+          <span class="tonight-meta ui-label">${formatMonthDay(book.date)}・閱讀 ${book.reading_time} 分鐘</span>
+          <span class="read-pill">開始閱讀</span>
+        </span>
+      </span>
+    </a>`;
 }
 
-function renderShelfItem(book) {
+function renderCatalogCard(book, no) {
   const searchKey = escapeAttr(`${book.title} ${book.author}`.toLowerCase());
   return `
-    <div class="shelf-item" data-theme="${escapeAttr(book.theme)}" data-search="${searchKey}">
-      <a class="book-cover-link" href="books/${book.slug}.html" aria-label="${escapeAttr(book.title)}｜${escapeAttr(book.author)}">
-        ${renderBookCover(book, { showMeta: true, dim: false })}
-      </a>
-      <span class="shelf-date ui-label">${book.date}</span>
-    </div>`;
+    <a class="catalog-card cover-${themeKey(book.theme)}" href="books/${book.slug}.html" data-theme="${escapeAttr(book.theme)}" data-search="${searchKey}">
+      <span class="catalog-body">
+        <span class="catalog-index ui-label">No.${String(no).padStart(3, '0')}・${book.theme}・${formatMonthDay(book.date)}</span>
+        <span class="catalog-title">${inline(book.title)}</span>
+        <span class="catalog-author ui-label">${inline(book.author)}</span>
+        <span class="catalog-hook">${inline(book.hook)}</span>
+        <span class="catalog-foot ui-label">閱讀 ${book.reading_time} 分鐘<span class="catalog-go">開始閱讀 →</span></span>
+      </span>
+    </a>`;
 }
 
-function renderUpcomingItem(book) {
+function renderUpcomingRow(book) {
   return `
-    <div class="shelf-item is-upcoming-item">
-      ${renderBookCover(book, { showMeta: false, dim: true })}
-    </div>`;
+      <li class="upcoming-row"><span class="upcoming-date">${formatMonthDay(book.date)}</span><span class="upcoming-text"><span class="upcoming-name">${inline(book.title)}</span>　<span class="upcoming-author">${inline(book.author)}</span></span></li>`;
 }
 
 function libraryStyles() {
@@ -565,213 +565,257 @@ function libraryStyles() {
       --theme-career: #3E5C76;
       --theme-people: #96604A;
       --theme-logic: #6B5B7B;
-      --book-cover-text: #F5EFE0;
+      --cover-text: #F5EFE0;
     }
     .library-shell {
-      max-width: 68rem;
+      max-width: 46rem;
       margin: 0 auto;
-      padding: clamp(1.25rem, 5vw, 2.5rem);
+      padding: clamp(1.5rem, 5vw, 3rem) clamp(1.1rem, 4vw, 2rem) 3.5rem;
     }
-    .library-header {
-      max-width: 42rem;
-      margin: 0 0 48px;
-    }
+    .library-header { margin: 0.5rem 0 2.75rem; }
     .library-title {
+      margin: 0;
       font-weight: 400;
-      font-size: clamp(2.6rem, 7vw, 4.2rem);
-      line-height: 1.05;
-      margin: 0 0 8px;
+      line-height: 1.1;
+      font-size: clamp(2.3rem, 7vw, 3.4rem);
+      letter-spacing: 0.01em;
     }
     .library-hook {
-      font-weight: 700;
-      font-size: clamp(1.3rem, 4vw, 1.75rem);
-      margin: 0 0 12px;
-    }
-    .library-subtitle {
-      color: var(--ink-soft);
-      font-size: 0.85rem;
-      margin: 0 0 24px;
+      margin: 0.9rem 0 1.1rem;
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: clamp(1.1rem, 3.4vw, 1.35rem);
+      color: var(--ink);
+      opacity: 0.92;
     }
     .library-stats {
-      color: var(--ink-soft);
-      font-size: 1rem;
       margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
     }
-    .library-stats .stat-num {
-      font-family: "Noto Serif TC", "Songti TC", serif;
-      font-weight: 400;
-      line-height: 1.05;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
+    .section-label {
+      margin: 0 0 1.1rem;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+    }
+    .tonight-section { margin-bottom: 3rem; }
+    .catalog-section { margin-bottom: 3rem; }
+    .upcoming-section { margin-bottom: 1rem; }
+
+    .cover-growth { --c: var(--theme-growth); }
+    .cover-career { --c: var(--theme-career); }
+    .cover-people { --c: var(--theme-people); }
+    .cover-logic { --c: var(--theme-logic); }
+
+    .tonight-card, .catalog-card {
+      display: flex;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--c, var(--accent));
+      text-decoration: none;
       color: var(--ink);
-      margin: 0 0.15em;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
-    .shelf-section, .upcoming-section {
-      margin: 0 0 48px;
+    .tonight-card:hover, .catalog-card:hover {
+      border-color: var(--accent);
+      border-left-color: var(--c, var(--accent));
+      transform: translateY(-2px);
     }
-    .upcoming-title {
-      font-size: 1.35rem;
-      margin: 0 0 24px;
+    @media (prefers-reduced-motion: reduce) {
+      .tonight-card:hover, .catalog-card:hover { transform: none; }
     }
+
+    .tonight-card {
+      gap: clamp(1rem, 3.5vw, 1.6rem);
+      border-radius: 14px;
+      padding: clamp(1.15rem, 3.5vw, 1.75rem);
+    }
+    .tonight-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      min-width: 0;
+    }
+    .tonight-badge {
+      align-self: flex-start;
+      background: var(--accent);
+      color: var(--paper);
+      border-radius: 999px;
+      padding: 0.32rem 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+    .tonight-title {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: clamp(1.35rem, 4.5vw, 1.7rem);
+      line-height: 1.3;
+    }
+    .tonight-author { color: var(--ink-soft); font-size: 0.86rem; font-family: "Noto Sans TC", sans-serif; }
+    .tonight-hook { font-size: 0.97rem; line-height: 1.75; opacity: 0.9; }
+    .tonight-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+    .tonight-meta { color: var(--ink-soft); font-size: 0.8rem; letter-spacing: 0.06em; }
+    .read-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 1.5rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+    }
+
+    .catalog-list { display: flex; flex-direction: column; gap: 1rem; }
+    .catalog-card {
+      gap: 1.1rem;
+      border-radius: 10px;
+      padding: 1.05rem 1.2rem;
+    }
+    .catalog-body { display: flex; flex-direction: column; gap: 0.32rem; min-width: 0; }
+    .catalog-index { font-size: 0.72rem; letter-spacing: 0.12em; color: var(--ink-soft); }
+    .catalog-title {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 1.18rem;
+      line-height: 1.35;
+    }
+    .catalog-author { font-size: 0.82rem; color: var(--ink-soft); }
+    .catalog-hook {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      opacity: 0.85;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .catalog-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+    .catalog-go { color: var(--accent); font-weight: 700; }
+
     .shelf-controls {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
     }
-    .theme-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .theme-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .filter-chip {
-      font-family: "Noto Sans TC", sans-serif;
-      font-size: 0.9rem;
       min-height: 44px;
-      padding: 0.4em 1em;
-      border: 1.5px solid var(--rule);
+      padding: 0 1.05rem;
+      border: 1.5px solid var(--accent);
       border-radius: 999px;
       background: transparent;
-      color: var(--ink);
-      cursor: pointer;
-      transition: background-color 200ms, color 200ms, border-color 200ms;
-    }
-    .filter-chip.is-active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--paper);
-    }
-    .shelf-search {
+      color: var(--accent);
       font-family: "Noto Sans TC", sans-serif;
-      font-size: 16px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .filter-chip.is-active { background: var(--accent); color: var(--paper); }
+    .shelf-search {
+      flex: 1 1 12rem;
       min-height: 44px;
-      min-width: 200px;
-      flex: 0 1 240px;
-      padding: 0.4em 1em;
+      padding: 0 1rem;
       border: 1px solid var(--rule);
-      border-radius: 10px;
-      background: var(--paper);
+      border-radius: 999px;
+      background: var(--card);
       color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.92rem;
     }
-    .shelf-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 24px;
-    }
-    .shelf-item {
+    .shelf-search::placeholder { color: var(--ink-soft); }
+
+    .upcoming-list { list-style: none; margin: 0; padding: 0; }
+    .upcoming-row {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      align-items: baseline;
+      gap: 0.9rem;
+      padding: 0.78rem 0.2rem;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-soft);
     }
-    .book-cover-link {
-      display: block;
-      width: 100%;
-      border-bottom: none;
-    }
-    .book-cover-link:hover {
-      border-bottom: none;
-    }
-    .book-cover {
-      container-type: inline-size;
-      position: relative;
-      width: 100%;
-      max-width: clamp(140px, 22vw, 180px);
-      aspect-ratio: 2 / 3;
-      margin: 0 auto;
-      border-radius: 6px;
-      padding: 14px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
-      transition: filter 200ms, transform 200ms;
-    }
-    .book-cover-link:hover .book-cover {
-      transform: translateY(-4px);
-      filter: brightness(0.95);
-    }
-    .cover-growth { background: var(--theme-growth); }
-    .cover-career { background: var(--theme-career); }
-    .cover-people { background: var(--theme-people); }
-    .cover-logic { background: var(--theme-logic); }
-    .cover-rule {
-      position: absolute;
-      top: 14px;
-      left: 12px;
-      right: 12px;
-      height: 1px;
-      background: color-mix(in srgb, var(--paper) 30%, transparent);
-    }
-    .cover-title {
-      font-family: "Noto Serif TC", "Songti TC", serif;
-      font-weight: 700;
-      font-size: clamp(0.85rem, 9cqi, 1.05rem);
-      line-height: 1.35;
-      color: var(--book-cover-text);
-      margin-top: 20px;
-    }
-    .cover-author {
-      font-size: 0.7rem;
-      color: color-mix(in srgb, var(--book-cover-text) 85%, transparent);
-    }
-    .cover-tag, .cover-date-on-cover {
-      font-size: 0.68rem;
-      color: color-mix(in srgb, var(--book-cover-text) 75%, transparent);
-      margin-bottom: 4px;
-    }
-    .cover-spine {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 4px;
-      border-radius: 0 6px 6px 0;
-    }
-    .cover-growth .cover-spine { background: color-mix(in srgb, var(--theme-growth) 80%, black); }
-    .cover-career .cover-spine { background: color-mix(in srgb, var(--theme-career) 80%, black); }
-    .cover-people .cover-spine { background: color-mix(in srgb, var(--theme-people) 80%, black); }
-    .cover-logic .cover-spine { background: color-mix(in srgb, var(--theme-logic) 80%, black); }
-    .book-cover.is-upcoming {
-      opacity: 0.55;
-    }
-    .shelf-item.is-upcoming-item {
-      cursor: default;
-    }
-    .shelf-date {
+    .upcoming-row:last-child { border-bottom: none; }
+    .upcoming-date {
+      flex: none;
+      width: 2.8rem;
       font-family: "Noto Sans TC", sans-serif;
       font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.04em;
+    }
+    .upcoming-name {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--ink);
+      opacity: 0.72;
+    }
+    .upcoming-text { min-width: 0; line-height: 1.8; }
+    .upcoming-author { font-size: 0.8rem; font-family: "Noto Sans TC", sans-serif; }
+
+    .empty-state {
+      padding: 2.5rem 1rem;
+      text-align: center;
       color: var(--ink-soft);
-      margin-top: 8px;
+      font-size: 0.98rem;
+      border: 1px dashed var(--rule);
+      border-radius: 10px;
     }
-    @media (max-width: 480px) {
-      .shelf-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+
+    @media (max-width: 520px) {
+      .tonight-card { padding: 1.1rem 1.15rem; }
+      .catalog-card { padding: 0.95rem 1rem; gap: 0.9rem; }
+      .read-pill { padding: 0 1.2rem; }
     }
-  `.trim();
+  `;
 }
 
 function libraryScript() {
   return `
     (function () {
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
       var search = document.getElementById('shelf-search');
-      var chips = document.querySelectorAll('.filter-chip');
-      var items = document.querySelectorAll('.shelf-item[data-theme]');
-      var empty = document.getElementById('shelf-empty');
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.catalog-card'));
+      var emptyMsg = document.getElementById('shelf-empty');
+      if (!cards.length || (!chips.length && !search)) return;
       var activeTheme = 'all';
       function apply() {
-        var q = (search.value || '').trim().toLowerCase();
+        var q = search ? search.value.trim().toLowerCase() : '';
         var visible = 0;
-        items.forEach(function (item) {
-          var matchTheme = activeTheme === 'all' || item.getAttribute('data-theme') === activeTheme;
-          var matchSearch = !q || item.getAttribute('data-search').indexOf(q) !== -1;
-          var show = matchTheme && matchSearch;
-          item.style.display = show ? '' : 'none';
+        cards.forEach(function (card) {
+          var okTheme = activeTheme === 'all' || card.getAttribute('data-theme') === activeTheme;
+          var okSearch = !q || card.getAttribute('data-search').indexOf(q) !== -1;
+          var show = okTheme && okSearch;
+          card.style.display = show ? '' : 'none';
           if (show) visible++;
         });
-        if (empty) empty.hidden = visible !== 0;
+        if (emptyMsg) emptyMsg.hidden = visible !== 0;
       }
       chips.forEach(function (chip) {
         chip.addEventListener('click', function () {
@@ -782,9 +826,8 @@ function libraryScript() {
         });
       });
       if (search) search.addEventListener('input', apply);
-      apply();
     })();
-  `.trim();
+  `;
 }
 
 function renderIndexPage(books) {
@@ -796,45 +839,54 @@ function renderIndexPage(books) {
     .filter((b) => b.date > today)
     .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
 
-  const weekStart = shiftDate(today, -6);
-  const weeklyNew = eligible.filter((b) => b.date >= weekStart).length;
+  const featured = eligible[0] || null;
+  const past = eligible.slice(1);
+  const showControls = eligible.length >= 5;
 
   const headerHtml = `
   <header class="library-header">
     <h1 class="library-title">每晚讀書會</h1>
     <p class="library-hook">今晚，翻開一本就好。</p>
-    <p class="library-subtitle ui-label">一晚一本，慢慢讀成一座圖書館</p>
-    <p class="library-stats ui-label">已上架 <span class="stat-num">${eligible.length}</span> 本 ・ 本週新進 <span class="stat-num">${weeklyNew}</span> 本</p>
+    <p class="library-stats ui-label">已上架 ${eligible.length} 本 ・ 每晚 19:00 更新</p>
   </header>`;
 
-  const themes = ['全部', '自我成長', '職場成長', '人際關係', '邏輯思考'];
-  const filterChipsHtml = themes
-    .map(
-      (t, i) =>
-        `<button type="button" class="filter-chip${i === 0 ? ' is-active' : ''}" data-filter-theme="${
-          t === '全部' ? 'all' : t
-        }">${t}</button>`
-    )
-    .join('');
-
-  let shelfHtml;
-  if (eligible.length === 0) {
+  let tonightHtml = '';
+  if (featured) {
+    tonightHtml = `
+  <section class="tonight-section">${renderTonightCard(featured, featured.date === today)}
+  </section>`;
+  } else {
     const message = upcoming.length
       ? `圖書館開幕中，第一本書 ${formatMonthDay(upcoming[0].date)} 晚上 7 點上架`
       : '圖書館開幕中，敬請期待第一本書上架';
-    shelfHtml = `
-  <section class="shelf-section">
+    tonightHtml = `
+  <section class="tonight-section">
     <p class="empty-state">${message}</p>
   </section>`;
-  } else {
-    const shelfItems = eligible.map(renderShelfItem).join('');
-    shelfHtml = `
-  <section class="shelf-section">
+  }
+
+  let catalogHtml = '';
+  if (past.length) {
+    const themes = ['全部', '自我成長', '職場成長', '人際關係', '邏輯思考'];
+    const controlsHtml = showControls
+      ? `
     <div class="shelf-controls">
-      <div class="theme-filters ui-label" role="group" aria-label="主題篩選">${filterChipsHtml}</div>
+      <div class="theme-filters" role="group" aria-label="主題篩選">${themes
+        .map(
+          (t, i) =>
+            `<button type="button" class="filter-chip${i === 0 ? ' is-active' : ''}" data-filter-theme="${
+              t === '全部' ? 'all' : t
+            }">${t}</button>`
+        )
+        .join('')}</div>
       <input type="search" id="shelf-search" class="shelf-search" placeholder="書名或作者" aria-label="搜尋書名或作者">
-    </div>
-    <div class="shelf-grid">${shelfItems}
+    </div>`
+      : '';
+    const cardsHtml = past.map((b, i) => renderCatalogCard(b, eligible.length - (i + 1))).join('');
+    catalogHtml = `
+  <section class="catalog-section">
+    <h2 class="section-label">藏書目錄</h2>${controlsHtml}
+    <div class="catalog-list">${cardsHtml}
     </div>
     <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>
   </section>`;
@@ -843,16 +895,17 @@ function renderIndexPage(books) {
   const upcomingHtml = upcoming.length
     ? `
   <section class="upcoming-section">
-    <h2 class="upcoming-title">即將上架</h2>
-    <div class="shelf-grid">${upcoming.map(renderUpcomingItem).join('')}
-    </div>
+    <h2 class="section-label">即將上架</h2>
+    <ul class="upcoming-list">${upcoming.map(renderUpcomingRow).join('')}
+    </ul>
   </section>`
     : '';
 
   const body = `
 <main class="library-shell">
 ${headerHtml}
-${shelfHtml}
+${tonightHtml}
+${catalogHtml}
 ${upcomingHtml}
 </main>`;
 
@@ -866,7 +919,7 @@ ${upcomingHtml}
     bodyHtml: body,
     deskFooterHtml,
     extraStyles: libraryStyles(),
-    extraScript: eligible.length ? libraryScript() : '',
+    extraScript: showControls && past.length ? libraryScript() : '',
   });
 }
 

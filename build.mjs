@@ -632,6 +632,24 @@ function formatMonthDay(dateStr) {
   return `${Number(m)}/${Number(d)}`;
 }
 
+const CN_MONTHS = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+const CN_WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
+
+function monthKey(dateStr) {
+  return dateStr.slice(0, 7); // "YYYY-MM"
+}
+
+function monthLabel(dateStr, withYear) {
+  const [y, m] = dateStr.split('-');
+  const label = `${CN_MONTHS[Number(m) - 1]}月`;
+  return withYear ? `${y}·${label}` : label;
+}
+
+function weekdayLabel(dateStr) {
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  return CN_WEEKDAYS[d.getUTCDay()];
+}
+
 function renderTonightCard(book, isToday) {
   const searchKey = escapeAttr(`${book.title} ${book.author}`.toLowerCase());
   return `
@@ -1067,10 +1085,110 @@ function libraryStyles() {
       border-radius: 10px;
     }
 
+    .month-filters {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.15rem;
+    }
+    .month-filters::-webkit-scrollbar { display: none; }
+    .month-chip { flex: 0 0 auto; scroll-snap-align: start; }
+
+    .month-view { margin-bottom: 3rem; }
+    .month-view-head { margin-bottom: 1.1rem; }
+    .month-view-head .section-label { margin: 0; }
+    .day-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .day-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: clamp(0.7rem, 3vw, 1.1rem);
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--c, var(--accent));
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    a.day-row:hover {
+      border-color: var(--accent);
+      border-left-color: var(--c, var(--accent));
+      transform: translateY(-2px);
+    }
+    a.day-row:active { transform: translateY(0) scale(0.995); }
+    .day-row.is-locked { opacity: 0.55; }
+    .day-tile {
+      flex: none;
+      width: 2.9rem;
+      min-height: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.05rem;
+      font-family: "Noto Sans TC", sans-serif;
+      border-right: 1px solid var(--rule);
+      padding-right: clamp(0.7rem, 3vw, 1.1rem);
+    }
+    .day-num {
+      font-size: 1.5rem;
+      line-height: 1;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .day-wk { font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.05em; }
+    .day-body { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; flex: 1; }
+    .day-today {
+      align-self: flex-start;
+      background: var(--accent);
+      color: var(--paper);
+      border-radius: 999px;
+      padding: 0.12rem 0.6rem;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.1rem;
+    }
+    .day-title {
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-weight: 700;
+      font-size: 1.08rem;
+      line-height: 1.35;
+    }
+    .day-meta { font-size: 0.76rem; color: var(--ink-soft); }
+    .day-hook {
+      font-size: 0.86rem;
+      line-height: 1.6;
+      opacity: 0.85;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .day-action { flex: none; font-size: 0.8rem; }
+    .day-go { color: var(--accent); font-weight: 700; letter-spacing: 0.04em; }
+    .coming-pill {
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      a.day-row:hover, a.day-row:active { transform: none; }
+    }
+
     @media (max-width: 520px) {
       .tonight-card { padding: 1.1rem 1.15rem; }
       .catalog-card { padding: 0.95rem 1rem; gap: 0.9rem; }
       .read-pill { padding: 0 1.2rem; }
+      .day-row { padding: 0.8rem 0.85rem; }
+      .day-title { font-size: 1.02rem; }
     }
   `;
 }
@@ -1079,17 +1197,30 @@ function libraryScript() {
   return `
     (function () {
       var themeChips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip[data-filter-theme]'));
+      var monthChips = Array.prototype.slice.call(document.querySelectorAll('.month-chip'));
       var favChip = document.querySelector('.filter-chip[data-filter-fav]');
       var search = document.getElementById('shelf-search');
       var cards = Array.prototype.slice.call(document.querySelectorAll('.tonight-card, .catalog-card'));
       var emptyMsg = document.getElementById('shelf-empty');
-      if (!cards.length) return;
+      var normalSections = Array.prototype.slice.call(
+        document.querySelectorAll('.tonight-section, .catalog-section, .upcoming-section, .myshelf-section, .qshelf-section')
+      );
+      var monthView = document.getElementById('month-view');
+      var dayList = document.getElementById('day-list');
+      var monthTitle = document.getElementById('month-view-title');
+      var monthEmpty = document.getElementById('month-empty');
+      if (!cards.length && !monthChips.length) return;
       var activeTheme = 'all';
+      var activeMonth = 'all';
       var favOnly = false;
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
       function favList() {
         try { return JSON.parse(localStorage.getItem('yedu-favs')) || []; } catch (e) { return []; }
       }
-      function apply() {
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      function applyCards() {
         var q = search ? search.value.trim().toLowerCase() : '';
         var favs = favList();
         var visible = 0;
@@ -1108,12 +1239,66 @@ function libraryScript() {
           emptyMsg.hidden = visible !== 0;
         }
       }
+      function dayRowHtml(b) {
+        var themeCls = 'cover-' + (THEME_KEY[b.theme] || 'growth');
+        var tile = '<span class="day-tile"><span class="day-num">' + b.day +
+          '</span><span class="day-wk ui-label">' + esc(b.wk) + '</span></span>';
+        var body = '<span class="day-body">' +
+          (b.today ? '<span class="day-today ui-label">今晚</span>' : '') +
+          '<span class="day-title">' + esc(b.title) + '</span>' +
+          '<span class="day-meta ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span>' +
+          '<span class="day-hook">' + esc(b.hook) + '</span></span>';
+        if (b.locked) {
+          return '<div class="day-row is-locked ' + themeCls + '" aria-disabled="true">' +
+            tile + body + '<span class="day-action coming-pill ui-label">即將上架</span></div>';
+        }
+        return '<a class="day-row ' + themeCls + (b.today ? ' is-today' : '') + '" href="books/' + esc(b.slug) + '.html">' +
+          tile + body + '<span class="day-action day-go ui-label">讀 →</span></a>';
+      }
+      function renderMonth() {
+        var cal = window.__calendar || [];
+        var labels = window.__monthLabels || {};
+        var label = labels[activeMonth] || '這個月';
+        var q = search ? search.value.trim().toLowerCase() : '';
+        var favs = favList();
+        var shown = cal.filter(function (b) {
+          if (b.mk !== activeMonth) return false;
+          var okTheme = activeTheme === 'all' || b.theme === activeTheme;
+          var okSearch = !q || b.search.indexOf(q) !== -1;
+          var okFav = !favOnly || favs.indexOf(b.slug) !== -1;
+          return okTheme && okSearch && okFav;
+        });
+        monthTitle.textContent = label + '・' + shown.length + ' 本';
+        dayList.innerHTML = shown.map(dayRowHtml).join('');
+        monthEmpty.textContent = label + '裡沒有符合的書';
+        monthEmpty.hidden = shown.length !== 0;
+      }
+      function apply() {
+        if (activeMonth === 'all') {
+          if (monthView) monthView.hidden = true;
+          normalSections.forEach(function (s) { s.hidden = false; });
+          applyCards();
+        } else {
+          normalSections.forEach(function (s) { s.hidden = true; });
+          if (emptyMsg) emptyMsg.hidden = true;
+          if (monthView) monthView.hidden = false;
+          renderMonth();
+        }
+      }
       window.__applyShelf = apply;
       themeChips.forEach(function (chip) {
         chip.addEventListener('click', function () {
           themeChips.forEach(function (c) { c.classList.remove('is-active'); });
           chip.classList.add('is-active');
           activeTheme = chip.getAttribute('data-filter-theme');
+          apply();
+        });
+      });
+      monthChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          monthChips.forEach(function (c) { c.classList.remove('is-active'); });
+          chip.classList.add('is-active');
+          activeMonth = chip.getAttribute('data-filter-month');
           apply();
         });
       });
@@ -1239,11 +1424,25 @@ function renderIndexPage(books) {
     <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 ${eligible.length} 本</p>
   </header>`;
 
+  // 月份 chip：依實際有書的月份（含未上架）自動生成，由近到遠（升冪）
+  const allMonths = [...new Set(books.map((b) => monthKey(b.date)))].sort();
+  const multiYear = new Set(books.map((b) => b.date.slice(0, 4))).size > 1;
+  const monthChipsHtml = `<div class="month-filters" role="group" aria-label="月份篩選"><button type="button" class="filter-chip month-chip is-active" data-filter-month="all">全部</button>${allMonths
+    .map(
+      (mk) =>
+        `<button type="button" class="filter-chip month-chip" data-filter-month="${mk}">${monthLabel(
+          `${mk}-01`,
+          multiYear
+        )}</button>`
+    )
+    .join('')}</div>`;
+
   const themes = ['全部', '自我成長', '職場成長', '人際關係', '邏輯思考'];
   const controlsHtml = showControls
     ? `
   <div class="shelf-controls">
     <input type="search" id="shelf-search" class="shelf-search" placeholder="搜尋書名或作者" aria-label="搜尋書名或作者">
+    ${monthChipsHtml}
     <div class="theme-filters" role="group" aria-label="主題篩選">${themes
       .map(
         (t, i) =>
@@ -1253,6 +1452,16 @@ function renderIndexPage(books) {
       )
       .join('')}<button type="button" class="filter-chip filter-chip--fav" data-filter-fav aria-pressed="false">我的收藏</button></div>
   </div>`
+    : '';
+
+  // 月視圖容器（內容由前端 JS 依 window.__calendar 填入）
+  const monthViewHtml = showControls
+    ? `
+  <section class="month-view" id="month-view" hidden aria-live="polite">
+    <div class="month-view-head"><h2 class="section-label" id="month-view-title"></h2></div>
+    <div class="day-list" id="day-list"></div>
+    <p class="empty-state" id="month-empty" hidden></p>
+  </section>`
     : '';
 
   const myshelfHtml = showControls
@@ -1322,6 +1531,7 @@ function renderIndexPage(books) {
 <main class="library-shell">
 ${headerHtml}
 ${controlsHtml}
+${monthViewHtml}
 ${tonightHtml}
 ${myshelfHtml}
 ${catalogHtml}
@@ -1343,6 +1553,31 @@ ${upcomingHtml}
   }));
   const booksJson = JSON.stringify(booksData).replace(/</g, '\\u003c');
 
+  // 月視圖資料：全書（含未上架）升冪，帶 locked/today 旗標與日/星期
+  const calendarData = books
+    .slice()
+    .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+    .map((b) => ({
+      date: b.date,
+      slug: b.slug,
+      title: b.title,
+      author: b.author,
+      theme: b.theme,
+      hook: b.hook,
+      mk: monthKey(b.date),
+      day: Number(b.date.split('-')[2]),
+      wk: weekdayLabel(b.date),
+      locked: b.date > today,
+      today: b.date === today,
+      search: `${b.title} ${b.author}`.toLowerCase(),
+    }));
+  const calendarJson = JSON.stringify(calendarData).replace(/</g, '\\u003c');
+  const monthLabels = {};
+  allMonths.forEach((mk) => {
+    monthLabels[mk] = monthLabel(`${mk}-01`, multiYear);
+  });
+  const monthLabelsJson = JSON.stringify(monthLabels).replace(/</g, '\\u003c');
+
   return pageShell({
     title: '拾頁｜每晚一本書的深度導讀',
     description: '每晚七點，一本書的深度導讀。自我成長、職場、人際、思考，慢慢讀成一座圖書館。',
@@ -1351,6 +1586,8 @@ ${upcomingHtml}
     extraStyles: libraryStyles(),
     extraScript:
       `window.__books = ${booksJson};\n` +
+      `window.__calendar = ${calendarJson};\n` +
+      `window.__monthLabels = ${monthLabelsJson};\n` +
       (showControls ? libraryScript() : '') +
       favScript() +
       quoteShelfScript(),

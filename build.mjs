@@ -357,6 +357,11 @@ function baseStyles() {
     footer p {
       margin: 0;
     }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
     footer a {
       color: var(--desk-ink);
       border-bottom-color: transparent;
@@ -1542,6 +1547,7 @@ ${upcomingHtml}
   const deskFooterHtml = `<footer>
   <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
   <p class="ui-label">習慣是自我成長的複利。</p>
+  <p class="ui-label footer-cite">——<a href="books/atomic-habits.html">《原子習慣》</a></p>
 </footer>`;
 
   const booksData = eligible.map((b) => ({

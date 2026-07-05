@@ -1641,7 +1641,7 @@ function quoteShelfScript() {
         timer = setInterval(function () {
           idx = (idx + 1) % qs.length;
           showQuote(qs, !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-        }, 5000);
+        }, 9000);
       }
       function render() {
         var qs = load();

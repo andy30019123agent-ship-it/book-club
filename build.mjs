@@ -1541,7 +1541,7 @@ ${upcomingHtml}
 
   const deskFooterHtml = `<footer>
   <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
-  <p class="ui-label">每晚 19:00，Telegram 見。</p>
+  <p class="ui-label">每天進步 1%，一年後強大 37 倍。</p>
 </footer>`;
 
   const booksData = eligible.map((b) => ({

@@ -1,5 +1,284 @@
 [
   {
+    "date": "2026-08-31",
+    "slug": "i-may-be-wrong",
+    "title": "我可能錯了",
+    "author": "比約恩・納提科・林德布勞（Björn Natthiko Lindeblad）",
+    "theme": "人際關係",
+    "hook": "一個 26 歲就當上跨國高管的人，突然跑去泰國森林當了 17 年和尚——他帶回來最有用的一句話只有五個字：「我可能錯了。」",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/i-may-be-wrong.html"
+  },
+  {
+    "date": "2026-08-30",
+    "slug": "trillion-dollar-coach",
+    "title": "教練",
+    "author": "艾力克・施密特、強納森・羅森柏格、亞倫・伊格爾（Eric Schmidt, Jonathan Rosenberg, Alan Eagle）",
+    "theme": "職場成長",
+    "hook": "你以為矽谷的成功靠的是天才創辦人和聰明策略？賈伯斯、佩吉、貝佐斯共同的秘密教練，教的其實是最不科技的一件事——愛。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/trillion-dollar-coach.html"
+  },
+  {
+    "date": "2026-08-29",
+    "slug": "why-we-sleep",
+    "title": "為什麼要睡覺",
+    "author": "馬修・沃克（Matthew Walker）",
+    "theme": "自我成長",
+    "hook": "我們把「少睡」當成拚勁的勳章。但一位睡眠科學家攤開幾十年的研究後警告：你每砍掉的一小時睡眠，都在悄悄地折損你的記憶、免疫、情緒與壽命——這是你這輩子最划不來的交易。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/why-we-sleep.html"
+  },
+  {
+    "date": "2026-08-28",
+    "slug": "decisive",
+    "title": "決斷",
+    "author": "奇普・希思、丹・希思（Chip Heath & Dan Heath）",
+    "theme": "邏輯思考",
+    "hook": "你以為決策的敵人是資訊不足，其實是你的大腦——它會把選項縮到剩兩個、只找支持自己的證據、被當下情緒綁架、還對未來過度樂觀。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/decisive.html"
+  },
+  {
+    "date": "2026-08-27",
+    "slug": "boundaries",
+    "title": "界線",
+    "author": "亨利・克勞德、約翰・湯森德（Henry Cloud & John Townsend）",
+    "theme": "人際關係",
+    "hook": "你以為好人就該有求必應，結果累到掏空、還暗暗怨恨——問題不在你不夠好，而在你從沒替自己畫一條「這是我、那不是我」的線。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/boundaries.html"
+  },
+  {
+    "date": "2026-08-26",
+    "slug": "indistractable",
+    "title": "專注力協定",
+    "author": "尼爾・艾歐（Nir Eyal）",
+    "theme": "職場成長",
+    "hook": "你以為分心是手機害的？寫過「上癮設計」的作者反過來說：科技不是元凶，你逃避不適的內心才是——怪 App 只會讓你更無力。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/indistractable.html"
+  },
+  {
+    "date": "2026-08-25",
+    "slug": "emotional-intelligence",
+    "title": "情緒智商 EQ",
+    "author": "丹尼爾・高曼（Daniel Goleman）",
+    "theme": "自我成長",
+    "hook": "為什麼有些高 IQ 的聰明人把人生過得一團糟，有些成績平平的人卻活得又成功又受歡迎？高曼說，真正決定命運的，不是那個從小被拿來評斷你的分數。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/emotional-intelligence.html"
+  },
+  {
+    "date": "2026-08-24",
+    "slug": "the-fifth-discipline",
+    "title": "第五項修練",
+    "author": "彼得・聖吉（Peter Senge）",
+    "theme": "邏輯思考",
+    "hook": "你以為問題出在某個豬隊友、某個爛決策？其實多數麻煩不是誰的錯，是整個「系統結構」逼著大家一再重演同樣的戲——看不見結構，就只能一直救火。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-fifth-discipline.html"
+  },
+  {
+    "date": "2026-08-23",
+    "slug": "supercommunicators",
+    "title": "交心",
+    "author": "查爾斯・杜希格（Charles Duhigg）",
+    "theme": "人際關係",
+    "hook": "兩個人明明都在說話卻越聊越僵，問題不是誰不講理——是你們正在進行「不同的三種對話」，各說各的，永遠對不上頻。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/supercommunicators.html"
+  },
+  {
+    "date": "2026-08-22",
+    "slug": "range",
+    "title": "跨能致勝",
+    "author": "大衛・艾波斯坦（David Epstein）",
+    "theme": "職場成長",
+    "hook": "你以為越早選定專長、一萬小時死磕，就能贏在起跑點？在多數真實世界裡，繞遠路的通才反而後來居上。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/range.html"
+  },
+  {
+    "date": "2026-08-21",
+    "slug": "the-happiness-hypothesis",
+    "title": "象與騎象人",
+    "author": "強納森・海德特（Jonathan Haidt）",
+    "theme": "自我成長",
+    "hook": "你以為理性能管住情緒？海德特說，你的心其實像一頭六噸重的大象，而理性只是坐在象背上的騎象人——你以為你在指揮，多數時候只是在替大象的決定找理由。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-happiness-hypothesis.html"
+  },
+  {
+    "date": "2026-08-20",
+    "slug": "the-signal-and-the-noise",
+    "title": "訊號與雜訊",
+    "author": "奈特・席佛（Nate Silver）",
+    "theme": "邏輯思考",
+    "hook": "資料越多，預測應該越準——才怪。資料爆炸的時代，雜訊長得比訊號快，多數預測失敗，是因為我們把想聽的雜音錯當成了真相。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-signal-and-the-noise.html"
+  },
+  {
+    "date": "2026-08-19",
+    "slug": "difficult-conversations",
+    "title": "高難度對話",
+    "author": "道格拉斯・史東、布魯斯・巴頓、席拉・西恩（Douglas Stone, Bruce Patton, Sheila Heen）",
+    "theme": "人際關係",
+    "hook": "每一場你想逃避的難談，其實同時在進行三場對話；你以為在爭「誰對」，真正卡住的往往是「我還是不是個好人」。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/difficult-conversations.html"
+  },
+  {
+    "date": "2026-08-18",
+    "slug": "the-lean-startup",
+    "title": "精實創業",
+    "author": "艾瑞克・萊斯（Eric Ries）",
+    "theme": "職場成長",
+    "hook": "你以為創業失敗是因為產品不夠好？多數新創其實是「完美地做出了根本沒人要的東西」——問題不在執行，在方向。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-lean-startup.html"
+  },
+  {
+    "date": "2026-08-17",
+    "slug": "peak-performance",
+    "title": "一流的人如何保持顛峰",
+    "author": "布萊德・史托伯格、史蒂夫・麥格尼斯（Brad Stulberg & Steve Magness）",
+    "theme": "自我成長",
+    "hook": "你以為頂尖高手都是靠硬撐、靠爆肝拚上去的？兩位作者研究一流運動員、藝術家與科學家後發現：真正決定你能走多遠的，是你「休息」與「充電」的功力。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/peak-performance.html"
+  },
+  {
+    "date": "2026-08-16",
+    "slug": "clear-thinking",
+    "title": "清晰思考",
+    "author": "沙恩・帕里什（Shane Parrish）",
+    "theme": "邏輯思考",
+    "hook": "決定你人生的，不是那幾個重大抉擇，而是無數個你根本沒意識到自己在做決定的平凡瞬間——那時，你的預設反應早就替你做完了。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/clear-thinking.html"
+  },
+  {
+    "date": "2026-08-15",
+    "slug": "counselling-for-toads",
+    "title": "蛤蟆先生去看心理師",
+    "author": "羅伯・德・波頓（Robert de Board）",
+    "theme": "人際關係",
+    "hook": "你以為情緒是別人「惹」你的，蛤蟆先生也是——直到心理師問他：「這一次，是你選擇了不快樂嗎？」這句話，會鬆動你一輩子的受害者姿態。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/counselling-for-toads.html"
+  },
+  {
+    "date": "2026-08-14",
+    "slug": "think-again",
+    "title": "逆思維",
+    "author": "亞當・格蘭特（Adam Grant）",
+    "theme": "職場成長",
+    "hook": "你以為聰明就是懂得多、立場堅定？格蘭特說真正的智慧是敢對自己的想法喊卡——重新思考的能力，比原本知道多少更值錢。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/think-again.html"
+  },
+  {
+    "date": "2026-08-13",
+    "slug": "maybe-you-should-talk-to-someone",
+    "title": "也許你該找人聊聊",
+    "author": "蘿蕊・葛利布（Lori Gottlieb）",
+    "theme": "自我成長",
+    "hook": "一個心理師被男友甩了，崩潰到得去看別的心理師。當治療者自己躺上沙發，你才看見：原來我們都在同一件事上撒謊——以為自己想改變，其實最怕的就是改變。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/maybe-you-should-talk-to-someone.html"
+  },
+  {
+    "date": "2026-08-12",
+    "slug": "noise",
+    "title": "雜訊",
+    "author": "丹尼爾・康納曼、奧利維・席波尼、凱斯・桑思汀（Kahneman, Sibony, Sunstein）",
+    "theme": "邏輯思考",
+    "hook": "同一份履歷、同一樁案子、同一張 X 光片，換個人（甚至換個時間）審，結論可能天差地遠——這不是偏見，是一種你從沒注意過、卻無所不在的錯誤。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/noise.html"
+  },
+  {
+    "date": "2026-08-11",
+    "slug": "attached",
+    "title": "依附",
+    "author": "阿米爾・列文、瑞秋・赫勒（Amir Levine & Rachel Heller）",
+    "theme": "人際關係",
+    "hook": "你以為在感情裡「患得患失」或「一靠近就想逃」是性格缺陷，其實那是一套從嬰兒時期就裝好的依附系統在運作——認得它，你就不再怪自己。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/attached.html"
+  },
+  {
+    "date": "2026-08-10",
+    "slug": "zero-to-one",
+    "title": "從零到一",
+    "author": "彼得・提爾、布雷克・馬斯特斯（Peter Thiel & Blake Masters）",
+    "theme": "職場成長",
+    "hook": "你以為競爭讓人變強？提爾說競爭是輸家的遊戲——真正贏的人都在偷偷建立獨佔，然後假裝自己活在激烈競爭裡。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/zero-to-one.html"
+  },
+  {
+    "date": "2026-08-09",
+    "slug": "mans-search-for-meaning",
+    "title": "活出意義來",
+    "author": "維克多・弗蘭克（Viktor E. Frankl）",
+    "theme": "自我成長",
+    "hook": "我們總以為快樂來自順境。但一位從奧許維茲活著走出來的心理醫師說：人可以被奪走一切，唯獨奪不走「選擇如何回應處境」的那一點自由——而意義，就藏在那裡。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/mans-search-for-meaning.html"
+  },
+  {
+    "date": "2026-08-08",
+    "slug": "superforecasting",
+    "title": "超預測",
+    "author": "菲利普・泰特洛克、丹・賈德納（Philip Tetlock & Dan Gardner）",
+    "theme": "邏輯思考",
+    "hook": "電視上那些自信滿滿的名嘴專家，預測準確率其實跟「射飛鏢的猩猩」差不多。真正準的人不是更聰明，是想事情的方法不一樣。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/superforecasting.html"
+  },
+  {
+    "date": "2026-08-07",
+    "slug": "emotional-blackmail",
+    "title": "情緒勒索",
+    "author": "蘇珊・佛沃（Susan Forward）",
+    "theme": "人際關係",
+    "hook": "那些最愛你的人，往往最會用「我這都是為你好」讓你就範——這不是愛，是包著糖衣的勒索，而你付的贖金是自己。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/emotional-blackmail.html"
+  },
+  {
+    "date": "2026-08-06",
+    "slug": "good-to-great",
+    "title": "從 A 到 A+",
+    "author": "詹姆・柯林斯（Jim Collins）",
+    "theme": "職場成長",
+    "hook": "你以為卓越的公司靠的是明星 CEO 和華麗轉型？資料顯示，它們的領導人反而低調到你沒聽過名字——秘密全藏在不起眼的紀律裡。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/good-to-great.html"
+  },
+  {
+    "date": "2026-08-05",
+    "slug": "drive",
+    "title": "驅動力",
+    "author": "丹尼爾・品克（Daniel H. Pink）",
+    "theme": "自我成長",
+    "hook": "你以為給錢就能讓人更努力？品克攤開幾十年的心理學研究說：對需要動腦的事，胡蘿蔔與棍子不只沒用，還會親手澆熄一個人心裡真正的火。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/drive.html"
+  },
+  {
+    "date": "2026-08-04",
+    "slug": "influence",
+    "title": "影響力",
+    "author": "羅伯特・席爾迪尼（Robert Cialdini）",
+    "theme": "邏輯思考",
+    "hook": "你以為自己的每個「好，我答應」都是理性思考的結果？其實有六個開關，被按下去你就會自動說好——而懂行的人天天在按。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/influence.html"
+  },
+  {
+    "date": "2026-08-03",
+    "slug": "the-art-of-loving",
+    "title": "愛的藝術",
+    "author": "埃里希・佛洛姆（Erich Fromm）",
+    "theme": "人際關係",
+    "hook": "你一直以為愛是「遇到對的人」的運氣問題，佛洛姆說不是——愛是一門要學的手藝，你缺的不是對象，是能力。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-art-of-loving.html"
+  },
+  {
+    "date": "2026-08-02",
+    "slug": "quiet",
+    "title": "安靜，就是力量",
+    "author": "蘇珊・坎恩（Susan Cain）",
+    "theme": "職場成長",
+    "hook": "你以為安靜的人只是還沒學會社交？其實這個世界被設計成偏心外向者——而它正在浪費掉一半人的天賦。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/quiet.html"
+  },
+  {
+    "date": "2026-08-01",
+    "slug": "peak",
+    "title": "刻意練習",
+    "author": "安德斯・艾瑞克森、羅伯特・普爾（Anders Ericsson & Robert Pool）",
+    "theme": "自我成長",
+    "hook": "你以為頂尖高手贏在天賦？艾瑞克森花三十年研究後說：所謂天才，只是把練習做對的人——而大多數人練了一輩子，方法根本是錯的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/peak.html"
+  },
+  {
     "date": "2026-07-31",
     "slug": "tiny-habits",
     "title": "設計你的小習慣",

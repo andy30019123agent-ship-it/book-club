@@ -1558,6 +1558,11 @@ function libraryScript() {
           // 還原全部視圖時，重跑書櫃/金句集渲染，讓空區塊保持收起
           if (window.__renderShelf) window.__renderShelf();
           if (window.__renderQShelf) window.__renderQShelf();
+          // 藏書目錄／即將上架若為空（首日無書、或全數上架後無即將），保持收起不露空標題
+          var _cs = document.getElementById('catalog-section'), _cl = document.getElementById('catalog-list');
+          if (_cs && _cl) _cs.hidden = !_cl.children.length;
+          var _us = document.getElementById('upcoming-section'), _ul = document.getElementById('upcoming-list');
+          if (_us && _ul) _us.hidden = !_ul.children.length;
         } else {
           normalSections.forEach(function (s) { s.hidden = true; });
           if (emptyMsg) emptyMsg.hidden = true;
@@ -2157,6 +2162,6 @@ function main() {
 }
 
 // 只有直接執行（node build.mjs）才建置；被 import（測試）時不跑，方便單測 computeShelf
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main();
 }

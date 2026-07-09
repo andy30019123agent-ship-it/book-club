@@ -36,15 +36,39 @@
 - 真確 Factfulness — Hans Rosling（邏輯思考）07-30
 - 設計你的小習慣 — BJ Fogg（自我成長）07-31
 
-## 備選池（8/1 起補書用）
+### 8 月補齊：2026-08-01 ~ 08-31（2026-07-09 一次補 31 本，四主題輪替，皆內建 takeaways）
+- 刻意練習 — Anders Ericsson（自我成長）08-01
+- 安靜，就是力量 — Susan Cain（職場成長）08-02
+- 愛的藝術 — Erich Fromm（人際關係）08-03
+- 影響力 — Robert Cialdini（邏輯思考）08-04
+- 驅動力 — Daniel Pink（自我成長）08-05
+- 從 A 到 A+ — Jim Collins（職場成長）08-06
+- 情緒勒索 — Susan Forward（人際關係）08-07
+- 超預測 — Tetlock & Gardner（邏輯思考）08-08
+- 活出意義來 — Viktor Frankl（自我成長）08-09
+- 從零到一 — Peter Thiel（職場成長）08-10
+- 依附 Attached — Levine & Heller（人際關係）08-11
+- 雜訊 Noise — Kahneman 等（邏輯思考）08-12
+- 也許你該找人聊聊 — Lori Gottlieb（自我成長）08-13
+- 逆思維 Think Again — Adam Grant（職場成長）08-14
+- 蛤蟆先生去看心理師 — Robert de Board（人際關係）08-15
+- 清晰思考 Clear Thinking — Shane Parrish（邏輯思考）08-16
+- 一流的人如何保持顛峰 — Stulberg & Magness（自我成長）08-17
+- 精實創業 — Eric Ries（職場成長）08-18
+- 高難度對話 — Stone 等（人際關係）08-19
+- 訊號與雜訊 — Nate Silver（邏輯思考）08-20
+- 象與騎象人 — Jonathan Haidt（自我成長）08-21
+- 跨能致勝 Range — David Epstein（職場成長）08-22
+- 交心 Supercommunicators — Charles Duhigg（人際關係）08-23
+- 第五項修練 — Peter Senge（邏輯思考）08-24
+- 情緒智商 EQ — Daniel Goleman（自我成長）08-25
+- 專注力協定 Indistractable — Nir Eyal（職場成長）08-26
+- 界線 Boundaries — Cloud & Townsend（人際關係）08-27
+- 決斷 Decisive — Chip & Dan Heath（邏輯思考）08-28
+- 為什麼要睡覺 — Matthew Walker（自我成長）08-29
+- 教練 Trillion Dollar Coach — Schmidt 等（職場成長）08-30
+- 我可能錯了 — Björn Natthiko Lindeblad（人際關係）08-31
 
-> ⚠️ 首月已用掉大半，剩下不多；下次補書（8 月）需再擴充新書，避免重複。
+## 備選池（9 月起補書用）
 
-### 自我成長
-也許你該找人聊聊 — Lori Gottlieb
-### 職場成長
-一流的人如何保持顛峰 Peak Performance — Stulberg & Magness｜安靜是種超能力（內向職場）
-### 人際關係
-愛的藝術 — Erich Fromm
-### 邏輯思考
-清晰思考 Clear Thinking — Shane Parrish｜雜訊 Noise — Kahneman
+> ⚠️ 7、8 月備選池已全數用完（愛的藝術/雜訊/清晰思考/一流的人/也許你該找人聊聊 皆已排入 8 月）。**9 月補書前需重新擴充新書單**，避免與已上架 59 本重複。目前池內：空。

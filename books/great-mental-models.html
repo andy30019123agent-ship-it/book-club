@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">The Great Mental Models</p>
   <p class="byline">沙恩・帕里什（Shane Parrish）｜2019</p>
   <p class="hook">你不是不夠聰明，是腦袋裡只有一兩把工具。手上只有鐵鎚的人，看什麼都像釘子——這本書要給你的是一整箱思考工具。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>沙恩・帕里什的本職其實有點反差：他在加拿大的情報機構（相當於加拿大版的 NSA）當網路安全分析師。這份工作教會他一件殘酷的事——<strong>判斷錯誤是會出人命的</strong>，你不能靠直覺和運氣做決定。</p>
 <p>2008 年金融海嘯那年，他一邊念 MBA，一邊發現商學院教的那套財務模型在真實崩盤面前根本不管用。他開始匿名寫一個部落格，記錄自己讀到的好思想，取名 Farnam Street——這是波克夏所在地奧馬哈的一條街名，向巴菲特和蒙格致敬。部落格從沒沒無聞長到每月數百萬人造訪，讀者包括不少矽谷創投和企業執行長。</p>
 <p>這本書是他多年整理的結晶，靈感直接來自查理・蒙格那句名言：<strong>「你必須在腦中建立一個由多種思維模型組成的格柵（latticework），然後把你的實際經驗掛上去。」</strong>蒙格說，如果你只記住一堆孤立的事實，卻沒有一個理論框架把它們串起來，那些事實你根本用不上。帕里什做的事，就是把這個「思維格柵」的第一批磚頭，一塊一塊講清楚。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼有些人看事情特別準，做決定特別穩，好像有種說不出的『智慧』？」——我們常把這種能力歸給天賦或運氣。帕里什的回答是：那不是天賦，是<strong>思維模型的數量與品質</strong>。</p>
 <p>思維模型（mental model）是你理解世界如何運作的一套簡化框架。問題是，大多數人一輩子只用他專業裡的那幾個模型看所有事——經濟學家看什麼都是供需，工程師看什麼都是系統。這就是蒙格說的「鐵鎚人症候群」：手上只有鐵鎚的人，看什麼都像釘子。這本書要解決的，就是幫你在工具箱裡多放幾把不同的鎚子、鉗子、尺——讓你面對複雜問題時，有得挑。</p>
 <p>如果你曾經因為「想不到還能怎麼想」而卡死，或事後才拍大腿「早該從那個角度看」，這本書就是要把那些角度，提前裝進你腦袋。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、地圖不等於疆域：別把模型當成現實本身</h3>
 <p>這是全書的地基。帕里什開場講了一個真實故事：一支匈牙利軍隊的偵察小隊在阿爾卑斯山遇上暴風雪，迷路兩天，眼看要凍死。絕望之際，有人在口袋裡翻出一張地圖，全隊靠著它冷靜下來、找到方向、平安下山。回到營地大家才發現——<strong>那根本不是阿爾卑斯山的地圖，是庇里牛斯山的。</strong></p>
 <p>一張「錯的」地圖，怎麼救了他們？因為地圖真正的作用不是百分百精確，而是<strong>讓你不再恐慌、開始行動、根據沿路的回饋修正方向</strong>。</p>
@@ -354,22 +477,29 @@
 <p>蒙格把它變成人生準則，有一句被帕里什引用的名言：<strong>「我只想知道我將來會死在哪裡，這樣我就永遠不去那個地方。」</strong>與其苦思「怎麼樣才會幸福」，不如列出「怎麼樣一定會不幸」（酗酒、負債、背叛朋友、不學習），然後全力避開——你就自動靠近幸福了。</p>
 <p><strong>機制</strong>：為什麼逆向這麼有用？因為「避免愚蠢」通常比「追求聰明」更容易，也更可靠。要規劃一場成功的專案很難，但要列出「哪些做法保證會搞砸」相對簡單——把那些坑一個個排除，剩下的路就順了。</p>
 <p><strong>限制</strong>：逆向是輔助工具，不是唯一角度。它幫你排雷、找盲點，但正向的願景與創造，還是得靠其他模型補上。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>這幾個模型不是散裝的技巧，是有層次的一套系統。<strong>「地圖不等於疆域」</strong>是總開關——先承認你所有的模型都只是簡化，才會保持謙遜與彈性。<strong>「能力圈」</strong>幫你定位：哪些疆域你的地圖夠準，哪些你根本沒地圖。進到要解難題時，<strong>「第一性原理」</strong>幫你把舊地圖撕掉、從地基重畫；<strong>「二階思考」</strong>幫你把地圖往時間軸延伸，看見遠處的後果；<strong>「逆向思考」</strong>則從反方向再檢查一遍，補上正著想會漏的盲點。</p>
 <p>帕里什真正想給的不是這幾個模型本身，而是一種習慣：<strong>面對任何問題，先問「我現在是用哪個模型在看？還有沒有別的模型？」</strong>當你腦中的格柵夠密，答案自己會浮現。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「評估一個新專案要不要做」為例）</strong>：</p>
 <ol><li>逆向思考：先別問「怎麼讓它成功」，開會第一題問「什麼情況這專案一定慘敗？」把失敗路徑全列出來</li><li>二階思考：對每個看似好處的點，追問一句「然後呢？三個月後、一年後會怎樣？」</li><li>能力圈：誠實盤點——這件事有多少落在團隊真懂的圈內？圈外的部分找誰補</li><li>地圖檢查：你手上的市場預估、財務模型是誰做的、根據什麼假設？假設一變，結論還成立嗎</li></ol>
 <p><strong>生活版（以「一個讓你焦慮的重大決定」為例，例如換工作）</strong>：</p>
 <ol><li>第一性原理：把「我為什麼想換」拆到底——是錢、是成長、是逃避某個人？拆到地基才知道換工作是不是真解法</li><li>逆向：問「什麼樣的選擇會讓我三年後最後悔？」照著避開</li><li>地圖不等於疆域：你對新公司的想像（地圖）多少是真的、多少是腦補？去找在裡面工作的人聊聊，校正地圖</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「背下這幾個模型就會思考了」</strong>——模型是工具，不是咒語。帕里什一再強調，關鍵是<strong>反覆用、在真實決策裡練</strong>，直到它變成反射。光背名詞，跟背了一堆成語卻不會寫文章一樣。</li><li><strong>「這是給高智商菁英看的」</strong>——正好相反。這套方法的意義就在於：它讓普通人靠「多幾個角度」就能勝過只用單一角度的聰明人。蒙格自己就說，避免愚蠢比追求聰明更重要。</li><li><strong>「模型越多越好」</strong>——不是收集癖。重點不是背幾百個模型，是把最重要的那些用到滾瓜爛熟，並知道什麼情境該調用哪一個。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《窮查理的普通常識》（蒙格）：這本書的思想源頭。蒙格是「思維格柵」的原創者，講得更犀利也更硬；帕里什把它系統化、平易化。想聽原汁原味讀蒙格，想要入門手冊讀帕里什。</li><li>《快思慢想》（康納曼）：康納曼講的是我們大腦「內建」的思考捷徑（系統一）如何害我們犯錯，偏診斷；帕里什這本偏「開藥」——給你一套主動選用的框架去對抗那些直覺陷阱。兩本一診一治，最搭。</li><li>《原則》（達利歐）：同樣強調把思考變成可複用的原則，但達利歐更聚焦在他個人與橋水基金的實戰法則；帕里什更通用、更像通識教育。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「你必須擁有多種思維模型——因為如果你只有一兩個，人性會扭曲現實去迎合你的模型。」（You must have multiple models—because if you have just one or two, human nature will distort reality until it fits your models.）</li><li>「地圖不是它所描繪的疆域。」（The map is not the territory it represents.）</li><li>「我只想知道我將來會死在哪裡，這樣我就永遠不去那個地方。」（All I want to know is where I'm going to die, so I'll never go there.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你最近一個後悔的決定：如果當時用「逆向思考」先問自己「怎樣一定會搞砸」，你會不會做出不同選擇？</li><li>你的「能力圈」邊界在哪？有沒有哪個領域，你其實常常在圈外裝內行、卻沒發現？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="great-mental-models" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -441,6 +571,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -463,6 +596,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -509,6 +643,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -534,6 +674,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "great-mental-models";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

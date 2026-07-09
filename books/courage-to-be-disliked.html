@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,17 +440,19 @@
   <p class="title-en">嫌われる勇気</p>
   <p class="byline">岸見一郎、古賀史健｜2013</p>
   <p class="hook">傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>這本書有兩位作者，卻只寫一個人的思想。</p>
 <p>岸見一郎生於 1956 年，本業是研究古希臘哲學的學者，一路鑽研柏拉圖。1989 年他接觸到阿德勒心理學，人生轉向——從此他既是哲學家也是心理諮商師，成了日本推廣阿德勒思想的第一人。另一位古賀史健是專業寫手，某天讀到岸見談阿德勒的文章，整個人被搖醒，跑去跟岸見說：「我們用對話的形式，把這套思想寫成一本書吧。」於是有了這本以「一位哲學家」和「一個憤世嫉俗的年輕人」連續五個晚上辯論為骨架的作品——刻意仿效蘇格拉底的對話錄。</p>
 <p>那個被寫進書裡的思想家，是阿爾弗雷德・阿德勒（Alfred Adler，1870–1937）。他和佛洛伊德、榮格並稱心理學三巨頭，是「個體心理學」的創始人。阿德勒原本是佛洛伊德圈子裡的核心成員，後來因為理念不合公開決裂——佛洛伊德認為人被過去（尤其童年）決定，阿德勒偏偏主張人是自由的、可以自己選擇未來。在東方，阿德勒的名氣遠不如另外兩位，但他的觀念其實無所不在：後來的卡內基、《與成功有約》的柯維，骨子裡都流著阿德勒的血，他因此被稱為「自我啟發之父」。</p>
 <p>2013 年這本書在日本出版，一路紅遍整個東亞，長年霸榜。它紅的原因很特別——不是因為溫暖療癒，恰恰相反，它讀起來像被人當面潑冷水，卻潑得你清醒。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>它回答一個幾乎人人都問過的問題：「為什麼我沒辦法改變？為什麼我不幸福？」</p>
 <p>大多數人的答案是「因為我的過去」「因為我的個性」「因為原生家庭」「因為那件事傷了我」。這本書的答案冷酷得驚人：<strong>你之所以不幸，是因為你親手選了「不幸」這個選項。</strong>人不是被過去推著走，而是為了某個現在的目的，把自己保持在現狀。所以它敢說一句話——<strong>人隨時可以改變，幸福是一種決定。</strong></p>
 <p>而阿德勒還有一個更大的斷言撐著整本書：<strong>人的所有煩惱，都是人際關係的煩惱。</strong>你的自卑、你的憤怒、你對未來的焦慮，追到底都是「別人」的問題。如果你曾經覺得「我就是這種人、改不了」，或是活得很累、老在意別人怎麼看你——這本書會告訴你，問題不在你的過去，在你此刻的選擇。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、目的論：不是過去造成現在，是現在的目的召喚了過去</h3>
 <p>阿德勒和佛洛伊德最根本的分歧在這裡。佛洛伊德是「決定論」——你今天的樣子，是過去的原因造成的（決定論又叫原因論）。阿德勒反過來，主張「目的論」——你不是被原因推著走，而是<strong>為了達成某個目的，才選了現在的情緒和行為。</strong></p>
 <p>書裡年輕人舉了個朋友的例子：這位朋友多年足不出戶，一走出房間就心悸發抖，說是因為過去受過傷。哲學家的解讀讓人背脊發涼：不是「因為不安，所以出不去」，而是「因為不想出去，所以製造出不安」。窩在房間裡，父母會擔心、會呵護、會把他當特別的存在對待；一旦踏出去，他就變成路人甲。<strong>那份不安，是為了「不出門」這個目的而被製造出來的工具。</strong></p>
@@ -360,26 +483,33 @@
 <p>而幸福的定義，阿德勒濃縮成一句：<strong>「幸福就是貢獻感。」</strong>注意——是「感」，是你自己<strong>主觀感覺</strong>到「我對某人、對這個共同體有用」，不需要別人真的認證。</p>
 <p>最後一塊拼圖，是<strong>甘於平凡的勇氣</strong>。年輕人不服氣：「難道要我甘於平凡、當個普通人嗎？」哲學家說：是的。拒絕平凡的人，往往是走不了「認可」這條窄路，就想抄捷徑變成「特別的壞」——用搗蛋、闖禍、擺爛去換取關注。<strong>「甘於平凡，並不等於無能。我們沒有必要刻意炫耀自己的優越性。」</strong>願意做一個普通人，本身就需要勇氣。</p>
 <p>配套的還有一個時間觀：<strong>人生是一連串的「剎那」，不是一條通往某個目的地的線。</strong>不要把「上了大學、找到工作才叫真正開始活」當成人生——那叫「假設性人生」，是最大的謊言。人生是跳舞，不是趕路；把「此時此刻」跳好、活得認真而充實，就夠了。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>這本書的邏輯是一條環環相扣的鏈子，不是散裝金句。</p>
 <p>起點是一句總綱：<strong>一切煩惱都是人際關係的煩惱。</strong>（為什麼要處理人際關係）→ <strong>目的論</strong>先把你從「過去決定一切」的宿命裡放出來，告訴你「你隨時能選、隨時能改」（改變的自由從哪來）→ 但改變路上最大的路障，是<strong>認可欲求</strong>：你太怕被討厭，所以活成別人期待的樣子（障礙是什麼）→ <strong>課題分離</strong>是那把刀，斬斷「別人怎麼看我」的糾纏，換來自由（怎麼斬斷）→ 斬斷後不是變孤島，而是把縱向關係重建成<strong>橫向關係</strong>（斬斷後要蓋什麼）→ 最終走向<strong>共同體感覺</strong>，透過<strong>他者貢獻</strong>得到「貢獻感」，也就是幸福（終點在哪）→ 而這一切，都只發生在<strong>認真活好的「此時此刻」</strong>。</p>
 <p>一句話收攏：<strong>課題分離是人際關係的入口，共同體感覺是出口；中間那段路，靠被討厭的勇氣走完。</strong></p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「總是很在意主管臉色、不敢表達」為例）</strong>：</p>
 <ol><li>課題分離自問：「主管喜不喜歡我、給不給我好臉色，是誰的課題？」——是主管的。你能做的是把事做好（你的課題），他怎麼評價是他的。</li><li>把「我要讓大家滿意」換成「我要對這個團隊有貢獻」——前者是討好（認可欲求），後者是貢獻感，方向完全不同。</li><li>開會時如果有不同意見，練習說出口一次。提醒自己：<strong>有人不認同，正是你活出自己的證據，不是失敗。</strong></li><li>同事幫了你，把「你好強」改成「謝謝，幫了我大忙」——用橫向的感謝取代上下的評價。</li></ol>
 <p><strong>生活版（以「和家人為了『你該怎麼過人生』吵不完」為例）</strong>：</p>
 <ol><li>畫課題界線：他要不要結婚、換工作、怎麼帶小孩——結果由他承擔，就是他的課題，你不強行介入。</li><li>但別把「分離」做成「冷漠」——告訴對方：「這是你的決定，但你需要我，我隨時在。」把馬牽到水邊，不逼牠喝。</li><li>停止用「我為你犧牲這麼多」（誇耀不幸、縱向支配）綁住關係，改成單純表達「我很開心能幫上忙」。</li><li>每天睡前問一句：「今天此時此刻，我有沒有認真活？」而不是「我離某個目標還差多遠？」</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <p>這本書爭議很大，最該被誠實對待的就是這一段。</p>
 <ol><li><strong>「心理創傷不存在」＝否認受害者的痛苦？</strong> 這是全書最被砲轟的一句。要講清楚：阿德勒否認的不是「壞事發生過」，也不是「痛不痛」——他否認的是「過去的壞事<strong>機械地、必然地</strong>決定了你的現在」。他的原話是：<strong>「決定我們自己的不是經驗本身，而是我們賦予經驗的意義。」</strong>但這句話用在重度創傷、PTSD、長期受虐上，很容易滑成「都是你自己選的、你不夠努力」的檢討受害者。<strong>誠實的讀法是</strong>：把目的論當成「奪回主導權」的工具——「過去無法改變，但我能改寫它對我的意義」；而不是當成一根打向受苦者的棍子。這本書是哲學勸誡，不是臨床治療手冊，遇到真正的心理創傷，該找的是專業協助，不是硬套一句「創傷不存在」。</li></ol>
 <ol><li><strong>課題分離＝各人自掃門前雪、變得冷漠自私？</strong> 完全相反。課題分離是<strong>入口不是終點</strong>，它的目的是為了走向「共同體感覺」——為了能真正關心別人、貢獻別人，你得先不被「討好與控制」綁架。分離是為了更好地連結，不是為了切斷連結。</li></ol>
 <ol><li><strong>被討厭的勇氣＝可以我行我素、故意惹人厭？</strong> 不是。它不是鼓勵你去當討厭鬼，而是說「<strong>即使可能被討厭，也不放棄做自己</strong>」。是「不怕」，不是「求」。核心是自由，不是任性。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li><strong>《人性的弱點》（卡內基）</strong>：有趣的是，卡內基本人深受阿德勒影響。但兩本方向剛好相反——卡內基教你「如何贏得別人的好感與認可」，阿德勒教你「如何不再需要別人的認可」。一本教你進入關係，一本教你在關係裡保持自由，剛好是同一枚硬幣的兩面，很值得對照著讀（也是我們書單後面的一本）。</li><li><strong>《活出意義來》（弗蘭克）</strong>：同樣是維也納的心理學家，同樣主張「人可以自由選擇面對命運的態度」。弗蘭克從集中營的極端處境提煉出「意義」，阿德勒從日常人際提煉出「貢獻感」——兩人都在回答「人如何在痛苦中依然自由」，弗蘭克更沉重，阿德勒更日常。</li><li><strong>《與成功有約》（柯維）</strong>：柯維的「影響圈與關注圈」，幾乎是課題分離的另一種說法——把力氣花在你能改變的事（你的課題）上，別耗在你控制不了的事上。想把阿德勒落實成方法論，柯維是很好的橋。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「決定我們自己的不是經驗本身，而是我們賦予經驗的意義。」</li><li>「所謂的自由，就是被別人討厭。有人討厭你，正是你行使自由、活出自我的證明。」</li><li>「幸福就是貢獻感。」</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想一件你一直說「因為○○，所以我做不到□□」的事——如果用阿德勒的目的論來看，那個「○○」是真的攔住了你，還是你其實在用它保護自己不去面對某個風險？</li><li>職場或家庭裡，你現在最在意「誰的看法」？試著把它拆成「這是誰的課題」——哪一部分其實根本不是你能控制、也不該你扛的？放下它，你會少一半的累嗎？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="courage-to-be-disliked" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -451,6 +581,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -473,6 +606,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -519,6 +653,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -544,6 +684,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "courage-to-be-disliked";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

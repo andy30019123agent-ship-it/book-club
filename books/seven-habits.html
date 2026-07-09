@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">The 7 Habits of Highly Effective People</p>
   <p class="byline">史蒂芬・柯維（Stephen Covey）｜1989</p>
   <p class="hook">你以為的成長是「多學幾招做人做事的技巧」，柯維說你搞錯了層次——真正的成功不是換更亮的面具，是把裡面那個人重新長好；而七個習慣其實是一條有次序的路：先能管好自己，才配談與人合作。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>史蒂芬・柯維寫這本書之前，做了一件很學術的笨功夫：他把美國建國以來兩百年談「成功」的書，一本一本翻過去。他發現一條清楚的分水嶺。</p>
 <p>前一百五十年的成功學，談的是<strong>品格</strong>——正直、謙遜、忠誠、節制、勇氣、公正、耐心、勤奮。這些書相信，一個人會不會成功，取決於他是個什麼樣的人。但第一次世界大戰之後，風向變了：成功學開始談<strong>個性</strong>——公眾形象、態度技巧、如何讓人喜歡你、如何快速影響別人。成功從「你是誰」變成「你會幾招」。</p>
 <p>柯維把前者叫「品格倫理」，後者叫「個性倫理」。他的診斷是：現代人集體滑向了個性倫理，以為成功是一套可以外掛的技巧，於是拚命學溝通話術、學正向思考、學談判技巧——結果表面油亮，裡面空洞。這本 1989 年出版的書，就是要把成功的重心從「面具」搬回「根」。它賣破四千萬冊、被譯成四十多國語言，不是因為技巧新，而是因為它逆著潮流，重新替一整個世代校正了「什麼才是真正的成長」。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>它回答一個很多職場人心裡的疙瘩：<strong>「為什麼我明明很努力學做人做事，關係跟成果卻沒有真的變好？」</strong></p>
 <p>柯維的答案很直接：因為你一直在錯的層次用力。你在學「怎麼看起來很會」，卻沒有處理「你到底是個什麼樣的人」。個性倫理的技巧不是沒用，而是它們像化妝——底子好，化妝加分；底子空，化妝只是遮瑕，遲早穿幫。真正持久的改變，得從品格這個根長起。</p>
 <p>所以這本書不是一本「技巧合輯」。它主張，你眼中的世界，是被你的「思維典範」（paradigm）決定的——那是你腦中的一張地圖。而真正的躍進，往往不是你在舊地圖上跑更快，而是換一張地圖，也就是<strong>典範轉移</strong>。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、思維典範：你戴著哪副眼鏡，就看見哪個世界</h3>
 <p>柯維講過一個他親身經歷的地鐵故事，是全書最動人的一段。某個週日早晨，紐約地鐵上很安靜，一個男人帶著幾個孩子上車。孩子立刻吵翻天，跑來跑去、搶東西、大聲喧嘩，那個父親卻閉著眼坐著，什麼都不管。全車廂的人愈來愈不耐煩，柯維也是——他終於忍不住，客氣但帶著責備地對那父親說：先生，你的孩子吵到大家了，能不能管一下？</p>
 <p>那男人像剛回過神，輕聲說：「你說得對，我該想想辦法。我們剛從醫院出來，他們的媽媽一小時前過世了。我大概是嚇壞了，孩子們大概也不知道該怎麼辦。」</p>
@@ -349,21 +472,28 @@
 <h3>五、不斷更新：讓整條螺旋往上轉</h3>
 <p><strong>習慣七，不斷更新。</strong>柯維講一個伐木工的比喻：一個人拚命鋸樹，鋸子鈍了也不停下來磨，你問他為什麼，他說「我太忙著鋸了，沒空磨」。這就是多數人的寫照。習慣七是「磨刀」——定期更新自己的四個面向：身體（運動、睡眠、飲食）、心智（閱讀、學習）、社會情感（關係、貢獻）、心靈（價值、反思）。它不是第八個並列的習慣，而是<strong>維護前六個習慣的那個習慣</strong>，讓整個系統不斷升級，形成柯維說的「向上的螺旋」。</p>
 <p>順帶一提，貫穿全書還有一個底層原則叫「產出／產能平衡」（P/PC）。柯維用伊索寓言講：一個農夫養的鵝每天下一顆金蛋，他嫌太慢，把鵝殺了想一次拿光——結果金蛋沒了，鵝也死了。金蛋是「產出」（P），鵝是「產能」（PC，會下蛋的能力）。只顧著榨產出、不養產能，就是殺鵝取卵。真正的高效能，是永遠在兩者間保持平衡——這也正是習慣七要守護的東西。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>別把七個習慣記成七條口號，記成一條路：<strong>成熟連續體</strong>是地圖——從依賴，走向獨立，再走向互賴。習慣一到三（主動積極、以終為始、要事第一）是「私領域的成功」，幫你走完「依賴→獨立」，把自己這個人先長結實。習慣四到六（雙贏思維、知彼解己、統合綜效）是「公領域的成功」，幫你走完「獨立→互賴」，把長好的自己拿去跟人創造。習慣七（不斷更新）是引擎，讓前六個持續升級。而最底層，是「品格倫理」的信念（真功夫從裡面長）和「典範轉移」的視角（換地圖才有躍進）。次序不能亂——這正是柯維跟一堆技巧合輯最不一樣的地方。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「跟難搞的同事／主管共事」為例）</strong>：</p>
 <ol><li>主動積極：先列出這件事裡「我管不了的」（他的態度）和「我能動的」（我的回應、我的準備），把力氣全押在後者。</li><li>以終為始：問自己「一年後回頭看，我希望自己在這件事上是什麼樣子？」用那個答案決定今天怎麼做。</li><li>知彼解己：下次會議前，先花五分鐘寫下「對方真正在乎什麼」，會議裡先聽懂再表達。</li><li>雙贏或無交易：談合作時，逼自己想出一個「兩邊都真心說好」的版本；想不出來，寧可暫緩也不勉強成交。</li></ol>
 <p><strong>生活版（以「重新掌握自己的時間」為例）</strong>：</p>
 <ol><li>要事第一：這週挑一件「重要但不緊急」的第二象限事情（運動、陪家人、進修），先排進行事曆，再排其他。</li><li>大石頭優先：週日晚上先放三顆大石頭，別讓緊急雜事把整週塞滿。</li><li>不斷更新：每天留 15 分鐘磨刀——身體、心智、關係、心靈，四選一輪流。</li><li>主動積極的語言：這週抓自己說「我沒辦法」的時候，改成「我可以怎麼做」。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>被當成雞湯口號集</strong>——最大的誤讀。很多人把七個習慣背成七句勵志標語貼牆上，卻不知道它們有嚴格次序、是一套從品格長出來的成長系統。跳過私領域直接學「雙贏」「綜效」，等於地基還沒打就想蓋三樓。</li><li><strong>「雙贏」被誤用成和稀泥</strong>——雙贏不是各退一步、你好我好大家好的妥協。真正的雙贏來自富足心態與原則，它甚至寧可「無交易」也不接受一個假的皆大歡喜。把雙贏當成「不得罪人」，正好讀反。</li><li><strong>以為是時間管理／效率書</strong>——第三個習慣的矩陣太有名，害很多人以為整本書在教「怎麼把事情做更快」。但柯維的重點是「做對的事」，是產能大於產出、是意義先於效率。追效率追到殺鵝取卵，正是他要你避開的坑。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《原子習慣》（克利爾）：柯維談「你想成為誰」（身分、使命、原則），克利爾談「怎麼用系統一票一票投出那個人」。柯維給方向與價值，克利爾給操作介面——先讀柯維定錨，再讀克利爾落地，剛好接得起來。</li><li>《與時間有約》（柯維本人）：這本是七個習慣「第三習慣」的專書擴寫，把第二象限的時間哲學講到底。覺得「要事第一」最戳中你的人，可以直接往這本深挖。</li><li>《高效信任力》（小柯維，柯維之子）：接續父親的互賴主題，專講「信任」這個讓合作能發生的底層貨幣。想把公領域成功再往前推一步的，看這本。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「在刺激與回應之間，存在著一段空隙；那段空隙裡，藏著我們選擇如何回應的自由與力量。」（Between stimulus and response there is a space. In that space is our power to choose our response.）</li><li>「先理解別人，再求被理解。」（Seek first to understand, then to be understood.）</li><li>「最重要的事，是讓最重要的事永遠是最重要的事。」（The main thing is to keep the main thing the main thing.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>拿你現在最卡的一件事（工作或關係）畫兩個圈：哪些落在「關注圈」（你在意卻管不了）、哪些在「影響圈」（你真能動手）？你發現自己過去把力氣主要花在哪個圈？</li><li>用柯維的成熟連續體檢查自己：你覺得自己目前主要卡在「依賴、獨立、還是互賴」哪一段？如果卡在獨立想往互賴走，前三個「私領域」的習慣裡，哪一個是你還沒長穩的那塊地基？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="seven-habits" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -435,6 +565,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -457,6 +590,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -503,6 +637,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -528,6 +668,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "seven-habits";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

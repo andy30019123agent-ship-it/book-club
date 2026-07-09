@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -340,6 +461,13 @@
       color: var(--ink-soft);
       font-size: 0.84rem;
       letter-spacing: 0.12em;
+    }
+    .library-streak {
+      margin: 0.55rem 0 0;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      opacity: 0.9;
     }
     .section-label {
       margin: 0 0 1.1rem;
@@ -806,8 +934,26 @@
       .tonight-card { padding: 1.1rem 1.15rem; }
       .catalog-card { padding: 0.95rem 1rem; gap: 0.9rem; }
       .read-pill { padding: 0 1.2rem; }
-      .day-row { padding: 0.8rem 0.85rem; }
       .day-title { font-size: 1.02rem; }
+      /* 月視圖一列改上下排版：日期一欄、內容一欄、動作放右下 */
+      .day-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "tile body" "tile action";
+        align-items: start;
+        column-gap: 0.85rem;
+        row-gap: 0.4rem;
+        padding: 0.8rem 0.9rem;
+      }
+      .day-row .day-tile {
+        grid-area: tile;
+        align-self: stretch;
+      }
+      .day-row .day-body { grid-area: body; }
+      .day-row .day-action {
+        grid-area: action;
+        justify-self: end;
+      }
     }
   
 </style>
@@ -821,7 +967,8 @@
   <header class="library-header">
     <h1 class="library-title">拾頁</h1>
     <div class="library-rule" aria-hidden="true"></div>
-    <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 2 本</p>
+    <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 <span id="stat-count">6</span> 本</p>
+    <p class="library-streak ui-label" id="home-streak" hidden></p>
   </header>
 
   <div class="shelf-controls">
@@ -836,16 +983,16 @@
     <p class="empty-state" id="month-empty" hidden></p>
   </section>
 
-  <section class="tonight-section">
-    <a class="tonight-card cover-career" href="books/deep-work.html" data-theme="職場成長" data-search="深度工作力 卡爾・紐波特（cal newport）" data-slug="deep-work">
-      <button type="button" class="fav-btn" data-slug="deep-work" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
+  <section class="tonight-section" id="tonight-section">
+    <a class="tonight-card cover-people" href="books/how-to-win-friends.html" data-theme="人際關係" data-search="人性的弱點 戴爾・卡內基（dale carnegie）" data-slug="how-to-win-friends">
+      <button type="button" class="fav-btn" data-slug="how-to-win-friends" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
       <span class="tonight-body">
         <span class="tonight-badge ui-label">今晚的書</span>
-        <span class="tonight-title">深度工作力</span>
-        <span class="tonight-author">卡爾・紐波特（Cal Newport）・職場成長</span>
-        <span class="tonight-hook">你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。</span>
+        <span class="tonight-title">人性的弱點</span>
+        <span class="tonight-author">戴爾・卡內基（Dale Carnegie）・人際關係</span>
+        <span class="tonight-hook">快 90 年的老書，為什麼還賴在暢銷榜上？因為卡內基抓到一件不會過時的事——人不是邏輯的動物，是渴望被重視的動物。但它也最常被讀成拍馬屁術，這篇幫你分清「真誠」與「操縱」的那條線。</span>
         <span class="tonight-foot">
-          <span class="tonight-meta ui-label">7/5・閱讀 14 分鐘</span>
+          <span class="tonight-meta ui-label">7/9・閱讀 14 分鐘</span>
           <span class="read-pill">開始閱讀</span>
         </span>
       </span>
@@ -871,9 +1018,49 @@
     <p class="shelf-empty-note ui-label" id="qshelf-empty">尚未蒐藏</p>
   </section>
 
-  <section class="catalog-section">
+  <section class="catalog-section" id="catalog-section">
     <h2 class="section-label">藏書目錄</h2>
-    <div class="catalog-list">
+    <div class="catalog-list" id="catalog-list">
+    <a class="catalog-card cover-growth" href="books/seven-habits.html" data-theme="自我成長" data-search="與成功有約：高效能人士的七個習慣 史蒂芬・柯維（stephen covey）" data-slug="seven-habits">
+      <button type="button" class="fav-btn" data-slug="seven-habits" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
+      <span class="catalog-body">
+        <span class="catalog-index ui-label">No.005・自我成長・7/8</span>
+        <span class="catalog-title">與成功有約：高效能人士的七個習慣</span>
+        <span class="catalog-author ui-label">史蒂芬・柯維（Stephen Covey）</span>
+        <span class="catalog-hook">你以為的成長是「多學幾招做人做事的技巧」，柯維說你搞錯了層次——真正的成功不是換更亮的面具，是把裡面那個人重新長好；而七個習慣其實是一條有次序的路：先能管好自己，才配談與人合作。</span>
+        <span class="catalog-foot ui-label">閱讀 14 分鐘<span class="catalog-go">開始閱讀 →</span></span>
+      </span>
+    </a>
+    <a class="catalog-card cover-logic" href="books/thinking-fast-and-slow.html" data-theme="邏輯思考" data-search="快思慢想 丹尼爾・康納曼（daniel kahneman）" data-slug="thinking-fast-and-slow">
+      <button type="button" class="fav-btn" data-slug="thinking-fast-and-slow" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
+      <span class="catalog-body">
+        <span class="catalog-index ui-label">No.004・邏輯思考・7/7</span>
+        <span class="catalog-title">快思慢想</span>
+        <span class="catalog-author ui-label">丹尼爾・康納曼（Daniel Kahneman）</span>
+        <span class="catalog-hook">你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。</span>
+        <span class="catalog-foot ui-label">閱讀 14 分鐘<span class="catalog-go">開始閱讀 →</span></span>
+      </span>
+    </a>
+    <a class="catalog-card cover-people" href="books/courage-to-be-disliked.html" data-theme="人際關係" data-search="被討厭的勇氣 岸見一郎、古賀史健" data-slug="courage-to-be-disliked">
+      <button type="button" class="fav-btn" data-slug="courage-to-be-disliked" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
+      <span class="catalog-body">
+        <span class="catalog-index ui-label">No.003・人際關係・7/6</span>
+        <span class="catalog-title">被討厭的勇氣</span>
+        <span class="catalog-author ui-label">岸見一郎、古賀史健</span>
+        <span class="catalog-hook">傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。</span>
+        <span class="catalog-foot ui-label">閱讀 14 分鐘<span class="catalog-go">開始閱讀 →</span></span>
+      </span>
+    </a>
+    <a class="catalog-card cover-career" href="books/deep-work.html" data-theme="職場成長" data-search="深度工作力 卡爾・紐波特（cal newport）" data-slug="deep-work">
+      <button type="button" class="fav-btn" data-slug="deep-work" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
+      <span class="catalog-body">
+        <span class="catalog-index ui-label">No.002・職場成長・7/5</span>
+        <span class="catalog-title">深度工作力</span>
+        <span class="catalog-author ui-label">卡爾・紐波特（Cal Newport）</span>
+        <span class="catalog-hook">你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。</span>
+        <span class="catalog-foot ui-label">閱讀 14 分鐘<span class="catalog-go">開始閱讀 →</span></span>
+      </span>
+    </a>
     <a class="catalog-card cover-growth" href="books/atomic-habits.html" data-theme="自我成長" data-search="原子習慣 詹姆斯・克利爾（james clear）" data-slug="atomic-habits">
       <button type="button" class="fav-btn" data-slug="atomic-habits" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>
       <span class="catalog-body">
@@ -889,18 +1076,18 @@
 
   <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>
 
-  <section class="upcoming-section">
+  <section class="upcoming-section" id="upcoming-section">
     <h2 class="section-label">即將上架</h2>
-    <ul class="upcoming-list">
-      <li class="upcoming-row"><span class="upcoming-date">7/6</span><span class="upcoming-text"><span class="upcoming-name">被討厭的勇氣</span>　<span class="upcoming-author">岸見一郎、古賀史健</span></span></li>
-      <li class="upcoming-row"><span class="upcoming-date">7/7</span><span class="upcoming-text"><span class="upcoming-name">快思慢想</span>　<span class="upcoming-author">丹尼爾・康納曼（Daniel Kahneman）</span></span></li>
-      <li class="upcoming-row"><span class="upcoming-date">7/8</span><span class="upcoming-text"><span class="upcoming-name">與成功有約：高效能人士的七個習慣</span>　<span class="upcoming-author">史蒂芬・柯維（Stephen Covey）</span></span></li>
-      <li class="upcoming-row"><span class="upcoming-date">7/9</span><span class="upcoming-text"><span class="upcoming-name">人性的弱點</span>　<span class="upcoming-author">戴爾・卡內基（Dale Carnegie）</span></span></li>
+    <ul class="upcoming-list" id="upcoming-list">
       <li class="upcoming-row"><span class="upcoming-date">7/10</span><span class="upcoming-text"><span class="upcoming-name">原則：生活和工作</span>　<span class="upcoming-author">瑞・達利歐（Ray Dalio）</span></span></li>
       <li class="upcoming-row"><span class="upcoming-date">7/11</span><span class="upcoming-text"><span class="upcoming-name">心流</span>　<span class="upcoming-author">米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）</span></span></li>
       <li class="upcoming-row"><span class="upcoming-date">7/12</span><span class="upcoming-text"><span class="upcoming-name">高勝算決策</span>　<span class="upcoming-author">安妮・杜克（Annie Duke）</span></span></li>
+      <li class="upcoming-row"><span class="upcoming-date">7/13</span><span class="upcoming-text"><span class="upcoming-name">非暴力溝通</span>　<span class="upcoming-author">馬歇爾・盧森堡（Marshall Rosenberg）</span></span></li>
+      <li class="upcoming-row"><span class="upcoming-date">7/14</span><span class="upcoming-text"><span class="upcoming-name">思考的框架</span>　<span class="upcoming-author">沙恩・帕里什（Shane Parrish）</span></span></li>
+      <li class="upcoming-row"><span class="upcoming-date">7/15</span><span class="upcoming-text"><span class="upcoming-name">恆毅力</span>　<span class="upcoming-author">安琪拉・達克沃斯（Angela Duckworth）</span></span></li>
+      <li class="upcoming-row"><span class="upcoming-date">7/16</span><span class="upcoming-text"><span class="upcoming-name">給予</span>　<span class="upcoming-author">亞當・格蘭特（Adam Grant）</span></span></li>
     </ul>
-    <p class="upcoming-more ui-label">…之後還有 19 本，本月已排到 7/31</p>
+    <p class="upcoming-more ui-label" id="upcoming-more">…之後還有 15 本，本月已排到 7/31</p>
   </section>
 </main>
 </div>
@@ -945,10 +1132,115 @@
     })();
 </script>
 <script>
-window.__books = [{"slug":"deep-work","title":"深度工作力","author":"卡爾・紐波特（Cal Newport）","theme":"職場成長","date":"2026-07-05"},{"slug":"atomic-habits","title":"原子習慣","author":"詹姆斯・克利爾（James Clear）","theme":"自我成長","date":"2026-07-04"}];
-window.__calendar = [{"date":"2026-07-04","slug":"atomic-habits","title":"原子習慣","author":"詹姆斯・克利爾（James Clear）","theme":"自我成長","hook":"為什麼你立的目標總是失敗？因為你該修的不是目標，是系統——每天進步 1%，一年後你會強 37 倍。","mk":"2026-07","day":4,"wk":"六","locked":false,"today":false,"search":"原子習慣 詹姆斯・克利爾（james clear）"},{"date":"2026-07-05","slug":"deep-work","title":"深度工作力","author":"卡爾・紐波特（Cal Newport）","theme":"職場成長","hook":"你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。","mk":"2026-07","day":5,"wk":"日","locked":false,"today":true,"search":"深度工作力 卡爾・紐波特（cal newport）"},{"date":"2026-07-06","slug":"courage-to-be-disliked","title":"被討厭的勇氣","author":"岸見一郎、古賀史健","theme":"人際關係","hook":"傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。","mk":"2026-07","day":6,"wk":"一","locked":true,"today":false,"search":"被討厭的勇氣 岸見一郎、古賀史健"},{"date":"2026-07-07","slug":"thinking-fast-and-slow","title":"快思慢想","author":"丹尼爾・康納曼（Daniel Kahneman）","theme":"邏輯思考","hook":"你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。","mk":"2026-07","day":7,"wk":"二","locked":true,"today":false,"search":"快思慢想 丹尼爾・康納曼（daniel kahneman）"},{"date":"2026-07-08","slug":"seven-habits","title":"與成功有約：高效能人士的七個習慣","author":"史蒂芬・柯維（Stephen Covey）","theme":"自我成長","hook":"你以為的成長是「多學幾招做人做事的技巧」，柯維說你搞錯了層次——真正的成功不是換更亮的面具，是把裡面那個人重新長好；而七個習慣其實是一條有次序的路：先能管好自己，才配談與人合作。","mk":"2026-07","day":8,"wk":"三","locked":true,"today":false,"search":"與成功有約：高效能人士的七個習慣 史蒂芬・柯維（stephen covey）"},{"date":"2026-07-09","slug":"how-to-win-friends","title":"人性的弱點","author":"戴爾・卡內基（Dale Carnegie）","theme":"人際關係","hook":"快 90 年的老書，為什麼還賴在暢銷榜上？因為卡內基抓到一件不會過時的事——人不是邏輯的動物，是渴望被重視的動物。但它也最常被讀成拍馬屁術，這篇幫你分清「真誠」與「操縱」的那條線。","mk":"2026-07","day":9,"wk":"四","locked":true,"today":false,"search":"人性的弱點 戴爾・卡內基（dale carnegie）"},{"date":"2026-07-10","slug":"principles","title":"原則：生活和工作","author":"瑞・達利歐（Ray Dalio）","theme":"職場成長","hook":"一個曾經押錯到破產、跟父親借錢過日子的人，後來管理全世界最大的避險基金。他把中間那段翻身路，濃縮成一條公式：痛苦 ＋ 反思 ＝ 進步。","mk":"2026-07","day":10,"wk":"五","locked":true,"today":false,"search":"原則：生活和工作 瑞・達利歐（ray dalio）"},{"date":"2026-07-11","slug":"flow","title":"心流","author":"米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）","theme":"自我成長","hook":"你以為快樂是放假、躺平、什麼都不做。但研究發現：人最投入、最忘我的時刻，幾乎都發生在「有點難、要全力應付」的時候——不是休息，是全神貫注。","mk":"2026-07","day":11,"wk":"六","locked":true,"today":false,"search":"心流 米哈里・契克森米哈伊（mihaly csikszentmihalyi）"},{"date":"2026-07-12","slug":"thinking-in-bets","title":"高勝算決策","author":"安妮・杜克（Annie Duke）","theme":"職場成長","hook":"好結果不代表你決策對，壞結果也不代表你判斷錯。你一直用「事情的結局」幫自己打分數，難怪同樣的坑會一直踩。","mk":"2026-07","day":12,"wk":"日","locked":true,"today":false,"search":"高勝算決策 安妮・杜克（annie duke）"},{"date":"2026-07-13","slug":"nonviolent-communication","title":"非暴力溝通","author":"馬歇爾・盧森堡（Marshall Rosenberg）","theme":"人際關係","hook":"你以為吵架是因為對方難搞，其實多數衝突都輸在同一件事——你把「觀察」講成了「批評」，話一出口對方就進入防衛，接下來說什麼都沒用了。","mk":"2026-07","day":13,"wk":"一","locked":true,"today":false,"search":"非暴力溝通 馬歇爾・盧森堡（marshall rosenberg）"},{"date":"2026-07-14","slug":"great-mental-models","title":"思考的框架","author":"沙恩・帕里什（Shane Parrish）","theme":"邏輯思考","hook":"你不是不夠聰明，是腦袋裡只有一兩把工具。手上只有鐵鎚的人，看什麼都像釘子——這本書要給你的是一整箱思考工具。","mk":"2026-07","day":14,"wk":"二","locked":true,"today":false,"search":"思考的框架 沙恩・帕里什（shane parrish）"},{"date":"2026-07-15","slug":"grit","title":"恆毅力","author":"安琪拉・達克沃斯（Angela Duckworth）","theme":"自我成長","hook":"我們一邊嘴上說「天分沒什麼了不起」，一邊偷偷崇拜天才。但研究發現：決定誰能走到最後的，不是天分有多高，而是一個更樸素、更可練的東西——跌倒後爬起來、再繼續走的能力。","mk":"2026-07","day":15,"wk":"三","locked":true,"today":false,"search":"恆毅力 安琪拉・達克沃斯（angela duckworth）"},{"date":"2026-07-16","slug":"give-and-take","title":"給予","author":"亞當・格蘭特（Adam Grant）","theme":"職場成長","hook":"職場成功排行榜的最底層是「給予者」——但最頂層也是。差別不在他們給不給，而在他們怎麼給、給了會不會被吃乾抹淨。","mk":"2026-07","day":16,"wk":"四","locked":true,"today":false,"search":"給予 亞當・格蘭特（adam grant）"},{"date":"2026-07-17","slug":"crucial-conversations","title":"關鍵對話","author":"凱瑞・派特森 等（Kerry Patterson et al.）","theme":"人際關係","hook":"面對最重要的對話，你的本能幾乎都是錯的——要嘛忍到爆炸、要嘛話講太重。這本書告訴你：關係好壞不看你多會相處，看你在最難開口的那一刻怎麼開口。","mk":"2026-07","day":17,"wk":"五","locked":true,"today":false,"search":"關鍵對話 凱瑞・派特森 等（kerry patterson et al.）"},{"date":"2026-07-18","slug":"the-black-swan","title":"黑天鵝效應","author":"納西姆・塔雷伯（Nassim Nicholas Taleb）","theme":"邏輯思考","hook":"一隻被餵養一千天的火雞，每天都更相信人類愛牠——直到感恩節前一天。你對世界的信心，是不是也建立在「還沒出事」上？","mk":"2026-07","day":18,"wk":"六","locked":true,"today":false,"search":"黑天鵝效應 納西姆・塔雷伯（nassim nicholas taleb）"},{"date":"2026-07-19","slug":"mindset","title":"心態致勝","author":"卡蘿・杜維克（Carol Dweck）","theme":"自我成長","hook":"誇孩子「你好聰明」聽起來是好事，杜維克卻用實驗證明：這句話反而會讓他變得更怕失敗、更不敢挑戰。差別只在一個字——你相信能力是「固定的」，還是「能長出來的」。","mk":"2026-07","day":19,"wk":"日","locked":true,"today":false,"search":"心態致勝 卡蘿・杜維克（carol dweck）"},{"date":"2026-07-20","slug":"measure-what-matters","title":"OKR：做最重要的事","author":"約翰・杜爾（John Doerr）","theme":"職場成長","hook":"你的團隊很忙，但忙不等於在做對的事。OKR 不是又一套 KPI 表格，而是逼所有人先回答一句話：這一季，什麼才是真正最重要的？","mk":"2026-07","day":20,"wk":"一","locked":true,"today":false,"search":"okr：做最重要的事 約翰・杜爾（john doerr）"},{"date":"2026-07-21","slug":"start-with-why","title":"先問，為什麼？","author":"賽門・西奈克（Simon Sinek）","theme":"人際關係","hook":"為什麼有人一開口大家就想追隨，有人條件更好卻沒人買單？差別不在你做什麼、做得多好，而在你有沒有先講清楚「你為什麼而做」——人買的從來不是產品，是你的信念。","mk":"2026-07","day":21,"wk":"二","locked":true,"today":false,"search":"先問，為什麼？ 賽門・西奈克（simon sinek）"},{"date":"2026-07-22","slug":"antifragile","title":"反脆弱","author":"納西姆・塔雷伯（Nassim Nicholas Taleb）","theme":"邏輯思考","hook":"「脆弱」的相反不是「堅固」——堅固只是不怕摔，真正的相反，是摔了反而變更強。你的人生，是玻璃杯還是肌肉？","mk":"2026-07","day":22,"wk":"三","locked":true,"today":false,"search":"反脆弱 納西姆・塔雷伯（nassim nicholas taleb）"},{"date":"2026-07-23","slug":"the-productivity-project","title":"最有生產力的一年","author":"克里斯・貝利（Chris Bailey）","theme":"自我成長","hook":"一個大學畢業生推掉兩份好工作，花整整一年拿自己做實驗——每週工作 90 小時 vs 20 小時、清晨 5 點半起床、每天冥想。他得到的結論很反直覺：生產力的重點從來不是「做更多」，而是「做完你真正在意的事」。","mk":"2026-07","day":23,"wk":"四","locked":true,"today":false,"search":"最有生產力的一年 克里斯・貝利（chris bailey）"},{"date":"2026-07-24","slug":"the-pyramid-principle","title":"金字塔原理","author":"芭芭拉・明托（Barbara Minto）","theme":"職場成長","hook":"你的報告不是內容不夠好，是順序錯了。別人聽不懂，往往不是因為你講太少，而是你把結論藏在最後、讓人一路猜你到底想說什麼。","mk":"2026-07","day":24,"wk":"五","locked":true,"today":false,"search":"金字塔原理 芭芭拉・明托（barbara minto）"},{"date":"2026-07-25","slug":"daring-greatly","title":"脆弱的力量","author":"布芮尼・布朗（Brené Brown）","theme":"人際關係","hook":"你以為示弱是輸家的事，所以拼命武裝自己不讓人看穿——但真相反過來：所有你最想要的東西（親密、信任、被真心接住）都只長在「敢讓人看見真實的你」那塊地上。","mk":"2026-07","day":25,"wk":"六","locked":true,"today":false,"search":"脆弱的力量 布芮尼・布朗（brené brown）"},{"date":"2026-07-26","slug":"poor-charlies-almanack","title":"窮查理的普通常識","author":"查理・蒙格（Charlie Munger，Peter Kaufman 編）","theme":"邏輯思考","hook":"巴菲特說，讓他從猩猩變成人的，是身邊這位夥伴。蒙格一輩子只做一件事——蒐集各學科最強的道理，裝進同一顆腦袋。","mk":"2026-07","day":26,"wk":"日","locked":true,"today":false,"search":"窮查理的普通常識 查理・蒙格（charlie munger，peter kaufman 編）"},{"date":"2026-07-27","slug":"the-power-of-now","title":"當下的力量","author":"艾克哈特・托勒（Eckhart Tolle）","theme":"自我成長","hook":"你大部分的痛苦，其實不是眼前正在發生的事造成的——是你腦中那個停不下來的聲音，反覆咀嚼過去的懊悔和未來的擔憂。托勒問了一個嚇人的問題：那個一直在說話的聲音，真的是「你」嗎？","mk":"2026-07","day":27,"wk":"一","locked":true,"today":false,"search":"當下的力量 艾克哈特・托勒（eckhart tolle）"},{"date":"2026-07-28","slug":"no-rules-rules","title":"零規則","author":"里德・海斯汀、艾琳・梅爾（Reed Hastings & Erin Meyer）","theme":"職場成長","hook":"你的公司規則越訂越多，往往不是因為員工爛，而是因為不信任。Netflix 賭了一把相反的：先找到最強的人，然後把規則拿掉。","mk":"2026-07","day":28,"wk":"二","locked":true,"today":false,"search":"零規則 里德・海斯汀、艾琳・梅爾（reed hastings & erin meyer）"},{"date":"2026-07-29","slug":"captivate","title":"如何讓人喜歡我","author":"凡妮莎・范愛德華茲（Vanessa Van Edwards）","theme":"人際關係","hook":"你以為魅力是天生的、有些人就是有、學不來——其實「討人喜歡」是一組可拆解的技術，連你打招呼的第一句、手放哪裡、問什麼問題，都有可以練的公式。","mk":"2026-07","day":29,"wk":"三","locked":true,"today":false,"search":"如何讓人喜歡我 凡妮莎・范愛德華茲（vanessa van edwards）"},{"date":"2026-07-30","slug":"factfulness","title":"真確","author":"漢斯・羅斯林（Hans Rosling）","theme":"邏輯思考","hook":"一道關於世界的常識題，黑猩猩隨便亂猜都比你答得好——不是你笨，是你的大腦裝了十套會扭曲事實的濾鏡。","mk":"2026-07","day":30,"wk":"四","locked":true,"today":false,"search":"真確 漢斯・羅斯林（hans rosling）"},{"date":"2026-07-31","slug":"tiny-habits","title":"設計你的小習慣","author":"BJ・福格（BJ Fogg）","theme":"自我成長","hook":"想養成運動習慣，別立志「每天做 20 下伏地挺身」。福格說：先從「上完廁所做 2 下」開始，做完還要對自己歡呼一下。聽起來很蠢，但這個史丹佛實驗室的方法，恰恰打中了習慣真正的開關——不是意志力，是情緒。","mk":"2026-07","day":31,"wk":"五","locked":true,"today":false,"search":"設計你的小習慣 bj・福格（bj fogg）"}];
+window.__books = [{"slug":"antifragile","title":"反脆弱","author":"納西姆・塔雷伯（Nassim Nicholas Taleb）","theme":"邏輯思考","date":"2026-07-22"},{"slug":"atomic-habits","title":"原子習慣","author":"詹姆斯・克利爾（James Clear）","theme":"自我成長","date":"2026-07-04"},{"slug":"captivate","title":"如何讓人喜歡我","author":"凡妮莎・范愛德華茲（Vanessa Van Edwards）","theme":"人際關係","date":"2026-07-29"},{"slug":"courage-to-be-disliked","title":"被討厭的勇氣","author":"岸見一郎、古賀史健","theme":"人際關係","date":"2026-07-06"},{"slug":"crucial-conversations","title":"關鍵對話","author":"凱瑞・派特森 等（Kerry Patterson et al.）","theme":"人際關係","date":"2026-07-17"},{"slug":"daring-greatly","title":"脆弱的力量","author":"布芮尼・布朗（Brené Brown）","theme":"人際關係","date":"2026-07-25"},{"slug":"deep-work","title":"深度工作力","author":"卡爾・紐波特（Cal Newport）","theme":"職場成長","date":"2026-07-05"},{"slug":"factfulness","title":"真確","author":"漢斯・羅斯林（Hans Rosling）","theme":"邏輯思考","date":"2026-07-30"},{"slug":"flow","title":"心流","author":"米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）","theme":"自我成長","date":"2026-07-11"},{"slug":"give-and-take","title":"給予","author":"亞當・格蘭特（Adam Grant）","theme":"職場成長","date":"2026-07-16"},{"slug":"great-mental-models","title":"思考的框架","author":"沙恩・帕里什（Shane Parrish）","theme":"邏輯思考","date":"2026-07-14"},{"slug":"grit","title":"恆毅力","author":"安琪拉・達克沃斯（Angela Duckworth）","theme":"自我成長","date":"2026-07-15"},{"slug":"how-to-win-friends","title":"人性的弱點","author":"戴爾・卡內基（Dale Carnegie）","theme":"人際關係","date":"2026-07-09"},{"slug":"measure-what-matters","title":"OKR：做最重要的事","author":"約翰・杜爾（John Doerr）","theme":"職場成長","date":"2026-07-20"},{"slug":"mindset","title":"心態致勝","author":"卡蘿・杜維克（Carol Dweck）","theme":"自我成長","date":"2026-07-19"},{"slug":"no-rules-rules","title":"零規則","author":"里德・海斯汀、艾琳・梅爾（Reed Hastings & Erin Meyer）","theme":"職場成長","date":"2026-07-28"},{"slug":"nonviolent-communication","title":"非暴力溝通","author":"馬歇爾・盧森堡（Marshall Rosenberg）","theme":"人際關係","date":"2026-07-13"},{"slug":"poor-charlies-almanack","title":"窮查理的普通常識","author":"查理・蒙格（Charlie Munger，Peter Kaufman 編）","theme":"邏輯思考","date":"2026-07-26"},{"slug":"principles","title":"原則：生活和工作","author":"瑞・達利歐（Ray Dalio）","theme":"職場成長","date":"2026-07-10"},{"slug":"seven-habits","title":"與成功有約：高效能人士的七個習慣","author":"史蒂芬・柯維（Stephen Covey）","theme":"自我成長","date":"2026-07-08"},{"slug":"start-with-why","title":"先問，為什麼？","author":"賽門・西奈克（Simon Sinek）","theme":"人際關係","date":"2026-07-21"},{"slug":"the-black-swan","title":"黑天鵝效應","author":"納西姆・塔雷伯（Nassim Nicholas Taleb）","theme":"邏輯思考","date":"2026-07-18"},{"slug":"the-power-of-now","title":"當下的力量","author":"艾克哈特・托勒（Eckhart Tolle）","theme":"自我成長","date":"2026-07-27"},{"slug":"the-productivity-project","title":"最有生產力的一年","author":"克里斯・貝利（Chris Bailey）","theme":"自我成長","date":"2026-07-23"},{"slug":"the-pyramid-principle","title":"金字塔原理","author":"芭芭拉・明托（Barbara Minto）","theme":"職場成長","date":"2026-07-24"},{"slug":"thinking-fast-and-slow","title":"快思慢想","author":"丹尼爾・康納曼（Daniel Kahneman）","theme":"邏輯思考","date":"2026-07-07"},{"slug":"thinking-in-bets","title":"高勝算決策","author":"安妮・杜克（Annie Duke）","theme":"職場成長","date":"2026-07-12"},{"slug":"tiny-habits","title":"設計你的小習慣","author":"BJ・福格（BJ Fogg）","theme":"自我成長","date":"2026-07-31"}];
+window.__calendar = [{"date":"2026-07-04","slug":"atomic-habits","title":"原子習慣","author":"詹姆斯・克利爾（James Clear）","theme":"自我成長","hook":"為什麼你立的目標總是失敗？因為你該修的不是目標，是系統——每天進步 1%，一年後你會強 37 倍。","reading_time":"13","year":"2018","mk":"2026-07","day":4,"wk":"六","locked":false,"today":false,"search":"原子習慣 詹姆斯・克利爾（james clear）"},{"date":"2026-07-05","slug":"deep-work","title":"深度工作力","author":"卡爾・紐波特（Cal Newport）","theme":"職場成長","hook":"你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。","reading_time":"14","year":"2016","mk":"2026-07","day":5,"wk":"日","locked":false,"today":false,"search":"深度工作力 卡爾・紐波特（cal newport）"},{"date":"2026-07-06","slug":"courage-to-be-disliked","title":"被討厭的勇氣","author":"岸見一郎、古賀史健","theme":"人際關係","hook":"傷害你的不是過去，是你為過去賦予的意義。這本書會告訴你：人隨時可以改變，只要你願意付出「被討厭」的代價。","reading_time":"14","year":"2013","mk":"2026-07","day":6,"wk":"一","locked":false,"today":false,"search":"被討厭的勇氣 岸見一郎、古賀史健"},{"date":"2026-07-07","slug":"thinking-fast-and-slow","title":"快思慢想","author":"丹尼爾・康納曼（Daniel Kahneman）","theme":"邏輯思考","hook":"你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。","reading_time":"14","year":"2011","mk":"2026-07","day":7,"wk":"二","locked":false,"today":false,"search":"快思慢想 丹尼爾・康納曼（daniel kahneman）"},{"date":"2026-07-08","slug":"seven-habits","title":"與成功有約：高效能人士的七個習慣","author":"史蒂芬・柯維（Stephen Covey）","theme":"自我成長","hook":"你以為的成長是「多學幾招做人做事的技巧」，柯維說你搞錯了層次——真正的成功不是換更亮的面具，是把裡面那個人重新長好；而七個習慣其實是一條有次序的路：先能管好自己，才配談與人合作。","reading_time":"14","year":"1989","mk":"2026-07","day":8,"wk":"三","locked":false,"today":false,"search":"與成功有約：高效能人士的七個習慣 史蒂芬・柯維（stephen covey）"},{"date":"2026-07-09","slug":"how-to-win-friends","title":"人性的弱點","author":"戴爾・卡內基（Dale Carnegie）","theme":"人際關係","hook":"快 90 年的老書，為什麼還賴在暢銷榜上？因為卡內基抓到一件不會過時的事——人不是邏輯的動物，是渴望被重視的動物。但它也最常被讀成拍馬屁術，這篇幫你分清「真誠」與「操縱」的那條線。","reading_time":"14","year":"1936","mk":"2026-07","day":9,"wk":"四","locked":false,"today":true,"search":"人性的弱點 戴爾・卡內基（dale carnegie）"},{"date":"2026-07-10","slug":"principles","title":"原則：生活和工作","author":"瑞・達利歐（Ray Dalio）","theme":"職場成長","hook":"一個曾經押錯到破產、跟父親借錢過日子的人，後來管理全世界最大的避險基金。他把中間那段翻身路，濃縮成一條公式：痛苦 ＋ 反思 ＝ 進步。","reading_time":"15","year":"2017","mk":"2026-07","day":10,"wk":"五","locked":true,"today":false,"search":"原則：生活和工作 瑞・達利歐（ray dalio）"},{"date":"2026-07-11","slug":"flow","title":"心流","author":"米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）","theme":"自我成長","hook":"你以為快樂是放假、躺平、什麼都不做。但研究發現：人最投入、最忘我的時刻，幾乎都發生在「有點難、要全力應付」的時候——不是休息，是全神貫注。","reading_time":"13","year":"1990","mk":"2026-07","day":11,"wk":"六","locked":true,"today":false,"search":"心流 米哈里・契克森米哈伊（mihaly csikszentmihalyi）"},{"date":"2026-07-12","slug":"thinking-in-bets","title":"高勝算決策","author":"安妮・杜克（Annie Duke）","theme":"職場成長","hook":"好結果不代表你決策對，壞結果也不代表你判斷錯。你一直用「事情的結局」幫自己打分數，難怪同樣的坑會一直踩。","reading_time":"13","year":"2018","mk":"2026-07","day":12,"wk":"日","locked":true,"today":false,"search":"高勝算決策 安妮・杜克（annie duke）"},{"date":"2026-07-13","slug":"nonviolent-communication","title":"非暴力溝通","author":"馬歇爾・盧森堡（Marshall Rosenberg）","theme":"人際關係","hook":"你以為吵架是因為對方難搞，其實多數衝突都輸在同一件事——你把「觀察」講成了「批評」，話一出口對方就進入防衛，接下來說什麼都沒用了。","reading_time":"13","year":"2003","mk":"2026-07","day":13,"wk":"一","locked":true,"today":false,"search":"非暴力溝通 馬歇爾・盧森堡（marshall rosenberg）"},{"date":"2026-07-14","slug":"great-mental-models","title":"思考的框架","author":"沙恩・帕里什（Shane Parrish）","theme":"邏輯思考","hook":"你不是不夠聰明，是腦袋裡只有一兩把工具。手上只有鐵鎚的人，看什麼都像釘子——這本書要給你的是一整箱思考工具。","reading_time":"13","year":"2019","mk":"2026-07","day":14,"wk":"二","locked":true,"today":false,"search":"思考的框架 沙恩・帕里什（shane parrish）"},{"date":"2026-07-15","slug":"grit","title":"恆毅力","author":"安琪拉・達克沃斯（Angela Duckworth）","theme":"自我成長","hook":"我們一邊嘴上說「天分沒什麼了不起」，一邊偷偷崇拜天才。但研究發現：決定誰能走到最後的，不是天分有多高，而是一個更樸素、更可練的東西——跌倒後爬起來、再繼續走的能力。","reading_time":"13","year":"2016","mk":"2026-07","day":15,"wk":"三","locked":true,"today":false,"search":"恆毅力 安琪拉・達克沃斯（angela duckworth）"},{"date":"2026-07-16","slug":"give-and-take","title":"給予","author":"亞當・格蘭特（Adam Grant）","theme":"職場成長","hook":"職場成功排行榜的最底層是「給予者」——但最頂層也是。差別不在他們給不給，而在他們怎麼給、給了會不會被吃乾抹淨。","reading_time":"13","year":"2013","mk":"2026-07","day":16,"wk":"四","locked":true,"today":false,"search":"給予 亞當・格蘭特（adam grant）"},{"date":"2026-07-17","slug":"crucial-conversations","title":"關鍵對話","author":"凱瑞・派特森 等（Kerry Patterson et al.）","theme":"人際關係","hook":"面對最重要的對話，你的本能幾乎都是錯的——要嘛忍到爆炸、要嘛話講太重。這本書告訴你：關係好壞不看你多會相處，看你在最難開口的那一刻怎麼開口。","reading_time":"13","year":"2002","mk":"2026-07","day":17,"wk":"五","locked":true,"today":false,"search":"關鍵對話 凱瑞・派特森 等（kerry patterson et al.）"},{"date":"2026-07-18","slug":"the-black-swan","title":"黑天鵝效應","author":"納西姆・塔雷伯（Nassim Nicholas Taleb）","theme":"邏輯思考","hook":"一隻被餵養一千天的火雞，每天都更相信人類愛牠——直到感恩節前一天。你對世界的信心，是不是也建立在「還沒出事」上？","reading_time":"13","year":"2007","mk":"2026-07","day":18,"wk":"六","locked":true,"today":false,"search":"黑天鵝效應 納西姆・塔雷伯（nassim nicholas taleb）"},{"date":"2026-07-19","slug":"mindset","title":"心態致勝","author":"卡蘿・杜維克（Carol Dweck）","theme":"自我成長","hook":"誇孩子「你好聰明」聽起來是好事，杜維克卻用實驗證明：這句話反而會讓他變得更怕失敗、更不敢挑戰。差別只在一個字——你相信能力是「固定的」，還是「能長出來的」。","reading_time":"13","year":"2006","mk":"2026-07","day":19,"wk":"日","locked":true,"today":false,"search":"心態致勝 卡蘿・杜維克（carol dweck）"},{"date":"2026-07-20","slug":"measure-what-matters","title":"OKR：做最重要的事","author":"約翰・杜爾（John Doerr）","theme":"職場成長","hook":"你的團隊很忙，但忙不等於在做對的事。OKR 不是又一套 KPI 表格，而是逼所有人先回答一句話：這一季，什麼才是真正最重要的？","reading_time":"13","year":"2018","mk":"2026-07","day":20,"wk":"一","locked":true,"today":false,"search":"okr：做最重要的事 約翰・杜爾（john doerr）"},{"date":"2026-07-21","slug":"start-with-why","title":"先問，為什麼？","author":"賽門・西奈克（Simon Sinek）","theme":"人際關係","hook":"為什麼有人一開口大家就想追隨，有人條件更好卻沒人買單？差別不在你做什麼、做得多好，而在你有沒有先講清楚「你為什麼而做」——人買的從來不是產品，是你的信念。","reading_time":"13","year":"2009","mk":"2026-07","day":21,"wk":"二","locked":true,"today":false,"search":"先問，為什麼？ 賽門・西奈克（simon sinek）"},{"date":"2026-07-22","slug":"antifragile","title":"反脆弱","author":"納西姆・塔雷伯（Nassim Nicholas Taleb）","theme":"邏輯思考","hook":"「脆弱」的相反不是「堅固」——堅固只是不怕摔，真正的相反，是摔了反而變更強。你的人生，是玻璃杯還是肌肉？","reading_time":"13","year":"2012","mk":"2026-07","day":22,"wk":"三","locked":true,"today":false,"search":"反脆弱 納西姆・塔雷伯（nassim nicholas taleb）"},{"date":"2026-07-23","slug":"the-productivity-project","title":"最有生產力的一年","author":"克里斯・貝利（Chris Bailey）","theme":"自我成長","hook":"一個大學畢業生推掉兩份好工作，花整整一年拿自己做實驗——每週工作 90 小時 vs 20 小時、清晨 5 點半起床、每天冥想。他得到的結論很反直覺：生產力的重點從來不是「做更多」，而是「做完你真正在意的事」。","reading_time":"13","year":"2016","mk":"2026-07","day":23,"wk":"四","locked":true,"today":false,"search":"最有生產力的一年 克里斯・貝利（chris bailey）"},{"date":"2026-07-24","slug":"the-pyramid-principle","title":"金字塔原理","author":"芭芭拉・明托（Barbara Minto）","theme":"職場成長","hook":"你的報告不是內容不夠好，是順序錯了。別人聽不懂，往往不是因為你講太少，而是你把結論藏在最後、讓人一路猜你到底想說什麼。","reading_time":"13","year":"1978","mk":"2026-07","day":24,"wk":"五","locked":true,"today":false,"search":"金字塔原理 芭芭拉・明托（barbara minto）"},{"date":"2026-07-25","slug":"daring-greatly","title":"脆弱的力量","author":"布芮尼・布朗（Brené Brown）","theme":"人際關係","hook":"你以為示弱是輸家的事，所以拼命武裝自己不讓人看穿——但真相反過來：所有你最想要的東西（親密、信任、被真心接住）都只長在「敢讓人看見真實的你」那塊地上。","reading_time":"13","year":"2012","mk":"2026-07","day":25,"wk":"六","locked":true,"today":false,"search":"脆弱的力量 布芮尼・布朗（brené brown）"},{"date":"2026-07-26","slug":"poor-charlies-almanack","title":"窮查理的普通常識","author":"查理・蒙格（Charlie Munger，Peter Kaufman 編）","theme":"邏輯思考","hook":"巴菲特說，讓他從猩猩變成人的，是身邊這位夥伴。蒙格一輩子只做一件事——蒐集各學科最強的道理，裝進同一顆腦袋。","reading_time":"13","year":"2005","mk":"2026-07","day":26,"wk":"日","locked":true,"today":false,"search":"窮查理的普通常識 查理・蒙格（charlie munger，peter kaufman 編）"},{"date":"2026-07-27","slug":"the-power-of-now","title":"當下的力量","author":"艾克哈特・托勒（Eckhart Tolle）","theme":"自我成長","hook":"你大部分的痛苦，其實不是眼前正在發生的事造成的——是你腦中那個停不下來的聲音，反覆咀嚼過去的懊悔和未來的擔憂。托勒問了一個嚇人的問題：那個一直在說話的聲音，真的是「你」嗎？","reading_time":"13","year":"1997","mk":"2026-07","day":27,"wk":"一","locked":true,"today":false,"search":"當下的力量 艾克哈特・托勒（eckhart tolle）"},{"date":"2026-07-28","slug":"no-rules-rules","title":"零規則","author":"里德・海斯汀、艾琳・梅爾（Reed Hastings & Erin Meyer）","theme":"職場成長","hook":"你的公司規則越訂越多，往往不是因為員工爛，而是因為不信任。Netflix 賭了一把相反的：先找到最強的人，然後把規則拿掉。","reading_time":"13","year":"2020","mk":"2026-07","day":28,"wk":"二","locked":true,"today":false,"search":"零規則 里德・海斯汀、艾琳・梅爾（reed hastings & erin meyer）"},{"date":"2026-07-29","slug":"captivate","title":"如何讓人喜歡我","author":"凡妮莎・范愛德華茲（Vanessa Van Edwards）","theme":"人際關係","hook":"你以為魅力是天生的、有些人就是有、學不來——其實「討人喜歡」是一組可拆解的技術，連你打招呼的第一句、手放哪裡、問什麼問題，都有可以練的公式。","reading_time":"13","year":"2017","mk":"2026-07","day":29,"wk":"三","locked":true,"today":false,"search":"如何讓人喜歡我 凡妮莎・范愛德華茲（vanessa van edwards）"},{"date":"2026-07-30","slug":"factfulness","title":"真確","author":"漢斯・羅斯林（Hans Rosling）","theme":"邏輯思考","hook":"一道關於世界的常識題，黑猩猩隨便亂猜都比你答得好——不是你笨，是你的大腦裝了十套會扭曲事實的濾鏡。","reading_time":"13","year":"2018","mk":"2026-07","day":30,"wk":"四","locked":true,"today":false,"search":"真確 漢斯・羅斯林（hans rosling）"},{"date":"2026-07-31","slug":"tiny-habits","title":"設計你的小習慣","author":"BJ・福格（BJ Fogg）","theme":"自我成長","hook":"想養成運動習慣，別立志「每天做 20 下伏地挺身」。福格說：先從「上完廁所做 2 下」開始，做完還要對自己歡呼一下。聽起來很蠢，但這個史丹佛實驗室的方法，恰恰打中了習慣真正的開關——不是意志力，是情緒。","reading_time":"13","year":"2019","mk":"2026-07","day":31,"wk":"五","locked":true,"today":false,"search":"設計你的小習慣 bj・福格（bj fogg）"}];
 window.__monthLabels = {"2026-07":"七月"};
 
+    (function () {
+      var cal = window.__calendar || [];
+      var TODAY = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+      window.__today = TODAY;
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      // 忠實鏡像 build 的 inline()：**粗體**（內容為自有可信文字，僅粗體＋跳脫）
+      function fmt(s) {
+        return esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }
+      function md(d) { var p = d.split('-'); return Number(p[1]) + '/' + Number(p[2]); }
+      function themeCls(t) { return 'cover-' + (THEME_KEY[t] || 'growth'); }
+      function favBtn(slug) {
+        return '<button type="button" class="fav-btn" data-slug="' + esc(slug) + '" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>';
+      }
+      function searchKey(b) { return esc((b.title + ' ' + b.author).toLowerCase()); }
+
+      var eligible = cal.filter(function (b) { return b.date <= TODAY; })
+        .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+      var upcoming = cal.filter(function (b) { return b.date > TODAY; })
+        .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+      var featured = eligible[0] || null;
+      var past = eligible.slice(1);
+
+      function tonightCard(b, isToday) {
+        return '<a class="tonight-card ' + themeCls(b.theme) + '" href="books/' + esc(b.slug) + '.html"' +
+          ' data-theme="' + esc(b.theme) + '" data-search="' + searchKey(b) + '" data-slug="' + esc(b.slug) + '">' +
+          favBtn(b.slug) +
+          '<span class="tonight-body">' +
+          '<span class="tonight-badge ui-label">' + (isToday ? '今晚的書' : '最新上架') + '</span>' +
+          '<span class="tonight-title">' + fmt(b.title) + '</span>' +
+          '<span class="tonight-author">' + fmt(b.author) + '・' + esc(b.theme) + '</span>' +
+          '<span class="tonight-hook">' + fmt(b.hook) + '</span>' +
+          '<span class="tonight-foot">' +
+          '<span class="tonight-meta ui-label">' + md(b.date) + '・閱讀 ' + esc(b.reading_time) + ' 分鐘</span>' +
+          '<span class="read-pill">開始閱讀</span></span></span></a>';
+      }
+      function catalogCard(b, no) {
+        var n = '' + no; while (n.length < 3) n = '0' + n;
+        return '<a class="catalog-card ' + themeCls(b.theme) + '" href="books/' + esc(b.slug) + '.html"' +
+          ' data-theme="' + esc(b.theme) + '" data-search="' + searchKey(b) + '" data-slug="' + esc(b.slug) + '">' +
+          favBtn(b.slug) +
+          '<span class="catalog-body">' +
+          '<span class="catalog-index ui-label">No.' + n + '・' + esc(b.theme) + '・' + md(b.date) + '</span>' +
+          '<span class="catalog-title">' + fmt(b.title) + '</span>' +
+          '<span class="catalog-author ui-label">' + fmt(b.author) + '</span>' +
+          '<span class="catalog-hook">' + fmt(b.hook) + '</span>' +
+          '<span class="catalog-foot ui-label">閱讀 ' + esc(b.reading_time) + ' 分鐘<span class="catalog-go">開始閱讀 →</span></span></span></a>';
+      }
+      function upcomingRow(b) {
+        return '<li class="upcoming-row"><span class="upcoming-date">' + md(b.date) + '</span>' +
+          '<span class="upcoming-text"><span class="upcoming-name">' + fmt(b.title) + '</span>　' +
+          '<span class="upcoming-author">' + fmt(b.author) + '</span></span></li>';
+      }
+
+      // 今晚卡
+      var tonightSec = document.getElementById('tonight-section');
+      if (tonightSec) {
+        if (featured) {
+          tonightSec.innerHTML = tonightCard(featured, featured.date === TODAY);
+        } else {
+          var msg = upcoming.length
+            ? '圖書館開幕中，第一本書 ' + md(upcoming[0].date) + ' 晚上 7 點上架'
+            : '圖書館開幕中，敬請期待第一本書上架';
+          tonightSec.innerHTML = '<p class="empty-state">' + msg + '</p>';
+        }
+      }
+      // 已上架數
+      var statCount = document.getElementById('stat-count');
+      if (statCount) statCount.textContent = eligible.length;
+      // 藏書目錄
+      var catSec = document.getElementById('catalog-section');
+      var catList = document.getElementById('catalog-list');
+      if (catSec && catList) {
+        if (past.length) {
+          catList.innerHTML = past.map(function (b, i) { return catalogCard(b, eligible.length - (i + 1)); }).join('');
+          catSec.hidden = false;
+        } else {
+          catList.innerHTML = '';
+          catSec.hidden = true;
+        }
+      }
+      // 即將上架
+      var upSec = document.getElementById('upcoming-section');
+      var upList = document.getElementById('upcoming-list');
+      var upMore = document.getElementById('upcoming-more');
+      if (upSec && upList) {
+        if (upcoming.length) {
+          upList.innerHTML = upcoming.slice(0, 7).map(upcomingRow).join('');
+          var rest = upcoming.length - Math.min(7, upcoming.length);
+          if (upMore) {
+            if (rest > 0) {
+              upMore.textContent = '…之後還有 ' + rest + ' 本，本月已排到 ' + md(upcoming[upcoming.length - 1].date);
+              upMore.hidden = false;
+            } else { upMore.hidden = true; }
+          }
+          upSec.hidden = false;
+        } else {
+          upSec.hidden = true;
+        }
+      }
+    })();
+  
     (function () {
       var themeChips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip[data-filter-theme]'));
       var monthChips = Array.prototype.slice.call(document.querySelectorAll('.month-chip'));
@@ -993,20 +1285,25 @@ window.__monthLabels = {"2026-07":"七月"};
           emptyMsg.hidden = visible !== 0;
         }
       }
+      function today() { return window.__today || new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
       function dayRowHtml(b) {
+        // 一律用前端當天重算，不信任 __calendar 裡 build 時的 locked/today
+        var td = today();
+        var locked = b.date > td;
+        var isToday = b.date === td;
         var themeCls = 'cover-' + (THEME_KEY[b.theme] || 'growth');
         var tile = '<span class="day-tile"><span class="day-num">' + b.day +
           '</span><span class="day-wk ui-label">' + esc(b.wk) + '</span></span>';
         var body = '<span class="day-body">' +
-          (b.today ? '<span class="day-today ui-label">今晚</span>' : '') +
+          (isToday ? '<span class="day-today ui-label">今晚</span>' : '') +
           '<span class="day-title">' + esc(b.title) + '</span>' +
           '<span class="day-meta ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span>' +
           '<span class="day-hook">' + esc(b.hook) + '</span></span>';
-        if (b.locked) {
+        if (locked) {
           return '<div class="day-row is-locked ' + themeCls + '" aria-disabled="true">' +
             tile + body + '<span class="day-action coming-pill ui-label">即將上架</span></div>';
         }
-        return '<a class="day-row ' + themeCls + (b.today ? ' is-today' : '') + '" href="books/' + esc(b.slug) + '.html">' +
+        return '<a class="day-row ' + themeCls + (isToday ? ' is-today' : '') + '" href="books/' + esc(b.slug) + '.html">' +
           tile + body + '<span class="day-action day-go ui-label">讀 →</span></a>';
       }
       function renderMonth() {
@@ -1032,6 +1329,9 @@ window.__monthLabels = {"2026-07":"七月"};
           if (monthView) monthView.hidden = true;
           normalSections.forEach(function (s) { s.hidden = false; });
           applyCards();
+          // 還原全部視圖時，重跑書櫃/金句集渲染，讓空區塊保持收起
+          if (window.__renderShelf) window.__renderShelf();
+          if (window.__renderQShelf) window.__renderQShelf();
         } else {
           normalSections.forEach(function (s) { s.hidden = true; });
           if (emptyMsg) emptyMsg.hidden = true;
@@ -1094,6 +1394,9 @@ window.__monthLabels = {"2026-07":"七月"};
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -1116,6 +1419,7 @@ window.__monthLabels = {"2026-07":"七月"};
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -1195,6 +1499,9 @@ window.__monthLabels = {"2026-07":"七月"};
       function render() {
         var qs = load();
         var has = qs.length > 0;
+        // 空狀態：整個「金句集」區塊收起，收藏第一句金句才浮現
+        var section = document.getElementById('qshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         rotator.hidden = !has || expanded;
@@ -1223,7 +1530,30 @@ window.__monthLabels = {"2026-07":"七月"};
         localStorage.setItem(KEY, JSON.stringify(qs));
         render();
       });
+      window.__renderQShelf = render;
       render();
+    })();
+  
+    (function () {
+      var el = document.getElementById('home-streak');
+      if (!el) return;
+      var TODAY = window.__today || new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      var s;
+      try { s = JSON.parse(localStorage.getItem('yedu-streak')) || {}; } catch (e) { s = {}; }
+      var streak = typeof s.streak === 'number' ? s.streak : 0;
+      if (streak > 0 && (s.lastReadDate === TODAY || s.lastReadDate === prevDay(TODAY))) {
+        el.textContent = '你已連續閱讀 ' + streak + ' 天，繼續保持。';
+      } else if (streak > 0) {
+        el.textContent = '連續紀錄斷了——今晚讀一本，重新接上。';
+      } else {
+        el.textContent = '翻開一本書，開始你的連續閱讀紀錄。';
+      }
+      el.hidden = false;
     })();
   
 </script>

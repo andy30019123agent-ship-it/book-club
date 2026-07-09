@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">Flow: The Psychology of Optimal Experience</p>
   <p class="byline">米哈里・契克森米哈伊（Mihaly Csikszentmihalyi）｜1990</p>
   <p class="hook">你以為快樂是放假、躺平、什麼都不做。但研究發現：人最投入、最忘我的時刻，幾乎都發生在「有點難、要全力應付」的時候——不是休息，是全神貫注。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>契克森米哈伊的名字很難唸（他自己開玩笑說唸成「chicks-send-me-high」就好），但他問的問題誰都懂：人到底什麼時候才真正快樂？</p>
 <p>他會盯上這個問題，跟他的童年有關。他是匈牙利人，二戰時還是小孩，親眼看著身邊的大人——原本體面、有身分的成年人——在戰爭裡失去一切之後，整個人跟著垮掉，變得空洞、失魂落魄。但他也注意到，有少數人即使什麼都沒了，眼神裡還是有光，還撐得住。這個對比在他心裡留了一輩子：<strong>到底是什麼，讓一個人的內在世界不會跟著外在一起崩塌？</strong></p>
 <p>戰後他跑到美國唸心理學。當時的心理學要嘛在研究精神疾病，要嘛在研究老鼠壓桿——很少人認真研究「一個健康的人怎樣才算活得好」。他偏要研究這個。他訪談了幾百個藝術家、運動員、棋手、外科醫生、甚至工廠工人，問他們「什麼時候覺得最投入、最值得活」。這些人做的事天差地遠，但描述那個狀態時用的詞卻高度一致——彷彿被一股水流帶著走，毫不費力卻又全神貫注。他借用他們的話，把這個狀態命名為 <strong>flow，心流</strong>。1990 年這本書出版，成了正向心理學的奠基之作，也讓「心流」變成全世界都在用的詞。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼我明明在放鬆，卻覺得空虛？為什麼有些累人的事，做完反而讓我充滿電？」</p>
 <p>大多數人以為快樂＝爽＝不用出力。所以我們追求的是沙發、手機、追劇、放空。但契克森米哈伊用一套嚴謹的研究方法戳破了這個假設：<strong>人生最好的時刻，通常不是被動、放鬆、什麼都不用做的時候，而是身心被拉到極限、全力去完成某件困難又值得的事的時候。</strong></p>
 <p>他不是在說「別休息、去拚命」。他是在說：你一直誤解了快樂的來源。真正的滿足感不是外界給你的，是你「投入」時，自己心裡長出來的。這本書就是在教你怎麼刻意製造那種投入狀態——不只在工作，也在關係、身體、思考裡。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、心流：全神貫注到忘記自己的那個狀態</h3>
 <p>先講清楚心流到底長什麼樣。契克森米哈伊歸納出幾個共同特徵：你面對一個明確的目標、每一步都有立即的回饋、注意力完全集中到雜念擠不進來、行動和意識融為一體（想都不用想手就動了）、對「自我」的意識消失（你忘了在意別人怎麼看你）、時間感扭曲（一抬頭三小時過去了），而且——這件事本身就是獎賞，不為別的，做著就爽。</p>
 <p>他研究這個用了一個很巧的方法，叫「經驗抽樣法」：給受試者戴一個呼叫器，一天隨機響幾次，響了就馬上記下「你現在在做什麼、心情如何」。這樣蒐集到幾十萬筆真實生活的切片，而不是事後回想的美化版。資料顯示，人回報心流最多的場合，往往不是躺著看電視，而是在攀岩、下棋、動手術、演奏、認真工作的時候。</p>
@@ -348,22 +471,29 @@
 <p>書裡有一個發現特別打臉現代人。經驗抽樣的資料顯示：<strong>人們在工作時回報心流的比例，遠高於休閒的時候</strong>——上班時大約一半的時間處在心流，休閒時只有不到兩成。但弔詭的是，同樣這些人，嘴上卻一直說「真希望現在不用上班」。</p>
 <p>為什麼會這樣？因為工作天生具備心流的條件：有明確目標、有規則、有即時回饋、難度通常配得上你的技能。而「休閒」——尤其是被動休閒，像漫無目的滑手機、看電視——反而缺乏這些條件，容易讓人掉進精神熵的混亂裡，看完一晚上短影片只覺得更空。</p>
 <p><strong>這對你的意義</strong>：問題不是「工作 vs 休息」，是「主動 vs 被動」。真正能充電的休閒，是那些需要投入技能的——運動、彈琴、下廚、園藝、認真讀一本書。癱著不動的娛樂爽在當下，但很少讓人事後覺得「這段時間活得很好」。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>把四個概念接起來，是一條很清楚的鏈：注意力是有限的<strong>精神能量</strong>（起點）→ 亂花它，意識就陷入焦慮雜念的「精神熵」；把它全部投進一件事，就進入井然有序的<strong>心流</strong>（狀態）→ 但心流只發生在<strong>難度與能力相當</strong>的甜蜜點，太難焦慮、太簡單無聊（條件）→ 想讓心流從偶爾發生變成常態，關鍵是把事情變成<strong>自成目的</strong>，替再平凡的事都設一個屬於自己的挑戰（方法）→ 最終目標是養成一個「<strong>自成目的的自我</strong>」，一個不管環境給什麼，都能替自己找到投入方式的人（歸宿）。</p>
 <p>整本書其實在回答童年那個問題：外在世界可以奪走你的一切，但只要你懂得如何駕馭自己的注意力，你就能在任何處境裡，替自己的內在建立秩序。這是誰也拿不走的能力。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（把一份無聊的工作變出心流）</strong>：</p>
 <ol><li>設微目標：別把任務當「做完就好」，替每個段落設一個屬於你的挑戰——這份報表，能不能比上次快 20 分鐘做完？這封回信，能不能寫得讓對方一次就懂？</li><li>製造回饋：無聊的工作往往缺即時回饋，那就自己造。計時、記錄、跟昨天的自己比。</li><li>調難度旋鈕：卡住焦慮就把任務拆到你搞得定的最小塊；無聊到想睡就替自己加規則、加限制、加速度。</li><li>清掉雜訊：心流最怕被打斷。關通知、留一段不被切斷的完整時間，比多花兩小時有用。</li></ol>
 <p><strong>生活版（把休息時間真正變成充電）</strong>：</p>
 <ol><li>分清主動與被動休閒：睡前那一小時，是滑到眼睛痠（被動），還是做一件需要投入的事（主動）？</li><li>挑一個「自成目的」的嗜好：運動、樂器、下廚、手作——標準是「拿掉打卡和曬照，你還是想做」。</li><li>給嗜好設進度：心流需要能力持續往上長。這個月的難度，要比上個月高一點點，才不會做膩。</li><li>小處練專注：連洗碗、走路都可以是心流。把全部注意力放在當下這個動作上，你會發現連雜務都變得不那麼難熬。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「心流＝放鬆、進入化境毫不費力」</strong>——恰恰相反。心流常發生在你身心被拉到極限、全力應付的時候。它「感覺」毫不費力，是因為你太投入而忘了費力，不是因為它真的輕鬆。躺平永遠進不了心流。</li><li><strong>「只要一直做喜歡的事就會有心流」</strong>——不對。你再愛的事，做到爛熟、毫無挑戰，一樣會無聊。心流靠的是難度與能力的動態平衡，不是「喜歡」兩個字。</li><li><strong>「有了心流，人生就會快樂」</strong>——契克森米哈伊沒這麼天真。心流是強力引擎，但方向要你自己給。裝在賭博、電玩、甚至傷害別人的事情上，一樣會有心流。快樂還需要「這件事值不值得投入一生」這層意義的判斷，那是書後半在談的。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《恆毅力》（達克沃斯）：達克沃斯自己指出，刻意練習（辛苦的準備）和心流（忘我的表現）是一體兩面——高手用汗水堆出來的刻意練習，才換得比賽時的心流。想懂「投入當下」讀契氏，想懂「長期堅持」讀達氏，兩本正好一橫一縱。</li><li>《原子習慣》（克利爾）：習慣解決的是「怎麼讓好行為自動發生」，心流解決的是「行為發生時怎麼投入得更深」。習慣是骨架，心流是骨架裡跑的血。</li><li>《當下的力量》（托勒）：兩本都在講「活在此刻」，但路線完全不同。契氏走科學實證，靠「主動投入一件難事」把你拉進當下；托勒走靈性內觀，靠「停止思考、純粹覺察」把你帶回當下。一個往外做，一個往內看。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「人生最好的時刻，通常不是被動、接收、放鬆的時候……而是一個人的身心被拉伸到極限，去自願完成某件困難而值得的事的時候。」（The best moments usually occur when a person's body or mind is stretched to its limits in a voluntary effort to accomplish something difficult and worthwhile.）</li><li>「控制意識，就是控制生活品質；其餘的一切，都由此決定。」（Control of consciousness determines the quality of life.）</li><li>「快樂不是發生在你身上的事，它不是你能買到或命令來的……它取決於你如何詮釋發生在你身上的一切。」（Happiness is not something that happens... it depends on how we interpret what happens to us.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你上一次「一抬頭發現三小時過去了」是在做什麼？那件事符合心流的哪些條件（明確目標？即時回饋？難度剛好）？你能不能把它變成生活裡更常出現的固定安排？</li><li>檢視你的休息時間：有多少比例是「被動」的（滑手機、追劇），多少是「主動」的（運動、動手、學習）？如果被動的偏多，你願意用一個主動嗜好，換掉睡前那一小時嗎？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="flow" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -435,6 +565,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -457,6 +590,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -503,6 +637,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -528,6 +668,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "flow";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

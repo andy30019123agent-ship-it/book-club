@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,17 +440,19 @@
   <p class="title-en">The Power of Now</p>
   <p class="byline">艾克哈特・托勒（Eckhart Tolle）｜1997</p>
   <p class="hook">你大部分的痛苦，其實不是眼前正在發生的事造成的——是你腦中那個停不下來的聲音，反覆咀嚼過去的懊悔和未來的擔憂。托勒問了一個嚇人的問題：那個一直在說話的聲音，真的是「你」嗎？</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>托勒的故事本身，就是這本書最好的說明。</p>
 <p>他是德國人，前半生過得極度痛苦——長年被焦慮和憂鬱纏身，好幾次覺得活不下去。到了 29 歲那年的一個深夜，他跌到人生谷底，心裡冒出一個念頭：「我再也無法忍受跟我自己一起生活了。」但就在這個念頭出現的瞬間，他忽然愣住了——「我」無法忍受「我自己」？那不就表示，這裡有「兩個」我嗎？一個是「我」，一個是那個被我受不了的「自己」。如果有兩個，那到底哪一個才是真的我？</p>
 <p>這個念頭像一道閃電劈開了他。他描述那一晚之後，纏了他半輩子的痛苦突然消融，取而代之的是一種深沉的平靜。接下來好一段時間，他幾乎是坐在公園長椅上，處在一種難以言喻的安寧裡。他花了很多年才慢慢理解、也才有辦法用語言講出那晚到底發生了什麼——後來他成了心靈導師，1997 年寫下這本《當下的力量》。</p>
 <p>先講清楚：這是一本靈性書，不是心理學實證研究。它談的東西無法用實驗證明，語言也帶著濃厚的東方禪學與冥想色彩。但它講的核心——「別被你的念頭綁架、回到當下」——跟近二十年科學界大熱的「正念（mindfulness）」研究驚人地一致。所以就算你不信靈性那一套，它的實用內核仍然站得住。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼我明明什麼壞事都沒發生，卻還是焦慮、不安、不快樂？」</p>
 <p>托勒的答案很尖銳：因為你活在腦子裡，不活在當下。你大部分的痛苦，不是來自「此刻正在發生的事」，而是來自那個停不下來的思緒——它不斷把你拖回過去（後悔、怨恨、回想那些讓你難堪的事），或推向未來（擔心、恐懼、想像還沒發生的災難）。而過去和未來，其實都只存在於你的腦海裡；真正存在的，永遠只有「現在」。</p>
 <p>這本書要回答的是：如果你老是被莫名的焦慮和不滿糾纏，明明日子過得去卻總覺得不對勁——問題可能不在你的處境，而在你把「腦中的聲音」當成了「你自己」，而它幾乎從不停在當下。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、你不是你的念頭：那個一直在說話的聲音，只是你腦中的一個工具</h3>
 <p>這是全書的第一刀，也是最重要的一刀。托勒說：<strong>你不是你腦中那個不停說話的聲音，你是「察覺到那個聲音」的那個存在。</strong></p>
 <p>你有沒有注意過，你的腦子幾乎從不安靜？它一直在評論、比較、擔憂、重播、抱怨——你走在路上，它在碎念；你要睡了，它還在放你白天說錯的話。多數人一輩子都以為「那個聲音就是我」，於是被它牽著鼻子走，它焦慮你就焦慮，它憤怒你就憤怒。托勒的洞見是：既然你「能夠察覺」到這個聲音，那你就不可能「等於」這個聲音——察覺者和被察覺的東西，是兩回事。真正的你，是那個安靜地在背後看著念頭來來去去的「覺知」。</p>
@@ -350,22 +473,29 @@
 <p>要特別澄清：這<strong>不是</strong>要你消極、認命、放棄努力、任人宰割。臣服針對的是你內心「抗拒現實」的那股力量。想想看，當一件不如意的事發生（塞車了、被拒絕了、下雨了），事情本身帶來的麻煩往往有限，真正折磨你的，是你腦中那個不停哀嚎「這不應該發生！為什麼是我！」的抗拒。這股抗拒，托勒稱之為多數痛苦的來源——你在跟「已經是事實」的東西打一場注定輸的架。</p>
 <p><strong>機制</strong>：臣服是先停止這場內耗——接受「此刻就是這樣了」，不代表你認同它、喜歡它，只是不再浪費能量去抗拒一個既成事實。而弔詭的是，一旦你停止抗拒、內心平靜下來，你反而能更清醒、更有力量地去採取行動改變它。他有一句很精妙的話：接納當下，然後從那份接納出發去行動——這遠比帶著憤怒和抗拒去行動有效得多。抗拒讓你困在情緒裡動彈不得，臣服讓你騰出能量真正去解決問題。</p>
 <p><strong>限制</strong>：臣服很容易被誤讀成「躺平、逆來順受」。托勒強調的分別是——接受「此刻的事實」，不等於接受「永遠都要這樣」。你完全可以一邊平靜接納現況，一邊積極行動去改變它。內在的臣服和外在的行動，並不衝突。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>整本書的邏輯是一條「向內收」的路。第一步，你得先「看見」——<strong>你不是你的念頭</strong>，那個吵個不停的聲音只是工具，不是真正的你（認出敵人）。第二步，你要明白這些念頭之所以折磨你，是因為它們幾乎全在過去和未來遊蕩，而<strong>唯一真實的只有當下</strong>（回到戰場）。第三步，你會遇到最頑強的阻力——那團靠痛苦餵養自己的<strong>痛苦之身</strong>，它拚命想把你拖離當下、拖進舊傷（辨識最大的干擾）。第四步，破解一切的總鑰匙是<strong>臣服</strong>：停止抗拒此刻的事實，內耗一停，平靜與力量就回來了（放下武器反而得勝）。</p>
 <p>一句話收攏：痛苦來自「活在念頭裡、抗拒當下」，而解脫的路只有一條——把注意力一次又一次地帶回此時此刻，做那個「看著念頭」的覺知，而不是「被念頭拖著跑」的奴隸。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（在壓力和焦慮裡站穩）</strong>：</p>
 <ol><li>焦慮襲來時，問一句話：當你為某個截止日、某場報告心慌時，停下來問自己——「就在此刻這一秒，我有什麼真正的問題嗎？」多數時候答案是「沒有，我只是在恐懼一個還沒發生的未來」。這句話能瞬間把你從想像的災難拉回現實。</li><li>開會前做三個「有意識的呼吸」：不改變呼吸，只是全神貫注地感覺氣息進出。這是最短的回到當下練習，能在緊張前替你按下暫停鍵。</li><li>觀察你的「抱怨腦」：工作中那個不停評論「這爛透了、他真討厭、為什麼是我」的聲音，練習只是看著它，別跟它演下去。你會發現，很多痛苦是那個聲音加工出來的，不是事情本身。</li></ol>
 <p><strong>生活版（讓腦子安靜下來）</strong>：</p>
 <ol><li>用身體當錨：一天裡挑幾個時刻，把注意力放到「感覺你的手」「感覺你的腳踩在地上」。身體只存在於當下，把覺知放回身體，就是把自己拉離腦中的過去與未來。</li><li>認出你的「痛苦之身」：下次你莫名想吵架、想翻舊帳、想沉在情緒裡，練習退一步在心裡說一句：「喔，那個熟悉的痛又醒了。」光是這句有意識的辨識，就能鬆開它對你的掌控。</li><li>練習「臣服」小事：從塞車、排隊、下雨這種小挫折開始練——事情已成事實，先停止內心那句「這不應該！」，接受它，再冷靜想下一步。內耗一停，你會意外地輕鬆。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「活在當下＝不要計畫未來、不要記取過去、及時行樂」</strong>——完全誤讀。托勒說的是，「計畫」和「回顧」這些動作，本身也是在當下進行的；你可以在此刻好好規劃明天，只是別讓自己「住」進未來的焦慮或過去的懊悔裡。他反對的是心智在時間裡空轉，不是務實的規劃。</li><li><strong>「臣服＝認命、躺平、逆來順受」</strong>——這是最危險的誤解。托勒的臣服是「接受此刻的事實、停止內在抗拒」，好讓你騰出能量去行動。他明講：接納當下之後，該行動就行動，而且會行動得更有效。接受「現在是這樣」不等於接受「永遠都得這樣」。</li><li><strong>「這是一本能立刻讓你開悟的心理學指南」</strong>——它不是心理學實證，是靈性書；書裡的說法無法用科學證明，讀的時候該當成一種內在修煉的邀請，而不是一套有數據背書的方法。它的價值在體驗與練習，不在證明。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《心流》（契克森米哈伊）：兩本都想把你帶回「此刻」，路線卻相反。契氏走科學實證，靠「全心投入一件有挑戰的事」讓雜念沒空間，自然回到當下；托勒走靈性內觀，靠「停止思考、純粹覺察」直接回到當下。一個往外做到忘我，一個往內看到寧靜。想動手的讀契氏，想靜心的讀托勒。</li><li>《被討厭的勇氣》（岸見一郎）：阿德勒心理學也有一句非常「當下」的主張——人生是由一連串的「此刻」構成的，別把人生當成通往某個未來目標的直線，要像跳舞一樣認真地活在每一個當下。兩本從完全不同的體系，講出了相近的活在此刻。</li><li>《原子習慣》（克利爾）：有趣的是它們互補而不衝突——習慣是把「自動化的行為系統」蓋好，讓你不用每件事都耗費心神；心神省下來，正好可以像托勒說的，更有餘裕地清醒活在當下。系統管好瑣事，覺知留給生活。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「你所擁有的一切，就是此刻。生命就是現在。從來沒有一刻你的生命不是在『現在』。」（原文精神：Realize deeply that the present moment is all you ever have.）</li><li>「你不是你腦中那個聲音——你是那個察覺到它的存在。」（原文精神：You are not your mind; you are the awareness behind it.）</li><li>「絕大多數的痛苦，是不必要的。它是你在抗拒『當下如是』時，自己製造出來的。」（原文精神：Most suffering is unnecessary; we create it by resisting what is.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>花一分鐘安靜地「聽」你腦中的聲音——它在說什麼？是重播過去，還是擔憂未來？當你「看著」它而不是「變成」它時，你和那些念頭之間，是不是出現了一點點距離？那點距離的感覺是什麼？</li><li>回想你最近一次真正的痛苦或焦慮——它有多少是「此刻眼前正在發生的事」造成的，又有多少是「腦中對過去的懊悔或對未來的擔憂」造成的？如果只留下此刻真實存在的部分，那份痛苦還剩多少？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-power-of-now" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -437,6 +567,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -459,6 +592,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -505,6 +639,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -530,6 +670,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-power-of-now";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

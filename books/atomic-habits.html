@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,15 +440,21 @@
   <p class="title-en">Atomic Habits</p>
   <p class="byline">詹姆斯・克利爾（James Clear）｜2018</p>
   <p class="hook">為什麼你立的目標總是失敗？因為你該修的不是目標，是系統——每天進步 1%，一年後你會強 37 倍。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>你不會升到目標的高度，只會掉到系統的水平——要改的是系統，不是目標。</li><li>每天進步 1%，一年強 37 倍；成果躲在「失望之谷」後面，別在破冰前放棄。</li><li>用兩分鐘法則先成為「每天都出現的人」——每個小行動，都是為你想成為的人投票。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>詹姆斯・克利爾不是什麼心理學教授，他的起點是一場意外：高二那年，他在棒球練習中被隊友脫手的球棒擊中臉部，顱骨骨折、陷入昏迷，被直升機送進醫院。醒來後，這個原本前途看好的棒球員連走路都要重新學。</p>
 <p>他的復原之路沒有任何戲劇性的奇蹟——有的只是小得不能再小的日常：先把睡眠調整好、再把讀書習慣撿回來、再一點一點回到重訓室。六年後，他入選大學棒球隊的最佳陣容；畢業時拿到學校的最高學業獎項。他後來回顧：「那段日子教會我的是，微小的習慣在累積夠久之後，威力大得不合理。」</p>
 <p>2012 年起他開始每週寫兩篇文章談習慣科學，電子報訂閱數從零長到數十萬，最後濃縮成 2018 年出版的這本書。它在全球賣破千萬冊，長期霸榜——不是因為理論多新，而是因為他把行為科學翻譯成了「明天早上就能動手」的操作手冊。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「我知道該運動、該讀書、該早睡，為什麼就是做不到？」——大多數人把答案歸咎於意志力不夠。克利爾的回答完全相反：<strong>你不是輸給意志力，你是輸給系統設計。</strong>目標人人會立，但「你不會升到目標的高度，只會掉到系統的水平」。這本書就是教你怎麼設計那套系統：讓好習慣像自動導航一樣發生，讓壞習慣像爬滿沙的樓梯一樣難走。</p>
 <p>如果你曾經一月立志、二月放棄；如果你覺得自己「就是沒有自律的天分」——這本書會告訴你，問題從來不在你這個人，在你的方法。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、1% 的複利：小到不像話的改善，才是真正的槓桿</h3>
 <p>書的開場是體育史上最有名的管理實驗之一。2003 年，英國自行車隊聘請布萊爾斯福德（Dave Brailsford）當績效總監——在那之前，英國隊將近一百年只拿過一面奧運金牌，慘到有車廠拒絕賣車給他們，怕影響品牌形象。</p>
 <p>布萊爾斯福德的策略叫「邊際增益的累積」：把騎自行車拆解成所有你想得到和想不到的環節，每個環節改善 1%。重新設計坐墊、用酒精擦輪胎增加抓地力、讓選手穿電熱褲維持肌肉溫度、測試哪種按摩凝膠恢復最快、教選手正確洗手減少感冒、甚至把運輸車內部漆成白色——只為了看清有沒有灰塵混進精密調校的車體。</p>
@@ -349,21 +476,28 @@
 <p><strong>法則二「有吸引力」</strong>：都柏林工程系學生拜恩（Ronan Byrne）把飛輪車接上筆電，寫了一個程式——只有踩到一定速度，Netflix 才會繼續播。這叫「誘惑捆綁」：把「該做的事」跟「想做的事」綁在一起。</p>
 <p><strong>法則三「輕而易舉」</strong>藏著全書最實用的一招：<strong>兩分鐘法則</strong>。任何新習慣的入門版本都要縮到兩分鐘內能完成——「睡前讀書」變成「睡前讀一頁」、「跑五公里」變成「穿上跑鞋出門」。聽起來像自欺欺人？重點是：<strong>你要先成為「每天都出現的人」，才有資格談優化表現。</strong>佛羅里達大學一堂攝影課把學生分兩組：「量組」按交出的照片張數評分，「質組」只需交一張完美作品。學期末最好的照片全部出自量組——他們在大量嘗試中磨出了技術，質組只磨出了完美主義。習慣的關鍵指標是重複次數，不是投入時數。</p>
 <p><strong>法則四「令人滿足」</strong>：加拿大券商戴斯米（Trent Dyrsmid）桌上放兩個罐子，一罐裝 120 個迴紋針。每打一通業務電話，移一個迴紋針到另一罐。就這麼土的方法，他一年半內幫公司帶進 500 萬美元的業務。大腦要的是<strong>立即</strong>的成就感——迴紋針、習慣追蹤 App、日曆上的叉叉都行。配套原則是「<strong>絕不錯過兩次</strong>」：漏一天是意外，漏兩天是新習慣（壞的那種）的開始。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>把四個概念串起來：<strong>身分</strong>回答「為什麼要改變」（成為誰），<strong>系統與 1% 複利</strong>回答「用什麼哲學改變」（別追結果，養系統），<strong>四法則</strong>回答「具體怎麼操作」（設計提示、渴望、行動、獎賞），<strong>失望之谷</strong>回答「中途想放棄怎麼辦」（成果在潛伏，不在缺席）。它不是三十個技巧的雜燴，是一條從價值觀到操作手冊的完整鏈路。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「下班後進修」為例）</strong>：</p>
 <ol><li>身分投票：不是「我要學 AI」，是「我是每天碰新東西的人」</li><li>執行意向：「週一到週四晚上 9:00，在書桌前看 20 分鐘課程」——寫進行事曆</li><li>環境設計：課程網頁設成瀏覽器首頁；手機留在客廳充電</li><li>兩分鐘版本：狀態差的日子，只要求「打開課程按下播放」</li><li>迴紋針法：桌上放月曆，看完就畫叉，絕不連續空兩格</li></ol>
 <p><strong>生活版（以「睡前不滑手機」為例，反轉四法則）</strong>：</p>
 <ol><li>隱形：充電器移出臥室——提示消失，習慣就斷糧</li><li>無吸引力：把「滑手機」重新框架成「拿明天的精神換廢片」</li><li>困難：登出常刷的 App，每次都要重新輸入密碼</li><li>不滿足：跟另一半約定，誰帶手機上床誰洗一週的碗</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「21 天養成習慣」</strong>——書裡根本沒有這句話。習慣形成取決於重複「次數」，不是天數；簡單的習慣快，複雜的可能要幾個月。抱著天數倒數，數完就鬆手，正是反例。</li><li><strong>「所以目標沒用」</strong>——克利爾說的是目標「指方向」、系統「拉進度」，兩個都要，只是別把心力全押在前者。斷章取義成「不用設目標」就讀反了。</li><li><strong>「1% 是精確數字」</strong>——那是一個比喻複利的模型，不是要你拿 Excel 算自己今天進步了幾趴。重點是方向與頻率，不是度量。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《為什麼我們這樣生活，那樣工作》（杜希格）：習慣迴路理論的科普原點，重「理解機制」；《原子習慣》站在它肩膀上，重「操作」。想懂原理讀前者，想動手讀後者。</li><li>《設計你的小習慣》（BJ・福格）：史丹佛行為設計實驗室的路線，比克利爾更強調「情緒與慶祝」——做完小習慣要立刻慶祝來焊接神經迴路。兩本高度互補。</li><li>《深度工作力》（紐波特）：習慣系統蓋好之後，拿來裝什麼？紐波特的答案是「不受干擾的深度專注」——正好是我們讀書會的下一本。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「你不會升到目標的高度，你只會掉到系統的水平。」（You do not rise to the level of your goals. You fall to the level of your systems.）</li><li>「你採取的每一個行動，都是在為你想成為的那種人投票。」（Every action you take is a vote for the type of person you wish to become.）</li><li>「習慣是自我成長的複利。」（Habits are the compound interest of self-improvement.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>用「身分」重寫你最近的一個目標：你想成為什麼樣的人？這週你能投下的第一張「小票」是什麼？</li><li>盤點你的環境：哪一個「提示」最常把你拉進壞習慣（手機位置？桌面配置？）——你打算怎麼讓它隱形？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="atomic-habits" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -435,6 +569,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -457,6 +594,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -503,6 +641,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -528,6 +672,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "atomic-habits";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

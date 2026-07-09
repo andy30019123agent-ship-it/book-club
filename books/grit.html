@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">Grit: The Power of Passion and Perseverance</p>
   <p class="byline">安琪拉・達克沃斯（Angela Duckworth）｜2016</p>
   <p class="hook">我們一邊嘴上說「天分沒什麼了不起」，一邊偷偷崇拜天才。但研究發現：決定誰能走到最後的，不是天分有多高，而是一個更樸素、更可練的東西——跌倒後爬起來、再繼續走的能力。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>達克沃斯不是含著金湯匙、一路順風的學霸典型。她小時候常被父親念「你又不是天才」——這句話大概在她心裡種下了一輩子要回答的問題。</p>
 <p>她一開始走的是很主流的路：唸完名校，進了麥肯錫當顧問，年紀輕輕就領著漂亮薪水。但她做得不快樂，二十七歲那年做了一個嚇壞身邊人的決定——辭掉顧問工作，跑去紐約公立學校教七年級數學。就是在講台上，她發現了一件讓她困惑的事：<strong>數學考最好的，往往不是她眼中最「聰明」的那幾個孩子。</strong>有些反應很快的學生成績平平，有些起步慢的孩子卻靠著死磕，一路追上來。天分和成就之間，明顯還隔著什麼東西。</p>
 <p>為了搞清楚那個「東西」是什麼，她又轉行，跑去賓州大學唸心理學博士，師從正向心理學之父塞利格曼。她跑遍各種「淘汰率很高」的場合做研究——西點軍校、拼字比賽、業務團隊、貧困學區的學校——想找出「誰會撐到最後」的共同特質。答案濃縮成一個詞：<strong>grit，恆毅力</strong>。她因為這系列研究拿到了有「天才獎」之稱的麥克阿瑟獎——一個研究「別靠天才」的人，拿了天才獎，本身就是個好笑又動人的註腳。這本書 2016 年出版，成了全球暢銷書。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼有些人明明沒那麼聰明、沒那麼有天分，卻能一路走到頂，而許多天資更好的人半途就不見了？」</p>
 <p>我們的文化太迷信天分了。看到誰成功，第一反應是「他一定很有天賦」——因為這個解釋最省事，也讓我們自己不成功時有台階下（反正我沒那個天分）。達克沃斯要挑戰的正是這個懶惰的答案。她的核心主張很簡單：<strong>長期的成就，靠的不是短跑衝刺的天賦，而是馬拉松式的堅持。</strong>能不能對一個目標「持續熱愛 ＋ 不放棄地努力」很多年，比你起跑時多聰明重要得多。</p>
 <p>如果你曾經因為「我好像沒天分」而放棄；如果你三分鐘熱度、什麼都學一半——這本書會告訴你，你缺的不是天賦，是把一件事撐久的方法，而那是可以練的。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、恆毅力＝熱情 ＋ 毅力，而且是「長期」的那種</h3>
 <p>先定義清楚。恆毅力有兩個成分：<strong>對長期目標的熱情（passion）</strong>，和<strong>堅持到底的毅力（perseverance）</strong>。注意——是「長期」。達克沃斯特別強調，熱情不是指「有多狂熱、多激動」，而是指「有多持久、多專一」。</p>
 <p>這個區分很重要。很多人以為自己很有熱情，因為他們常常對新事物一見鍾情、燃燒得很旺——但那把火燒三個月就滅了，換下一個目標。這不叫熱情，這叫喜新厭舊。真正的恆毅力，是你能對「同一個」大目標，年復一年地保持在意，即使它已經不新鮮、不刺激了。她甚至自己編了一份「恆毅力量表」，量的不是你此刻多有幹勁，而是你「幾年來能不能守著一個方向不變心」。</p>
@@ -354,22 +477,29 @@
 <p><strong>練習</strong>——愛上之後，用刻意練習讓自己一天比一天強。技能的進步本身會回頭餵養你的熱情。</p>
 <p><strong>目的</strong>——把手上的事，連結到「對別人有益」的更大意義。她講了那個經典的砌磚工寓言：三個砌磚工被問在做什麼，第一個說「我在砌磚」，第二個說「我在蓋一座教堂」，第三個說「我在建造神的殿堂」。做同樣的活，第三個人的恆毅力最強，因為他看見的是意義，不是磚頭。能把工作跟「幫助他人」掛上鉤的人，撐得最久。</p>
 <p><strong>希望</strong>——這是貫穿始終的一種「摔倒了會再爬起來」的信念。它跟杜維克的「成長心態」、塞利格曼的「習得的樂觀」是親戚：相信努力能改變處境，於是遇到挫折不會癱在原地，而是想「我還能怎麼做」。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>整本書的骨架是這樣：先用一條公式（<strong>努力算兩次</strong>）說服你「別再拿天分當藉口」，把焦點從你控制不了的天賦，搬到你控制得了的努力上——這是心態的鬆綁。接著定義恆毅力＝<strong>長期的熱情 ＋ 毅力</strong>，並用西點、拼字比賽的硬數據證明它真的能預測誰走到最後——這是把概念坐實。然後拆解努力的品質，告訴你有效的努力叫<strong>刻意練習</strong>，不是瞎忙——這是方法。最後給出<strong>興趣→練習→目的→希望</strong>這條養成路徑，證明恆毅力不是天生的性格，而是可以由裡到外一步步培養的能力——這是希望與出路。</p>
 <p>一句話收攏：成就＝你選定一個值得的方向，然後用對的方法，堅持得夠久。天分只決定起跑線，恆毅力決定終點。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（把三分鐘熱度變成長期累積）</strong>：</p>
 <ol><li>找出你的北極星：問自己「我做的這些事，最終是為了什麼更大的目標？」把它寫下來當頂層目標，之後每個小任務都對照它，你會突然有定力。</li><li>每天安排一段「刻意練習」：不是重複你已經會的，而是專挑你會卡住、會出錯的難點去攻，練完立刻檢討。哪怕每天只有 30 分鐘。</li><li>連結意義：想清楚你的工作最終幫到了誰。看得見受益的人，你就撐得住枯燥。</li></ol>
 <p><strong>生活版（培養一個能持久的興趣）</strong>：</p>
 <ol><li>先玩再愛：別等「找到真正的熱情」才開始。挑一個有點好奇的事，給它三個月的探索期，允許自己還不擅長。</li><li>訂「難事規則」：達克沃斯家有個規矩——每個人都要選一件需要刻意練習的難事（樂器、運動皆可），可以自己選，但選了就不准在「不順、想放棄」的當下退出，至少做完一個週期。這條規則對大人一樣有用。</li><li>分清「放棄一條路」和「放棄目標」：某件事讓你痛苦想退出時，先問——我是受不了通往目標的這條爛路，還是連目標本身都不想要了？前者可以換路，後者才是真的該收手。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「恆毅力＝永不放棄、死守到底」</strong>——這是最大的誤讀。達克沃斯明確說過，人生很多低層目標本來就該果斷放棄，把力氣省下來給真正重要的北極星。恆毅力守的是「頂層方向」，不是「每一條具體的路」。分不清這個，就會把固執當毅力。</li><li><strong>「達克沃斯說天分不重要」</strong>——她從沒這樣講。她承認天分真實存在、也有影響。她說的是天分被高估、努力被低估，而且努力是你少數能掌控的變數。這是務實，不是否認現實。</li><li><strong>「有恆毅力就一定會成功」</strong>——恆毅力大幅提高勝率，但不是保證書。方向錯了、時運不濟，再堅持也可能落空。它是必要條件，不是萬靈丹。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《心態致勝》（杜維克）：兩本是最佳拍檔。杜維克解釋「為什麼有人願意堅持」——因為他相信能力能成長（成長心態）；達克沃斯則接手講「這份堅持長期會累積成什麼」。想懂堅持的心理源頭讀杜維克，想懂堅持的長期威力讀達克沃斯。</li><li>《心流》（契克森米哈伊）：達克沃斯親自把兩者接起來——刻意練習是台下咬牙的苦功，心流是台上忘我的發揮，一辛苦一享受，缺一不可。</li><li>《原子習慣》（克利爾）：恆毅力回答「為什麼要撐下去」（有北極星、有意義），原子習慣回答「怎麼撐下去而不靠意志力硬耗」（設計系統讓堅持自動發生）。動機讀達氏，方法讀克氏。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「我們的潛力是一回事，我們如何運用它，是另一回事。」（Our potential is one thing. What we do with it is quite another.）</li><li>「熱情不是激烈，是持久。」（原文精神：Enthusiasm is common. Endurance is rare. — 熱情人人有，能撐下去的才稀有。）</li><li>「摔倒後爬起來，比從不摔倒更重要。」（原文精神：Grit is about falling down seven times and getting up eight.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>你有沒有一件「三分鐘熱度」的往事——當初很興奮，後來放掉了？回頭看，你放棄的是「一條走不通的路」，還是「連方向都沒了」？如果重來，你會怎麼分辨？</li><li>用達克沃斯的四階段檢視你正在做的一件事：你對它還有「興趣」嗎？你有在「刻意練習」還是在原地打轉？它連結到什麼更大的「目的」？遇到挫折時你抱的是「希望」還是放棄——四項裡最弱的是哪一項，你能怎麼補？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="grit" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -441,6 +571,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -463,6 +596,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -509,6 +643,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -534,6 +674,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "grit";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

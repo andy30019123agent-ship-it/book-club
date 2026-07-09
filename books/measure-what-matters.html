@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,14 +440,16 @@
   <p class="title-en">Measure What Matters</p>
   <p class="byline">約翰・杜爾（John Doerr）｜2018</p>
   <p class="hook">你的團隊很忙，但忙不等於在做對的事。OKR 不是又一套 KPI 表格，而是逼所有人先回答一句話：這一季，什麼才是真正最重要的？</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>約翰・杜爾是矽谷傳奇創投家，凱鵬華盈（Kleiner Perkins）的合夥人，早年投中 Google、亞馬遜等公司，是站在網路時代財富核心的人。但他自己說，這輩子最重要的一堂課，不是在創投學的，而是 1970 年代在英特爾（Intel）當工程師時，跟著傳奇 CEO 安迪・葛洛夫（Andy Grove）學到的一套目標管理方法。</p>
 <p>葛洛夫把管理學者杜拉克的「目標管理」改造成一套更鋒利的工具，英特爾內部叫它 OKR——Objectives and Key Results（目標與關鍵結果）。杜爾把這套方法帶在身上幾十年，到處傳教。1999 年，他投資一家只有幾十個人的小公司，走進去對兩個年輕創辦人賴利・佩吉和謝爾蓋・布林講了 OKR——那家公司叫 Google。Google 從此把 OKR 用到今天。2018 年，杜爾把這輩子見證的 OKR 案例集結成《OKR：做最重要的事》，等於是把矽谷最高機密的管理心法公開。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「一群聰明人湊在一起，為什麼還是常常瞎忙、各做各的、勁沒往一處使？」</p>
 <p>杜爾的答案是：因為大家沒有一套機制，逼自己先講清楚「什麼才是最重要的」，並且讓每個人的努力對齊到同一個方向。OKR 就是這套機制。它要回答的不是「怎麼把事情做完」，而是更前面的問題——「我們到底該做哪些事，又怎麼知道有沒有做到」。這本書給的是一個讓組織「聚焦、對齊、追蹤、勇於挑戰」的作業系統。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、OKR 的骨架：一個鼓舞人心的「目標」，配上幾個可衡量的「關鍵結果」</h3>
 <p>OKR 的結構簡單到不可思議。<strong>Objective（目標）</strong>回答「我要往哪去」——它應該是有企圖、能鼓舞人的一句話，不能是模糊口號。<strong>Key Results（關鍵結果）</strong>回答「我怎麼知道到了沒」——它必須是可量化、有數字、到期能明確打勾或打叉的。</p>
 <p>杜爾有句名言：「如果它沒有數字，它就不是一個關鍵結果。」比方目標是「打造市場上最受喜愛的 App」，關鍵結果就得是「上架三個月內達到 X 星評價」、「留存率提升到 Y%」這種能驗收的東西。一個目標配三到五個關鍵結果，全部達成，目標就等於實現。<strong>機制</strong>：這個「一句鼓舞＋幾條數字」的組合，同時解決了「方向感」和「不自欺」兩個問題——目標給熱血，關鍵結果防你自我感覺良好。<strong>限制</strong>：如果關鍵結果訂成「做完某件事」（活動）而非「達成某個結果」（成效），OKR 就退化成待辦清單，失去意義。</p>
@@ -342,21 +465,28 @@
 <h3>五、CFR：OKR 需要「持續對話」當燃料</h3>
 <p>杜爾在書的後半補上一個常被忽略的搭檔——<strong>CFR</strong>：對話（Conversation）、回饋（Feedback）、讚揚（Recognition）。他直言，傳統一年一次的績效考核已經過時了，僵化又滯後。OKR 要跑得動，需要的是主管和部屬之間<strong>持續的、輕量的</strong>對話，而不是年終算總帳。</p>
 <p><strong>機制</strong>：OKR 是「要往哪去」的骨架，CFR 是讓這副骨架動起來的血肉——沒有經常性的對話與回饋，再好的目標也會在執行中走樣、失溫。<strong>限制</strong>：CFR 不能淪為形式化的週報，重點在真誠的雙向溝通與即時的肯定，否則又變回另一種官僚流程。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>這本書的邏輯像一套完整的作業系統：<strong>結構</strong>（目標＋關鍵結果）是最小單位；套上四個超能力——<strong>聚焦</strong>（挑出真正重要的少數）、<strong>對齊</strong>（透明公開、上下貫通）、<strong>追蹤</strong>（定期檢視、隨時調整）、<strong>延展</strong>（用登月目標逼出突破）；最後用 <strong>CFR</strong> 的持續對話當燃料，讓整套系統在執行中不失溫。四個超能力不是分開的技巧，而是一條龍：先聚焦才有東西可對齊，對齊了才追蹤得動，追蹤的過程中才能安心地追求高風險的延展目標。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「一個小團隊導入 OKR」為例）</strong>：</p>
 <ol><li>這一季只訂一到三個目標，每個目標寫成一句能讓人熱血的話，不要口號。</li><li>每個目標配三個以下的關鍵結果，硬性要求每條都有數字、到期能明確打勾（沒數字的重寫）。</li><li>把全組 OKR 貼在共用文件公開，人人看得到彼此在拚什麼。</li><li>每週花十五分鐘用紅黃綠燈檢視進度，該調整的調整；別等到季末才算帳。</li><li>試著訂一個「登月型」目標，並事先講清楚「這個做到七成就算成功」。</li></ol>
 <p><strong>生活版（以「個人年度成長」為例）</strong>：</p>
 <ol><li>幫自己這一季訂一個目標，例如「讓身體更有活力」。</li><li>配上可衡量的關鍵結果：「每週運動 3 次」、「體脂降到 X%」、「連續 8 週睡滿 7 小時」。</li><li>週日晚上花五分鐘自我對話（迷你 CFR）：這週哪條綠燈、哪條紅燈、下週怎麼調。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「OKR 就是 KPI 換個名字」</strong>——不一樣。KPI 多半是由上而下、綁績效考核的指標；OKR 強調公開透明、鼓勵由下而上、且刻意和「打考績、發獎金」脫鉤，好讓人敢訂高目標。</li><li><strong>「OKR 綁薪水獎金才有動力」</strong>——杜爾明確反對。一旦 OKR 綁上獎懲，員工就會把目標訂得保守以求達標，登月精神直接死掉。OKR 是用來聚焦與挑戰的，不是打考績的尺。</li><li><strong>「關鍵結果達成率越接近 100% 越好」</strong>——對期望型／登月目標而言錯了。長期都做滿 100%，代表你訂得太安全；達成六到七成的高野心目標，往往比做滿的保守目標更有價值。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《從 A 到 A+》（柯林斯）：柯林斯的「刺蝟原則」和 OKR 的「聚焦」異曲同工——都在講偉大的組織懂得把力氣集中在少數對的事。一個從研究長青企業的角度切入，一個給你可操作的季度工具。</li><li>《高產出管理》（葛洛夫）：OKR 的源頭。想追根究柢 OKR 怎麼從英特爾長出來，讀葛洛夫本人這本管理經典，杜爾等於是他的傳道者。</li><li>《恆毅力》／《原子習慣》：個人層次的「持續達成」，和 OKR 的組織層次互相呼應——OKR 給方向與衡量，習慣系統給日復一日的執行力，合起來才完整。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「想法很容易，執行才是一切。」（Ideas are easy. Execution is everything.）</li><li>「如果它沒有數字，它就不是一個關鍵結果。」（大意：It's not a key result unless it has a number.）</li><li>「我們必須認清——也要據此行動——並非所有事都同等重要。」（大意，出自「聚焦」一章）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>如果現在要你只留下這一季「最重要的三件事」，其他全部放掉，你會留哪三件？你敢對其餘的說不嗎？</li><li>回想你或團隊上一個目標——它有「可以到期打勾的數字」嗎？還是只是一句聽起來很好、卻永遠驗收不了的漂亮話？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="measure-what-matters" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -428,6 +558,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -450,6 +583,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -496,6 +630,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -521,6 +661,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "measure-what-matters";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

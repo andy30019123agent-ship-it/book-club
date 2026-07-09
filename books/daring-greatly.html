@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,17 +440,19 @@
   <p class="title-en">Daring Greatly</p>
   <p class="byline">布芮尼・布朗（Brené Brown）｜2012</p>
   <p class="hook">你以為示弱是輸家的事，所以拼命武裝自己不讓人看穿——但真相反過來：所有你最想要的東西（親密、信任、被真心接住）都只長在「敢讓人看見真實的你」那塊地上。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>布芮尼・布朗是休士頓大學的社會工作研究者，本來研究的是一個聽起來很正向的主題——「人際連結」。她想搞懂：是什麼讓人與人之間產生深刻的連結？但研究做著做著，資料一直把她推向一個她完全不想面對的方向。</p>
 <p>她發現，那些擁有強烈連結感、覺得自己「值得被愛」的人，跟那些老是覺得「我不夠好」的人，最大的差別是——<strong>前者願意讓自己被看見，願意示弱。</strong>脆弱（vulnerability）這個她本能想迴避的東西，竟然是連結的入口。這個結論讓身為「控制狂＋研究者」的她整個崩潰，她自己形容那是一場「靈魂的崩壞」，甚至因此去做了心理治療。</p>
 <p>2010 年，她把這些發現濃縮成一場 TEDxHouston 演講《脆弱的力量》——這場演講意外爆紅，成為 TED 史上最多人看的演講之一，累積數千萬觀看。她一夕之間從默默無聞的學者變成全球關注的對象。2012 年出版的這本書，就是那場演講的完整版。</p>
 <p>書名「Daring Greatly（全力以赴地冒險）」取自羅斯福總統 1910 年的一段演講，也就是後來著名的「競技場上的人（The Man in the Arena）」——榮耀不屬於場邊的批評者，而屬於那個滿臉塵土、流血流汗、真正進場搏鬥的人，就算他失敗，至少他是「敢於全力以赴」。布朗用這個意象定調全書：<strong>真正的勇氣，是明知會受傷，還是願意進場、願意被看見。</strong></p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼我總覺得自己不夠好，還要拼命假裝一切都好？」——這是布朗研究裡最普遍的痛。我們活在一個她稱為「永不滿足（never enough）」的文化裡：不夠瘦、不夠成功、不夠聰明、不夠完美。為了掩蓋這份「不夠」，我們穿上盔甲——完美主義、逞強、麻木、犬儒、冷嘲熱諷。</p>
 <p>但布朗的殘酷發現是：<strong>那身保護你不受傷的盔甲，同時也擋掉了你最渴望的東西。</strong>你把自己包得密不透風，確實沒人能傷你，但也沒人能真正靠近你、愛到真實的你。</p>
 <p>這本書要回答的是：<strong>要怎麼放下盔甲、允許自己被看見，卻不被羞恥感擊垮？</strong>它談的是一件反直覺的事——在人際關係裡，示弱不是軟弱，是最大的勇氣，也是所有深刻連結的必要條件。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、脆弱不是軟弱，是勇氣最準確的度量</h3>
 <p>布朗給脆弱一個精準定義：<strong>不確定、風險、以及情感上的暴露。</strong>當你告白、當你分享一個沒把握的點子、當你第一次說「我愛你」、當你承認「我需要幫忙」——你都處在脆弱裡，因為結果不確定、你有可能受傷、而且你把真實的自己攤開了。</p>
 <p>我們的文化把脆弱等同於軟弱，但布朗的研究資料顯示完全相反。她問過無數人「你上一次看到別人展現脆弱是什麼時候，你覺得那是軟弱嗎？」——幾乎所有人都能回想起某個「有人在你面前示弱」的時刻，而且他們用的形容詞是「勇敢」「真實」「動人」，沒有人說「軟弱」。<strong>弔詭的是：我們崇拜別人的脆弱，卻覺得自己的脆弱是恥辱。</strong></p>
@@ -351,22 +474,29 @@
 <p>其中最關鍵的一項是：<strong>他們相信「我已經夠好了（I am enough）」，同時仍願意成長。</strong>這兩件事看似矛盾，其實是全書的心臟——你不需要「先變完美才值得被愛」，你現在、帶著所有不完美，就值得。正是這份「我夠好了」的底氣，讓他們敢於示弱——因為就算示弱後被拒絕，也不會擊垮「我這個人的價值」。</p>
 <p>她還談到一個現代人特有的病：「預支的失落（foreboding joy）」——在最幸福的時刻反而焦慮，害怕好事會被奪走（抱著熟睡的孩子，突然閃過「萬一他出事怎麼辦」）。這也是一種對脆弱的逃避——因為完全享受喜悅，等於把自己攤開來承受「可能失去」的風險，太可怕，所以我們用擔憂來「預演災難」自保。布朗的解藥是「感恩」——不是正向思考，而是刻意在幸福時刻練習感激，把「怕失去」轉成「珍惜此刻」。</p>
 <p><strong>機制</strong>：全心投入不是一個你「達到」的狀態，是一個你每天「選擇」的練習——選擇示弱勝過武裝，選擇「我夠好」勝過「我不夠」，選擇感恩勝過恐懼。它跟羅斯福那段「競技場」的意象扣在一起：重點不是你會不會受傷（一定會），是你願不願意還是進場。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>四個概念是一個完整的循環。最核心的敵人是<strong>羞恥</strong>——那個「我不夠好、被看見就會被拋棄」的恐懼；為了對抗羞恥，我們穿上<strong>完美主義等盔甲</strong>，把自己武裝到滴水不漏；但盔甲同時擋掉了<strong>脆弱</strong>——而脆弱正是所有連結、愛、歸屬感的唯一入口；所以真正的出路，是培養「羞恥韌性」、放下盔甲、選擇<strong>全心投入地示弱</strong>。</p>
 <p>整本書的主張可以濃縮成一句：<strong>你最想逃避的脆弱，正是通往你最渴望的連結的那道門。</strong>武裝讓你安全但孤獨，示弱讓你有風險但能被真正愛到。這不是要你莽撞地掏心，是要你認清——沒有脆弱，就沒有真正的親密，這是無法繞過的代價。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「不敢在會議上提出不成熟的想法」為例）</strong>：</p>
 <ol><li>認出盔甲：你的沉默不是「沒想法」，是完美主義在保護你——怕講錯被笑</li><li>小步示弱：試著說「這個想法我還沒想很完整，但想丟出來討論」——先承認不確定，反而卸下壓力</li><li>分辨動機：你想把報告做到滴水不漏，是「想做好」還是「怕被挑剔」？如果是後者，那是恐懼在驅動，不是卓越</li><li>給犯錯留空間：帶團隊時，自己先示範承認「這件事我判斷錯了」——你的示弱會讓團隊敢說真話</li></ol>
 <p><strong>生活版（以「不敢在關係裡表達真實需求」為例）</strong>：</p>
 <ol><li>認出你在武裝：「反正說了也沒用」「我不需要別人」——這些常是怕受傷的盔甲，不是真的獨立</li><li>挑對人示弱：先確認對方是「能接住你」的人，再說出真實的需要（「我最近其實很需要你陪」）</li><li>說出羞恥：下次覺得「我好失敗、好丟臉」時，找一個信任的人講出來——羞恥見光就會縮小</li><li>練習感恩對抗「怕失去」：在幸福時刻，別急著擔心它會消失，刻意停下來說「我很感激現在」</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「示弱＝逢人就掏心掏肺、什麼都講」</strong>——布朗明確反對。真正的脆弱是有界線的，你把真實給「贏得資格、能接住你」的人。對不安全的對象過度分享，不是勇敢，是另一種尋求關注的防衛。</li><li><strong>「脆弱的力量＝正向思考、告訴自己一切都好」</strong>——完全不是。布朗談的是「敢於面對不確定和被傷害的風險」，這跟粉飾太平、假裝樂觀相反。她甚至批判那種強迫正能量的文化，認為它讓人更不敢承認真實的痛。</li><li><strong>「完美主義是好的、代表我有高標準」</strong>——布朗把完美主義和「健康的追求卓越」清楚切開。前者被恐懼（怕別人怎麼看）驅動、讓人癱瘓；後者被成長（我想更好）驅動、讓人前進。誤把完美主義當美德，正是很多人痛苦的根源。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《被討厭的勇氣》（岸見一郎）：兩本都在談「別為別人的評價而活」。阿德勒從「課題分離」切入（別人怎麼看是別人的事），布朗從「羞恥韌性」切入（別讓別人的眼光定義你的價值）——一個給你哲學的底氣，一個給你情感的方法。</li><li>《非暴力溝通》（盧森堡）：盧森堡教「說出真實的感受與需要」，本質上就是一種示弱的技術——把「你很過分」換成「我很受傷」，正是布朗說的放下盔甲。兩本一個講「為什麼要示弱」，一個講「示弱時具體怎麼說」。</li><li>《原子習慣》（詹姆斯・克利爾）：看似無關，其實互補——布朗談的「我已經夠好了」正是克利爾說的「身分認同」的情感基礎。你得先相信自己值得，才有動力為「想成為的人」持續投票。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「脆弱不是輸，也不是贏；它是有勇氣現身，並讓自己被看見——即使結果無法掌控。」（Vulnerability is not winning or losing; it's having the courage to show up and be seen when we have no control over the outcome.）</li><li>「唯有讓真實的自己被看見，我們才可能擁有真正的連結。」（原意：連結只存在於我們願意被看見的地方。）</li><li>「完美主義不是追求卓越的健康動力，它是一面二十噸重的盾牌，我們以為它在保護，其實是它拖著我們飛不起來。」（Perfectionism is a twenty-ton shield that we lug around, thinking it will protect us, when in fact it's the thing that's really preventing us from being seen.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>你平常穿的是哪一種「盔甲」——完美主義？逞強不求助？冷嘲熱諷？麻木？想一個具體場景：那身盔甲擋掉了你不受的傷，但它同時擋掉了你想要的什麼？</li><li>想一件你一直藏著、覺得「只有我這麼糟」的事。布朗說羞恥靠「祕密、沉默、批判」壯大。如果你把它說給一個你信任、能接住你的人聽，你猜會發生什麼？是什麼讓你到現在還沒說？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="daring-greatly" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -438,6 +568,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -460,6 +593,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -506,6 +640,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -531,6 +671,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "daring-greatly";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

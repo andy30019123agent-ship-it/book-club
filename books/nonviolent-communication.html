@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">Nonviolent Communication</p>
   <p class="byline">馬歇爾・盧森堡（Marshall Rosenberg）｜2003</p>
   <p class="hook">你以為吵架是因為對方難搞，其實多數衝突都輸在同一件事——你把「觀察」講成了「批評」，話一出口對方就進入防衛，接下來說什麼都沒用了。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>馬歇爾・盧森堡是臨床心理學博士，但真正塑造他的不是課堂，是童年。他在 1934 年出生於底特律，家族是猶太人，成長期間正好碰上底特律的種族暴動——他親眼看過人因為姓氏、膚色、宗教就被攻擊。有一次他因為名字聽起來像猶太人，在學校被同學圍毆。這件事在他心裡埋了一個問題：<strong>為什麼有些人在暴力包圍下還能保有同理心，有些人卻輕易就對別人動手？</strong></p>
 <p>他後來跟著人本心理學大師卡爾・羅傑斯（Carl Rogers）做研究，接受的是「以人為本」那一派的訓練——相信人天生有向善、向連結的傾向，只是被錯誤的溝通方式擋住了。1960 年代，他投入美國的種族融合工作，到處調解衝突：學校、種族對立的社區、以巴地區、盧安達。他不是在書房裡發明理論，是在真正會流血的現場，一次次試出「什麼話能讓對立的兩方重新願意聽對方講」。</p>
 <p>1984 年他創立非暴力溝通中心（CNVC），把這套方法帶到全球。這本書 2003 年出版，書名裡的「非暴力」borrow 自甘地——甘地說的暴力不只是拳頭，也包括我們習以為常的語言暴力。盧森堡一生都在證明一件事：<strong>衝突的根源往往不是利益對立，而是雙方都不會好好說「我需要什麼」。</strong></p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「我明明是為他好，為什麼一開口就變吵架？」——這大概是每個父母、伴侶、主管都問過的問題。你想表達關心，對方聽到的卻是指責；你想解決問題，話題卻莫名歪到翻舊帳。</p>
 <p>盧森堡的診斷很尖銳：問題不在你的動機，在你的「語言結構」。我們從小學的說話方式，天生帶著攻擊性——評斷（你很懶）、比較（你看看人家）、命令（你應該）、推卸（你害我）。這些話會自動觸發對方的防衛機制，於是溝通還沒開始就已經破局。</p>
 <p>這本書要教的，是一套刻意設計過的說話結構，讓你在<strong>不放棄自己需求、也不攻擊對方</strong>的前提下，把話說到對方心裡。如果你厭倦了「明明相愛卻總在傷害彼此」，這本書給的是一套可以練的技術，不是要你當爛好人。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、區分「觀察」與「評論」：一切從這裡開始崩壞</h3>
 <p>盧森堡引用印度哲學家克里希那穆提的話：「不帶評論的觀察，是人類智力的最高形式。」聽起來玄，其實超實用。他主張所有衝突對話的第一個地雷，就是我們把「看到的事實」跟「我對事實的評斷」混在一起講。</p>
 <p>書中的例子很日常。「你太常遲到了」——這是評論，因為「太常」是你的標準，對方立刻會反駁「哪有」。換成觀察：「這個月我們約的三次，你有兩次晚了 20 分鐘以上。」後者對方沒得吵，因為那是事實。盧森堡舉了個更生活化的：跟孩子說「你的房間亂七八糟」是評論；說「我看到床上有兩隻襪子、書桌上有三個沒喝完的杯子」是觀察。</p>
@@ -351,23 +474,30 @@
 <p>盧森堡的三個標準很關鍵。第一，具體——別說「我希望你多關心我」（對方不知道要做什麼），要說「你今晚可以陪我散步二十分鐘嗎」。第二，正向——說你「要什麼」，不是「不要什麼」；他講過一個笑話，太太抱怨先生花太多時間工作，先生於是報名了高爾夫球課，因為她只說了「不要工作」，沒說「要陪我」。第三，是請求不是命令——分辨的方法是：如果對方拒絕，你的反應是理解還是懲罰？會懲罰的，那從頭到尾都是命令。</p>
 <p><strong>機制</strong>：模糊的請求註定失敗，因為對方就算想配合也不知道從何做起，最後你又累積一次「他根本不在乎」的失望。而把請求和命令分開，是在保護關係——命令會逼出服從或反抗，只有真正的請求才能換到心甘情願的給予。</p>
 <p><strong>反例</strong>：有人會把這套用歪，變成「我用非暴力溝通的句型包裝，但骨子裡還是要你聽我的」。盧森堡強調，如果你心裡預設對方「應該」答應，那不管句子多漂亮，都還是命令，對方感受得到。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>這四步是一條完整的鏈：<strong>觀察</strong>（不帶評斷地說出發生了什麼）→ <strong>感受</strong>（說出這件事引發我什麼情緒）→ <strong>需要</strong>（這情緒底下我有什麼需要沒被滿足）→ <strong>請求</strong>（所以我具體希望你做什麼）。</p>
 <p>盧森堡把它濃縮成一個句型：「當我看到（觀察），我感到（感受），因為我需要（需要），你願意（請求）嗎？」——例如：「這週三個晚上你都到十一點才回，我感到孤單，因為我需要一些兩人相處的時間，這週末我們可以留一個晚上給彼此嗎？」</p>
 <p>但這套方法有兩個方向。對外，你用這四步「誠實表達」自己；對內反過來，你用同樣的四步「同理傾聽」對方——聽出對方話語底下的觀察、感受、需要、請求。整本書其實在講一件事：<strong>把「誰對誰錯」的語言，換成「彼此需要」的語言。</strong>一旦兩個人都在講需要，衝突就從對抗變成合作解題。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「同事總是拖到最後一刻才給資料」為例）</strong>：</p>
 <ol><li>觀察：別說「你每次都拖」，說「這三份報告，我都是在截止前一小時才收到你的部分」</li><li>感受：「我會很緊張」——不是「你很不負責」</li><li>需要：「因為我需要一點緩衝時間確認品質」</li><li>請求：具體——「下次可以提前一天，哪怕先給我草稿版嗎？」</li><li>反向練習：如果對方防衛，先同理他的需要——「你是不是手上同時被壓了太多案子？」</li></ol>
 <p><strong>生活版（以「另一半滑手機不理你」為例）</strong>：</p>
 <ol><li>觀察：「剛剛我跟你講話的時候，你眼睛一直看著手機」——不是「你根本不在乎我」</li><li>感受：說「我覺得有點失落」，不要說「我覺得被你忽略」（那是評斷偽裝的感受）</li><li>需要：往底層挖——你要的其實是「被重視、被連結」</li><li>請求：「我們可以約好吃飯時手機都放旁邊嗎？」</li><li>給台階：把它當請求，對方今天做不到也別懲罰，明天再說</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「非暴力溝通＝當爛好人、壓抑自己」</strong>——完全相反。盧森堡從頭到尾都在教你「誠實表達自己的需要」，這是主張自己，不是委屈自己。示弱不是退讓，是把武器換成連結。</li><li><strong>「照句型講就對了」</strong>——很多人學了「當我看到……我感到……」的公式，卻機械地套用，聽起來假得要命。盧森堡一再強調，句型只是輔助輪，核心是那份「真心想連結」的意圖；意圖不對，句子再標準也是操控。</li><li><strong>「這是用來說服對方的技巧」</strong>——如果你的目標是「讓對方照我的意思做」，你已經走偏了。這套方法的目的是「創造一種連結的品質，讓雙方都願意為彼此付出」——結果可能是你也改變。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《被討厭的勇氣》（岸見一郎）：阿德勒心理學主張「課題分離」——別人怎麼想是別人的課題。它跟非暴力溝通看似衝突（一個劃界線、一個求連結），其實互補：先分清哪些是你的課題（你的感受與需要），才能不帶控制地去連結。</li><li>《卡內基人性的弱點》（戴爾・卡內基）：卡內基教的是「如何讓人喜歡你、被你說服」，偏向影響力技巧；盧森堡走得更深，不談「讓對方怎樣」，只談「雙方需要的連結」。想要人緣讀卡內基，想修補親密關係讀盧森堡。</li><li>《關鍵對話》（派特森等）：同樣處理高風險對話，但更工具化、更適合職場談判；非暴力溝通更適合情感關係，兩本一起讀，工作與家庭都涵蓋。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「不帶評論的觀察，是人類智力的最高形式。」（Observing without evaluating is the highest form of human intelligence.）</li><li>「別人的行為可能是我們感受的刺激，但絕不是原因。」（What others do may be the stimulus of our feelings, but not the cause.）</li><li>「我們所說的每一句話，若不是在拉近，就是在推遠。」（原意：語言若非通往連結，即通往疏離——Rosenberg 常說，一切語言不是通往「給予的喜悅」，就是遠離它。）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你最近一次吵架，把你當時說的話拆開看：哪一句其實是「評斷」偽裝成「觀察」？如果重來，那句話你會怎麼改成純觀察？</li><li>挑一個你常對某人有的情緒（生氣、失望、委屈），往下挖一層：這情緒底下，你真正沒被滿足的「需要」是什麼？你有沒有真的把那個需要，好好說給對方聽過？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="nonviolent-communication" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -439,6 +569,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -461,6 +594,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -507,6 +641,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -532,6 +672,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "nonviolent-communication";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

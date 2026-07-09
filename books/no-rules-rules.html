@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,14 +440,16 @@
   <p class="title-en">No Rules Rules</p>
   <p class="byline">里德・海斯汀、艾琳・梅爾（Reed Hastings & Erin Meyer）｜2020</p>
   <p class="hook">你的公司規則越訂越多，往往不是因為員工爛，而是因為不信任。Netflix 賭了一把相反的：先找到最強的人，然後把規則拿掉。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>里德・海斯汀是 Netflix 的共同創辦人與執行長。Netflix 從一家郵寄租 DVD 的小公司，一路蛻變成串流巨頭、再變成自製內容的娛樂帝國——每一次轉身都可能翻車，但它一次次活下來、還越長越大。海斯汀認為，撐住這一切劇烈變化的，不是某個商業策略，而是 Netflix 那套「反直覺到近乎危險」的企業文化。</p>
 <p>但海斯汀知道，一個 CEO 自誇自家文化，說服力有限。所以他找了共同作者艾琳・梅爾——一位專門研究「跨國文化差異」的商學院教授（《文化地圖》作者）。梅爾用外部研究者的眼光去質疑、驗證、挑戰海斯汀的說法，甚至到 Netflix 全球辦公室訪談員工，找出這套文化在不同國家水土不服的地方。這種「當事人＋懷疑論者」的雙作者結構，讓 2020 年出版的《零規則》不淪為老王賣瓜，而是一場誠實的辯論。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「公司要怎麼在高速變化的世界裡，同時保持<strong>創新的速度</strong>和<strong>執行的品質</strong>？」</p>
 <p>傳統管理的答案是「訂更多流程、更多規則、更多審核」——但海斯汀說，這套在工廠時代（求穩定、防錯誤）有用的邏輯，到了創意產業（求突破、拚速度）反而是毒藥。規則能防止小錯，卻也扼殺了大創新。這本書要回答的是：有沒有可能反過來——<strong>不靠規則管人，而靠自由與責任驅動人</strong>？Netflix 的整套文化，就是這個大膽假設的實驗結果。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、人才密度：一切的地基，先讓團隊「只剩高手」</h3>
 <p>海斯汀說，Netflix 所有反常規的做法，都建立在一個前提上：<strong>人才密度（talent density）</strong>——團隊裡每一個人都是頂尖高手。他打了個比方：一顆爛蘋果會壞掉整籃，一個表現平庸、態度消極的人，會拖慢整個團隊的節奏、拉低所有人的標準。</p>
 <p>Netflix 因此走「精簡但頂尖」路線：寧可用少數超強的人、付市場最高薪，也不要一堆平庸的人。因為當身邊全是高手，人會自我要求、彼此激勵，管理成本反而變低。<strong>機制</strong>：高手不需要被盯，他們有內在動力和判斷力，這讓後面「拿掉規則」變得可能。<strong>限制／反例</strong>：這套只在「創意密集、看重卓越產出」的產業成立；如果是求穩定、零容錯的工作（例如工廠安全、醫療流程），規則和標準化反而才是對的——海斯汀自己也誠實承認這點。</p>
@@ -339,21 +462,28 @@
 <h3>四、留任測試：用高標準守住人才密度</h3>
 <p>自由的代價是高標準。Netflix 有個著名（也殘酷）的做法叫<strong>留任測試（Keeper Test）</strong>：主管定期問自己——「如果團隊裡的某個人明天說要離職跳槽，我會不會拚命把他留下來？」如果答案是「不會、甚至鬆一口氣」，那就該給對方一筆優渥的資遣費，好聚好散，把位子空出來給更強的人。</p>
 <p>海斯汀提出一句刺耳但誠實的話：Netflix 不是一個家庭，而是一支<strong>職業運動隊</strong>。家庭講的是無條件包容，球隊講的是「每個位置都要最好的球員」。<strong>機制</strong>：不斷用留任測試汰換，才能長期維持第一根支柱——人才密度不掉，前面所有自由才撐得住。<strong>限制／爭議</strong>：這是全書最受批評的一點——它對員工冷酷、缺乏安全感，梅爾也在書裡直言，這種高壓的「表現至上」在很多重視工作保障的文化中會引發強烈反彈。它是 Netflix 的選擇，不是放諸四海的真理。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>這四根支柱是嚴格的因果順序，不能跳步。第一步：把<strong>人才密度</strong>拉到最高（只留高手），這是所有一切的地基。地基穩了，才敢推第二步：導入<strong>坦誠</strong>文化，讓高手之間有話直說、快速修正。有了信任與資訊流動，才敢走第三步：<strong>移除控制</strong>，用「情境」取代「規則」，把決策權下放。而自由一旦放出去，就必須用第四步：<strong>留任測試</strong>的高標準回頭守住人才密度，形成一個正向循環。海斯汀反覆強調：<strong>順序錯了會出事</strong>——沒有先建立人才密度和坦誠就貿然拿掉規則，等於把公司交給混亂。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「當一個少管、但團隊更強的主管」為例）</strong>：</p>
 <ol><li>少下命令，多給「情境」：交辦事情時，把目標、背景、風險和判斷依據講清楚，然後放手讓對方決定怎麼做。</li><li>練習 4A 回饋：給意見時先確認自己是「為了幫他」（Aim to assist），並且給得出<strong>具體可做</strong>的建議，而不是抱怨。</li><li>帶頭「陽光化」自己的錯誤——主管先坦承犯錯，團隊才敢跟著誠實。</li><li>偶爾對自己做留任測試（用來檢視「我有沒有在幫團隊維持高標準」，而不是用來威脅人）。</li></ol>
 <p><strong>生活版（以「教養或帶新手」為例）</strong>：</p>
 <ol><li>別急著訂一堆規矩，先問「對方有沒有能力和意願自己判斷」——能力夠，就給情境、放手讓他學著決定。</li><li>給回饋時套用 4A：帶著善意、講得具體、也接受對方最後可以選擇不採納。</li><li>記住海斯汀的順序課：信任要建立在「對方真的能扛」之上，不是盲目放手。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「零規則＝公司放任、什麼都不管」</strong>——完全相反。Netflix 拿掉的是「流程規則」，換上的是<strong>更高的標準、更強的坦誠、更清楚的情境</strong>。它是用「文化」這種更難的東西取代規則，不是躺平。</li><li><strong>「這套文化任何公司都該照抄」</strong>——海斯汀和梅爾自己反覆提醒，這套只適合「創意密集、求突破」的產業，且高度依賴人才密度；工廠、醫院這類求穩定零容錯的場域照抄會出大事。</li><li><strong>「坦誠就是想說什麼就說什麼」</strong>——不是。坦誠有嚴格框架（4A），核心是善意與建設性；把它當成攻擊人的藉口，正是把這套文化用歪。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《文化地圖》（艾琳・梅爾）：本書共同作者的成名作。《零規則》裡談各國員工對「坦誠」「權威」反應不同的部分，理論根基全來自這本。想懂為什麼 Netflix 文化在不同國家水土不服，讀它。</li><li>《OKR：做最重要的事》（杜爾）：兩本都在解「怎麼在不靠層層管控的情況下讓組織對齊」。OKR 用透明的目標對齊，Netflix 用情境與文化對齊——手段不同，但都反對用僵化流程綁死聰明人。</li><li>《從優秀到卓越》（柯林斯）：柯林斯的「先找對人上車」和 Netflix 的「人才密度」根本是同一句話。柯林斯給的是研究結論，海斯汀給的是把它推到極致的實戰版本。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「我們是一支職業球隊，不是一個家庭。」（We're a team, not a family.）</li><li>「以 Netflix 的最大利益行事。」（Act in Netflix's best interest.）——這句話就是他們整本員工手冊。</li><li>「當你增加人才密度，你就能減少控制；當你增加坦誠，你就能移除更多規則。」（大意，貫穿全書的公式）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你待過最「規則多」的環境——那些規則到底是在防範少數的爛人，還是連累了多數的好人？如果拿掉一半規則，會更好還是更糟？</li><li>海斯汀說「順序不能錯：先有人才密度和坦誠，才能拿掉規則」。你覺得你身邊的團隊，卡在哪一步——是人不夠強、還是不敢有話直說？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="no-rules-rules" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -425,6 +555,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -447,6 +580,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -493,6 +627,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -518,6 +658,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "no-rules-rules";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

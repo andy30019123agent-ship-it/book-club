@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,15 +440,17 @@
   <p class="title-en">The Productivity Project</p>
   <p class="byline">克里斯・貝利（Chris Bailey）｜2016</p>
   <p class="hook">一個大學畢業生推掉兩份好工作，花整整一年拿自己做實驗——每週工作 90 小時 vs 20 小時、清晨 5 點半起床、每天冥想。他得到的結論很反直覺：生產力的重點從來不是「做更多」，而是「做完你真正在意的事」。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>貝利做了一件多數人不敢做的事。2013 年他從大學商學院畢業，手上握著兩份不錯的工作邀約——換作別人早就簽了。但他從十幾歲開始就對「生產力」這件事著迷成癮，讀遍了能找到的相關書籍與研究。於是他做了一個任性的決定：兩份工作都推掉，給自己整整一年，什麼都不做，只做一件事——<strong>把自己當白老鼠，親身實驗所有關於生產力的方法，然後每天寫部落格公開結果。</strong></p>
 <p>這一年他過得像個瘋子科學家。他試過連續一週每天工作 90 小時，再對照一週每天只工作 20 小時，看產出差多少；他試過清晨 5 點半起床、每天冥想 35 分鐘、連續看了 70 小時的 TED 演講、把智慧型手機的使用壓到一天只用一小時、甚至為了實驗還刻意增重再健身。他把這些親身數據和背後的科學研究交叉比對，最後寫成這本書。它的特別之處在於：這不是一個教授在書桌前寫的理論，而是一個人用一年的生活，一項一項「試」出來的實戰報告。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼我明明整天很忙、行程滿檔，到頭來卻覺得沒完成什麼真正重要的事？」</p>
 <p>很多談生產力的書，教你的是怎麼「塞進更多事」——更快回信、更多待辦、更滿的行事曆。貝利的一年實驗把這個假設整個打翻。他發現，把時間塞爆、把自己逼到極限，產出往往不增反減。真正的生產力不是「單位時間做更多事」，而是「有沒有完成你當初打算完成的事」。</p>
 <p>這本書要回答的是：如果你已經很努力、很忙，卻總覺得瞎忙一場——問題可能不是你不夠拚，而是你把力氣花在「做很多」，而不是「做對的少數幾件」。他要教你的，是怎麼聰明地工作，而不是拚命地工作。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、生產力的三個原料：時間、專注、精力</h3>
 <p>這是貝利整本書的地基，也是他最重要的重新定義。多數人以為生產力只跟「時間管理」有關——好像把行事曆排好、把時間切滿就贏了。貝利說，這只是三分之一的故事。真正的生產力，是<strong>時間、專注力、精力</strong>這三樣東西一起管好的結果。</p>
 <p>道理很簡單：你可以有一整個下午的「時間」，但如果你累到不行（沒精力）、或滿腦子分心（沒專注），這段時間等於報廢。反過來，一段你精神飽滿、又能全神貫注的半小時，抵得過渾渾噩噩的一整天。所以他說——<strong>你不能只管理時間，你得同時管理你的精力和注意力。</strong></p>
@@ -352,22 +475,29 @@
 <p>貝利特別強調三原料裡最容易被忽略的一項——<strong>精力</strong>。時間人人有 24 小時，但精力的高低，決定你這 24 小時能榨出多少價值。</p>
 <p>他從一年實驗裡得出很務實的做法：認清自己的「生理黃金時段」（多數人是上午某段），把最重要、最耗腦的工作排在那個時段，別浪費在回信、開會這種瑣事上。飲食、運動、睡眠不是「有空再顧」的事，而是生產力的燃料——他甚至發現，睡飽多出來的清醒與專注，價值遠超過那多睡掉的一兩小時。咖啡因也該「戰術性」使用：在真正需要衝刺前才喝，而不是無意識地整天灌。還有一個反直覺的重點——<strong>刻意休息、放空、什麼都不做，本身就是生產力的一部分</strong>。大腦在放鬆時會在背景整合訊息、冒出好點子，把自己逼到永不停機，反而扼殺了創造力。</p>
 <p><strong>機制</strong>：精力像手機電量，是會耗盡也需要充電的。聰明的人不是「電量無限」，而是「懂得在高電量時做重要事、主動充電、不讓自己長期見底」。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>整本書的骨架其實是一次「重新定義」加一套「操作系統」。貝利先把生產力從「時間管理」擴充成<strong>時間 × 專注 × 精力</strong>三原料——這是世界觀的翻新。接著他用<strong>帕金森定律</strong>打掉「多花時間就更有產出」的迷思，告訴你關鍵是聚焦而非拉長。然後給你日常的方向盤——<strong>每日三件事</strong>，逼你天天鎖定高影響力的少數任務。再用<strong>拖延解剖</strong>幫你搬開擋在任務前面的心理石頭。最後回到最底層，提醒你<strong>精力才是燃料</strong>，顧好睡眠、休息、黃金時段，前面所有方法才跑得動。</p>
 <p>一句話收攏：生產力不是把自己榨得更乾、塞得更滿，而是在對的時間、用飽滿的精神、專注地完成少數真正重要的事——做得更聰明，不是更用力。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（把忙碌換成真正的產出）</strong>：</p>
 <ol><li>每天上工先寫三件事：打開電腦第一件事，別急著收信。先問「今天下班時，完成哪三件我會覺得沒白過？」寫下來，貼在螢幕邊。</li><li>把最硬的活排進黃金時段：找出你一天精神最好的那兩三小時，把最需要動腦的任務放進去，並在那段關掉通知、不排會議。回信、雜務丟到精神差的時段。</li><li>用限時逼出效率：給那件你一直拖的大任務設一個「短到有點緊張」的時限（例如原本以為要一天，先給自己 90 分鐘做出初稿），用帕金森定律的反向操作把自己逼專注。</li></ol>
 <p><strong>生活版（對付你的分心與拖延）</strong>：</p>
 <ol><li>佈置 20 秒的摩擦力：想少滑手機，就把手機放到另一個房間、登出社群 App；想多讀書，就把書放在枕頭上、翻開在要讀的那頁。讓壞習慣多 20 秒門檻，好習慣少 20 秒門檻。</li><li>拆解你最會拖的那件事：挑一件你一直逃避的事，問自己它為什麼讓你想逃（太模糊？太難？沒意義？），然後對症下藥——模糊就拆出「下一個具體動作」，沒意義就寫下它連結到你在乎的什麼。</li><li>把休息當正事排進去：別把放空當偷懶。刻意安排散步、發呆、什麼都不做的空檔，讓大腦在背景整理思緒——好點子常在這種時候冒出來。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「生產力就是想辦法塞進更多事」</strong>——這正是貝利用一整年實驗推翻的核心迷思。他的結論剛好相反：塞更多、逼更兇，產出常常不升反降。生產力是「完成該完成的重要事」，不是「單位時間做的事情數量」。</li><li><strong>「這本書教你變成一台永不停機的高效機器」</strong>——恰恰相反。貝利花了很大篇幅講休息、睡眠、放空的重要性。他親身實驗的教訓之一，就是把自己逼到極限（90 小時週）根本不划算。真正的高手懂得主動充電。</li><li><strong>「有了三件事法則、20 秒法則，效率就會自動起飛」</strong>——這些是工具，不是魔法。工具的效果取決於你有沒有先搞清楚「什麼才是你真正重要的事」。方向錯了，再好的效率工具只會讓你更有效率地做錯的事。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《深度工作力》（紐波特）：兩本高度互補。紐波特主張「無干擾的深度專注」是這個分心時代最稀缺的能力，講的是「專注」這一味的極致；貝利則把專注放進「時間、專注、精力」的完整框架裡，更全面但沒那麼極端。想把專注練到頂讀紐波特，想要一套均衡可行的日常系統讀貝利。</li><li>《原子習慣》（克利爾）：克利爾教你怎麼把好行為變成不費力的自動習慣（系統面）；貝利教你在有限的時間精力裡怎麼分配、聚焦（策略面）。習慣負責讓事情自動發生，生產力負責決定該讓哪些事發生。</li><li>《心流》（契克森米哈伊）：貝利講的「黃金時段 ＋ 無干擾 ＋ 專注一件重要事」，其實就是替心流鋪好舞台的條件。你把最耗腦的任務放進精神最好、不被打斷的時段，正是最容易掉進心流的配方。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「生產力不是做更多事，而是做對的事——並且把你想完成的事完成。」（原文精神：Productivity isn't about doing more; it's about accomplishing what you intend.）</li><li>「你不是在管理時間，你是在管理你的精力和注意力——時間只是它們流過的容器。」（原文精神：Managing your energy and attention matters as much as managing your time.）</li><li>「忙碌不等於有生產力；忙碌常常只是懶惰的另一種形式——懶得思考什麼才真正重要。」（原文精神：Busyness is not the same as productivity.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你上一個「很忙但回頭看沒完成什麼要緊事」的一天——如果那天一早你先寫下「今天最重要的三件事」，會不會過得不一樣？現在就試著寫出明天的三件，看看你選得出來嗎？</li><li>貝利說我們會拖延，是因為任務同時很無聊、很難、很模糊、沒意義、沒回饋。挑一件你一直拖著的事，對照這幾個特徵，它到底踩中了哪幾個？知道原因後，你能先動哪一個手術？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-productivity-project" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -439,6 +569,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -461,6 +594,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -507,6 +641,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -532,6 +672,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-productivity-project";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,14 +440,16 @@
   <p class="title-en">The Pyramid Principle</p>
   <p class="byline">芭芭拉・明托（Barbara Minto）｜1978</p>
   <p class="hook">你的報告不是內容不夠好，是順序錯了。別人聽不懂，往往不是因為你講太少，而是你把結論藏在最後、讓人一路猜你到底想說什麼。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>芭芭拉・明托是麥肯錫（McKinsey）歷史上第一位女性顧問，1963 年進公司。她很快發現一件事：麥肯錫的顧問個個聰明絕頂，分析能力一流，但寫出來的報告卻常常讓客戶看得一頭霧水——不是想法不好，是「表達的結構」爛。於是公司乾脆把「教全歐洲顧問怎麼把話講清楚」這個任務交給她。</p>
 <p>明托花了多年研究「清楚的思考與表達到底長什麼樣」，最後歸納出一套方法，1978 年寫成《金字塔原理》。這本書沒有華麗的故事，它幾乎是一本工具書，卻成為全球商業界、顧問業、乃至無數上班族的寫作聖經，幾十年長銷不墜。在那個報告、備忘錄、簡報主宰職場溝通的年代，明托做的事情本質上是：把「怎麼讓別人一聽就懂」變成一套可以學、可以教的規則，而不是靠天分。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼我明明想清楚了，寫出來、講出來別人卻抓不到重點？」</p>
 <p>明托的診斷很犀利：問題不在你的想法，在你「呈現想法的順序」。人腦一次只能處理有限的資訊，如果你按照「自己思考的順序」（先鋪陳、再分析、最後才講結論）來表達，聽的人會在一堆細節裡迷路，急得想問「所以你到底要說什麼？」。這本書要教的，是反過來——<strong>先給結論，再給支撐</strong>，並且把所有想法組織成一座清楚的金字塔。它回答的是職場最基本卻最少人做對的事：怎麼讓你的溝通，別人不費力就懂。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、金字塔結構：先講結論，再往下展開理由</h3>
 <p>這是全書的核心。明托說，任何清楚的表達，想法之間都應該長成一座金字塔：<strong>最頂端是你唯一的核心結論</strong>，下面一層是支撐這個結論的幾個理由，每個理由底下再展開更細的證據。讀者永遠是「先接到頂端的答案，再視需要往下看支撐」。</p>
 <p>這跟我們的直覺剛好相反。我們習慣「說書式」地鋪陳：背景、經過、分析……最後才揭曉結論。但明托指出，讀者在還沒拿到結論前，根本不知道你這些細節是要導向哪裡，只能被動地在腦中亂拼。<strong>先講結論</strong>，等於先給讀者一個「盒子」，後面所有資訊他都知道該往哪個格子放。<strong>機制</strong>：符合大腦「先框架、後細節」的處理方式，大幅降低理解的力氣。<strong>限制</strong>：先講結論的前提是你<strong>真的想清楚結論了</strong>——很多人不敢先講結論，正是因為自己心裡也還一團亂；金字塔逼你先把自己想通。</p>
@@ -339,21 +462,28 @@
 <h3>四、SCQA：用一個「故事」把讀者拉進來</h3>
 <p>光有金字塔還不夠，明托設計了一套開場公式，讓你的文章一開頭就勾住讀者，叫 <strong>SCQA</strong>：<strong>情境（Situation）</strong>——先講一個對方都同意、沒有爭議的背景；<strong>衝突（Complication）</strong>——點出情境裡出現了什麼變化或問題，製造張力；<strong>疑問（Question）</strong>——這個衝突自然引出讀者心中的疑問；<strong>答案（Answer）</strong>——你的核心結論，正好回答那個疑問，也就是金字塔的頂端。</p>
 <p>這套公式的巧妙在於，它不是硬邦邦地丟結論，而是先用「情境＋衝突」勾出讀者自己心裡的問題，讓他<strong>產生想知道答案的渴望</strong>，然後你的結論才登場。<strong>機制</strong>：人對「自己想問的問題」的答案最買帳；SCQA 幫你製造出那個問題。<strong>限制</strong>：SCQA 的順序可以靈活調換（有時先講衝突更抓人），重點是四個元素齊全、且真的接得上讀者關心的疑問，不是死背順序。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>四個概念是一套完整的作業流程：<strong>金字塔結構</strong>是骨架（先結論、後支撐）；<strong>演繹／歸納</strong>規定了骨架上「縱向」的推理該怎麼串（上下層之間為什麼成立）；<strong>MECE</strong> 規定了「橫向」的分類該怎麼擺（同一層之間不重不漏）；最後 <strong>SCQA</strong> 負責「入口」——把讀者從他熟悉的情境，一步步引到你金字塔的頂端結論。先想清楚結論（塔頂），用 MECE 把理由分乾淨（橫向），用演繹或歸納把層與層接好（縱向），再用 SCQA 設計一個勾人的開場。從「怎麼想清楚」到「怎麼講清楚」，一條龍。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「寫一封讓主管三秒懂的報告」為例）</strong>：</p>
 <ol><li>動筆前先問自己：「如果只能講一句話，我的結論是什麼？」寫不出來就代表還沒想清楚，別急著寫。</li><li>把結論放<strong>第一段</strong>（別藏到最後），然後在底下列出三個以內的支撐理由。</li><li>檢查那幾個理由 MECE 不 MECE：有沒有重疊？加起來有沒有漏掉關鍵面向？</li><li>開頭用 SCQA 鋪一句：「我們原本 X（情境），但現在出現 Y（衝突），所以問題是 Z——我的建議是……（結論）。」</li><li>每個理由底下，才放數據和細節，讓想深究的人往下看。</li></ol>
 <p><strong>生活版（以「跟另一半提一個重要決定」為例）</strong>：</p>
 <ol><li>別從一堆前情鋪陳講起，先講你的結論：「我想我們該搬到離公司近一點的地方。」</li><li>接著給三個不重疊的理由（通勤、預算、生活圈），別把同一件事講三遍。</li><li>開頭先用一句對方也同意的現況（情境）＋最近的變化（衝突）帶進來，對方會更願意聽。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「金字塔原理只是一套寫作排版技巧」</strong>——不對。明托強調它首先是<strong>思考</strong>工具：逼你先把結論想清楚、把邏輯理乾淨，寫作只是思考清楚後的自然產物。想不清楚，套再多模板都沒用。</li><li><strong>「先講結論＝把話講得很衝、很武斷」</strong>——不是。先講結論是幫讀者建立框架，語氣照樣可以婉轉；重點在「順序」不在「態度」。</li><li><strong>「MECE 一定要做到完美無缺」</strong>——它是理想與檢查工具，不是要你陷入分類強迫症。用它抓大漏洞和明顯重複就夠，不必為了 100% MECE 鑽牛角尖。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《一分鐘經理人》一類的商業溝通書：多半教「態度」與「技巧」，而明托補上最缺的一塊——底層的<strong>邏輯結構</strong>。想讓表達有骨架，明托是地基。</li><li>《讓創意更有黏性》（希思兄弟）：兩本都在談「怎麼讓別人記住你的訊息」。希思兄弟偏重「怎麼說得難忘」（故事、意外、情感），明托偏重「怎麼排得清楚」（結構、邏輯）——一個管黏性，一個管條理，互補。</li><li>《快思慢想》（康納曼）：明托的「先給框架再給細節」其實呼應了大腦認知負荷的原理——康納曼解釋了為什麼人腦需要金字塔這種省力的結構，讀了會更懂明托方法背後的道理。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「讀者一次只能吸收一個想法——所以請先告訴他那個最重要的想法。」（大意，出自金字塔結構一章）</li><li>「如果你沒辦法把結論寫成一句話，那代表你還沒真正想清楚。」（大意）</li><li>「清楚的寫作，來自清楚的思考——反過來不成立。」（大意：Clear writing is a function of clear thinking.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你最近一次「講了半天別人還是抓不到重點」的經驗——如果當時第一句話就先講結論，情況會不會不一樣？</li><li>你自己寫報告或訊息時，是習慣「先鋪陳再揭曉結論」，還是「先給結論再解釋」？哪一種其實是為了讓<strong>你自己</strong>比較好講、而不是讓<strong>對方</strong>比較好懂？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-pyramid-principle" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -425,6 +555,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -447,6 +580,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -493,6 +627,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -518,6 +658,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-pyramid-principle";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

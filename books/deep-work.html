@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,15 +440,17 @@
   <p class="title-en">Deep Work</p>
   <p class="byline">卡爾・紐波特（Cal Newport）｜2016</p>
   <p class="hook">你每天很忙，但一年下來為什麼沒有一件拿得出手的成果？因為你把時間都花在「看起來很努力」的淺薄工作上——真正稀有又值錢的能力，是關掉通知、進入無人打擾的深度專注。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>卡爾・紐波特有個奇特的身分組合：他是喬治城大學的資工教授，在 MIT 拿到博士，發表論文的速度在同行裡數一數二；但他同時是暢銷書作家、三個孩子的爸，而且——他幾乎不用社群媒體，很少工作到傍晚五點半以後。一個產出這麼高的人，卻活得這麼「不忙」，這件事本身就是他整本書的活廣告。</p>
 <p>《深度工作力》出版於 2016 年，正好是智慧型手機、Slack、無止盡的 email 把辦公室切成碎片的年代。紐波特觀察到一個矛盾：科技讓我們隨時能「連線」，卻也讓我們隨時被打斷，結果是一整代知識工作者失去了長時間專注的能力。他不是要你回到山洞裡，而是主張——當所有人都在淺水區撲騰時，能潛到深水區的人反而成了稀有物種。這本書就是他的潛水教練手冊。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「我明明從早忙到晚，回收信、開會、回訊息，一刻沒停，為什麼年底考績平平、也沒學到什麼真本事？」</p>
 <p>紐波特的診斷很銳利：你把時間都耗在<strong>淺薄工作</strong>（shallow work）上了——那些不太需要動腦、後勤性質、常常一邊分心一邊做的事（收信、排程、開沒重點的會）。它們讓你「看起來很忙」，卻幾乎不創造新價值。真正能拉開差距的是<strong>深度工作</strong>（deep work）：在無干擾的專注狀態下，把認知能力推到極限的活動。這種工作創造新價值、磨利你的技能，而且難以被取代。</p>
 <p>他丟出全書的核心假設：<strong>深度工作的能力正變得越來越稀有，而它的價值正變得越來越高——這兩件事同時發生。</strong>誰能培養這個能力，誰就會在新經濟裡勝出。如果你隱約覺得自己「瞎忙一場」，這本書就是要幫你把時間從淺水區搬回深水區。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、深度 vs 淺薄：一條被大多數人搞反的公式</h3>
 <p>先把兩個詞釘死。深度工作是「無干擾、把腦力逼到極限」的活動；淺薄工作是「不太費腦、常在分心中完成」的雜務。問題是，現代辦公室把「回覆很快」「隨傳隨到」當成敬業，於是我們用<strong>忙碌當成生產力的替身</strong>——因為知識工作很難量化產出，大家只好用「看起來很拚」來證明自己有價值。</p>
 <p>紐波特給了一條很簡單卻很殘忍的公式：</p>
@@ -344,21 +467,28 @@
 <p>深度工作不是排進行事曆就會發生，你得先<strong>把大腦重新訓練成能忍受無聊</strong>。紐波特的建議反直覺：不要「偶爾戒一下網路」，而要「預先排定能上網的時段」，其餘時間一律離線——重點不在離線多久，而在練習「忍住想分心的衝動」。如果連排隊三分鐘都要滑手機，你的大腦已經被訓練成一有空檔就逃向刺激，這樣的腦子塞不進深度。</p>
 <p>他還教一招<strong>生產力冥想</strong>：在身體忙、大腦閒的時候（走路、慢跑、通勤），把注意力鎖在一個明確的專業問題上，強迫它繞回來、不准飄走。另一招叫<strong>羅斯福衝刺</strong>——效法年輕時的老羅斯福，給自己一個近乎苛刻的死線，然後用全部能量在短時間內猛攻，逼出平常擠不出的專注強度。</p>
 <p>到了另一端，你得主動<strong>榨乾淺薄工作</strong>：紐波特建議把一天「每一分鐘都排進區塊」（time blocking），並學會估算每件事的「深度」——問自己「如果找一個聰明但沒受過本科訓練的新人，要培訓幾個月才能接手這件事？」越難培訓的越深、越值得投入。最後是他自己奉行的<strong>固定日程生產力</strong>：先把下班時間釘死（例如傍晚五點半），再倒推、狠心刪掉塞不進去的事。搭配「關機儀式」——下班前把未竟事項寫成明日計畫、講一句固定的收工暗號，然後徹底放空。因為書裡引述的研究說：休息能孕育洞見、能修復注意力，而傍晚被工作吃掉的那些事，通常沒你以為的重要。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>把概念串起來就是一條因果鏈：<strong>價值</strong>（深度工作在新經濟裡稀有又值錢，這是「為什麼要做」）→ <strong>哲學</strong>（修道院／雙模式／節奏／記者，四選一，這是「用什麼框架做」）→ <strong>能力</strong>（擁抱無聊、訓練專注肌肉，這是「怎麼練得起來」）→ <strong>防守</strong>（拒絕淺薄、固定日程、關機儀式，這是「怎麼守住深度不被雜務吃掉」）。前半本說服你「這值得」，後半本四條規則手把手教你「怎麼做」。它不是零散的效率技巧包，是一套從世界觀到操作台的完整系統。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「產出一份有份量的提案／報告」為例）</strong>：</p>
 <ol><li>選哲學：上班族先用「節奏式」——每天早上 9:00–11:00 定為深度時段，月曆打叉別斷鏈。</li><li>設儀式：關掉所有通知、手機丟抽屜、泡好咖啡才開始；固定同一張桌子。</li><li>榨乾淺薄：把回信、開會、雜事全擠到下午同一個時段批次處理，別讓它們見縫插針。</li><li>訓練專注：通勤時做「生產力冥想」，把提案的核心難題在腦中推演一遍。</li><li>固定收工：給自己傍晚的硬下班線，逼你在深度時段真正拚，而不是拖到加班。</li></ol>
 <p><strong>生活版（以「戒掉一有空就滑手機」為例）</strong>：</p>
 <ol><li>反向排程：不是「戒手機」，是「排定可以滑的時段」，其餘時間離線——練的是忍耐衝動。</li><li>工匠式選工具：問自己「這個 App 對我真正在乎的事，好處有沒有明顯大過壞處？」沒有就刪。</li><li>把休閒填滿品質：下班別用滑手機放空，預先安排有結構的休閒（運動、閱讀、和人深聊），大腦其實更滿足。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「深度工作＝把自己關起來、拒絕協作」</strong>——錯。紐波特明確肯定「白板效應」與「輻軸模式」（hub-and-spoke），還舉貝爾實驗室、MIT 20 號樓為例：對的協作能放大深度，重點是「刻意獨處消化」和「刻意碰撞激盪」要分開，而不是二選一。</li><li><strong>「所以我該全面戒網、當個數位隱士」</strong>——錯。「擁抱無聊」是要你<strong>排定</strong>上網時段、不是永遠斷網；「戒社群媒體」講的是用「工匠式選工具」逐一評估，不是盲目反科技。他自己天天用網路查資料寫論文。</li><li><strong>「深度工作就是工作更久、更爆肝」</strong>——正好相反。固定日程生產力、關機儀式、「該懶就懶」講的都是<strong>用更短的時間、更高的強度</strong>換更好的產出。深度拚的是專注的乘數，不是坐在桌前的時數。</li><li><strong>「修道院式最狠，我要學高德納直接不用 email」</strong>——多數人做不到也不該做。紐波特自己建議一般上班族用節奏式或雙模式，四種哲學是讓你挑適合的，不是逼你走極端。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《原子習慣》（克利爾）：習慣系統蓋好之後要拿來裝什麼？紐波特的答案就是「深度專注」。前者教你怎麼讓行為自動發生，後者教你讓那個行為值得。兩本恰好是「系統」與「內容」的接力。</li><li>《心流》（契克森米哈伊）：紐波特借用了心流理論當地基——人在深度沉浸於有挑戰的任務時最快樂。想懂「為什麼專注會讓人幸福」的神經與心理機制，讀契克森米哈伊；想懂「怎麼在職場刻意製造心流」，讀紐波特。</li><li>《匱乏經濟學》／《專注力協定》這類談注意力的書：都在處理「分心時代如何守住腦力」，但紐波特更偏「主動建構深度」而非「被動抵抗干擾」，適合當作對照著讀的另一種視角。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「深度工作的能力正變得越來越稀有，而幾乎在同一時間，它變得越來越有價值。」（The ability to perform deep work is becoming increasingly rare at exactly the same time it is becoming increasingly valuable in our economy.）</li><li>「想快速學會困難的東西，你必須高度專注、不受干擾。」（To learn hard things quickly, you must focus intensely without distraction.）</li><li>「對什麼重要的事有了清楚的認識，也就對什麼不重要有了清楚的認識。」（Clarity about what matters provides clarity about what does not.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>攤開你上週的行事曆，誠實估一下：真正「深度工作」的時間佔幾成，「淺薄工作」佔幾成？如果要在明天硬切出一個 90 分鐘、完全不被打斷的深度區塊，你會拿它來做哪一件一直沒空好好做的事？最大的阻力會是什麼（會議？老闆的即時訊息？還是你自己忍不住滑手機）？</li><li>四種深度工作哲學裡——修道院、雙模式、節奏、記者——你覺得哪一種最貼合你現在的工作型態和個性？為什麼另外三種對你行不通？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="deep-work" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -430,6 +560,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -452,6 +585,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -498,6 +632,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -523,6 +663,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "deep-work";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

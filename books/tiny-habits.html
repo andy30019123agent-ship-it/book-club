@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">Tiny Habits</p>
   <p class="byline">BJ・福格（BJ Fogg）｜2019</p>
   <p class="hook">想養成運動習慣，別立志「每天做 20 下伏地挺身」。福格說：先從「上完廁所做 2 下」開始，做完還要對自己歡呼一下。聽起來很蠢，但這個史丹佛實驗室的方法，恰恰打中了習慣真正的開關——不是意志力，是情緒。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>福格是史丹佛大學的行為科學家，主持一個叫「行為設計實驗室」的研究單位，鑽研「人為什麼會做出某個行為」這件事，超過二十年。他不是心靈雞湯作家，是把行為當成一門可以拆解、可以設計的科學在做的人。</p>
 <p>他在矽谷的影響力其實藏在很多產品背後。多年來，一大批科技公司的產品設計者上過他的課、學過他的行為模型——包括後來共同創辦 Instagram 的其中一位。也就是說，那些讓你忍不住一直滑、一直用的 App，背後有一部分就來自福格教的行為設計原理。這件事有點微妙：同一套「怎麼讓人養成習慣」的科學，可以被用來設計讓你上癮的產品，也可以反過來，被你自己拿來養成真正對你好的習慣。這本 2019 年出版的書，就是福格把二十年研究，親手交到「你自己」手上的版本——讓你當自己行為的設計師，而不是被別人設計。</p>
 <p>比起同期談習慣的暢銷書，福格的路線有兩個很鮮明的招牌：一是「小到不可思議」的起點，二是「情緒」而非「重複次數」才是養成習慣的真正關鍵。這兩點，讓他的方法在一堆習慣書裡自成一格。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼我下定決心要養成的好習慣，總是撐不了幾天就垮了？」</p>
 <p>多數人把答案歸咎於「我不夠自律、意志力太弱」。福格的回答很乾脆：<strong>別怪你的意志力，是你的方法設計錯了。</strong>你把目標訂得太大（每天跑五公里、每天讀一小時），大到必須靠意志力硬撐——而意志力像潮水，有高有低，一旦退潮，習慣就崩了。真正能長久的習慣，設計上根本不該依賴意志力。</p>
 <p>這本書要回答的是：如果你屢屢立志、屢屢失敗，覺得自己天生沒有毅力——問題不在你這個人，在你不懂習慣「怎麼運作」。福格要給你的，是一套把行為拆解到可以精準設計的科學方法，讓好習慣小到你「不可能失敗」，然後自然長大。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、福格行為模型：行為＝動機 × 能力 × 提示</h3>
 <p>這是福格整套理論的地基，一條公式：<strong>B＝MAP</strong>。任何一個行為（Behavior）要發生，需要三個要素在「同一個時刻」同時到位——動機（Motivation，你有多想做）、能力（Ability，這件事對你有多容易）、提示（Prompt，有東西提醒你現在做）。</p>
 <p>三者缺一，行為就不會發生。你想早起運動（有動機），但鬧鐘沒響（沒提示），不會動；鬧鐘響了、你也想（有提示有動機），但外面下大雪、健身房超遠（能力太低、太難），還是不會動。這三個旋鈕的組合，決定了一個行為到底會不會真的發生。</p>
@@ -351,22 +474,29 @@
 <p>具體怎麼做？每次你完成那個小習慣的當下——做完 2 下伏地挺身、清完那一顆牙——立刻給自己一個小小的正向情緒：在心裡（或出聲）說「我做到了！」、握拳比個「Yes!」、對自己微笑、想像聽到歡呼。就這麼一個兩秒鐘的動作，福格說，它會在你的大腦裡替這個行為「焊上」一份好感覺，讓大腦標記「這件事做起來爽，值得再做」。這份即時的正向情緒，才是把行為黏成習慣的真正膠水。</p>
 <p><strong>機制</strong>：這背後是神經科學的「行為強化」——大腦會強化「緊接著獎賞」的行為。而最快、最不花錢、隨時可得的獎賞，就是你自己給自己的一份好情緒。你不需要等外在成果（那太慢、太不確定），你可以在「做完的那一秒」就自己發獎。</p>
 <p><strong>限制</strong>：對很多人來說，「對自己歡呼」一開始尷尬得要命，會覺得幼稚。但福格強調這正是最多人略過、也最可惜的一步——慶祝不是可有可無的裝飾，它是讓習慣真正扎根的核心機制。跳過它，習慣就少了黏著劑。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>福格的方法是一條完整的「行為設計」流水線，串起來是這樣：先用<strong>福格行為模型（B＝MAP）</strong>理解一個行為需要動機、能力、提示同時到位——這是世界觀。接著他點破一個致命錯誤：多數人拚命去拉那個最不可靠的<strong>動機</strong>，結果被動機的潮汐反覆背叛——這是打破迷思。既然動機靠不住，那就轉去操作可控的「能力」——把習慣<strong>縮到小得不可能失敗</strong>，讓它低到不需要動機也能成立——這是核心策略。然後配上一個穩定的<strong>提示</strong>（把新習慣「錨定」在一個既有的日常動作後面，像「上完廁所後」），讓它有東西自動觸發。最後，用<strong>慶祝</strong>注入即時的正向情緒，把這個行為真正焊進大腦——這是讓它長久的關鍵一步。</p>
 <p>他有一個好記的配方公式：「<strong>做完 A（既有習慣當提示），我就做 B（小到不行的新行為），然後立刻慶祝。</strong>」小小地開始、穩穩地觸發、開心地收尾——習慣就這樣被設計出來，而不是靠意志力硬熬出來。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（養成一個工作好習慣，以「每天整理待辦」為例）</strong>：</p>
 <ol><li>縮到最小：別訂「每天做完整的工作規劃」，先訂「每天打開電腦後，寫下今天最重要的一件事」。小到你再忙都做得到。</li><li>錨定提示：把它綁在一個你天天必做的動作後面——「泡好第一杯咖啡、坐下的那一刻，就寫那一件事」。用既有習慣當自動觸發器，不靠記憶。</li><li>立刻慶祝：寫完那一行，在心裡對自己說「搞定，好的開始！」給自己一個小小的好情緒。別小看這兩秒，它是讓明天還想做的關鍵。</li><li>讓它自然長大：習慣穩了之後，你會發現自己常常順手多寫兩三件——但即使只寫一件，習慣也保住了，永遠不斷線。</li></ol>
 <p><strong>生活版（養成一個生活習慣，以「多喝水」為例）</strong>：</p>
 <ol><li>縮到最小：別訂「每天喝 2000cc」，先訂「每天早上刷完牙，喝一口水」。一口就好。</li><li>錨定提示：把「喝一口水」牢牢綁在「刷完牙」這個每天鐵定會做的動作後面——刷牙就是你的鬧鐘。</li><li>立刻慶祝：喝完那口，對鏡子裡的自己笑一下、比個讚。是的，會有點蠢，但這正是讓大腦記住「這件事有好感覺」的祕訣。</li><li>對付壞習慣就反著來：想戒睡前滑手機？福格的做法是「拆掉提示、增加難度」——把手機充電器移出臥室，讓那個觸發你滑手機的提示直接消失。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「習慣要靠重複 21 天養成」</strong>——福格明確反對這個流傳最廣的說法。他主張是「情緒」而非「重複次數」在創造習慣：一個讓你做完就有好感覺的行為，可能很快就固化；而一個你重複很多次卻毫無正向情緒的行為，永遠長不成習慣。所以他才那麼強調「慶祝」——那不是花招，是機制本身。</li><li><strong>「習慣愈大、愈狠，效果愈好」</strong>——恰恰相反。福格認為訂太大的目標，正是多數人失敗的主因，因為大目標需要高動機，而動機會退潮。把習慣縮到「小得可笑」不是妥協，是刻意的設計——先求生根不斷線，再談長大。</li><li><strong>「慶祝那一步很幼稚，可以省略」</strong>——這是最多人犯、也最可惜的錯。福格反覆強調，慶祝是他整套方法裡最容易被跳過、卻最關鍵的一環。少了那份即時的正向情緒，行為就少了黏進大腦的膠水。覺得尷尬可以低調做，但別省。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《原子習慣》（克利爾）：兩本是同主題最常被拿來比較的雙璧，而且高度互補。克利爾的框架更全面（提示、渴望、回應、獎賞四法則、身分認同、環境設計），福格則更聚焦、更強調兩件事——「小到不可思議的起點」和「用情緒／慶祝來焊接習慣」。克利爾也在書裡向福格致敬。想要完整地圖讀克利爾，想要最小可行的起步儀式讀福格。</li><li>《恆毅力》（達克沃斯）：達克沃斯講「長期堅持一個大目標」的心理力量，聽起來很靠意志力；福格剛好補上「怎麼堅持而不靠意志力硬撐」的操作——把要堅持的行為設計得小到不費力。一個給你北極星，一個給你不會斷的腳步。</li><li>《心態致勝》（杜維克）：福格的「慶祝」和杜維克的「成長心態」暗中呼應——慶祝的是「你做到了、你進步了」的過程，而不是「你多有天分」的結果。兩者都在教你把注意力放在「可控的努力與進步」上，並從中得到正向回饋。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「要改變行為，別想著改變自己——去改變你的環境和設計。」（原文精神：To change behavior, redesign your environment and make the behavior tiny — don't rely on willpower.）</li><li>「是情緒創造了習慣，不是重複的次數。」（Emotions create habits. Not repetition. Not frequency.）</li><li>「先讓自己成功地做到小事，微小的成功會像種子一樣，長成巨大的改變。」（原文精神：Help yourself succeed by starting tiny; small successes grow.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>挑一個你一直想養成、卻總是失敗的習慣。用福格的方法把它「縮到小得可笑」——小到你今天再累、再沒動力都一定做得到，那個版本會是什麼？（提示：不是「每天運動」，是「穿上運動鞋」那種等級。）</li><li>「做完就立刻慶祝」這一步，你會不會覺得尷尬、幼稚、想跳過？如果會，是什麼讓你抗拒對自己歡呼——會不會這份「不好意思肯定自己」，其實正是你一直難以維持好習慣的隱藏原因之一？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="tiny-habits" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -438,6 +568,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -460,6 +593,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -506,6 +640,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -531,6 +671,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "tiny-habits";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,15 +440,17 @@
   <p class="title-en">Thinking in Bets</p>
   <p class="byline">安妮・杜克（Annie Duke）｜2018</p>
   <p class="hook">好結果不代表你決策對，壞結果也不代表你判斷錯。你一直用「事情的結局」幫自己打分數，難怪同樣的坑會一直踩。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>安妮・杜克的履歷有點分裂。她原本走的是純學術路線——在賓州大學攻讀認知心理學博士，眼看就要拿到學位。結果一場大病打斷了一切，她休學養病，缺錢，跟著同樣打牌的哥哥霍華德・萊德勒（Howard Lederer）進了德州撲克的世界，本來只想賺點生活費。</p>
 <p>沒想到，這個「臨時工」一做二十年。她拿下世界撲克大賽的金手鐲，職業生涯贏得超過四百萬美元獎金，是當時女性牌手裡的頂尖人物。2012 年退休後，她把撲克桌上磨出來的直覺，和當年沒念完的認知科學重新接起來，變成一名「決策策略顧問」，替企業、球隊講怎麼在資訊不全、運氣攪局的情況下把決策做好。</p>
 <p>《高勝算決策》2018 年出版，正好戳中一個時代痛點：這是一個資訊爆炸、人人都覺得自己很篤定的年代，社群媒體把世界簡化成非黑即白。杜克反其道而行，她說世界的真相是「我不確定」，而撲克——一個把運氣、資訊不全、心理博弈全部揉在一起的遊戲——剛好是練習面對不確定的最好道場。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼聰明人也會做出爛決策？更氣人的是，為什麼我們明明累積了一堆經驗，卻好像沒學到什麼教訓？」</p>
 <p>杜克的答案很反直覺：因為我們一直用「結果」來評價「決策」。事情成了，就覺得自己英明；事情砸了，就覺得自己蠢。但人生不是西洋棋（資訊全公開、沒有運氣），人生是撲克——你永遠只看到部分的牌，好決策也可能因為運氣不好而收壞結果，爛決策也可能瞎貓碰上死耗子。如果你用結局來回頭打分數，你學到的往往是錯的教訓。這本書要教你的，是把「決策品質」和「結果品質」拆開來看。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、以結果論英雄（Resulting）：最常見、也最坑人的思考捷徑</h3>
 <p>杜克用一個所有美式足球迷都記得的例子開場：2015 年超級盃，西雅圖海鷹隊在終場前幾秒、球推進到對方一碼線，眼看只要一次觸地就逆轉奪冠。教練皮特・卡羅（Pete Carroll）沒有把球交給當家跑鋒硬推，而是選擇傳球——結果被對方攔截，海鷹輸掉冠軍。隔天全美媒體罵翻，說這是「超級盃史上最爛的一次戰術」。</p>
 <p>但杜克問：這真的是一個爛決策嗎？當時的時間、暫停數、對方防守陣型，都讓傳球有它的道理，而那種情境下傳球被攔截的機率其實極低。卡羅賭的是一個高勝算的選擇，只是抽到了那張倒楣的牌。媒體之所以罵，不是因為決策爛，而是因為<strong>結果爛</strong>——這種「用結果反推決策好壞」的思考，杜克叫它 resulting。</p>
@@ -346,21 +469,28 @@
 <h3>五、跟未來的自己借智慧：預想失敗</h3>
 <p>杜克教了一招對付「當下衝動」的方法，叫做「心理時光旅行」。最實用的版本是<strong>事前驗屍（premortem）</strong>：在做決定之前，先想像「假設半年後這件事徹底搞砸了」，然後回頭問自己——它會是怎麼砸的？可能的原因有哪些？</p>
 <p>這招的巧妙在於，它把「唱衰」正當化了。平常在團隊裡潑冷水的人會被當掃把星，但如果全組人被要求一起想像失敗、列出風險，大家反而能坦白講出心裡的擔憂。相對地還有「回溯（backcasting）」——想像成功了，再倒推達成的路徑。<strong>機制</strong>：把未來的情緒先預演一遍，你當下就不會被樂觀或衝動綁架。<strong>限制</strong>：預想失敗不是要你悲觀到不敢動，而是把風險先攤在桌上、預先準備好對策。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>整本書其實是一條環環相扣的鏈：先破除「以結果論英雄」的錯覺（第一步），你才願意接受「決策是機率賭注、我不可能全對」（第二步）；接受了不確定，你才會誠實面對「這次到底是運氣還是實力」（第三步）；但你一個人分不清，所以要靠「真相追求小組」外掛第二雙眼睛（第四步）；最後，用「預想未來」把這套思考從事後檢討，前移到決策當下（第五步）。從「怎麼看待過去的結果」一路接到「怎麼做眼前的決定」，一氣呵成。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「一個專案失敗後的檢討會」為例）</strong>：</p>
 <ol><li>開會第一句話先定調：「我們今天檢討的是<strong>當初的決策過程</strong>，不是罵結果。」把 resulting 擋在門外。</li><li>每個關鍵決策問兩層：「當時我們掌握的資訊下，這選擇合理嗎？」跟「結果不好，有多少是運氣、多少是判斷？」</li><li>下次做重大決策前，先花十分鐘做 premortem：全組想像「這案子半年後爆掉了」，各自寫下最可能的原因，再逐條防堵。</li></ol>
 <p><strong>生活版（以「要不要換工作」為例）</strong>：</p>
 <ol><li>別問「換了會不會更好」（這是在賭結果），改問「以我現在知道的資訊，換工作是不是個好賭注？我有幾成把握？」</li><li>對自己喊一次「要賭嗎」——如果要你把三個月薪水壓在「換了一定更好」上，你還敢壓嗎？把虛的確定感逼出來。</li><li>找一個敢跟你講真話的朋友當你的真相小組，請他專挑你論點裡的漏洞。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「所以結果不重要」</strong>——錯。杜克從沒說結果不重要，她說的是<strong>別只用結果來評價決策</strong>。長期而言，好決策當然會帶來好結果，只是短期會被運氣干擾。</li><li><strong>「凡事都要算機率、變得優柔寡斷」</strong>——恰好相反。用機率思考是為了讓你在七成把握時果斷出手、同時保留修正空間，不是叫你什麼都不敢決定。</li><li><strong>「事前驗屍＝唱衰、觸霉頭」</strong>——它不是悲觀，是把風險提前攤開來準備。想過最壞情況的人，反而行動更穩。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《快思慢想》（康納曼）：杜克這本書的心理學地基，很多來自康納曼講的認知偏誤與系統一／系統二。前者是學理原點、偏理解；杜克這本偏「拿來用在決策現場」。想懂為什麼腦子會騙你，讀康納曼；想知道怎麼防，讀杜克。</li><li>《雜訊》（康納曼等）：談的是判斷的「不一致」，跟杜克談的「不確定」互補——一個講同一個人在不同時候判斷會飄，一個講面對運氣該怎麼下注。</li><li>《原則》（達利歐）：達利歐用「極度透明」的團隊文化來對抗個人盲點，跟杜克的「真相追求小組」是同一個念頭的不同規模版本——一個是公司級制度，一個是私人小圈子。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「人生是撲克，不是西洋棋。」（Life is poker, not chess.）</li><li>「一個好決策的價值，不在於它有沒有好結果，而在於它背後有沒有好的思考過程。」（What makes a decision great is not that it has a great outcome. A great decision is the result of a good process.）</li><li>「我們生活的品質，是我們所有決策品質的總和——再加上一點運氣。」（The quality of our lives is the sum of the quality of our decisions plus luck.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你最近一個「結果很糟」的決定——如果把運氣抽掉，只看當時掌握的資訊，那真的是個爛決策嗎？還是你只是抽到壞牌？</li><li>你身邊有沒有一個「敢跟你唱反調、你又信得過」的人？如果沒有，你願意刻意去建立一個這樣的關係嗎？為什麼我們總是更愛聽附和的聲音？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="thinking-in-bets" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -432,6 +562,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -454,6 +587,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -500,6 +634,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -525,6 +665,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "thinking-in-bets";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

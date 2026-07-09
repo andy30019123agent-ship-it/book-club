@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,17 +440,19 @@
   <p class="title-en">The Black Swan</p>
   <p class="byline">納西姆・塔雷伯（Nassim Nicholas Taleb）｜2007</p>
   <p class="hook">一隻被餵養一千天的火雞，每天都更相信人類愛牠——直到感恩節前一天。你對世界的信心，是不是也建立在「還沒出事」上？</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>納西姆・塔雷伯是個很難被歸類的人。他生於黎巴嫩一個顯赫的家族，少年時親眼看著一個承平了上千年、被視為中東最文明富裕的黎巴嫩，在幾乎沒人預料到的情況下，一夜之間陷入長達十五年的內戰。這件事在他心裡種下一顆種子：<strong>歷史不是慢慢演變的，它是被少數幾個誰也沒料到的巨變推著走的。</strong></p>
 <p>他後來到華爾街當交易員，專做選擇權——一種在市場劇烈波動時才會大賺的工具。1987 年美股一天崩跌 22%（黑色星期一），絕大多數交易員賠到破產，塔雷伯卻因為長期押注「罕見巨災會發生」而大賺一筆。這段經歷讓他確信：整個金融界都在用一套假設「世界很平穩」的數學模型，而這套模型遲早會害死所有人。</p>
 <p>2007 年，《黑天鵝效應》出版。僅僅一年後，2008 年全球金融海嘯爆發——一場「不可能發生」的系統性崩盤，把他書裡的警告變成血淋淋的現實。這本書於是從一本挑釁的哲學書，變成了時代的預言，塔雷伯也成了全球最有名、也最愛罵人的思想家之一。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼真正改變世界的大事，事前幾乎沒人料到，事後大家卻都說『我早就知道』？」</p>
 <p>塔雷伯給這種事件一個名字：<strong>黑天鵝</strong>。在歐洲人發現澳洲之前，所有人都認定「天鵝都是白的」——因為看過的每一隻都是白的。直到第一隻黑天鵝出現，一個累積了千百年的「真理」瞬間崩塌。</p>
 <p>黑天鵝事件有三個特徵：<strong>一、極度罕見，落在一般預期之外；二、一旦發生，衝擊極大；三、事後我們總會編出一套說法，讓它看起來「其實可以預測」。</strong>911、網際網路的崛起、金融海嘯、某本突然爆紅的書——都是黑天鵝。</p>
 <p>這本書要戳破的痛點是：<strong>我們把大量精力花在預測那些其實無關緊要的小事，卻對真正會顛覆一切的大事毫無防備。</strong>如果你曾經被「意料之外」打得措手不及，卻在事後才覺得「跡象明明都在」，這本書會告訴你，問題不在你不夠聰明，在人類這顆大腦天生就看不見黑天鵝。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、火雞問題：用過去推未來，是最危險的自信</h3>
 <p>塔雷伯借用哲學家羅素的「歸納問題」，改寫成一個讓人背脊發涼的比喻。</p>
 <p>一隻火雞，從出生第一天起就被人類餵養。第一天有東西吃，第二天也有，第三天、第一百天、第五百天……牠腦中「人類愛我、會照顧我」的信心，隨著每一天平安度過而越來越強。到了第一千天，這份信心達到史上最高點——<strong>然後，感恩節的前一天到了。</strong></p>
@@ -352,22 +475,29 @@
 <p>死人不會說話。這就是「沉默的證據」——我們只看得到成功者、生還者、留下來的，卻看不見那些同樣努力卻失敗、消失、被歷史抹去的絕大多數。</p>
 <p><strong>機制與痛點</strong>：這徹底扭曲了我們對「成功配方」的認知。我們研究成功創業家的習慣（早起、冒險、輟學），以為那是成功的原因；但有無數人也早起、也冒險、也輟學，卻血本無歸——他們不會出書、不上雜誌封面，成了沉默的證據。<strong>於是「倖存者偏差」讓我們把運氣誤認成本事，把冒險美化成智慧。</strong></p>
 <p><strong>限制</strong>：這不是叫你否定所有成功經驗，而是提醒：看到任何「成功法則」，先問一句——「照這法則做卻失敗的人有多少？他們去哪了？」把沉默的那一半找回來，你才看得到全貌。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>四個概念層層咬合，指向同一個結論。<strong>「兩個國度」</strong>是舞台設定——真正重要的領域（金融、聲譽、命運）都在極端斯坦，那裡黑天鵝橫行。<strong>「火雞問題」</strong>告訴你，在這種世界用「過去經驗」推未來，會在你最有信心時把你送上砧板。而我們之所以看不見危險，是因為兩層心理濾鏡：<strong>「敘事謬誤」</strong>讓我們把隨機事件編成「早有跡象」的假因果，<strong>「沉默的證據」</strong>讓我們只看見倖存者、看不見失敗者，雙重扭曲下，我們對世界的真實風險徹底盲目。</p>
 <p>塔雷伯的結論不是「去預測黑天鵝」（他認為那根本做不到），而是<strong>改變你的姿態</strong>：既然算不準大災難何時來，就把自己安排在「災難來時傷不到我、甚至還能得利」的位置——別當那隻火雞。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「事業與收入的抗風險」為例）</strong>：</p>
 <ol><li>檢查你的「火雞指數」：你的收入是不是全押在單一客戶、單一公司、單一技能上？「已經穩定好幾年」正是最危險的信號</li><li>用「槓鈴策略」的精神：把大部分資源放在極度安全的地方（穩定工作、緊急預備金），同時撥一小塊去下「小賠大賺」的注（副業、學新技能、認識圈外人）——別把全部押在「中等風險」的中間地帶</li><li>對「完美的成功故事」打折：聽到「照這套做保證成功」，先問「照這套做卻失敗的人在哪」</li></ol>
 <p><strong>生活版（以「重大決定的心態」為例）</strong>：</p>
 <ol><li>分辨國度：這件事是平庸斯坦（按常理過即可）還是極端斯坦（要防極端值）？搞錯國度是最大的錯</li><li>保留餘裕：別把行程、預算、體力都排到 100% 滿——留白就是你面對意外時的緩衝，冗餘不是浪費，是保命</li><li>少看預測、多想後果：與其猜「明年會怎樣」，不如問「如果最壞的情況發生，我承受得住嗎」</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「黑天鵝就是壞事、就是災難」</strong>——錯。黑天鵝是「意料之外、衝擊巨大」的事件，好壞都算。網際網路、盤尼西林、某本意外爆紅的書，都是正面黑天鵝。塔雷伯的建議因此有兩面：既要防負面黑天鵝的傷害，也要把自己曝露在正面黑天鵝的機會下。</li><li><strong>「所以要努力去預測黑天鵝」</strong>——這正是塔雷伯反對的。他認為黑天鵝的本質就是不可預測，花力氣預測是徒勞。重點是<strong>建立不靠預測也能活的韌性</strong>，而不是把水晶球擦得更亮。</li><li><strong>「這是一本教你悲觀的書」</strong>——不是。它教的是「清醒」：接受世界的隨機與不可知，然後聰明地安排自己的位置。認清無知，反而讓你更從容。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《反脆弱》（塔雷伯本人）：這本書診斷問題（黑天鵝不可測），《反脆弱》開藥方（那就打造一個能從混亂中獲益的系統）。兩本是同一套思想的上下集，強烈建議接著讀——正好是我們讀書會的下一本。</li><li>《快思慢想》（康納曼）：康納曼從心理學實驗解剖「敘事謬誤」「後見之明」這些偏誤的大腦機制；塔雷伯則從哲學與市場實戰的角度罵同一群魔鬼。一個給你顯微鏡，一個給你望遠鏡。</li><li>《隨機騙局》（塔雷伯前作）：《黑天鵝》的前傳，更聚焦在「我們如何把運氣誤認為實力」。想先暖身、理解塔雷伯思想的起點，可以從這本讀起。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「不要問鳥兒關於飛行的事——去問工程師。」（意指：真正在做事的人未必懂背後的原理，而事後的解釋往往是編造的。）（Don't ask the bird about flying; ask the engineer.）</li><li>「我們對已知的知識懂得太多，卻對未知的無知想得太少。」（We are too focused on what we know, and don't consider enough what we don't know.）</li><li>「錯過一班火車，只有在你追著它跑的時候才痛苦。」（Missing a train is only painful if you run after it.）——意指：不隨主流盲目追逐，你就不會被落後感綁架。</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回顧你的人生，有沒有一個「黑天鵝」時刻——事前毫無準備、事後卻覺得「好像早有跡象」？當時的你，是火雞還是屠夫？</li><li>你現在生活裡，有哪一塊像「被餵養的火雞」——因為長期平安而讓你放鬆戒備、其實風險正在累積？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-black-swan" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -439,6 +569,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -461,6 +594,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -507,6 +641,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -532,6 +672,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-black-swan";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

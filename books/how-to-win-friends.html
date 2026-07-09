@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">How to Win Friends and Influence People</p>
   <p class="byline">戴爾・卡內基（Dale Carnegie）｜1936</p>
   <p class="hook">快 90 年的老書，為什麼還賴在暢銷榜上？因為卡內基抓到一件不會過時的事——人不是邏輯的動物，是渴望被重視的動物。但它也最常被讀成拍馬屁術，這篇幫你分清「真誠」與「操縱」的那條線。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>卡內基不是含著金湯匙出生的人。1888 年他生在密蘇里州的貧農家庭，本姓拼作 Carnagey，小時候騎馬去上學，家裡窮到他上大學時得每天通勤、買不起像樣的衣服。他在師範學院發現自己唯一能贏過富家子弟的地方是「辯論」——會講話，就有人聽你的。畢業後他做過賣培根、肥皂、豬油的推銷員，也想當演員，都不算成功。</p>
 <p>真正的轉捩點在 1912 年。他跑去紐約 125 街的 YMCA 提議開一門「公開演講」課，對方不肯付他每晚兩塊錢的鐘點費，他改口說「那就抽成吧」——結果班爆滿，抽成比固定薪水還高。他教的其實不只是講話，而是「怎麼讓人聽你的、喜歡你、被你說動」。十五年下來，他把上萬名成人學員的真實案例累積成一套教材，1936 年由西蒙與舒斯特出版社整理成書。（他也順手把姓氏改拼成 Carnegie，蹭當時如日中天的鋼鐵大王安德魯・卡內基。）</p>
 <p>要理解這本書，得放回它的年代：<strong>經濟大蕭條</strong>。街上一堆焦慮的白領、業務員、小職員，急著在僧多粥少的世界裡出頭。卡內基給的不是心靈雞湯，是一套「跟人打交道的操作手冊」——難怪它一路賣破三千萬冊，成為史上最暢銷的書之一。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「我明明有道理、東西也不差，為什麼就是說服不了人、帶不動團隊、交不到真心的朋友？」</p>
 <p>卡內基的答案很反直覺：<strong>因為你一直在跟「邏輯」講話，但人是被「情緒」和「自尊」驅動的動物。</strong>你越是證明對方錯、越是用道理輾壓，對方越是築牆反抗——因為你傷了他最在乎的東西：覺得自己重要、被看見的需求。這本書從頭到尾只在教一件事：先照顧對方那份「渴望被重視」，路才走得通。</p>
 <p>如果你曾經吵架吵贏了卻把關係搞砸、開會據理力爭卻沒人買單、對下屬碎念到自己都煩——這本書會告訴你，問題不在你的道理不夠硬，在你根本用錯了施力點。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、不批評、不責備、不抱怨——因為批評從來改不了人</h3>
 <p>卡內基把全書第一條放在這裡，因為它最違反本能。書的開場舉了幾個窮凶惡極的罪犯：紐約警匪槍戰的殺人犯「雙槍」克勞利，在被圍捕時寫下「我外套底下是一顆疲憊、但善良的心」；黑幫大老艾爾・卡彭真心覺得自己是「造福社會的人，換來的卻只有辱罵」。連死刑犯都不覺得自己有錯——這就是重點：<strong>沒有人會批評自己。</strong>你指責一個人，他只會找理由防衛、反過來恨你，行為一點不會改。</p>
 <p>卡內基最愛引林肯。林肯年輕時愛寫匿名信嘲諷政敵，有一次差點被人約去決鬥；從此他再沒寫過一封羞辱人的信。南北戰爭蓋茲堡戰役後，將軍米德放走了李將軍的部隊，林肯氣得寫了封措辭嚴厲的信——但他始終沒寄出去，那封信是他死後才在遺物裡被發現的。林肯懂了一件事：「不要責怪他們，換作是我們在同樣的處境，也會那樣做。」</p>
@@ -351,21 +474,28 @@
 <p>前面說「別批評」，但主管、父母總有非講不可的時候。卡內基在最後一部給了一整套「不傷人的糾正法」：<strong>先給真誠的讚美再談問題、間接點出錯誤、先坦承自己犯過的錯、用提問代替命令、給對方留面子、稱讚每一個微小的進步、給他一個願意去達成的好名聲。</strong></p>
 <p>經典案例又是施瓦布。他巡廠時看到工人在「禁止吸菸」的牌子底下抽菸，他沒有指著牌子罵人，而是走過去發給每人一根雪茄，說：「各位，如果你們能到外面去抽這幾根，我會很感激。」工人們心知肚明，卻因為被留了面子而心悅誠服。另一個小技巧很好用：把「你很努力，<strong>但是</strong>如果再細心點就好了」的「但是」換成「<strong>而且</strong>」——「你很努力，而且只要再細心點會更好」。一字之差，前者否定了前面的讚美，後者是鋪墊。</p>
 <p><strong>機制</strong>：人一旦感覺被攻擊就會豎起防衛，理智下線。這套方法全在「降低對方的防衛」——先讓他覺得安全、被尊重，他才有餘裕承認問題、願意改。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>別把這本書讀成「三十條零散的社交技巧」。它其實是一條由深到淺的鏈路：<strong>最底層是一個人性假設</strong>——人渴望被重視、被賞識（詹姆斯那句話）；<strong>第二層是三個基本態度</strong>——不批評、給真誠讚賞、引發對方的渴望；<strong>第三層是讓人喜歡你的六個習慣</strong>（把態度落實成日常行為）；<strong>第四層是說服的藝術</strong>（避免爭論、承認錯誤、用「是」鋪路、讓點子像是對方想到的）；<strong>最上層是領導</strong>（改變別人而不觸怒）。從人性假設一路長到帶人帶心，每一層都踩在同一個地基上：<strong>先滿足對方「覺得自己重要」的需求，事情才辦得成。</strong></p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「同事的報告出錯，你得請他改」為例）</strong>：</p>
 <ol><li>先講真的（不是硬掰）優點：「這份資料整理得很完整，尤其第三段的數據很扎實。」</li><li>間接點出，用「而且」不用「但是」：「而且如果封面日期跟內文對齊，就更專業了。」</li><li>先坦承自己也犯過：「我以前也常漏掉這種小地方，被主管抓過。」</li><li>用提問代替命令：「你覺得改成這樣會不會更清楚？」</li><li>給他一個好名聲去達成：「你一向是細節最穩的那個。」</li></ol>
 <p><strong>生活版（以「想說服另一半週末陪你回老家」為例）</strong>：</p>
 <ol><li>別用道理輾壓（「你就是不重視我家」——這是批評，只會吵架）。</li><li>從對方的渴望切入：他想要輕鬆、不被情緒勒索——那就先講「回去待半天，剩下時間我們去你想吃的那家店」。</li><li>讓點子像是他想到的：問「你比較想週六還週日回去？」——選項是你給的，決定權在他，抗拒就少一半。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「這就是一本教你拍馬屁、搞操縱的書」</strong>——這是最大的誤讀，而且卡內基本人早就堵過。他反覆強調「真誠（sincere／genuine）」是這套方法的生死線：讚賞若不發自內心就是奉承，是假鈔，遲早穿幫還害你。把它讀成話術的人，恰恰跳過了作者最在意的那條線。</li><li><strong>「所以我要當個沒有稜角、討好所有人的爛好人」</strong>——書名中文譯作《人性的弱點》其實有點誤導（英文原名直譯是「如何贏得朋友並影響他人」）。卡內基教的是「不傷人地達成目的」，不是「放棄立場、逢人就順」。他的「避免爭論」是指別為了逞口舌之快而輸掉關係，不是叫你沒有主見。</li><li><strong>時代局限要打折</strong>：書裡的案例幾乎全是 1930 年代的美國白人商人、業務員，語境陳舊。更明顯的是<strong>性別視角過時</strong>——原始版本甚至有一整章「讓家庭生活更幸福的守則」，預設讀者是男性、把妻子當成「要去經營管理的對象」，1981 年的修訂版因為太過時而直接刪掉。讀的時候，原則可以留，例子和那套父權框架要自己換算成現代語境。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li><strong>《被討厭的勇氣》（岸見一郎／古賀史健）</strong>：剛好是卡內基的反面補丁。卡內基教你「如何被人喜歡」，阿德勒心理學卻說「不被所有人喜歡才是自由」。兩本一起讀最有意思——前者給你經營關係的技術，後者提醒你別為了被喜歡而活成別人的期待。互為煞車。</li><li><strong>《影響力》（羅伯特・席爾迪尼）</strong>：卡內基靠的是幾十年教學的「經驗直覺」，席爾迪尼則用嚴謹的社會心理學實驗，把「為什麼人會被說動」拆成互惠、承諾、社會認同等六大原則。想知道卡內基那些招「為什麼有效」，讀這本補科學底。</li><li><strong>《高效能人士的七個習慣》（史蒂芬・柯維）</strong>：柯維批評卡內基這類書偏「人格魅力術（personality ethic）」——只教表面技巧；他主張回到「品格倫理（character ethic）」，由內而外從真誠與原則長出來。這正好呼應卡內基自己也在乎、卻常被讀者略過的「真誠」內核。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「任何笨蛋都會批評、責備、抱怨——而多數笨蛋正是這麼做的。」（Any fool can criticize, condemn, and complain—and most fools do.）</li><li>「用兩個月真心對別人感興趣交到的朋友，比你花兩年想讓別人對你感興趣交到的還多。」（You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you.）</li><li>「一個人的名字，對他而言是任何語言裡最悅耳、最重要的聲音。」（A person's name is to that person the sweetest and most important sound in any language.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想最近一次你「吵贏了卻把關係搞砸」的經驗——如果重來一次，用卡內基的「避免爭論、先給對方台階」，你會怎麼開口？值不值得為了那個道理，付出那段關係的代價？</li><li>卡內基說真誠的「讚賞」和虛假的「奉承」只有一線之隔。你自己在職場上收過最讓你舒服的一句肯定是什麼？它為什麼讓你覺得是真心、而不是場面話——這條線，對你來說劃在哪裡？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="how-to-win-friends" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -437,6 +567,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -459,6 +592,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -505,6 +639,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -530,6 +670,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "how-to-win-friends";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

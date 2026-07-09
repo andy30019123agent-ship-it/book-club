@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,17 +440,19 @@
   <p class="title-en">Captivate</p>
   <p class="byline">凡妮莎・范愛德華茲（Vanessa Van Edwards）｜2017</p>
   <p class="hook">你以為魅力是天生的、有些人就是有、學不來——其實「討人喜歡」是一組可拆解的技術，連你打招呼的第一句、手放哪裡、問什麼問題，都有可以練的公式。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">概念之間怎麼串</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>凡妮莎・范愛德華茲最有意思的地方，是她的出發點：她自封為「康復中的尷尬人（recovering awkward person）」。她從小是那種社交場合會手足無措、不知道手該放哪、聊天永遠冷場的人。別人眼中的「社交天分」，對她來說是一門完全的外語。</p>
 <p>所以她做了一件很工程師的事——<strong>既然學不會，那就把它拆解成公式來研究。</strong>她創辦了一個叫「Science of People」的行為研究實驗室，專門用科學方法拆解人際互動：她們錄下上千段對話、分析 TED 演講為什麼有些爆紅有些沒人看、研究微表情、追蹤肢體語言、做行為實驗。她的信念是：<strong>魅力不是玄學，是一組可觀察、可測量、可複製的行為。</strong></p>
 <p>這本書 2017 年出版，正好搭上兩股潮流。一是「行為科學普及化」——像《快思慢想》《推力》這類把心理學實驗寫給大眾看的書當紅；二是社群時代下，很多人（尤其內向者、科技從業者）發現自己「線上很行、面對面很卡」，急需一套實用的社交操作手冊。</p>
 <p>范愛德華茲把這本書定位成「人際互動的操作系統」。相對於卡內基的《人性的弱點》講的是原則和態度，她這本更像「拆到動作層級」的技術手冊——具體到你進一個房間該站哪、第一句話該說什麼、怎麼問問題能讓對方眼睛發亮。它的價值不在深刻的人性洞察，在「可執行性」——這是一本你讀完當天就能拿去用的書。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>「為什麼有些人一進場就自帶光環、聊幾句就跟誰都熟，我卻總是站在角落尬聊、被人三分鐘就忘記？」——這是每個覺得自己「不擅長社交」的人的痛。傳統的建議是「做自己就好」「多練習就好」——但這對真正卡關的人根本沒用，因為它沒告訴你「具體要做什麼」。</p>
 <p>范愛德華茲的核心主張是：<strong>社交魅力不是人格特質，是一套技能。</strong>既然是技能，就有具體的方法可以學，就像學騎腳踏車或學一門語言——你不需要「天生會」，你需要的是正確的公式和練習。</p>
 <p>這本書要回答的是：<strong>在人際互動的每一個關鍵環節——第一印象、聊天、建立連結、讓人記得你——具體有哪些可以照做的方法？</strong>它特別適合那些「知道要對人好、卻不知道手該怎麼放」的人：內向者、工程腦、社恐、或單純想在職場人際更游刃有餘的人。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、第一印象是可以「設計」的：前幾秒決定一切</h3>
 <p>范愛德華茲引用大量研究指出，人對你的第一印象在見面的<strong>極短時間內</strong>就形成，而且之後很難翻轉——這叫「初始效應」。所以她主張，別把第一印象交給運氣，要主動設計。</p>
 <p>她拆出幾個具體的操作。第一，<strong>讓雙手可見</strong>。她引用研究說明，人類的大腦有一套古老的威脅偵測機制——看不到你的手，潛意識會警戒（你手上會不會有武器？）。所以雙手插口袋、藏在桌下，會讓你顯得不可信；把手露出來、甚至見面時大方伸手，會讓對方潛意識放鬆。</p>
@@ -353,22 +476,29 @@
 <p>她的方法之一是打造你的「人際亮點」——一個能讓人記住你的鮮明特質或故事。當別人問「你做什麼的」，與其給一個無聊的職稱，不如給一個有畫面、有故事的回答，讓對方記得住、還想轉述給別人。她也強調<strong>幫別人「發光」會讓你被記得</strong>——你若能讓對方在你面前展現他最好的一面、感覺到自己很棒，他會把那份美好感覺跟你綁在一起。</p>
 <p>她還談「連結升溫」的技巧，例如找到真正的共通點（不是客套的「我也是」，而是挖到你們都真心在乎的東西）、記住並回應對方提過的細節（下次見面問「你上次說的那個計畫後來怎樣了」，殺傷力極大）。</p>
 <p><strong>機制</strong>：記憶的關鍵是「情緒強度」和「獨特性」。平淡的互動不留痕跡，帶著鮮明情緒（驚喜、被理解、被欣賞）和獨特細節的互動才會被存進長期記憶。范愛德華茲的所有技巧，本質上都在提高互動的「情緒濃度」，讓你在對方腦中刻得更深。</p></section>
-<section><h2>概念之間怎麼串</h2>
+<section id="sec-4"><h2>概念之間怎麼串</h2>
 <p>四個概念對應人際互動的四個階段，是一條完整的時間軸。<strong>第一印象</strong>處理「見面的前幾秒」——用可見的手、對的位置、安全的訊號，先讓對方願意靠近；<strong>對話火花</strong>處理「聊起來的那段」——用能點燃對方的問題，讓互動有能量、有多巴胺；<strong>解碼他人</strong>貫穿全程——讓你隨時讀懂對方狀態、動態調整；<strong>難忘度</strong>處理「分開之後」——確保你不只是「當下不錯」，而是「事後被想起」。</p>
 <p>整本書的骨架是一個很務實的主張：<strong>討人喜歡不是一種你「有或沒有」的天賦，而是一連串「可以在每個環節做對的具體動作」。</strong>范愛德華茲反覆傳遞的底層精神是——<strong>魅力的核心不是「讓自己很厲害」，是「讓對方在你面前感覺很好」。</strong>你不是要當房間裡最耀眼的人，你是要當那個「讓別人覺得自己耀眼」的人。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場版（以「參加一場不認識人的社交/交流場合」為例）</strong>：</p>
 <ol><li>進場位置：別鑽進角落，站在人流動線上開闊、好交談的點</li><li>手要可見：別插口袋，見面大方一點，讓對方潛意識覺得你安全</li><li>換掉開場白：別問「你做什麼的」，問「最近有沒有在忙什麼有趣的事」</li><li>埋記憶點：被問到自己時，別報職稱，給一個有畫面的故事版本</li><li>後續跟進：記住對方提過的一件事，下次或事後訊息裡提起——「你上次說的 X 後來如何？」</li></ol>
 <p><strong>生活版（以「想跟一個想深交的新朋友升溫」為例）</strong>：</p>
 <ol><li>問對問題：聊到能讓他眼睛發亮的主題就多停留，讓他盡情分享熱情</li><li>真傾聽：問了就專心聽，別急著接自己的話——被聽見的感覺比被逗笑更難忘</li><li>挖真共通點：不要停在客套的「我也喜歡」，挖到你們都真心在乎的東西</li><li>讀情緒：留意他臉上跟嘴上不一致的地方，接住那個「他沒說出口」的狀態</li><li>讓他發光：創造機會讓他展現擅長的一面，他會把「在你面前感覺很好」記成「喜歡你」</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <ol><li><strong>「這是一套操縱別人的話術」</strong>——范愛德華茲的核心其實相反：魅力來自「真心讓對方感覺好」，不是套路。技巧若沒有真誠的興趣墊底，對方會感覺到那股「表演感」而更提防。工具是為了幫你把善意「傳達出去」，不是拿來假裝善意。</li><li><strong>「照公式做就會受歡迎，不用管內在」</strong>——這些是「入場工具」，幫你跨過尷尬、把互動啟動；但真正的深度關係還是要靠真誠、可靠這些內在品質。把技巧當全部，只會有很多「熱絡的淺交」，長不出深交。</li><li><strong>「微表情、人格解碼很科學、可以看透人」</strong>——這是全書最該打折看的部分。微表情辨識準確率有限、容易誤讀，人格分類也只是粗略參考。當成「多一條線索」可以，當成「我能看穿你」就會傲慢誤判、反而傷關係。</li></ol></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li>《卡內基人性的弱點》（戴爾・卡內基）：兩本是同一條路的「原則版」和「操作版」。卡內基給的是永恆的原則（真心對人感興趣、記住名字、讓對方覺得重要）；范愛德華茲給的是拆到動作層的公式。卡內基更耐讀、更講態度，Captivate 更即用、更講技術，搭配讀最完整。</li><li>《安靜，就是力量》（蘇珊・坎恩）：專為內向者寫的書。范愛德華茲教內向者「如何在外向的社交規則裡生存」，坎恩則主張「內向本身就是優勢、不必硬變外向」。兩本觀點有張力，一起讀能幫你拿捏「該用技巧調適」和「該接納本性」的界線。</li><li>《脆弱的力量》（布芮尼・布朗）：有意思的對照——Captivate 教你「如何呈現得討喜」，布朗提醒「真正的連結來自願意示弱、被看見真實的你」。前者是入口技術，後者是深度核心；只有技巧會流於表面，只有脆弱會缺乏入場能力，兩者互補。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「你不需要成為房間裡最有趣的人，你只需要成為那個讓別人覺得自己有趣的人。」（精神原句：讓別人在你面前發光，他們就會愛上跟你相處。）</li><li>「魅力不是與生俱來的特質，而是一組可以學習的技能。」（Charisma is not something you're born with; it's a set of learnable skills.）</li><li>「別問『你好嗎』，問一個能點燃對方的問題。」（Ditch "How are you?" for a conversation sparker.）</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你上一次覺得「跟某人聊得超開心」的經驗——現在拆解一下：那份開心，有多少是因為對方很有趣，有多少是因為對方讓「你」變得有趣、讓你盡情分享了自己？這個發現，對你想怎麼跟人相處有什麼啟發？</li><li>范愛德華茲說魅力是可練的技能。挑一個你最卡的環節（開場？聊天冷場？事後被忘記？），選書裡一個具體方法，這週找一個真實場合試一次——你打算試哪一招、在什麼場合？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="captivate" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -440,6 +570,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -462,6 +595,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -508,6 +642,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -533,6 +673,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "captivate";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

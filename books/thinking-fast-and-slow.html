@@ -301,6 +301,127 @@
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -319,16 +440,18 @@
   <p class="title-en">Thinking, Fast and Slow</p>
   <p class="byline">丹尼爾・康納曼（Daniel Kahneman）｜2011</p>
   <p class="hook">你以為的「深思熟慮」，其實九成是大腦自動駕駛的直覺在替你做主。這本書拆開你腦中兩個系統，讓你看見自己是怎麼被自己騙的。</p>
+  
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
   <article>
-<section><h2>作者與時代背景</h2>
+<section id="sec-1"><h2>作者與時代背景</h2>
 <p>丹尼爾・康納曼有一個很少見的頭銜：他是一位<strong>心理學家</strong>，卻拿了<strong>諾貝爾經濟學獎</strong>（2002 年）。這件事本身就是這本書的縮影——他一輩子都在做一件事：跑到別人的地盤上，證明那個地盤的根基是錯的。經濟學幾百年來假設人是「理性的」，會冷靜計算利弊、做出最有利的選擇。康納曼用一個又一個實驗證明：人根本不是這樣運作的，我們的判斷充滿系統性的、可預測的錯誤。</p>
 <p>他的故事要從一位早逝的天才夥伴說起。康納曼在希伯來大學遇到阿莫斯・特沃斯基（Amos Tversky），兩人從 1970 年代開始長達數十年的合作，好到「共用一個大腦」——他們甚至用丟銅板決定論文誰的名字放前面。他們一起挖出了人類判斷的種種「偏誤」，開創了「行為經濟學」這整個學門。可惜特沃斯基 1996 年因癌症過世，沒能等到諾貝爾獎（獎不頒給過世者）。康納曼領獎時說，這個獎有一半是他的。</p>
 <p>《快思慢想》出版於 2011 年，是康納曼七十七歲時交出的一生總結。它不是一本輕薄的暢銷書，而是把四十年的研究濃縮成一本給普通人看的厚書。也正因為它誠實到連自己的錯都寫進去（後面會談），它成了理解「人怎麼思考」最重要的一本現代經典。</p></section>
-<section><h2>這本書回答什麼問題</h2>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
 <p>一句話：<strong>為什麼聰明人也會一再做出愚蠢的判斷？</strong></p>
 <p>你自認是個理性的人。買股票會做功課、談薪水會盤算、看到新聞會判斷真假。但康納曼要告訴你一個不舒服的真相：你腦中真正在做決定的，往往不是那個你以為的「理性的你」，而是一個跑得飛快、擅長腦補、又極度自信的「直覺的你」。它幫你省了大量力氣，但也在你毫無察覺的情況下，把你推向一個又一個判斷陷阱。</p>
 <p>如果你曾經在股市高點追高、低點殺出；曾經因為第一個看到的數字就錨定了整場談判；曾經對一個只見過三分鐘的人下了「我看得很準」的定論——這本書會像一面照妖鏡，讓你看見那些錯誤不是偶然，而是大腦出廠設定的 bug。看懂它，你不會變成完美的機器，但至少能在關鍵時刻按下暫停鍵。</p></section>
-<section><h2>核心概念深講</h2>
+<section id="sec-3"><h2>核心概念深講</h2>
 <h3>一、系統一與系統二：你腦中住著一快一慢兩個人</h3>
 <p>這是全書的地基。康納曼把大腦的運作，比喻成兩個角色分工：</p>
 <p><strong>系統一（快思）</strong>：自動、快速、幾乎不費力。你看到 2+2 會自動蹦出 4、聽到母語會自動聽懂、看到一張憤怒的臉會瞬間讀出對方在生氣——這些都是系統一。它是你的自動駕駛，一天二十四小時開著，替你處理九成以上的日常判斷。</p>
@@ -355,25 +478,32 @@
 <h3>五、回歸平均與規劃謬誤：兩個最實用的小陷阱</h3>
 <p><strong>回歸平均（Regression to the Mean）</strong>：極端的表現，天生就會「自動」向平均靠攏，這純粹是機率，不需要任何原因。但系統一硬要替它找因果。以色列空軍教官發現：飛行員被稱讚後，下次通常表現較差；被責罵後，下次通常較好。教官因此深信「罵有效、誇沒用」。錯了——那只是回歸平均：表現特好之後本來就會回落，表現特爛之後本來就會反彈，跟你罵不罵無關。這個陷阱無所不在：業績暴衝的基金明年多半平庸、狀元進職場未必最強，別把「回歸平均」誤讀成「因果關係」。</p>
 <p><strong>規劃謬誤（Planning Fallacy）</strong>：我們對「自己的計畫要花多久、花多少錢」的估計，總是過度樂觀，因為我們只想像順利的劇本（又是 WYSIATI）。裝修、寫論文、蓋公共工程，幾乎無一例外地超時超支。解法是康納曼說的「<strong>由外而內看</strong>」（outside view）：別問「我這次要多久」，要問「<strong>別人做類似的事，平均花了多久</strong>」——用統計，別用想像。</p></section>
-<section><h2>整本書的邏輯骨架</h2>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
 <p>這本書看似零散，其實有一條清楚的主線：<strong>系統一是主角，系統二是配角，而人類的判斷錯誤，幾乎都是系統一抄捷徑、系統二又太懶得查核的結果。</strong></p>
 <p>往下展開成三層：<strong>第一層</strong>是機制（系統一 / 系統二怎麼分工、WYSIATI 怎麼運作）；<strong>第二層</strong>是這個機制製造出的各種偏誤（錨定、可得性、代表性、過度自信、回歸平均、規劃謬誤）；<strong>第三層</strong>是當這套機制碰上「金錢與風險」時的特殊反應（展望理論、損失趨避）。</p>
 <p>最後康納曼還升起一層，談「兩個自我」：<strong>經驗自我</strong>（experiencing self，當下正在感受的你）和<strong>記憶自我</strong>（remembering self，事後回憶並下判斷的你）。他發現我們對一段經歷的記憶，不是由「總體感受」決定，而是由「<strong>最高峰</strong>」加「<strong>結尾</strong>」決定——這叫<strong>峰終定律</strong>（peak-end rule）。一場很痛但結尾不那麼痛的醫療檢查，記憶反而比一場短但結尾很痛的更「不痛」。我們的記憶自我會為了一個美好的結尾，出賣經驗自我的真實感受。這一層把全書從「認知」拉高到「我們到底該追求什麼」的人生哲學層次。</p></section>
-<section><h2>實作指南：明天就能開始</h2>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
 <p><strong>職場／投資版</strong>：</p>
 <ol><li><strong>重大決策前，強制叫醒系統二</strong>：任何要動用金錢、或難以回頭的決定，先寫下來、隔一天再看。系統一是即時的，拖延就是逼系統二上場。</li><li><strong>對抗錨定</strong>：談薪水、談合約、下單前，先自己算出「合理區間」再看對方開的價；別讓對方的第一個數字定調。</li><li><strong>用「由外而內」估時程</strong>：接專案別問「我大概要多久」，去查「上次類似的專案實際花了多久」，然後再往上加。</li><li><strong>建一份決策日記</strong>：下投資判斷時，寫下「我為什麼這樣想、我預期會怎樣」。事後回頭對照——這是唯一能戳破過度自信與 WYSIATI 的照妖鏡。</li></ol>
 <p><strong>生活版</strong>：</p>
 <ol><li><strong>對生動的新聞打折</strong>：看到聳動報導先問「這是真的常見，還是只是它容易上頭條？」——拆解可得性偏誤。</li><li><strong>善用峰終定律</strong>：安排旅行、聚會、專案收尾時，特別經營「最高潮」和「結尾」那一段——你和別人記住的，就是這兩點。</li><li><strong>看到「太順的故事」就踩剎車</strong>：無論是投資明牌、還是對某人的第一印象，越是完美順口，越要問「我漏看了什麼」。</li></ol></section>
-<section><h2>常見誤讀</h2>
+<section id="sec-6"><h2>常見誤讀</h2>
 <p><strong>一、把「系統一」當成敵人。</strong> 這是最大的誤讀。系統一不是壞蛋，它是你賴以生存的超級專家——沒有它，你連過馬路都會累死。書的重點不是「關掉直覺」，而是「<strong>認得出哪些場合直覺會出錯，在那些場合才叫系統二上場</strong>」。全天候懷疑自己，只會癱瘓。</p>
 <p><strong>二、以為讀完書就能免疫。</strong> 康納曼在書裡誠實到近乎殘忍地說：<strong>他研究了偏誤一輩子，自己照樣會犯。</strong> 知道有錨定效應，不代表你就不會被錨。這本書給的不是「疫苗」，而是「<strong>在關鍵時刻、對別人的判斷、事後諸葛時</strong>」比較容易察覺陷阱的能力。</p>
 <p><strong>三、也是對你最誠實的一點——這本書自己有一部分過時了。</strong> 書中第四章談「促發效應」（priming，例如讓人接觸「老年」相關字詞，走路就會變慢）的一些研究，在 2011 年之後遭遇了心理學界的「<strong>再現性危機</strong>」：許多實驗別人重做時做不出同樣結果。更難得的是，<strong>康納曼本人在 2017 年公開承認</strong>，他當年對這些促發研究「過度自信」了，說如果重寫，他不會那樣寫。這件事反而讓這本書更值得敬重——連作者都親手示範了「過度自信」是怎麼回事。所以讀到促發那幾章，抱著保留態度即可；但全書的核心骨架（系統一 / 二、損失趨避、錨定、可得性、WYSIATI、峰終定律）至今依然穩固。</p></section>
-<section><h2>延伸對照</h2>
+<section id="sec-7"><h2>延伸對照</h2>
 <ul><li><strong>《雜訊》（Noise，康納曼 2021）</strong>：《快思慢想》談的是「偏誤」——判斷系統性地偏向某一邊；《雜訊》談的是「雜訊」——同一個人、同一件事，換個時間或心情就給出不同判斷。前者是箭永遠偏左，後者是箭散得到處都是。想把康納曼的思想補完，這是續集。</li><li><strong>《快思慢想》vs《原子習慣》</strong>：兩本都在談「大腦的自動化」，但方向相反。康納曼告訴你自動化（系統一）如何<strong>害你判斷出錯</strong>；克利爾則教你如何<strong>駕馭自動化</strong>、把好行為變成自動。一本防守、一本進攻，搭起來看很完整。</li><li><strong>《推力》（Nudge，塞勒與桑思坦）</strong>：塞勒是康納曼的學生輩、也是諾貝爾獎得主。如果說康納曼診斷了「人為什麼會做錯決定」，《推力》就是那張「所以我們該怎麼設計環境，順著人性把人推向更好的選擇」的處方箋。</li></ul></section>
-<section class="card-section"><h2>金句</h2>
+<section id="sec-8" class="card-section"><h2>金句</h2>
 <ol><li>「凡是我們理解的事，都會產生一種它必然如此、且早該預料到的錯覺。」（Nothing in life is as important as you think it is, while you are thinking about it.）——關於「聚焦錯覺」：你此刻想著的事，永遠感覺比它實際上更重要。</li><li>「一個可靠的判斷方法，是拿定主意前，先想像未來這個決定失敗了，再回頭問：為什麼？」對應書中金句：「We can be blind to the obvious, and we are also blind to our blindness.」（我們會對顯而易見的事視而不見，而且對自己的視而不見也毫無自覺。）</li><li>「WYSIATI：你所看見的，就是一切。」（What you see is all there is.）——理解過度自信的一把鑰匙。</li></ol></section>
-<section class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
 <ol><li>回想你最近一筆賺錢或賠錢的股票決定：你當時是「因為賺了想鎖住快樂而太早賣」，還是「因為不想承認損失而死抱不放」？如果重來，「損失趨避」在哪個環節最綁架了你？</li><li>挑一個你曾經「很有把握、事後卻錯得離譜」的職場或投資判斷。回頭看，當時是不是有一個「太順的故事」讓你忽略了某些沒看到的資訊（WYSIATI）？如果那時你有一本決策日記，你會寫下什麼、又會漏寫什麼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="thinking-fast-and-slow" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
   </article>
 </main>
 </div>
@@ -445,6 +575,9 @@
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -467,6 +600,7 @@
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -513,6 +647,12 @@
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -538,6 +678,60 @@
           li.appendChild(btn);
         });
       });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "thinking-fast-and-slow";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
     })();
   
 </script>

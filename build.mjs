@@ -2,7 +2,7 @@
 // book-club static site generator — zero runtime deps, only Node builtins.
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONTENT_DIR = path.join(__dirname, 'content', 'books');
@@ -24,13 +24,26 @@ function parseFrontmatter(raw) {
   if (!match) throw new Error('找不到 frontmatter（缺少 --- 區塊）');
   const [, fmBlock, body] = match;
   const meta = {};
+  let listKey = null; // 目前正在累積的多行 list 欄位（例：takeaways）
   for (const line of fmBlock.split('\n')) {
     if (!line.trim()) continue;
+    // 縮排的 "- xxx" ＝上一個空值欄位的 list 項目
+    if (/^\s+-\s+/.test(line)) {
+      if (listKey) meta[listKey].push(line.replace(/^\s*-\s+/, '').trim());
+      continue;
+    }
     const idx = line.indexOf(':');
     if (idx === -1) continue;
     const key = line.slice(0, idx).trim();
     const value = line.slice(idx + 1).trim();
-    meta[key] = value;
+    if (value === '') {
+      // 空值欄位 → 視為 list，後續縮排 "- " 累積進來
+      meta[key] = [];
+      listKey = key;
+    } else {
+      meta[key] = value;
+      listKey = null;
+    }
   }
   return { meta, body };
 }
@@ -129,15 +142,32 @@ function isCardSection(heading) {
   return heading.includes('金句') || heading.includes('討論題');
 }
 
+function sectionId(i) {
+  return `sec-${i + 1}`;
+}
+
 function renderSections(sections) {
   return sections
-    .map((s) => {
+    .map((s, i) => {
+      const id = sectionId(i);
       const inner = `<h2>${inline(s.heading)}</h2>\n${s.html}`;
       return isCardSection(s.heading)
-        ? `<section class="card-section">${inner}</section>`
-        : `<section>${inner}</section>`;
+        ? `<section id="${id}" class="card-section">${inner}</section>`
+        : `<section id="${id}">${inner}</section>`;
     })
     .join('\n');
+}
+
+// 章節導航：手機橫向 chips（overflow-x）跳到各段／金句／討論題
+function renderSectionNav(sections) {
+  if (sections.length < 2) return '';
+  const chips = sections
+    .map((s, i) => {
+      const label = s.heading.replace(/（[^）]*）/g, '').trim();
+      return `<a class="secnav-chip ui-label" href="#${sectionId(i)}">${inline(label)}</a>`;
+    })
+    .join('');
+  return `<nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips">${chips}</div></nav>`;
 }
 
 // ---------- load content ----------
@@ -446,6 +476,127 @@ function baseStyles() {
     .quote-save-btn:hover { color: var(--accent); }
     .quote-save-btn.is-saved { color: var(--accent); }
     .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition: none !important;
@@ -533,6 +684,28 @@ function favButtonHtml(slug) {
   return `<button type="button" class="fav-btn" data-slug="${escapeAttr(slug)}" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>`;
 }
 
+// 30 秒帶走：optional frontmatter `takeaways`（3 短句）；沒有就優雅退場
+function renderTakeaways(book) {
+  if (!Array.isArray(book.takeaways) || !book.takeaways.length) return '';
+  const items = book.takeaways.map((t) => `<li>${inline(t)}</li>`).join('');
+  return `
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list">${items}</ul>
+  </aside>`;
+}
+
+// 讀完打卡按鈕（安靜、書房夜讀風；連續天數邏輯在 streakScript）
+function renderMarkRead(book) {
+  return `
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="${escapeAttr(book.slug)}" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>`;
+}
+
 function renderBookPage(book) {
   const themeChip = `<span class="theme-chip ui-label">${book.theme}</span>`;
   const dateLabel = `<span class="ui-label">${book.date}</span>`;
@@ -548,8 +721,11 @@ function renderBookPage(book) {
   ${titleEn}
   <p class="byline">${book.author}｜${book.year}</p>
   <p class="hook">${inline(book.hook)}</p>
+  ${renderTakeaways(book)}
+  ${renderSectionNav(book.sections)}
   <article>
 ${contentHtml}
+  ${renderMarkRead(book)}
   </article>
 </main>`;
 
@@ -563,8 +739,68 @@ ${contentHtml}
     description: book.hook,
     bodyHtml: body,
     deskFooterHtml,
-    extraScript: favScript() + quoteSaveScript(book),
+    extraScript: favScript() + quoteSaveScript(book) + streakScript(book.slug),
   });
+}
+
+// 讀完打卡＋連續閱讀天數（localStorage key: yedu-streak，與 yedu-favs 獨立）
+function streakScript(slug) {
+  const slugJs = JSON.stringify(slug);
+  return `
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = ${slugJs};
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  `;
 }
 
 // 書摘頁：金句條目加收藏鈕（存文字進 localStorage yedu-quotes）
@@ -582,6 +818,12 @@ function quoteSaveScript(book) {
       sections.forEach(function (sec) {
         var h2 = sec.querySelector('h2');
         if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
         Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
           var text = li.textContent.trim();
           var btn = document.createElement('button');
@@ -726,6 +968,13 @@ function libraryStyles() {
       color: var(--ink-soft);
       font-size: 0.84rem;
       letter-spacing: 0.12em;
+    }
+    .library-streak {
+      margin: 0.55rem 0 0;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      opacity: 0.9;
     }
     .section-label {
       margin: 0 0 1.1rem;
@@ -1192,8 +1441,26 @@ function libraryStyles() {
       .tonight-card { padding: 1.1rem 1.15rem; }
       .catalog-card { padding: 0.95rem 1rem; gap: 0.9rem; }
       .read-pill { padding: 0 1.2rem; }
-      .day-row { padding: 0.8rem 0.85rem; }
       .day-title { font-size: 1.02rem; }
+      /* 月視圖一列改上下排版：日期一欄、內容一欄、動作放右下 */
+      .day-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "tile body" "tile action";
+        align-items: start;
+        column-gap: 0.85rem;
+        row-gap: 0.4rem;
+        padding: 0.8rem 0.9rem;
+      }
+      .day-row .day-tile {
+        grid-area: tile;
+        align-self: stretch;
+      }
+      .day-row .day-body { grid-area: body; }
+      .day-row .day-action {
+        grid-area: action;
+        justify-self: end;
+      }
     }
   `;
 }
@@ -1244,20 +1511,25 @@ function libraryScript() {
           emptyMsg.hidden = visible !== 0;
         }
       }
+      function today() { return window.__today || new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
       function dayRowHtml(b) {
+        // 一律用前端當天重算，不信任 __calendar 裡 build 時的 locked/today
+        var td = today();
+        var locked = b.date > td;
+        var isToday = b.date === td;
         var themeCls = 'cover-' + (THEME_KEY[b.theme] || 'growth');
         var tile = '<span class="day-tile"><span class="day-num">' + b.day +
           '</span><span class="day-wk ui-label">' + esc(b.wk) + '</span></span>';
         var body = '<span class="day-body">' +
-          (b.today ? '<span class="day-today ui-label">今晚</span>' : '') +
+          (isToday ? '<span class="day-today ui-label">今晚</span>' : '') +
           '<span class="day-title">' + esc(b.title) + '</span>' +
           '<span class="day-meta ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span>' +
           '<span class="day-hook">' + esc(b.hook) + '</span></span>';
-        if (b.locked) {
+        if (locked) {
           return '<div class="day-row is-locked ' + themeCls + '" aria-disabled="true">' +
             tile + body + '<span class="day-action coming-pill ui-label">即將上架</span></div>';
         }
-        return '<a class="day-row ' + themeCls + (b.today ? ' is-today' : '') + '" href="books/' + esc(b.slug) + '.html">' +
+        return '<a class="day-row ' + themeCls + (isToday ? ' is-today' : '') + '" href="books/' + esc(b.slug) + '.html">' +
           tile + body + '<span class="day-action day-go ui-label">讀 →</span></a>';
       }
       function renderMonth() {
@@ -1283,6 +1555,9 @@ function libraryScript() {
           if (monthView) monthView.hidden = true;
           normalSections.forEach(function (s) { s.hidden = false; });
           applyCards();
+          // 還原全部視圖時，重跑書櫃/金句集渲染，讓空區塊保持收起
+          if (window.__renderShelf) window.__renderShelf();
+          if (window.__renderQShelf) window.__renderQShelf();
         } else {
           normalSections.forEach(function (s) { s.hidden = true; });
           if (emptyMsg) emptyMsg.hidden = true;
@@ -1349,6 +1624,9 @@ function favScript() {
         var favs = load();
         var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
         var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         strip.hidden = !has || shelfExpanded;
@@ -1371,6 +1649,7 @@ function favScript() {
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
         }).join('');
       }
+      window.__renderShelf = renderShelf;
       var shelfAllBtn = document.getElementById('myshelf-all');
       if (shelfAllBtn) {
         shelfAllBtn.addEventListener('click', function () {
@@ -1409,24 +1688,36 @@ function favScript() {
   `;
 }
 
-function renderIndexPage(books) {
-  const today = todayTaipei();
+// 純函式：給定全書與某天，算出「已上架（新到舊）／即將上架（近到遠）／今晚主打」。
+// build 用它產無 JS fallback；前端 homeDynamicScript 用相同邏輯即時重算（可在 node 單測）。
+export function computeShelf(books, today) {
   const eligible = books
     .filter((b) => b.date <= today)
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
   const upcoming = books
     .filter((b) => b.date > today)
     .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
-
   const featured = eligible[0] || null;
-  const past = eligible.slice(1);
-  const showControls = eligible.length >= 1;
+  return {
+    eligible,
+    upcoming,
+    featured,
+    past: eligible.slice(1),
+    isToday: featured ? featured.date === today : false,
+  };
+}
+
+function renderIndexPage(books) {
+  const today = todayTaipei();
+  const { eligible, upcoming, featured, past } = computeShelf(books, today);
+  const showControls = books.length >= 1;
 
   const headerHtml = `
   <header class="library-header">
     <h1 class="library-title">拾頁</h1>
     <div class="library-rule" aria-hidden="true"></div>
-    <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 ${eligible.length} 本</p>
+    <p class="library-stats ui-label">每晚七點・一本書的深度導讀・已上架 <span id="stat-count">${eligible.length}</span> 本</p>
+    <p class="library-streak ui-label" id="home-streak" hidden></p>
   </header>`;
 
   // 月份 chip：依實際有書的月份（含未上架）自動生成，由近到遠（升冪）
@@ -1491,31 +1782,30 @@ function renderIndexPage(books) {
   </section>`
     : '';
 
-  let tonightHtml = '';
+  // tonight/catalog/upcoming/count 皆為前端依當天重算的動態區塊；
+  // build 先塞「建置當天」內容當無 JS fallback，homeDynamicScript 會覆寫。
+  let tonightInner;
   if (featured) {
-    tonightHtml = `
-  <section class="tonight-section">${renderTonightCard(featured, featured.date === today)}
-  </section>`;
+    tonightInner = renderTonightCard(featured, featured.date === today);
   } else {
     const message = upcoming.length
       ? `圖書館開幕中，第一本書 ${formatMonthDay(upcoming[0].date)} 晚上 7 點上架`
       : '圖書館開幕中，敬請期待第一本書上架';
-    tonightHtml = `
-  <section class="tonight-section">
-    <p class="empty-state">${message}</p>
-  </section>`;
+    tonightInner = `<p class="empty-state">${message}</p>`;
   }
+  const tonightHtml = `
+  <section class="tonight-section" id="tonight-section">${tonightInner}
+  </section>`;
 
-  let catalogHtml = '';
-  if (past.length) {
-    const cardsHtml = past.map((b, i) => renderCatalogCard(b, eligible.length - (i + 1))).join('');
-    catalogHtml = `
-  <section class="catalog-section">
+  const catalogCardsHtml = past
+    .map((b, i) => renderCatalogCard(b, eligible.length - (i + 1)))
+    .join('');
+  const catalogHtml = `
+  <section class="catalog-section" id="catalog-section"${past.length ? '' : ' hidden'}>
     <h2 class="section-label">藏書目錄</h2>
-    <div class="catalog-list">${cardsHtml}
+    <div class="catalog-list" id="catalog-list">${catalogCardsHtml}
     </div>
   </section>`;
-  }
   const emptyMsgHtml = showControls
     ? `
   <p id="shelf-empty" class="empty-state" hidden>書架上還沒有這本，跟我說書名就補</p>`
@@ -1523,14 +1813,17 @@ function renderIndexPage(books) {
 
   const upcomingShown = upcoming.slice(0, 7);
   const upcomingRest = upcoming.length - upcomingShown.length;
-  const upcomingHtml = upcoming.length
-    ? `
-  <section class="upcoming-section">
+  const upcomingMoreHtml =
+    upcomingRest > 0
+      ? `…之後還有 ${upcomingRest} 本，本月已排到 ${formatMonthDay(upcoming[upcoming.length - 1].date)}`
+      : '';
+  const upcomingHtml = `
+  <section class="upcoming-section" id="upcoming-section"${upcoming.length ? '' : ' hidden'}>
     <h2 class="section-label">即將上架</h2>
-    <ul class="upcoming-list">${upcomingShown.map(renderUpcomingRow).join('')}
-    </ul>${upcomingRest > 0 ? `\n    <p class="upcoming-more ui-label">…之後還有 ${upcomingRest} 本，本月已排到 ${formatMonthDay(upcoming[upcoming.length - 1].date)}</p>` : ''}
-  </section>`
-    : '';
+    <ul class="upcoming-list" id="upcoming-list">${upcomingShown.map(renderUpcomingRow).join('')}
+    </ul>
+    <p class="upcoming-more ui-label" id="upcoming-more"${upcomingMoreHtml ? '' : ' hidden'}>${upcomingMoreHtml}</p>
+  </section>`;
 
   const body = `
 <main class="library-shell">
@@ -1550,7 +1843,8 @@ ${upcomingHtml}
   <p class="ui-label footer-cite">——<a href="books/atomic-habits.html">《原子習慣》</a></p>
 </footer>`;
 
-  const booksData = eligible.map((b) => ({
+  // 收藏書櫃資料：送全書（收藏只會是已上架的書，含全書可避免剛上架的書查不到）
+  const booksData = books.map((b) => ({
     slug: b.slug,
     title: b.title,
     author: b.author,
@@ -1570,9 +1864,12 @@ ${upcomingHtml}
       author: b.author,
       theme: b.theme,
       hook: b.hook,
+      reading_time: b.reading_time,
+      year: b.year,
       mk: monthKey(b.date),
       day: Number(b.date.split('-')[2]),
       wk: weekdayLabel(b.date),
+      // locked/today 為 build 當下值，僅供無 JS 時參考；前端一律用 window.__today 重算
       locked: b.date > today,
       today: b.date === today,
       search: `${b.title} ${b.author}`.toLowerCase(),
@@ -1594,10 +1891,150 @@ ${upcomingHtml}
       `window.__books = ${booksJson};\n` +
       `window.__calendar = ${calendarJson};\n` +
       `window.__monthLabels = ${monthLabelsJson};\n` +
+      homeDynamicScript() +
       (showControls ? libraryScript() : '') +
       favScript() +
-      quoteShelfScript(),
+      quoteShelfScript() +
+      homeStreakScript(),
   });
+}
+
+// 首頁動態渲染：載入時用「當下台北日期」重算今晚卡／藏書目錄／已上架數／即將上架，
+// 讓網站每天自動顯示正確的書，不需重 build。資料源 window.__calendar（含全書）。
+function homeDynamicScript() {
+  return `
+    (function () {
+      var cal = window.__calendar || [];
+      var TODAY = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+      window.__today = TODAY;
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      // 忠實鏡像 build 的 inline()：**粗體**（內容為自有可信文字，僅粗體＋跳脫）
+      function fmt(s) {
+        return esc(s).replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>');
+      }
+      function md(d) { var p = d.split('-'); return Number(p[1]) + '/' + Number(p[2]); }
+      function themeCls(t) { return 'cover-' + (THEME_KEY[t] || 'growth'); }
+      function favBtn(slug) {
+        return '<button type="button" class="fav-btn" data-slug="' + esc(slug) + '" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button>';
+      }
+      function searchKey(b) { return esc((b.title + ' ' + b.author).toLowerCase()); }
+
+      var eligible = cal.filter(function (b) { return b.date <= TODAY; })
+        .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+      var upcoming = cal.filter(function (b) { return b.date > TODAY; })
+        .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+      var featured = eligible[0] || null;
+      var past = eligible.slice(1);
+
+      function tonightCard(b, isToday) {
+        return '<a class="tonight-card ' + themeCls(b.theme) + '" href="books/' + esc(b.slug) + '.html"' +
+          ' data-theme="' + esc(b.theme) + '" data-search="' + searchKey(b) + '" data-slug="' + esc(b.slug) + '">' +
+          favBtn(b.slug) +
+          '<span class="tonight-body">' +
+          '<span class="tonight-badge ui-label">' + (isToday ? '今晚的書' : '最新上架') + '</span>' +
+          '<span class="tonight-title">' + fmt(b.title) + '</span>' +
+          '<span class="tonight-author">' + fmt(b.author) + '・' + esc(b.theme) + '</span>' +
+          '<span class="tonight-hook">' + fmt(b.hook) + '</span>' +
+          '<span class="tonight-foot">' +
+          '<span class="tonight-meta ui-label">' + md(b.date) + '・閱讀 ' + esc(b.reading_time) + ' 分鐘</span>' +
+          '<span class="read-pill">開始閱讀</span></span></span></a>';
+      }
+      function catalogCard(b, no) {
+        var n = '' + no; while (n.length < 3) n = '0' + n;
+        return '<a class="catalog-card ' + themeCls(b.theme) + '" href="books/' + esc(b.slug) + '.html"' +
+          ' data-theme="' + esc(b.theme) + '" data-search="' + searchKey(b) + '" data-slug="' + esc(b.slug) + '">' +
+          favBtn(b.slug) +
+          '<span class="catalog-body">' +
+          '<span class="catalog-index ui-label">No.' + n + '・' + esc(b.theme) + '・' + md(b.date) + '</span>' +
+          '<span class="catalog-title">' + fmt(b.title) + '</span>' +
+          '<span class="catalog-author ui-label">' + fmt(b.author) + '</span>' +
+          '<span class="catalog-hook">' + fmt(b.hook) + '</span>' +
+          '<span class="catalog-foot ui-label">閱讀 ' + esc(b.reading_time) + ' 分鐘<span class="catalog-go">開始閱讀 →</span></span></span></a>';
+      }
+      function upcomingRow(b) {
+        return '<li class="upcoming-row"><span class="upcoming-date">' + md(b.date) + '</span>' +
+          '<span class="upcoming-text"><span class="upcoming-name">' + fmt(b.title) + '</span>　' +
+          '<span class="upcoming-author">' + fmt(b.author) + '</span></span></li>';
+      }
+
+      // 今晚卡
+      var tonightSec = document.getElementById('tonight-section');
+      if (tonightSec) {
+        if (featured) {
+          tonightSec.innerHTML = tonightCard(featured, featured.date === TODAY);
+        } else {
+          var msg = upcoming.length
+            ? '圖書館開幕中，第一本書 ' + md(upcoming[0].date) + ' 晚上 7 點上架'
+            : '圖書館開幕中，敬請期待第一本書上架';
+          tonightSec.innerHTML = '<p class="empty-state">' + msg + '</p>';
+        }
+      }
+      // 已上架數
+      var statCount = document.getElementById('stat-count');
+      if (statCount) statCount.textContent = eligible.length;
+      // 藏書目錄
+      var catSec = document.getElementById('catalog-section');
+      var catList = document.getElementById('catalog-list');
+      if (catSec && catList) {
+        if (past.length) {
+          catList.innerHTML = past.map(function (b, i) { return catalogCard(b, eligible.length - (i + 1)); }).join('');
+          catSec.hidden = false;
+        } else {
+          catList.innerHTML = '';
+          catSec.hidden = true;
+        }
+      }
+      // 即將上架
+      var upSec = document.getElementById('upcoming-section');
+      var upList = document.getElementById('upcoming-list');
+      var upMore = document.getElementById('upcoming-more');
+      if (upSec && upList) {
+        if (upcoming.length) {
+          upList.innerHTML = upcoming.slice(0, 7).map(upcomingRow).join('');
+          var rest = upcoming.length - Math.min(7, upcoming.length);
+          if (upMore) {
+            if (rest > 0) {
+              upMore.textContent = '…之後還有 ' + rest + ' 本，本月已排到 ' + md(upcoming[upcoming.length - 1].date);
+              upMore.hidden = false;
+            } else { upMore.hidden = true; }
+          }
+          upSec.hidden = false;
+        } else {
+          upSec.hidden = true;
+        }
+      }
+    })();
+  `;
+}
+
+// 首頁連續閱讀天數（讀 yedu-streak，與收藏獨立；沒紀錄給溫和起始文案）
+function homeStreakScript() {
+  return `
+    (function () {
+      var el = document.getElementById('home-streak');
+      if (!el) return;
+      var TODAY = window.__today || new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      var s;
+      try { s = JSON.parse(localStorage.getItem('yedu-streak')) || {}; } catch (e) { s = {}; }
+      var streak = typeof s.streak === 'number' ? s.streak : 0;
+      if (streak > 0 && (s.lastReadDate === TODAY || s.lastReadDate === prevDay(TODAY))) {
+        el.textContent = '你已連續閱讀 ' + streak + ' 天，繼續保持。';
+      } else if (streak > 0) {
+        el.textContent = '連續紀錄斷了——今晚讀一本，重新接上。';
+      } else {
+        el.textContent = '翻開一本書，開始你的連續閱讀紀錄。';
+      }
+      el.hidden = false;
+    })();
+  `;
 }
 
 // 首頁：金句集——隨機單句 5 秒輪播＋觀看全部展開（讀 yedu-quotes，可移除）
@@ -1646,6 +2083,9 @@ function quoteShelfScript() {
       function render() {
         var qs = load();
         var has = qs.length > 0;
+        // 空狀態：整個「金句集」區塊收起，收藏第一句金句才浮現
+        var section = document.getElementById('qshelf');
+        if (section) section.hidden = !has;
         empty.hidden = has;
         allBtn.hidden = !has;
         rotator.hidden = !has || expanded;
@@ -1674,6 +2114,7 @@ function quoteShelfScript() {
         localStorage.setItem(KEY, JSON.stringify(qs));
         render();
       });
+      window.__renderQShelf = render;
       render();
     })();
   `;
@@ -1715,4 +2156,7 @@ function main() {
   console.log(`寫入 site/manifest.json（${manifest.length} 筆）`);
 }
 
-main();
+// 只有直接執行（node build.mjs）才建置；被 import（測試）時不跑，方便單測 computeShelf
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}

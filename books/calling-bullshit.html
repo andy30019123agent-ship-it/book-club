@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>數據的假象｜拾頁</title>
+<meta name="description" content="你以為自己不會被唬，是因為聽得出空話？現在的唬爛早就換上數字、圖表和演算法的外衣——看起來越科學，你越不敢質疑。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="calling-bullshit" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-16</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>數據的假象</h1>
+  <p class="title-en">Calling Bullshit</p>
+  <p class="byline">卡爾・伯格斯特姆、傑文・魏斯特（Carl T. Bergstrom & Jevin D. West）｜2020</p>
+  <p class="hook">你以為自己不會被唬，是因為聽得出空話？現在的唬爛早就換上數字、圖表和演算法的外衣——看起來越科學，你越不敢質疑。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>新式唬爛披著數據與圖表的外衣；不必懂演算法，只要檢查餵進去的資料和吐出來的結論。</li><li>最常見的坑是選擇偏誤與把相關當因果——先問「這些資料是怎麼被挑出來的」。</li><li>遇到驚人說法先問三件事：誰說的？他怎麼知道的？他想讓我相信什麼？</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>兩位作者都在西雅圖的華盛頓大學教書。伯格斯特姆是演化生物學家，研究傳染病與訊息如何在群體中傳播；魏斯特是資訊學院的資料科學家，研究科學知識本身怎麼被生產與引用。一個懂生物與數學模型，一個懂資料與演算法，兩人共同的困擾是：學生越來越會寫程式、跑模型，卻越來越不會問「這個結果說得通嗎？」</p>
+<p>2017 年，他們開了一門課，名字就叫「Calling Bullshit」（直譯是「揭穿唬爛」）。課程大綱一放上網路就在全球瘋傳，選課名額據說很快就被搶光，其他大學也陸續跟進開設類似課程。這本書是課程的完整版，2020 年出版——正好撞上疫情，各種圖表、模型與半真半假的「研究顯示」鋪天蓋地而來的一年。</p>
+<p>他們用「bullshit」這個粗字不是為了嘩眾取寵，而是沿用哲學家法蘭克福的經典分析：說謊的人知道真相並刻意隱瞞；唬爛的人則根本不在乎真假，只在乎能不能說服你、讓你佩服。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>傳統的唬爛靠的是華麗詞藻和裝懂的術語，大多數人多少有抵抗力。但作者指出，現在流行的是「新式唬爛」：用數字、統計、資料圖表和機器學習來包裝。它之所以厲害，是因為我們普遍覺得數字是客觀的、演算法是中立的，而且很多人自認「我數學不好」，於是連問都不敢問。</p>
+<p>這本書要回答的是：<strong>一個不是統計專家的普通人，要怎麼看穿披著數據外衣的胡說八道？</strong></p>
+<p>作者的立場很鼓舞人：你不需要懂演算法內部怎麼運作，不需要會算複雜的統計。絕大多數的數據唬爛，只要用清楚的邏輯、一點基本常識，再加上願意多問幾個問題，就能戳破。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、唬爛為什麼氾濫：製造便宜，澄清昂貴</h3>
+<p>書中引用一位義大利工程師布蘭多里尼提出的原則：<strong>駁斥一則唬爛所需要的力氣，比製造它高出一個數量級。</strong>隨口說一句「某研究證明 X 會致癌」只要五秒；要查出那份研究是否存在、樣本多大、結論有沒有被扭曲，可能要花半天。更糟的是，澄清的訊息幾乎永遠追不上原本的謠言。</p>
+<p>網路與社群平台讓這個不對稱更嚴重：聳動的內容被分享得更快，而平台的設計獎勵的是互動，不是正確。作者提醒，這代表每個人都有責任——轉貼前多想十秒，是成本最低的防線。</p>
+<p>接著他們提出全書最好用的工具：<strong>黑盒子</strong>。一項說法通常是「資料 → 某種處理（統計模型、演算法）→ 結論」。中間那個處理步驟往往複雜難懂，像個黑盒子，唬爛的人也樂於讓它看起來深不可測。但你不必打開它。你只要檢查兩頭：<strong>餵進去的資料有沒有偏差？吐出來的結論合不合理、有沒有被過度解讀？</strong></p>
+<p>書裡的例子是一篇宣稱能用臉部照片判斷「是否為罪犯」的機器學習研究。聽起來很嚇人，演算法也確實複雜。但只看輸入就夠了：罪犯的照片來自官方的證件照，非罪犯的照片則是從網路上蒐集來的——後者多半是人們自己挑過、想展示出來的照片。作者指出，機器很可能只是學會了分辨「有沒有帶著笑意」，跟犯罪傾向一點關係也沒有。垃圾進，垃圾出，中間的盒子再精密都救不回來。</p>
+<p><strong>實用價值</strong>：這把「我看不懂所以沒資格懷疑」的心理門檻整個拿掉了。</p>
+<h3>二、選擇偏誤：你看到的資料，是被篩過的</h3>
+<p>作者花了很大篇幅談選擇偏誤，因為它無所不在又很難察覺：當你觀察的樣本不是隨機來的，而是經過某種篩選時，就可能出現實際上不存在的規律。</p>
+<p>一個生活化的例子：為什麼約會過的對象裡，好看的人好像都比較難相處？假設「外表」和「人好不好」在所有人當中毫無關聯。但你不會跟既不好看、人又差的人約會；而又好看、人又好的人，可能輪不到你。篩掉這兩端之後，剩下的人自然呈現出「越好看越難相處」的負相關——這是你的篩選造成的，不是世界的真相。統計學上，這類現象稱為伯克森悖論。</p>
+<p>另一個例子是音樂人的壽命。曾有一張圖顯示，饒舌歌手的平均死亡年齡遠低於藍調或爵士音樂人，看起來饒舌是極度危險的職業。問題在哪？饒舌這個類型歷史還很短，多數饒舌歌手還活著，根本不在「已過世」的統計裡；能被算進去的，只有那些年紀輕輕就過世的人。資料被時間截斷了，結論因此大幅失真。</p>
+<p>還有一種叫「觀察選擇效應」：為什麼你總覺得公車特別擠、朋友的朋友好像都比你多？因為擠的公車上人比較多，你有更高的機率正好是其中之一。</p>
+<p><strong>常見誤用</strong>：看到一組相關就開始找解釋。作者建議倒過來，先問「這批資料是怎麼到我面前的？誰被留下、誰被排除？」</p>
+<h3>三、數字與圖表怎麼騙人</h3>
+<p>書中關於數字的幾個觀念都很實用。</p>
+<p><strong>相關與因果</strong>。這是老話題，但作者提醒幾種具體的翻車方式：因果方向搞反、背後有共同原因、純粹巧合（只要比對的變數夠多，總會撞出幾組漂亮的相關）。媒體標題尤其愛把研究裡謹慎的「有關聯」升級成「會導致」。</p>
+<p><strong>古德哈特定律</strong>。當一項指標變成目標，它就不再是好指標。用論文數量考核學者，就得到一堆切得很薄的論文；用考試成績考核學校，就得到針對考試的教學。看到漂亮的指標時要問：有沒有人有動機去「經營」這個數字？</p>
+<p><strong>缺乏比較基準的數字</strong>。「某食物讓罹病風險提高五成」聽起來可怕，但如果原本的風險是十萬分之二，提高後也只是十萬分之三。只給相對變化不給絕對數字，是典型的誇大手法。百分比的變動也一樣：從百分之二升到百分之四，是「增加兩個百分點」還是「翻倍」？兩種說法都對，給人的感受天差地別。</p>
+<p><strong>圖表</strong>。作者提出「等比例墨水原則」：圖上用墨水表示的面積，應該與它代表的數值成比例。長條圖的縱軸必須從零開始，因為長條的長度本身就在傳達數量；截掉下半段，小差距就會被放大成懸殊對比。折線圖則不一定要從零開始，因為它強調的是變化趨勢。他們還區分了兩種壞圖：一種是裝飾蓋過資料，圖形花俏到讓人看不出數值；另一種是硬把資料塞進一個漂亮但不合適的框架，例如模仿元素週期表的形式來排列一堆其實沒有那種規律的東西。</p>
+<h3>四、連科學與大數據也會出錯</h3>
+<p>唬爛不只來自網紅與業配，也可能出自正式發表的論文和光鮮的人工智慧產品。</p>
+<p><strong>p 值與發表偏誤</strong>。科學界習慣用 p 值小於某個門檻當作「有統計顯著性」的標準。作者指出兩個問題。第一，很多人把 p 值誤讀成「假說為真的機率」——這和法庭上的「檢察官謬誤」是同一種錯：把「無辜的人剛好吻合證據的機率很低」，偷換成「吻合證據的人是無辜的機率很低」。第二，期刊偏愛刊登有顯著結果的研究，做不出結果的就躺在抽屜裡；再加上研究者有意無意地反覆嘗試不同分析方式，直到出現顯著為止。結果是文獻裡的陽性發現被系統性地高估。作者的建議是：單一研究不是定論，尤其是結論驚人、樣本很小、又沒有被重複驗證的那種。</p>
+<p><strong>大數據與機器學習</strong>。曾經風光一時的流感趨勢預測，利用人們的搜尋關鍵字來估計流感疫情，初期看起來神準，幾年後卻大幅失準——它抓到的很多只是剛好跟流感季同步的搜尋詞，而不是流感本身。作者想說的是：資料量大不代表資料好，從歷史資料學出來的機器，會忠實地把資料裡的偏見與巧合一併學走。</p>
+<p>最後幾章教你怎麼辨識與回擊。辨識的心法包括：追問來源（誰說的？他怎麼知道的？他想賣我什麼？）、對「好到不像真的」的結果保持警覺、用粗略估算檢查數量級對不對、留意不公平的比較。回擊的方法則有：歸謬法（把對方的邏輯推到荒謬的結論）、舉反例、提供一個人人都懂的類比，以及拿出一個「什麼都沒發生也會出現同樣結果」的對照模型。</p>
+<p><strong>限制與提醒</strong>：作者特別警告，別變成那種到處糾正別人來顯示自己聰明的人。揭穿唬爛的目的是讓討論更接近真相，所以要先確認自己查對了、對事不對人、發現自己錯了也要認。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>先解釋<strong>唬爛為何氾濫</strong>（製造便宜、澄清昂貴，平台又推波助瀾）→ 給你一把總鑰匙：<strong>不必打開黑盒子，檢查輸入與輸出</strong> → 檢查輸入時最該留意<strong>選擇偏誤</strong> → 檢查輸出時留意<strong>相關被說成因果、數字缺少基準、圖表比例失真</strong> → 提醒你<strong>論文與演算法不享有豁免權</strong> → 最後教你<strong>怎麼辨識、怎麼有風度地回擊</strong>。</p>
+<p>整本書其實在訓練一種習慣：聽到驚人的說法時，把「哇」換成「等一下」。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（面對一份簡報或廠商提案）</strong>：</p>
+<ol><li>三問來源：這個數字是誰算的？資料從哪來？提出的人希望我做什麼決定？</li><li>檢查輸入：樣本是怎麼選的？「滿意度九成」是問了所有客戶，還是只問了願意填問卷的人？</li><li>要求基準：成長三成，是從多少到多少？跟去年同期、跟同業比呢？</li><li>看圖先看座標軸：長條圖有沒有從零開始？兩個縱軸的刻度是不是被調過，好讓兩條線看起來同步？</li><li>留意指標被經營：這個關鍵指標，有沒有人能在不改善實質的情況下把它做漂亮？</li></ol>
+<p><strong>生活版（滑到驚人的新聞或貼文）</strong>：</p>
+<ol><li>轉貼前停十秒，找出原始出處；找不到就不轉。</li><li>做個粗估：這個數字除以全國人口、除以一年的天數，還合理嗎？</li><li>看到「研究顯示」，問三件事：做在人身上還是老鼠身上？多少人參加？有沒有其他研究得到相同結果？</li><li>特別提防那些剛好證明你原本立場的資訊——我們對順耳的唬爛最沒有抵抗力。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「所以數據都不能信」</strong>——作者本身就是靠數據吃飯的科學家，他們反對的是不加思索地接受，也反對一概否定。目標是有根據的懷疑，而不是什麼都不信的犬儒。</li><li><strong>「要懂統計才能揭穿唬爛」</strong>——全書的核心主張正好相反：多數數據唬爛可以靠追問資料來源和檢查結論是否合理來識破，不需要高深數學。</li><li><strong>「揭穿唬爛就是在網路上戰贏別人」</strong>——作者明白反對這種姿態。揭穿是為了讓群體的資訊環境更好，自己傳了錯的東西，也該同樣公開更正。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《真確》（羅斯林）：羅斯林教你用正確的數據修正對世界的誤解；這本教你防備被包裝過的數據。一個是補充好資訊，一個是過濾壞資訊，拾頁書庫已有，可以搭配。</li><li>《因果革命》（珀爾）：四天前剛讀過。珀爾提供「相關何時能推到因果」的理論，這本提供每天滑手機時用得上的檢查清單，其中伯克森悖論在兩本書裡都是主角。</li><li>《數學教你不犯錯》（艾倫伯格）：四天後登場，會把 p 值、期望值和迴歸平均講得更深入。想把這本書的直覺升級成數學理解，接著讀它正好。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「駁斥一則唬爛所需的力氣，比製造它多出一個數量級。」（布蘭多里尼原則，書中引用；The amount of energy needed to refute bullshit is an order of magnitude bigger than that needed to produce it.）</li><li>「唬爛就是用語言、統計數字、圖表等形式，以分散注意、壓倒或嚇唬的方式來說服或打動聽眾，而公然不顧真相與邏輯。」（大意，作者對唬爛的定義）</li><li>「你不需要打開黑盒子，只要看清楚餵進去什麼、又吐出來什麼。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>最近一次讓你驚呼「真的假的」的數字或圖表是什麼？用「誰說的、怎麼知道的、想賣我什麼」三個問題檢查一遍，你的看法有改變嗎？</li><li>你的工作裡有沒有一個已經被「經營」到失真的指標？如果由你決定，你會改用什麼方式來衡量同一件事？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="calling-bullshit" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "calling-bullshit";
+      var TITLE = "數據的假象";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "calling-bullshit";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

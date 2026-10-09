@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>因果革命｜拾頁</title>
+<meta name="description" content="「相關不等於因果」你一定聽過，但然後呢？珀爾說，統計學卡在這句話一百年不敢往前走——只要先畫一張圖，資料就能回答「為什麼」。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-book-of-why" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-12</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 14 分鐘</span></div>
+  <h1>因果革命</h1>
+  <p class="title-en">The Book of Why</p>
+  <p class="byline">朱迪亞・珀爾、達納・麥肯錫（Judea Pearl & Dana Mackenzie）｜2018</p>
+  <p class="hook">「相關不等於因果」你一定聽過，但然後呢？珀爾說，統計學卡在這句話一百年不敢往前走——只要先畫一張圖，資料就能回答「為什麼」。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>因果有三階：看見關聯、動手介入、想像反事實；光靠資料爬不上第二階。</li><li>先畫因果圖再看數據——圖會告訴你該控制哪些變數、哪些絕對不能控制。</li><li>資料本身不懂因果，你對世界運作方式的假設必須明說出來，才能被檢驗。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>朱迪亞・珀爾是加州大學洛杉磯分校的電腦科學教授，以色列出生。1980 年代，他發展出「貝氏網路」，讓電腦能在不確定的情況下做推理，這項工作後來成為人工智慧的基礎工具之一，也讓他在 2011 年拿到電腦科學界的最高榮譽圖靈獎。</p>
+<p>有趣的是，珀爾拿獎之前就已經「背叛」了自己的成名作。他發現貝氏網路再厲害，處理的也只是機率上的關聯——它能告訴你「看到 A 時，B 的可能性有多高」，卻答不出「如果我去改變 A，B 會怎樣」。於是他花了之後幾十年，建立一套描述因果的數學語言。</p>
+<p>這本書是他寫給一般讀者的版本，與數學科普作家達納・麥肯錫合著，2018 年出版。時間點正好是深度學習最風光的時候，而珀爾在書裡潑了一盆冷水：現在的機器學習再炫，本質上還是在做曲線擬合。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>抽菸會不會導致肺癌？這個藥有沒有效？如果當初沒有那項政策，失業率會是多少？這些都是「為什麼」的問題，也是我們真正在乎的問題。</p>
+<p>但二十世紀的統計學有一個奇怪的禁忌：只准談相關，不准談因果。教科書反覆告誡「相關不等於因果」，卻從不告訴你因果到底是什麼、要怎麼算。珀爾認為，這個沉默讓科學付出了代價——有些答案其實早就藏在資料裡，只因為缺少一套語言而被擱置多年。</p>
+<p>這本書要回答的是：<strong>在什麼條件下，我們可以從資料推出因果？</strong>他的答案是：資料加上一張明確畫出來的「因果圖」。資料提供數字，圖提供你對世界如何運作的假設；兩者缺一不可。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、因果階梯：看見、動手、想像</h3>
+<p>珀爾把因果推理的能力分成三階，像一把梯子。</p>
+<p><strong>第一階是關聯（看見）</strong>。問題的形式是「我觀察到 X，那 Y 可能是什麼？」例如：買牙膏的顧客，有多少也買了牙線？這一階只需要觀察與統計。動物會、嬰兒會，目前大多數的機器學習也停在這裡。</p>
+<p><strong>第二階是介入（動手）</strong>。問題變成「如果我去做 X，Y 會怎樣？」例如：如果把牙膏漲價一倍，牙線銷量會如何？這不能直接從過去的銷售紀錄讀出來，因為過去牙膏漲價時，可能是因為原料短缺、所有東西都在漲——和你「主動」漲價是兩種情境。珀爾為此發明了一個符號叫 do 運算子，用來區分「看到 X 發生」和「動手讓 X 發生」。</p>
+<p><strong>第三階是反事實（想像）</strong>。問題是「如果當初沒有做 X，結果會不同嗎？」例如：這位病人吃了藥後康復，如果沒吃，他會好嗎？這牽涉到一個沒發生過的世界，任何資料都無法直接觀察。但人類天天在做這種推理——後悔、究責、從錯誤中學習，全都建立在反事實上。法庭上判斷「若非被告的行為，損害就不會發生」，用的正是這一階。</p>
+<p>珀爾主張，人類的認知優勢就來自爬上了第三階：能在腦中模擬不存在的情境，才能計畫、才能想像改變。</p>
+<p><strong>實用價值</strong>：每次有人拿數據給你下結論時，先辨認問題在哪一階。用第一階的資料（觀察到的相關）去回答第二階的問題（做了會怎樣），正是最常見的推論錯誤。</p>
+<h3>二、因果圖：把你的假設畫出來</h3>
+<p>爬梯子需要工具，珀爾給的工具簡單到出人意料：圓點代表變數，箭頭代表「誰影響誰」。這種圖叫因果圖。</p>
+<p>為什麼一張圖這麼重要？因為同一份資料可以對應到完全不同的因果故事。書中反覆使用的例子是「干擾因子」：冰淇淋銷量和溺水人數一起上升，不是因為冰淇淋害人溺水，而是氣溫同時影響兩者。在圖上，就是「氣溫」各有一支箭頭指向兩邊。</p>
+<p>珀爾回顧了這套方法坎坷的身世。十九世紀末，高爾頓研究父子身高時發現了「相關」，他的學生皮爾森更進一步主張，科學只需要相關，因果是過時的迷信——這個立場主導了統計學很長一段時間。1920 年代，遺傳學家萊特研究天竺鼠毛色時發明了「路徑分析」，第一次用箭頭圖去計算因果效應，卻遭到主流統計學界的冷遇。</p>
+<p>最能說明代價的是抽菸與肺癌之爭。1950 年代，研究已顯示抽菸者罹患肺癌的比例高出許多，但大統計學家費雪（本身是菸斗客）堅持反對，說可能有某個基因同時讓人愛抽菸又容易得癌。不能做實驗——你不能隨機指派一群人去抽幾十年的菸——統計學又沒有處理因果的語言，爭論於是拖了很多年。後來是靠康菲爾德等人的論證才逐漸定調：假想中的那個基因必須具備強到不合理的效果，才足以解釋觀察到的差距。</p>
+<p>書裡也解釋了隨機對照試驗為什麼被稱為黃金標準：用丟硬幣決定誰吃藥，等於把所有指向「吃藥」的箭頭一刀切斷，干擾因子就無從作祟。因果圖要做的，是在不能做實驗的時候，告訴你能不能用觀察資料模擬出同樣的效果。</p>
+<p><strong>限制</strong>：圖是你畫的，畫錯結論就錯。珀爾不認為這是缺點——把假設攤開來，別人才能指出哪支箭頭有問題；藏在心裡的假設才最危險。</p>
+<h3>三、控制變數的陷阱：干擾、對撞與辛普森悖論</h3>
+<p>很多人學到的觀念是「控制的變數越多越嚴謹」。珀爾說這是錯的，而因果圖能精確告訴你為什麼。</p>
+<p>圖上的三個變數，基本接法只有三種：</p>
+<ul><li><strong>鏈狀</strong>（A → B → C）：B 是中介。火災 → 煙 → 警報。若你「控制」了煙，火與警報的關聯就消失——你把真正的作用路徑堵住了。</li><li><strong>叉狀</strong>（A ← B → C）：B 是干擾因子，例如氣溫。這種要控制。</li><li><strong>對撞</strong>（A → B ← C）：B 是共同結果。這種<strong>絕對不能控制</strong>，一控制就會憑空製造出假相關。</li></ul>
+<p>對撞的例子最顛覆直覺。假設好萊塢演員要成名，靠才華或靠外貌都行。在所有人當中，才華和外貌互不相關；但如果你只看「成名的演員」，就會發現越漂亮的似乎越沒才華——因為沒才華又不漂亮的人根本沒被選進來。只看某個篩選後的群體，等於控制了對撞變數。醫院資料裡疾病之間莫名的相關（統計上稱為伯克森悖論）也是同一回事。</p>
+<p>辛普森悖論同樣能用圖解開。書中的例子：在每個年齡層裡，運動越多膽固醇越低；但把所有年齡混在一起，卻變成運動越多膽固醇越高。哪個才對？如果年齡是干擾因子（在這個假想情境裡，年紀大的人運動較多、膽固醇也較高），就該分齡來看。珀爾強調的重點是：光看數字永遠判斷不了該不該分組，只有因果故事能決定。</p>
+<p>他由此導出一條實用規則叫「後門準則」：要估計 X 對 Y 的效果，就把所有從後面繞進 X 的非因果路徑堵住，同時別碰中介、別打開對撞。還有一招「前門準則」：就算干擾因子無法測量，只要找到完整的中介機制（例如抽菸 → 焦油沉積 → 癌症），仍可能算出因果效應。</p>
+<p><strong>常見誤用</strong>：把一堆變數全丟進迴歸模型就宣稱「已控制其他因素」。沒有圖，你不知道自己是堵住了後門，還是打開了對撞。</p>
+<h3>四、反事實與人工智慧：為什麼機器還不會問「為什麼」</h3>
+<p>到了第三階，珀爾用「結構因果模型」來處理反事實：把每個變數寫成由它的原因所決定的式子，就能在模型裡「把時間倒回去」，改掉一個條件，看看結果會不會跟著變。書中用這套方法討論究責問題（某場熱浪有多少能歸因於氣候變遷？）以及中介分析（一項效果有多少是直接的、多少是透過中間機制）。早期的壞血病故事是後者的經典：人們知道柑橘類能預防壞血病，卻不清楚真正起作用的是維生素 C，一度把關鍵誤認成酸味，結果換了水果種類與保存方式後，預防失效。</p>
+<p>最後一章談人工智慧。珀爾直言，深度學習的成就令人驚豔，但它做的事情是在大量資料中找出關聯——仍在第一階。這樣的系統無法回答「如果我這樣做會怎樣」，更無法反省「當初要是換個做法呢」。他認為要讓機器具備真正接近人類的智慧，必須給它一個關於世界的因果模型，讓它能介入、能想像。他甚至提出一個「迷你圖靈測試」：給機器一個簡單故事的因果圖，看它能否正確回答介入與反事實的問題。</p>
+<p><strong>限制</strong>：這是珀爾的立場，不是業界共識；不少研究者認為夠大的模型加上夠多的資料與互動，也可能學到某種因果表徵。把它當成一位重量級學者的有力論點來讀。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>因果階梯</strong>先定義問題有三種層次 → 指出<strong>資料本身只夠回答第一階</strong> → 要往上爬需要外加的因果假設，而<strong>因果圖</strong>是表達假設的語言 → 有了圖，就能用<strong>後門、前門準則</strong>判斷該控制什麼，化解干擾、對撞、辛普森悖論這些老難題 → 再往上用<strong>結構模型</strong>處理反事實 → 最後推到人工智慧：沒有因果模型的機器，永遠只能看、不能問為什麼。</p>
+<p>一句話濃縮：別只問資料「是什麼」，先說清楚你認為「怎麼運作」。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（解讀一份數據報告）</strong>：</p>
+<ol><li>先判斷階梯：這份報告回答的是「一起出現」（一階），還是「做了會怎樣」（二階）？老闆要的通常是二階。</li><li>花五分鐘畫圖：把你關心的原因、結果和可能相關的因素寫成圓點，用箭頭連起來。有爭議的箭頭正好是該討論的地方。</li><li>找干擾因子：有沒有第三個因素同時影響兩邊？（用了新功能的客戶留存較高——會不會本來就是忠實客戶才去用？）</li><li>檢查樣本怎麼來的：如果只分析「留下來的客戶」或「成交的案子」，你可能正在控制一個對撞變數。</li><li>能做實驗就做：隨機分組測試，是切斷後門最乾淨的方法。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>看到健康新聞「吃 X 的人比較長壽」，自問：是 X 的功勞，還是吃得起、有時間吃 X 的人本來就比較健康？</li><li>做決定後的檢討用反事實：不要只問「結果好不好」，要問「如果當初選另一條路，結果真的會不同嗎？」</li><li>小心倖存者的故事：成功人士的共同習慣，在沒成功的人身上是不是也一樣普遍？</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「珀爾推翻了『相關不等於因果』」</strong>——沒有。他同意這句話，只是不滿大家講完就停。他補上的是下一句：那麼在哪些條件下、用哪些假設，可以從相關走到因果。</li><li><strong>「有了因果圖，就不需要實驗了」</strong>——圖需要你的領域知識來畫，而且畫錯就會得出錯的結論。隨機實驗在可行時依然是最可靠的證據；圖的用處在於實驗做不了的時候，以及幫你設計更好的實驗。</li><li><strong>「這本書在唱衰人工智慧」</strong>——珀爾自己就是人工智慧的奠基者之一。他批評的是「只要資料夠多，什麼都能學會」這個信念，並且對具備因果推理能力的機器相當期待。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《快思慢想》（康納曼）：康納曼說我們的直覺系統太愛編因果故事；珀爾則說因果直覺是人類最寶貴的能力，問題只在沒有把它寫成可檢驗的形式。兩本合讀很有張力。</li><li>《數據的假象》（伯格斯特姆、魏斯特）：四天後就會讀到，裡面談選擇偏誤、相關與因果的章節，等於是這本書的日常實戰版。</li><li>《訊號與雜訊》（席佛）：席佛談的是預測——大多屬於階梯第一階的功夫；珀爾提醒你，預測得準和知道為什麼，是兩種不同的本事。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「你比你的資料聰明。資料不懂因果，人類懂。」（You are smarter than your data. Data do not understand causes and effects; humans do.）</li><li>「資料本身極其愚笨。」（大意：資料能告訴你吃藥的人康復得比較快，卻說不出為什麼。）</li><li>「相關不是因果——但這句話之後該說什麼，統計學沉默了將近一世紀。」（大意，概括全書對統計學史的評語）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>想一個你長期相信的「因為 A 所以 B」（工作上或生活上都行），試著替它畫一張因果圖：有沒有哪個第三因素可能同時影響 A 和 B？</li><li>回想一個你曾經後悔的決定，用反事實認真推演一次：如果當初選了另一邊，結果真的會比較好嗎？你的把握有幾成？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-book-of-why" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-book-of-why";
+      var TITLE = "因果革命";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-book-of-why";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

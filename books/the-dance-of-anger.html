@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生氣的藝術｜拾頁</title>
+<meta name="description" content="你以為生氣只有兩條路——吞下去或吵出來？兩條路其實通往同一個地方：什麼都不會變。憤怒是訊號，重點是你有沒有讀懂它。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-dance-of-anger" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-15</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>生氣的藝術</h1>
+  <p class="title-en">The Dance of Anger</p>
+  <p class="byline">哈麗葉・勒納（Harriet Lerner）｜1985</p>
+  <p class="hook">你以為生氣只有兩條路——吞下去或吵出來？兩條路其實通往同一個地方：什麼都不會變。憤怒是訊號，重點是你有沒有讀懂它。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>憤怒是訊號，提醒你有需要被忽略、界線被越過；該問的是「它在告訴我什麼」。</li><li>隱忍和爆發都在維持老舞步；你改不了對方，只能改自己那一步。</li><li>一改變就會遇到「變回來」的反擊；穩住不翻臉也不退讓，關係才真的鬆動。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>哈麗葉・勒納是美國臨床心理學家，職業生涯有很長一段時間在堪薩斯州的梅寧哲診所工作，那是美國很有分量的精神醫療機構。她的專長是家庭與婚姻治療，理論底子來自包溫的家庭系統理論——把一個人的困擾放回整個家族的互動網絡裡去看，而不是只看他一個人出了什麼毛病。</p>
+<p>這本書 1985 年出版。據她自己說，稿子在這之前被許多出版社退過，理由不外乎「女人的憤怒」這個題目沒有市場。當時談憤怒的書，要不是教人壓抑，就是教人盡情發洩。勒納兩種都不買單。</p>
+<p>結果它成了長銷幾十年的經典。副標寫明是寫給女性的，因為在當時（某種程度到現在也是），女人生氣特別不被允許：不生氣的是「好女人」，生氣的就被叫「潑婦」。但書裡拆解的互動模式，任何性別、任何關係都對得上。你把它當成一本「關係卡住時怎麼辦」的書來讀，一點都不勉強。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我已經講了一百遍，他為什麼還是不改？」「我每次都忍，為什麼愈忍愈累？」</p>
+<p>勒納的回答很可能跟你預期的不一樣。她不教你怎麼把話說得更漂亮讓對方終於聽懂，也不教你深呼吸把氣消掉。她說：你生氣的方式本身，可能就是讓事情維持原狀的一部分。</p>
+<p>她把關係比喻成雙人舞。兩個人跳久了，你進我退、你追我逃，形成一套固定的舞步。你氣對方老是踩那一步，卻沒發現自己每次也都用同一步回應。要讓這支舞改變，等對方先換步是等不到的；唯一在你手上的，是你自己的那一步。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、憤怒是訊號：別消滅它，也別被它拖著走</h3>
+<p>全書第一句話就定了調：憤怒是一個訊號，而且值得我們傾聽。</p>
+<p>它可能在告訴你：你被傷害了、你的權利被侵犯了、你的需要沒有被滿足、你為別人做得太多而為自己做得太少、或者你正在一段關係裡犧牲太多自己的信念和渴望。就像手碰到熱爐子會痛，憤怒的不舒服是為了保護你「自我」的完整。</p>
+<p>所以該問的不是「我可不可以生氣」「我生氣有沒有道理」。勒納認為這些問題沒有意義，感受就是存在。該問的是：「我到底在氣什麼？」「真正的問題是什麼？」「我想要什麼？」「我的立場在哪裡？」「我願意做什麼、不願意做什麼？」</p>
+<p>她描述了兩種常見的失敗路線。一種是<strong>「好女人」路線</strong>：避免衝突、把氣吞下去、先道歉、把力氣花在照顧別人的感受上。久了以後，她愈來愈不清楚自己想要什麼，取而代之的是內疚、憂鬱、莫名的疲倦。另一種是<strong>「潑婦」路線</strong>：動不動就吵、抱怨、指責，但吵完什麼都沒變。</p>
+<p>勒納最犀利的觀察是：這兩條路看似相反，效果一樣。隱忍的人放棄了自己的立場；爆發的人把力氣全花在「要對方改」這件做不到的事上，等於也沒有為自己做任何決定。而且愈是無效地吵，對方愈有理由把你當成「情緒化的人」，不必認真看待你說的內容。</p>
+<p><strong>實用價值</strong>：把「發洩」和「表明立場」分開。吵一架常常只是把壓力釋放掉，好讓兩個人能繼續忍受原本的安排——它是在幫舊模式續命。</p>
+<h3>二、循環舞步：追與逃、過度負責與負責不足</h3>
+<p>勒納用家庭系統的眼光看衝突：不問「是誰的錯」，問「這個循環是怎麼運作的」。A 做了什麼引出 B 的反應，B 的反應又加強了 A 的行為，沒有起點，沒有元凶。</p>
+<p>書裡拆解了幾組典型舞步。</p>
+<p><strong>追逐者與疏離者</strong>。關係一緊張，一方的反應是靠近——想談、想確認、想知道你在想什麼；另一方的反應是拉開——需要空間、埋進工作、說「沒什麼好談的」。追的人愈追，逃的人愈逃；逃的人愈逃，追的人愈急。雙方都覺得自己只是在「回應」對方。</p>
+<p><strong>過度負責者與負責不足者</strong>。一方習慣接管：給建議、出面解決、替人操心、幫人收拾；另一方就愈來愈被動、愈來愈「不行」。過度負責的人常抱怨「什麼都要我來」，卻沒看見自己的包辦正好讓對方不必長大。而且過度負責的人把注意力都放在別人的問題上，剛好不必面對自己的脆弱。</p>
+<p>勒納還談到<strong>「去自我化」</strong>：在一段關係裡，當一方為了維持和諧，把太多自己的想法、需要、抱負拿去協商掉，她就在一點一點失去自我。這往往是長期怒氣的真正來源——氣的對象看起來是伴侶，底下是對自己妥協太多的不甘。</p>
+<p><strong>限制</strong>：說「雙方都有份」不等於說「雙方責任相等」，更不是叫受到傷害的人檢討自己。勒納的意思是務實的：你能動的只有自己這一邊，所以看清自己在循環裡的位置，是唯一有用的起點。</p>
+<h3>三、改變自己的舞步，並撐過「變回來」</h3>
+<p>如果舞步是兩個人一起跳的，那麼只要其中一個人不再踩原本那一步，整支舞就跳不下去。這是全書的核心策略：把力氣從「改變對方」移到「改變我自己在這個模式裡的位置」。</p>
+<p>具體是什麼意思？對追逐者來說，是停止追——不是賭氣冷戰，而是真的把注意力轉回自己的生活、自己的目標，讓對方有機會感覺到距離，自己走過來。對過度負責者來說，是停止給建議和救援，並且試著對對方說出自己的煩惱，讓對方有機會當那個有能力的人。</p>
+<p>她強調要用「我」開頭來說明立場，而不是用「你」開頭來診斷對方。「我沒辦法再每天晚上獨自處理孩子的事，我需要我們重新分配」，和「你從來都不管小孩」，傳達的是完全不同的東西。前者是在界定自己，後者是在邀請對方辯護。立場要清楚、平靜、不帶攻擊，然後照著做，不必說服對方同意。</p>
+<p>接下來是全書最有價值的提醒：<strong>當你真的改變，對方幾乎一定會反擊。</strong>勒納稱之為「反制行動」，傳達的訊息是「變回來！」——可能是指責你自私、是冷戰、是突然生病、是搬出別人來施壓。這不代表對方是壞人，也不代表你做錯了；任何系統面對改變都會先設法恢復原狀，連你自己心裡也會冒出一股想退回去的焦慮。</p>
+<p>她的建議是：預期它會來。來的時候，不反擊、不解釋到天荒地老、也不退讓，就是平穩地重述自己的立場，同時讓對方知道你在乎這段關係。她提醒速度要慢，一次只改一件小事，因為在高度焦慮下做出的劇烈改變，通常撐不久，或者直接演變成決裂。決裂在她看來不是解決，只是把沒處理的問題帶到下一段關係。</p>
+<p><strong>常見誤用</strong>：把「表明立場」當成下最後通牒。立場是關於「我會怎麼做」，通牒是關於「你必須怎麼做」，後者又回到了改變對方的老路。</p>
+<h3>四、三角關係與原生家庭：氣常常繞了路</h3>
+<p>勒納用很多篇幅談「三角關係」。兩個人之間的緊張升高到難以承受時，很自然會把第三個人拉進來分散壓力。太太對先生不滿，不直接談，而是向媽媽或朋友抱怨；夫妻之間有說不出口的問題，兩人轉而一起擔心某個「有狀況」的孩子；你對主管有氣，卻跟同事結盟講他壞話。</p>
+<p>三角能暫時降低焦慮，代價是原本那兩個人之間的問題永遠不會被處理，而被拉進來的第三者（常常是孩子）承擔了不屬於他的重量。</p>
+<p>她的原則是：每段關係裡的問題，留在那段關係裡處理。跟媽媽的事直接跟媽媽談，不透過爸爸傳話；不替兩個吵架的家人當裁判或信差；不因為甲的事去生乙的氣。</p>
+<p>再往上追，勒納認為我們在伴侶和職場上的憤怒模式，多半是在原生家庭裡學會的。所以她鼓勵讀者去了解家族的故事——父母和祖父母怎麼處理衝突、誰和誰不說話、有哪些沒被談過的失落——甚至畫出家族圖。目的不是找人怪罪，而是看見模式之後，才有可能不照著重演。她也主張與其切斷關係，不如練習在原生家庭裡用新的方式互動；在最難的那個場合練成了，其他關係會跟著鬆動。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>憤怒是訊號</strong>（先讀懂它在說什麼）→ <strong>無效的生氣在維持現狀</strong>（隱忍和爆發是同一件事的兩面）→ <strong>關係是循環的舞步</strong>（沒有元凶，只有模式）→ <strong>你只能改自己的那一步</strong>（從責怪轉向界定自己的立場）→ <strong>預期並撐過反制</strong>（不反擊、不退讓、保持連結）→ <strong>把問題留在原本的兩個人之間，並回頭看原生家庭</strong>（處理源頭）。</p>
+<p>這條線的重點是把憤怒從「對付別人的武器」變成「認識自己的工具」。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（對某位同事或主管長期有氣）</strong>：</p>
+<ol><li>寫下來：我到底在氣什麼？我想要什麼？哪一件事是我不願意再做的？</li><li>檢查三角：我是不是都在跟別的同事抱怨，卻從沒直接對當事人說過？</li><li>觀察循環：他做什麼的時候我通常怎麼回應？我的回應是不是正好讓他可以繼續？（例如每次都默默幫他補洞。）</li><li>挑一件小事，用「我」開頭平靜表明：「這份我這週沒辦法接，我手上的要先完成。」說完不多解釋。</li><li>預期對方不高興。不反擊、不道歉收回，維持原本的友善。</li></ol>
+<p><strong>生活版（和伴侶或家人的老問題）</strong>：</p>
+<ol><li>認出自己在這支舞裡是追的還是逃的、是過度負責還是負責不足。</li><li>追的人：這週把一個晚上還給自己，不追問、不要求談。</li><li>過度負責的人：忍住一次不給建議，改問「你打算怎麼處理？」並說一件你自己的煩惱。</li><li>有話直接對當事人說，不透過孩子或其他家人傳。</li><li>找一位長輩聊聊家裡以前的事，只問、只聽，不評論。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書教人不要生氣」</strong>——剛好相反，它說憤怒是重要資訊，要認真看待。它反對的是無效的生氣方式。</li><li><strong>「所以都是我的錯，我改就好」</strong>——改變自己那一步不是認錯，是把力氣用在唯一使得上力的地方。勒納一再說，這是為了自己，不是為了讓對方好過。</li><li><strong>「把話說清楚，對方就會改」</strong>——書裡沒有這個保證。你表明立場之後，對方可能改，可能不改；差別是你不再放棄自己，而關係也因此有了真正變動的可能。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《情緒勒索》（佛沃）：佛沃描述的「不順我就讓你難受」，就是勒納說的「變回來」反制的極端版本。佛沃幫你辨識對方的手法，勒納幫你看懂自己為什麼每次都退。</li><li>《界線》（克勞德、湯森德）：兩本都在談「什麼是我的責任、什麼不是」。《界線》給原則，《生氣的藝術》告訴你畫下界線之後系統會怎麼反彈、怎麼撐過去。</li><li>《非暴力溝通》（盧森堡）：盧森堡也說憤怒指向未被滿足的需要，並提供把它說出口的句型；勒納補上的是關係系統的視角——說得再好，舞步不改也沒用。</li><li>《高難度對話》（史東等）：書中「從指責轉向各自的貢獻」和勒納的循環觀點如出一轍，適合拿來準備具體的那一場談話。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「憤怒是一個訊號，而且值得我們傾聽。」（Anger is a signal, and one worth listening to.）</li><li>「我們無法讓別人改變他在舊舞步裡的腳步；但只要我們改變自己的腳步，這支舞就無法照原來的樣子跳下去。」（大意）</li><li>「無效地爭吵與責怪，其實是在保護舊有的模式，而不是挑戰它。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>生氣的時候，你比較接近「吞下去」還是「吵出來」？回頭看，那個方式有讓事情變得不一樣嗎？</li><li>想一段你重複抱怨很久的關係：在那支舞裡，你固定踩的是哪一步？如果這週只改一小步，會是什麼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-dance-of-anger" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-dance-of-anger";
+      var TITLE = "生氣的藝術";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-dance-of-anger";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

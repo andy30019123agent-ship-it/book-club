@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>數學教你不犯錯｜拾頁</title>
+<meta name="description" content="你覺得畢業後數學就沒用了？艾倫伯格說，你每天都在用數學做判斷，只是用得很粗糙——而粗糙的那一半，正是你最常出錯的地方。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="how-not-to-be-wrong" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-20</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 14 分鐘</span></div>
+  <h1>數學教你不犯錯</h1>
+  <p class="title-en">How Not to Be Wrong</p>
+  <p class="byline">喬丹・艾倫伯格（Jordan Ellenberg）｜2014</p>
+  <p class="hook">你覺得畢業後數學就沒用了？艾倫伯格說，你每天都在用數學做判斷，只是用得很粗糙——而粗糙的那一半，正是你最常出錯的地方。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>數學是「常識的延伸」：先問資料漏了誰，飛機上沒有彈孔的地方才最該補強。</li><li>世界很少是直線；不可能的事天天發生；極端表現之後多半會回到平均。</li><li>用期望值做決定，同時誠實面對不確定——承認「我不確定」本身就是嚴謹。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>喬丹・艾倫伯格是美國威斯康辛大學麥迪遜分校的數學教授，研究領域是數論與代數幾何——純得不能再純的數學。他從小就是出名的數學神童，少年時期代表美國參加國際數學奧林匹亞並拿下金牌，後來在哈佛取得博士學位。</p>
+<p>但他還有另一個身分：寫作者。他念過創意寫作，出過小說，長期在網路雜誌 Slate 寫專欄，用數學的眼光評論新聞、政治與流行文化。這本 2014 年出版的書可以看成他專欄功力的集大成，英文副標是「數學思考的力量」。</p>
+<p>他在書的開頭虛構了一個場景：學生在課堂上哀號「我以後什麼時候會用到這個？」多數老師的回答是「將來工作可能需要」——但老師和學生都知道這不太誠實。艾倫伯格給了另一個答案：學數學就像足球員做重量訓練，比賽時不會有人叫你做深蹲，但你的每一個動作都靠它。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p><strong>不當數學家的人，為什麼需要數學思考？</strong></p>
+<p>艾倫伯格的回答是：數學不是一堆公式，而是「用其他方法延伸的常識」。你本來就有判斷數量、機率、因果的直覺，數學做的事是把這些直覺磨利、補上它的盲點，讓你在直覺會翻車的地方不翻車。</p>
+<p>他把數學知識畫成一個四象限：一軸是簡單到複雜，一軸是淺薄到深刻。學校教的很多內容落在「複雜但淺薄」（背一長串公式做繁瑣計算）；數學家的前沿研究落在「複雜而深刻」。這本書專攻的是「簡單而深刻」那一格——不需要多少計算，但能徹底改變你看事情方式的觀念。</p>
+<p>全書分成五個部分：線性、推論、期望值、迴歸、存在。底下挑四個最核心的講。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、消失的彈孔：先問資料漏掉了誰</h3>
+<p>開場故事發生在二戰期間。美軍想替轟炸機加裝裝甲，但裝甲很重，裝太多飛不動，只能裝在最需要的地方。軍方統計了返航飛機上的彈孔，發現機身上彈孔密密麻麻，引擎部位相對很少，於是打算加強彈孔最多的地方。</p>
+<p>他們把問題交給一個由頂尖數學家與統計學家組成的研究小組，其中一位是沃德。沃德的回答完全相反：<strong>裝甲應該裝在彈孔少的地方，也就是引擎。</strong></p>
+<p>他的推理是：子彈打中飛機各部位的機會應該大致平均。那引擎上的彈孔跑去哪了？在那些沒能飛回來的飛機上。機身中彈的飛機還能返航，所以你看得到那些彈孔；引擎中彈的飛機墜毀了，所以你看不到。軍方統計的不是「所有飛機」，而是「活下來的飛機」。</p>
+<p>艾倫伯格說，沃德厲害的地方不在計算，而在問了一個軍官們沒問的問題：你的假設是什麼？軍方不自覺地假設返航的飛機能代表全部的飛機。數學訓練給人的習慣，就是把藏起來的假設挖出來檢查。</p>
+<p>這種「倖存者偏差」到處都是。書中另一個例子是共同基金：某類基金過去十年的平均報酬看起來很亮眼，但那是「現在還存在的基金」的平均——表現太差的早就被清算或合併掉了，沒被算進去。</p>
+<p><strong>實用價值</strong>：任何「成功者的共同特徵」分析，都要先問失敗的那一群在哪裡。</p>
+<h3>二、世界不是直線：外推的陷阱</h3>
+<p>人腦最愛的關係是直線：多一點投入，就多一點成果，而且照同樣的比例一直下去。艾倫伯格用一整個部分提醒你：<strong>世界大多是彎的。</strong></p>
+<p>他舉了一個政策辯論的例子。有評論者主張，瑞典那樣的高福利高稅率國家既然正在減稅，美國就不該往瑞典的方向走。這個推論默默假設了「越不像瑞典越好」是一條直線。但如果國家繁榮和福利程度的關係是一條倒過來的弧線——中間某處最好——那麼瑞典站在山頂的一側、美國站在另一側，兩國朝相反方向移動都可能是對的。稅率與稅收之間的拉弗曲線也是同樣的道理：稅率是零，稅收是零；稅率百分之百，沒人要工作，稅收也趨近於零；最高點在中間某處，至於確切在哪裡，就不是光靠畫圖能決定的。</p>
+<p>另一個例子是線性外推鬧的笑話。曾有研究根據過去幾十年美國過重人口比例的上升趨勢，推算到本世紀中葉全美國人都會過重。艾倫伯格指出，同一套算法繼續往下推，比例還會超過百分之百——顯然不可能。趨勢線在短距離內近似直線，不代表可以無限延長。</p>
+<p>他的說明很優雅：任何曲線放大到夠小的範圍看，都很像直線。這正是微積分的基本想法，也是直線思考在「局部」有用、在「長遠」危險的原因。</p>
+<p><strong>常見誤用</strong>：拿過去三個月的成長率推估三年後的規模；或是認為某件事做一點有益，做很多就一定更有益。</p>
+<h3>三、不可能的事天天發生：機率、顯著性與期望值</h3>
+<p>這是全書份量最重的部分。</p>
+<p><strong>巴爾的摩股票經紀人</strong>。假想你連續十週收到一位陌生經紀人的來信，每週預測一檔股票的漲跌，十次全對。你該把錢交給他嗎？騙局是這樣的：第一週他寄出一萬多封信，一半寫漲、一半寫跌。猜錯的那一半收信人從此不再收到信；猜對的那一半，下週再分成兩半。十週之後，還剩下十來個人看到了「十連中」的神蹟。對這十來個人來說一切都是真的，但他們看不到那一萬多封猜錯的信。</p>
+<p>艾倫伯格由此帶出一個重點：<strong>只要嘗試的次數夠多，極不可能的事幾乎必然發生。</strong>他講了一個研究者故意做的惡搞實驗：把一條死掉的鮭魚放進腦部掃描儀，給牠看人類的照片，結果在數以萬計的腦部小區塊中，竟有幾處出現了「統計上顯著」的反應。魚當然沒在思考，這只是在提醒同行：檢驗的次數那麼多，不做校正，雜訊也會冒出來冒充訊號。</p>
+<p>這就連到 p 值。科學界慣用「p 值小於百分之五」當作顯著的標準，艾倫伯格解釋了它的邏輯——先假設沒有效果，再看觀察到的資料在這個假設下有多罕見——也指出它的限制：顯著不等於重要（效果可能極小），不顯著不等於沒有效果，而且這條百分之五的線是慣例，不是自然法則。再加上顯著的結果比較容易被發表，文獻就會偏向好消息。</p>
+<p><strong>期望值與彩券</strong>。書中最像電影的故事發生在麻州。當地有一種彩券，規則有個特別的設計：頭獎累積到一定金額卻沒人中時，獎金會往下分配給較小的獎項。這表示在那幾天，每張彩券的期望值高於票價——平均來說買越多賺越多。有幾組人算出了這一點，包括一群麻省理工學院的學生，他們組成集資團隊，在特定開獎日大量買進，持續獲利了好幾年，直到報紙披露後這種彩券才停辦。</p>
+<p>艾倫伯格藉此說明期望值的真義：它不是你「預期會拿到的值」，而是重複很多次之後的平均。他也接著談期望值的不足——人不只在乎平均，也在乎風險，同樣一筆錢對窮人和富人的意義不同，這就是「效用」的概念。</p>
+<h3>四、迴歸平均：別替隨機起伏編故事</h3>
+<p>1930 年代，一位商學教授花了多年蒐集各行業的企業資料，發現一個規律：表現最好的公司，幾年後往往變得普通；表現最差的，往往有所改善。他據此寫了一本厚書，宣稱競爭使企業趨向平庸。</p>
+<p>一位統計學家在書評裡毫不留情地指出：這個「發現」幾乎必然會出現，什麼都沒有證明。任何表現都混合了實力與運氣。某一年排在最前面的公司，多半是實力不錯、運氣又特別好；下一次運氣不會同樣好，成績自然往平均靠攏。這個現象最早由高爾頓在研究身高時注意到：特別高的父母，孩子通常也高，但沒有父母那麼高。這就是「迴歸平均」。</p>
+<p>它製造的誤判非常多：成績暴衝的球員隔年「失常」、病情最嚴重時去試偏方然後「好轉」、業績最差的分店換了店長之後「起死回生」。這些都可能只是自然的回落或回升，卻被我們編成因果故事。</p>
+<p>同一部分還談了相關的幾個要點：相關衡量的是直線關係，兩件事可以關係密切卻相關係數很低；相關沒有遞移性（A 與 B 相關、B 與 C 相關，不代表 A 與 C 相關）；以及醫院資料中因為篩選而憑空出現的相關。</p>
+<p>書的最後一部分談民意與投票，指出「多數人的意見」有時根本不是一個前後一致的東西——三個以上的選項時，不同的計票方式可以選出不同的贏家。結尾則回到書名：不犯錯的方法，不是假裝確定，而是誠實地說出自己有多不確定。</p>
+<p><strong>限制</strong>：這本書話題跨度大、段落之間跳躍多，有些章節（幾何、編碼理論）對入門讀者偏硬。不必每段都啃透，抓住每個部分的中心故事就值回票價。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>五個部分其實是五種「常識會出錯的地方」，加上對應的修正：</p>
+<ul><li><strong>線性</strong>：直覺愛直線 → 記得世界是彎的，別無限外推。</li><li><strong>推論</strong>：直覺愛從巧合中看出意義 → 先問有多少次嘗試、沒被看見的資料在哪。</li><li><strong>期望值</strong>：直覺對機率與報酬的衡量很粗 → 用期望值算，再用效用與風險修正。</li><li><strong>迴歸</strong>：直覺愛替起伏找原因 → 先扣掉本來就會發生的迴歸平均。</li><li><strong>存在</strong>：直覺以為「大家的意見」是個明確的東西 → 理解加總方式會改變結果。</li></ul>
+<p>沃德的彈孔故事是總綱：數學思考的第一步，是把沒說出口的假設找出來。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>分析成功案例前，先把失敗和中途退出的案例找回來，一起放進表格。</li><li>做預測時畫兩條線：一條直線外推，一條會趨緩的曲線。開會時兩條都拿出來討論。</li><li>看到「測試了二十個版本，有一個顯著勝出」，先打個折——試得多本來就會撞到。請團隊重跑一次確認。</li><li>表現極端好或極端差的人與專案，下一期先預設會往中間靠，別急著獎懲或歸因。</li><li>重大決策列出幾種情境，各估機率與結果，算一個粗略的期望值，再問最壞情況自己承不承受得起。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>遇到神準的預測（股市名師、命理），想想「有多少人做了預測而我沒看到」。</li><li>身體最不舒服時試的方法後來有效，先別太快下結論——很多症狀本來就會自己緩解。</li><li>買保險、抽獎、投資前，粗估一下期望值；但也記得，花小錢換安心或樂趣，本來就不全是期望值的事。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這是一本教你算數學的書」</strong>——全書幾乎不需要動筆計算。它教的是提問的方式：假設是什麼？漏了誰？是直線嗎？試了幾次？</li><li><strong>「數學能給出確定的答案」</strong>——艾倫伯格的結論恰恰相反。好的數學思考常常讓你更清楚自己不知道什麼，並且把不確定的程度說出來。</li><li><strong>「p 值沒用、統計不可信」</strong>——他批評的是把顯著性當成非黑即白的蓋章，並沒有否定統計檢定本身。工具沒壞，是用法出了問題。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《數據的假象》（伯格斯特姆、魏斯特）：四天前讀的那本偏重識破別人的誤導，這本偏重修正自己的推理。兩本的案例有不少交集，合起來是一套完整訓練。</li><li>《快思慢想》（康納曼）：康納曼從心理學解釋直覺為什麼在機率與迴歸問題上出錯；艾倫伯格從數學這一側告訴你正確答案長什麼樣子。拾頁書庫已有。</li><li>《訊號與雜訊》（席佛）：席佛把貝氏思考用在選舉、棒球與天氣預報；艾倫伯格書中談貝氏推論的段落，正好是它的理論暖身。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「數學是用其他方法延伸的常識。」（Mathematics is the extension of common sense by other means.）</li><li>「不可能的事情經常發生。」（Improbable things happen a lot.）</li><li>「裝甲不該裝在彈孔最多的地方，而該裝在沒有彈孔的地方——因為那裡中彈的飛機沒有回來。」（大意，沃德故事的結論）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你最近根據哪一組「倖存者」做了判斷（成功的同事、賺錢的朋友、暢銷的產品）？如果把沒看到的那群也算進來，結論會怎麼變？</li><li>回想一次你認為「有效」的改變（換方法、換工具、換人），有沒有可能只是迴歸平均？你會怎麼設計一個小測試來分辨？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="how-not-to-be-wrong" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "how-not-to-be-wrong";
+      var TITLE = "數學教你不犯錯";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "how-not-to-be-wrong";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

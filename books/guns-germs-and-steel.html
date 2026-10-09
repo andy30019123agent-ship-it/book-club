@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>槍炮、病菌與鋼鐵｜拾頁</title>
+<meta name="description" content="為什麼是歐洲人征服美洲，而不是反過來？如果你心裡浮現的答案跟「誰比較聰明」有關，戴蒙要用一萬三千年的證據告訴你：差別在土地，不在人。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="guns-germs-and-steel" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-28</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 14 分鐘</span></div>
+  <h1>槍炮、病菌與鋼鐵</h1>
+  <p class="title-en">Guns, Germs, and Steel</p>
+  <p class="byline">賈德・戴蒙（Jared Diamond）｜1997</p>
+  <p class="hook">為什麼是歐洲人征服美洲，而不是反過來？如果你心裡浮現的答案跟「誰比較聰明」有關，戴蒙要用一萬三千年的證據告訴你：差別在土地，不在人。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>各大洲命運不同，是因為環境不同，不是因為人種的生物差異。</li><li>可馴化的動植物與東西向的大陸軸線，讓歐亞大陸最早累積糧食、人口與技術。</li><li>槍炮、病菌、鋼鐵只是近因；追問「為什麼他們先有這些」才會挖到真正的遠因。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>賈德・戴蒙的學術履歷很難歸類。他在劍橋大學拿的是生理學博士，早年研究膽囊；同時又是鳥類學家，從 1960 年代起一次次深入新幾內亞的叢林做田野調查，研究鳥類的演化與分布。後來他轉到加州大學洛杉磯分校的地理系任教，把生物學、地理學、語言學與考古學攪在一起，處理人類歷史的大問題。</p>
+<p>這本書的起點是一場海灘上的對話。1972 年，戴蒙在新幾內亞遇到當地一位名叫亞力的政治人物。兩人邊走邊聊，亞力問了他一個問題，大意是：為什麼你們白人製造出那麼多貨物運到新幾內亞來，而我們黑人自己卻沒有多少貨物？</p>
+<p>戴蒙當時答不出來。他花了二十五年思考，寫成這本 1997 年出版的書，隔年拿下普立茲獎，至今仍是討論世界不平等時繞不開的一本書。</p>
+<p>還有一點背景值得知道：戴蒙跟新幾內亞人共事多年，深深覺得這些朋友在機靈、應變與學習能力上絲毫不輸歐美人。他寫這本書有一個明確的動機——反駁那種把歷史結果歸因於人種優劣的解釋。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>亞力的問題可以放大成：<strong>為什麼人類歷史在不同大陸上，以這麼不同的速度展開？</strong>為什麼是歐亞大陸的社會發展出槍炮、遠洋船隻與官僚國家，進而征服或取代了美洲、澳洲與非洲南部的原住民，而不是反過來？</p>
+<p>最偷懶的答案是「因為歐洲人有槍炮、病菌與鋼鐵」。戴蒙說這只是近因，等於沒回答——真正的問題是，為什麼這些東西先出現在歐亞大陸？</p>
+<p>他的回答濃縮成一句話：不同族群的歷史走上不同的道路，是因為他們所處的環境不同，而不是因為族群本身在生物上有差異。接下來整本書，就是在論證「環境差異」具體指的是哪些東西。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、近因與遠因：從卡哈馬卡往回追</h3>
+<p>戴蒙選了一個戲劇性的場景當切入點。1532 年，在今天秘魯的高地城鎮卡哈馬卡，西班牙人皮薩羅率領一百六十多名士兵，面對印加皇帝阿塔花普拉與他身邊數萬人的大軍。結果是皮薩羅在幾乎沒有損失的情況下俘虜了皇帝，屠殺了數千名印加人，之後勒索到滿屋的黃金，最終還是處決了他。</p>
+<p>人數差距懸殊到這種程度，為什麼贏的是西班牙人？戴蒙列出直接原因：鋼製的刀劍與盔甲、槍、馬匹；遠洋船隻把他們送到這裡；背後有一個能組織遠征的中央集權國家；文字讓他們能傳遞前人的經驗，印加皇帝卻對入侵者的來歷與手段一無所知。還有一項最致命的——歐洲人帶來的傳染病比軍隊更早抵達，天花已經在印加帝國蔓延，奪走前任皇帝的性命並引發內戰，阿塔花普拉之所以會在那裡，正是因為這場內戰。</p>
+<p>這些是<strong>近因</strong>。戴蒙真正的工作是往回問：為什麼是歐洲人擁有馬、鋼鐵、文字與致命病菌，而不是印加人？為什麼不是阿塔花普拉渡海到馬德里俘虜西班牙國王？</p>
+<p>這種「再往上一層問為什麼」的方法，是全書最值得帶走的思考習慣。</p>
+<h3>二、糧食生產：一切的起點</h3>
+<p>往回追到底，戴蒙找到的源頭是農業——更精確地說，是「糧食生產」：種植作物與飼養牲畜。</p>
+<p>邏輯是這樣的。採集狩獵只能養活很低的人口密度，而且人人都得找食物。農業讓同一塊土地養活多得多的人，還能產生儲存得起來的餘糧。有了餘糧，才養得起不事生產的人：工匠、士兵、書記、祭司、國王。人口稠密又定居，才會出現複雜的政治組織、專門的技術與文字。槍炮和鋼鐵是這條長鏈末端的產物。</p>
+<p>那為什麼不是每個地方都同時發展出農業？因為農業不是想做就能做，得看當地有沒有<strong>適合馴化的野生物種</strong>。</p>
+<p>在植物方面，西亞的肥沃月彎得天獨厚：那裡原生著小麥、大麥、豌豆、扁豆等多種野生祖先，種子大、容易採收與儲存、馴化所需的改變很小。相比之下，新幾內亞與北美東部可馴化的本土植物少得多，營養價值也較低。這不是當地人不夠聰明——戴蒙特別強調，採集者對周遭植物的知識極其豐富，只要有值得種的東西，他們不會錯過。</p>
+<p>動物方面的差異更懸殊。戴蒙統計了全世界體型夠大的野生草食與雜食哺乳類，約有一百四十多種候選者，最後成功被馴化的只有十四種，而其中絕大多數的野生祖先都在歐亞大陸——包括最重要的牛、馬、豬、綿羊、山羊。南美洲只有駱馬一類；北美洲、澳洲與撒哈拉以南的非洲幾乎掛零。</p>
+<p>非洲不是有斑馬、水牛嗎？戴蒙在這裡提出「安娜・卡列尼娜原則」，借用托爾斯泰小說的開場白：幸福的家庭都很相似，不幸的家庭各有各的不幸。可馴化的動物也是如此——必須同時滿足好幾項條件：食性不能太挑、長得夠快、能在圈養下繁殖、性情不能太凶暴、不會一受驚就狂奔、有可供人類取代首領地位的群體階級。任何一項不合格就失敗。斑馬脾氣暴烈、咬住人就不放，所以從來沒被真正馴化。</p>
+<p>美洲和澳洲為什麼缺少大型哺乳類？戴蒙認為，這些大陸的大型動物多數在人類初次抵達後不久就滅絕了，很可能是因為牠們從未與人類共同演化、對獵人毫無防備。這一點在學界仍有爭論，氣候變遷也可能是因素。</p>
+<h3>三、大陸的軸線：東西向與南北向</h3>
+<p>即使某個地方率先發展出農業，還得看它能不能傳播出去。戴蒙在這裡提出一個簡潔有力的觀察：<strong>歐亞大陸的主軸是東西向，美洲與非洲的主軸是南北向。</strong></p>
+<p>為什麼方向這麼重要？因為同一緯度的地區，日照長短、季節變化與氣候大致相近。肥沃月彎馴化的小麥，往西可以一路種到歐洲，往東可以傳到印度河流域，幾乎不必重新適應。牲畜、技術與觀念也順著同一條帶狀區域流動，輪子、文字、冶金術在歐亞各地互相傳抄、彼此改良。</p>
+<p>美洲的情況相反。從墨西哥到安地斯山，中間隔著狹窄而炎熱的中美洲地峽與熱帶雨林。墨西哥馴化的玉米要傳到北美東部，得先適應不同的日照週期，花了很長的時間；安地斯山的駱馬與馬鈴薯從來沒有傳到墨西哥，而墨西哥發明的輪子（當地只用在玩具上）也始終沒有遇上安地斯山那些可以拉車的牲畜。非洲同樣被撒哈拉沙漠與熱帶地區的緯度變化切成好幾段。</p>
+<p>於是歐亞大陸形成了一個巨大的交流圈，各地的發明能夠疊加；其他大陸上的社會則比較孤立，很多東西必須自己從頭發明，或根本沒機會發明。</p>
+<h3>四、病菌、技術與國家：農業之後的連鎖反應</h3>
+<p>有了稠密的農業人口，其他優勢就接連出現。</p>
+<p><strong>病菌</strong>。這是書中最讓人意外的一環。天花、麻疹、流感等造成大流行的傳染病，多半源自家畜身上的病原體，在人與牲畜長期密切共處的過程中跳到人類身上。這類「群聚疾病」需要夠大夠密的人口才能持續流行。歐亞大陸的人和牲畜生活了幾千年，付出慘重代價後，存活下來的族群逐漸累積了一定的抵抗力。美洲原住民幾乎沒有大型家畜，也就沒有對應的疾病與免疫力。歐洲人抵達後，病菌跑得比征服者還快，許多地方的人口在還沒見到白人之前就已經大量死亡。戴蒙認為，死於病菌的美洲原住民遠多於死於刀槍的。而病菌的流向幾乎是單向的，原因就在牲畜的有無。</p>
+<p><strong>技術與文字</strong>。戴蒙反對「天才發明家改變世界」的敘事。他認為發明往往先於需求，而一個社會能累積多少技術，取決於人口有多少（潛在的發明者與使用者）、與其他社會的交流有多密切。文字也一樣，全世界獨立發明文字的地方屈指可數，其餘都是借用或受到啟發——交流方便的地方佔盡便宜。</p>
+<p><strong>政治組織</strong>。從數十人的遊群、數百人的部落、數千人的酋邦到數萬人以上的國家，人口規模越大，越需要集中的權力來解決衝突、調度資源，也越能動員軍隊與支持專業者。</p>
+<p>為了顯示環境的作用有多大，戴蒙舉了一個近乎實驗的例子。玻里尼西亞各島的居民都源自同一批祖先，卻因為島嶼的大小、氣候、地形與孤立程度不同，在短短一千多年間分化成從簡單的採集社會到階級分明的準國家。1835 年，來自紐西蘭、以農耕為生且組織嚴密好戰的毛利人，乘船抵達查塔姆群島，幾乎滅絕了島上愛好和平、因氣候寒冷而退回採集生活的莫里奧里人。兩群人在幾百年前還是同一個民族。</p>
+<p>書的尾聲，戴蒙處理了一個更細的問題：同在歐亞大陸，為什麼是歐洲而不是中國主導了近代世界？他的推測是地理造成的政治格局不同——歐洲海岸線破碎、山脈縱橫，長期分裂成許多互相競爭的國家；中國地理上較為連貫，很早就統一。統一的好處是效率，壞處是一個決策就能中止整個方向：明朝的遠洋船隊在朝廷的決定下停擺，而哥倫布被一位君主拒絕後，還能轉頭去找下一位。戴蒙自己也說，這一段是初步的想法，不是定論。</p>
+<p><strong>限制與批評</strong>：這本書最常被批評為「地理決定論」——把人的選擇、制度與文化都擠到了一邊。經濟學界有一派主張，近幾百年的貧富差距更多取決於政治與經濟制度；歷史學者則指出戴蒙對個別事件（包括西班牙征服美洲的細節）處理得太簡化，低估了當地盟友與政治局勢的作用。比較公允的讀法是：戴蒙的理論對「一萬年尺度、大陸與大陸之間」的差異很有解釋力，但尺度越小、時間越近，地理能說明的部分就越少。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>一條從遠因到近因的因果鏈：</p>
+<p><strong>大陸的環境稟賦</strong>（可馴化的動植物種類、大陸軸線方向、面積與孤立程度）→ <strong>糧食生產的早晚與傳播速度</strong> → <strong>人口稠密、定居、有餘糧</strong> → 分出三條支線：與牲畜共處產生<strong>病菌與免疫力</strong>；專業分工帶來<strong>技術、鋼鐵、文字</strong>；規模擴大催生<strong>中央集權的國家</strong> → 這些加起來，就是卡哈馬卡那一天西班牙人手上的全部優勢。</p>
+<p>整條鏈的起點是地理與生物條件，沒有任何一環需要假設某個族群天生比較優秀。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（練「近因—遠因」的追問）</strong>：</p>
+<ol><li>下次檢討成敗時，先寫下大家公認的原因，然後連問三次「那為什麼他們有這個、我們沒有？」</li><li>盤點起始條件：對手或標竿團隊的優勢，有多少來自他們的努力，有多少來自市場位置、進場時機、既有資源？</li><li>找出你的「東西向軸線」：哪些部門、社群或產業跟你的處境相近，他們的做法可以幾乎原封不動地搬過來？主動建立交流管道。</li><li>留意孤立的代價：長期不對外交流的團隊，會像孤島一樣停滯甚至遺忘原有的技術。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>評價別人的成就或困境時，刻意多想一步環境：他出生在哪裡、手上有哪些「可馴化的資源」？</li><li>讀歷史或看新聞時，分辨導火線（近因）和結構性的原因（遠因）。</li><li>想學一項新東西，先找已經在做的人群加入——交流密度往往比個人天分更能決定你累積得多快。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書在說歐洲人比較優秀」</strong>——恰好相反。戴蒙寫這本書就是為了駁斥人種優劣論，他主張任何族群放在歐亞大陸的條件下都會走上類似的路。</li><li><strong>「地理決定一切，人怎麼做都沒差」</strong>——戴蒙處理的是幾千年、整個大陸的尺度。他並不否認個人、文化與制度在較短的時間與較小的範圍內有重要影響，書末談中國與歐洲的分岔時也納入了政治決策。</li><li><strong>「歐洲人是靠槍炮打贏的」</strong>——書名中的三樣東西只是近因，而且三者之中殺傷力最大的是病菌。全書的重點在書名背後的那個「為什麼」。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《人類大歷史》（哈拉瑞）：本月 4 日讀過。哈拉瑞用「共同相信的故事」解釋人類為何能大規模合作，戴蒙用地理與物種解釋各大洲為何走得不一樣快。一個談全人類的共同點，一個談各地的差異，剛好互補。</li><li>《異數》（葛拉威爾）：葛拉威爾說個人的成功要看出生年月與成長環境；戴蒙把同樣的邏輯放大到整個文明。兩本都在提醒：別太快把結果歸功給當事人的本質。</li><li>《因果革命》（珀爾）：戴蒙整本書其實是一張巨大的因果圖，還用玻里尼西亞當「自然實驗」。讀過珀爾再回頭看，會更清楚他哪些箭頭畫得紮實、哪些還只是推測。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「不同族群的歷史循著不同的軌跡發展，是因為環境的差異，而不是因為族群之間的生物差異。」（History followed different courses for different peoples because of differences among peoples' environments, not because of biological differences among peoples themselves.）</li><li>「可馴化的動物都很相似；不可馴化的動物則各有各的不可馴化之處。」（Domesticable animals are all alike; every undomesticable animal is undomesticable in its own way.）</li><li>「為什麼你們白人製造出那麼多貨物，而我們黑人卻沒有多少屬於自己的貨物？」（大意，亞力的提問，全書的起點）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>挑一件你認為「靠自己努力得來」的成就，用戴蒙的方式往回追三層：它依賴了哪些你沒有選擇的起始條件？</li><li>戴蒙被批評忽略了制度與人的選擇。你覺得解釋一個國家、一家公司或一個人的處境時，「環境」和「選擇」各該佔多少比重？有沒有哪個例子改變過你的看法？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="guns-germs-and-steel" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "guns-germs-and-steel";
+      var TITLE = "槍炮、病菌與鋼鐵";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "guns-germs-and-steel";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

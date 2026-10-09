@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我好，你也好｜拾頁</title>
+<meta name="description" content="你以為現在的你是成熟大人在說話？很多時候開口的是你腦中的爸媽，或那個五歲的自己。認得出是誰在講話，你才有得選。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="im-ok-youre-ok" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-23</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>我好，你也好</h1>
+  <p class="title-en">I'm OK – You're OK</p>
+  <p class="byline">湯瑪斯・哈里斯（Thomas A. Harris）｜1967</p>
+  <p class="hook">你以為現在的你是成熟大人在說話？很多時候開口的是你腦中的爸媽，或那個五歲的自己。認得出是誰在講話，你才有得選。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>每個人心裡有父母、成人、兒童三種狀態；先認出現在是誰在說話，才有選擇。</li><li>人幼年多半落在「我不好，你好」；「我好，你也好」是成人後有意識的決定。</li><li>強化「成人」不是壓掉另外兩個，而是讓它當家：先停一下，查證，再回應。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>湯瑪斯・哈里斯是美國精神科醫師，早年在海軍服役，擔任軍醫多年，退役後在加州開業。他的養成是傳統的精神分析，但做得愈久愈不滿意：治療動輒好幾年，術語只有專家聽得懂，病人常常說得出自己童年發生了什麼，日子卻沒有變好。</p>
+<p>轉捩點是他認識了同在加州的精神科醫師艾瑞克・伯恩。伯恩創立了「溝通分析」（Transactional Analysis，常簡稱 TA），用父母、成人、兒童這幾個日常字眼取代艱深的術語，並把治療的焦點從「挖過去」移到「看此刻兩個人之間發生了什麼」。哈里斯長年參加伯恩的研討會，成為這套方法最重要的推廣者之一。</p>
+<p>這本書在六〇年代後期出版，起初反應平平，幾年後忽然大賣，在七〇年代初盤踞美國暢銷榜很長一段時間，書名也變成英語裡的日常用語。它的企圖很明確：把心理治療的工具交到一般人手上，讓病人和醫師說同一種語言。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我明明知道不該這樣，為什麼還是這樣反應？」主管一皺眉你就慌，伴侶一句話你就爆炸，對孩子吼完又後悔——事後想想，那個當下的自己簡直像另一個人。</p>
+<p>哈里斯說，那確實是「另一個你」。每個人的人格裡有三個不同的部分，各有一套感覺和說話方式，會在不同時刻接管方向盤。大多數的人際衝突，是兩個人各自的某個部分撞在一起，而當事人都沒有察覺。</p>
+<p>這本書做兩件事：給你一副眼鏡，看清楚自己和對方此刻是哪個部分在說話；再告訴你，人對自己和別人抱持的基本態度有四種，而其中最健康的那一種，不是天生的，是可以選的。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、父母、成人、兒童：腦袋裡的三卷錄音帶</h3>
+<p>哈里斯從神經外科醫師潘菲爾德的研究講起。潘菲爾德在為癲癇病人做腦部手術時，用微弱電流刺激大腦皮質的某些位置，清醒的病人竟然重新經驗到過去的片段——不只是想起來，而是連同當時的感覺一起重播。哈里斯由此提出一個比喻：大腦像一部高傳真的錄音機，把經歷和當時的感受一併錄下，日後可以被類似的情境觸發，原封不動地播放。</p>
+<p>在這個基礎上，他說明三種自我狀態：</p>
+<p><strong>父母（Parent）</strong>是人生頭幾年錄下的「外在事件」——主要是父母或照顧者說的話、做的事、臉上的表情。小小孩沒有能力過濾，所以這些被照單全收：「不可以」「要有禮貌」「我們家的人不做這種事」，也包括擁抱、哄睡、讚許的眼神。它是「被教導的人生觀」。父母狀態現身時，常見的字眼是「應該」「一定要」「從來不」「我告訴過你多少次」，配上皺眉、搖頭、嘆氣、伸出食指。</p>
+<p><strong>兒童（Child）</strong>是同一段時期錄下的「內在事件」——孩子對所見所聞的感受。一方面有無助、害怕被拒絕、挫折；另一方面也有好奇、創意、玩興、第一次發現新東西的驚喜。它是「被感受的人生觀」。兒童狀態現身時，會出現「我想要」「我不管」「都是你」，以及噘嘴、聳肩、哭、撒嬌、大笑。</p>
+<p><strong>成人（Adult）</strong>大約在嬰兒十個月大、開始能自己移動和探索時萌芽。它像一部資料處理機：蒐集現在的事實，檢查父母錄音帶裡的資料在今天還成不成立，檢查兒童的感受和眼前的情況相不相稱，然後估算可能的結果、做出決定。它是「經過思考的人生觀」。成人狀態的語言是「為什麼」「是什麼」「多少」「有可能」「我的看法是」。</p>
+<p>哈里斯特別提醒，這三個詞跟年齡無關，也沒有好壞之分。問題不在有父母和兒童，而在它們不經檢查就自動播放。</p>
+<p><strong>實用價值</strong>：這套語言厲害的地方在於夠簡單。吵架吵到一半，能在心裡說一句「我的兒童被勾到了」，就已經從那個狀態裡退出半步。</p>
+<p><strong>限制</strong>：錄音機的比喻是六〇年代的理解。後來的記憶研究顯示，回憶更像每次重新拼湊，會失真、會被改寫，並不是忠實的重播。讀這一段時，取它的臨床觀察就好——早年的感受確實會在成年後被原樣觸發——不必把機制當成定論。</p>
+<h3>二、四種人生態度：為什麼多數人從「我不好」出發</h3>
+<p>這是全書最有名、也是哈里斯自己最主要的貢獻。他認為每個人對「自己」和「別人」有一個基本的結論，組合起來是四種態度：</p>
+<p><strong>我不好，你好。</strong>哈里斯主張這是幼兒普遍的起點。嬰幼兒又小又笨拙、事事要人幫忙，身邊的大人又高又能幹，還掌握著撫摸與照顧的來源；孩子在還沒有語言的時候，就從這種對比裡得出結論：我不行，他們行。帶著這個態度長大的人，容易討好、自卑、不斷尋求認可，或者躲開人群。</p>
+<p><strong>我不好，你也不好。</strong>如果一開始得到的撫慰在學步之後大幅減少，孩子可能進一步認定別人也靠不住。這種態度下的人放棄希望，退縮、冷漠。</p>
+<p><strong>我好，你不好。</strong>哈里斯認為這常見於幼年被嚴重粗暴對待的孩子：他在獨自舔傷口的過程中學會「只有我自己可以讓我好過，別人都是傷害我的」。長大後容易把錯都推給別人，拒絕反省，極端的情況會走向反社會。</p>
+<p><strong>我好，你也好。</strong>這是唯一建立在思考之上的態度。前三種都是在人生最初幾年、成人還沒發展好的時候，憑感受定下的；第四種則是長大之後，由成人狀態在掌握足夠資訊後，有意識做出的決定。哈里斯說它不是一種感覺，而是一種信念與承諾——你不必等到「覺得自己很好」才採取這個立場。舊錄音帶還是會播，「不好」的感覺還是會冒出來，但你可以認出它是舊帶子，不照著演。</p>
+<p>他由此解釋伯恩所說的「心理遊戲」：很多人際間反覆上演的戲碼，是帶著「我不好」的人為了暫時好過一點而玩的把戲，原型就是小孩子的「我的比你的好」。</p>
+<p><strong>限制</strong>：「所有孩子的起點都是我不好」是哈里斯的主張，並不是溝通分析學界的共識；伯恩本人的看法就比較接近人生來是好的。把它當成一個有解釋力的假設來讀比較公允。</p>
+<h3>三、分析一來一往：互補、交錯，還有被汙染的成人</h3>
+<p>溝通分析的基本單位是「交流」：我說一句（刺激），你回一句（反應）。把雙方各畫成上下排列的父母、成人、兒童三個圈，就能用箭頭畫出這一來一往是從哪個狀態發出、指向對方的哪個狀態。</p>
+<p><strong>互補交流</strong>：箭頭平行，對方從你預期的狀態回應。成人對成人——「現在幾點？」「三點半。」父母對父母——兩個人一起抱怨「現在的年輕人」。兒童對父母——生病的先生撒嬌，太太照顧他。只要箭頭平行，對話可以一直進行下去。注意：平行不等於健康，兩個人一起講別人壞話也是平行的。</p>
+<p><strong>交錯交流</strong>：箭頭交叉，溝通就斷了。先生用成人問：「我的袖扣放哪了？」太太如果用成人答「在左邊抽屜」，沒事。但如果她回：「你自己的東西自己不會收嗎？」（父母對兒童），或是「你幹嘛老是對我兇！」（兒童對父母），箭頭交叉，接下來談的就不再是袖扣了。</p>
+<p>哈里斯要讀者練習的是：察覺自己被勾起了哪個狀態，然後讓成人來決定怎麼回。</p>
+<p>他也描述了成人運作不良的幾種情形。一是<strong>汙染</strong>：父母錄音帶裡沒有檢驗過的說法被當成事實，就是偏見（「那種人都不可靠」）；兒童的恐懼被當成事實，就成了不合現實的妄想式擔憂。二是<strong>排除</strong>：有的人把兒童關在門外，只剩責任和規矩，不會玩；有的人把父母關在門外，沒有內在的約束，缺乏良心。</p>
+<p>另一個重要概念是<strong>撫慰</strong>（stroke）。嬰兒需要身體的撫觸才能好好發育，長大後這個需要轉化成對「被認可」的渴望——一句招呼、一個點頭、一次稱讚。哈里斯跟隨伯恩的說法：人為了得到撫慰會想盡辦法，得不到正面的，負面的也好，總比被當成不存在強。這能解釋很多看似自找麻煩的行為。</p>
+<h3>四、讓成人當家：怎麼把它練強</h3>
+<p>哈里斯對改變很樂觀。成人像肌肉，愈用愈強。他給了一份建立強壯成人的要領，大意如下：</p>
+<ol><li>認識自己的兒童——它的弱點、恐懼，和它表達這些感受的慣用方式。</li><li>認識自己的父母——它的訓誡、命令、固定立場，和它表達的慣用方式。</li><li>對別人的兒童保持敏感：跟它說話、撫慰它、保護它，體會它背負的「不好」。</li><li>必要時數到十，給成人時間處理進來的資料，把父母和兒童的反應跟眼前的現實分開。</li><li>沒把握的時候，先不要說。</li><li>整理出一套自己想清楚的價值觀。沒有倫理的框架，就沒辦法做決定。</li></ol>
+<p>第四點最實用。舊錄音帶播放的速度極快，成人需要幾秒鐘才跟得上；「數到十」聽起來老套，功能是替成人爭取上線的時間。</p>
+<p>書的後半把這套方法用在婚姻、親子、青少年，甚至社會與國際問題上。他對婚姻的看法是：兩個人需要成人對成人地訂出共同的目標與價值，不然日子很容易被兩個人的父母和兒童輪流接管。談到教養，他主張父母先處理好自己，並且讓孩子也學會這套語言，因為連小孩子都聽得懂「你的兒童現在很難過」。</p>
+<p><strong>常見誤用</strong>：拿這套語言當武器——「你看，你的父母又跑出來了」。這句話本身就是從挑剔的父母狀態發出的，只會引來對方的兒童反擊。工具是先用在自己身上的。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>早年的經驗連同感受被錄了下來</strong>（所以舊反應會自動重播）→ <strong>這些錄音分成父母和兒童兩大類，另有一個能處理現實資料的成人</strong>（所以反應有三個來源）→ <strong>幼年憑感受定下了對自己和別人的基本態度，多半是「我不好，你好」</strong>（所以很多成年人的互動是在補償這個感覺）→ <strong>用交流分析看出一來一往是哪個狀態在運作</strong>（所以衝突可以被看懂）→ <strong>讓成人當家，並有意識地選擇「我好，你也好」</strong>（所以改變是可能的）。</p>
+<p>哈里斯的核心信念濃縮起來是一句話：過去解釋了你，但不能決定你。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>被主管質疑、心裡一沉的時候，先在心裡標記：「這是我的兒童。」然後數到十。</li><li>用成人的問句回應：「你最在意的是哪一個部分？」「需要我補什麼資料？」</li><li>想批評同事前，聽一下自己的用詞。出現「每次都」「應該要」時，換成具體的事實和請求。</li><li>檢查一個你深信不疑的職場信條（例如「準時下班就是不認真」）：這是我查證過的，還是從誰那裡錄來的？</li><li>主動給撫慰：對同事的一件具體小事表示看見。這是成本最低的投資。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>和伴侶起爭執時，事後各自畫一次：那一句話是從哪個狀態說的？對方是從哪個狀態回的？</li><li>找出自己的「按鈕」：哪一類話、哪種語氣特別容易勾出你的兒童？它像你小時候的什麼場景？</li><li>每週留一段時間讓兒童出來——玩、亂畫、做沒有目的的事。讓成人當家不代表要把兒童關起來。</li><li>對孩子開口前自問：這句話是他現在需要的，還是我爸媽當年對我說的？</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「成人最好，父母和兒童都該消滅」</strong>——父母保存了大量不必每次重新推理的有用規則，兒童是創意、直覺和快樂的來源。目標是讓成人當管家，不是清空另外兩個房間。</li><li><strong>「我好，你也好就是正向思考、大家都很棒」</strong>——它不是對行為的評價，而是對人的基本立場：你我都有價值、都能思考、都值得被認真對待。你仍然可以不同意、可以設限。</li><li><strong>「知道自己是哪個狀態，問題就解決了」</strong>——認出來只是第一步。哈里斯自己也說舊錄音帶擦不掉，它還是會響；改變靠的是一次次讓成人多撐幾秒。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《蛤蟆先生去看心理師》（德波德）：拾頁 8 月讀過。它用童話角色把父母、成人、兒童和四種人生態度演了一遍，可以說是本書的故事版；先讀蛤蟆再讀哈里斯，會看到那些概念的出處與完整論證。</li><li>《人間遊戲》（伯恩）：溝通分析創始人的代表作，也在拾頁今年的書單裡。伯恩專講人與人之間反覆上演的心理遊戲，哈里斯則把重心放在自我狀態和人生態度；一本講戲碼，一本講演員。</li><li>《被討厭的勇氣》（岸見一郎、古賀史健）：阿德勒同樣主張人不受過去決定、可以重新選擇生活型態，也同樣從「自卑感」談起。兩本書一個用對話、一個用圖解，結論很接近。</li><li>《怎麼說，孩子會聽 vs. 如何聽，孩子願意說》（法伯、馬茲麗許）：這批前面讀過。那本書教的句型，用本書的語言來說，就是用成人去回應孩子的兒童，而不是用父母去壓它。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「前三種態度建立在感受上，第四種——我好，你也好——建立在思考、信念與行動的押注上。」（大意）</li><li>「父母是被教導的人生觀，兒童是被感受的人生觀，成人是經過思考的人生觀。」（大意）</li><li>「我們不必等到覺得自己好了，才決定採取『我好，你也好』的立場。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>最近一次你事後覺得「我剛剛怎麼會那樣」的反應，回頭看是父母還是兒童在說話？它播的是哪一卷舊錄音帶？</li><li>四種人生態度裡，你壓力大的時候最容易滑到哪一種？有沒有哪一段關係，讓你比較容易站在「我好，你也好」？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="im-ok-youre-ok" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "im-ok-youre-ok";
+      var TITLE = "我好，你也好";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "im-ok-youre-ok";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

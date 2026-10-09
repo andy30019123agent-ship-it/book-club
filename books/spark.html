@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>運動改造大腦｜拾頁</title>
+<meta name="description" content="你以為運動是為了身材和心肺，變聰明要靠坐著讀書？瑞提醫師說順序搞反了——運動最大的受益者是大腦，肌肉只是順便。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="spark" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-13</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>運動改造大腦</h1>
+  <p class="title-en">Spark</p>
+  <p class="byline">約翰・瑞提（John J. Ratey）｜2008</p>
+  <p class="hook">你以為運動是為了身材和心肺，變聰明要靠坐著讀書？瑞提醫師說順序搞反了——運動最大的受益者是大腦，肌肉只是順便。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>運動的首要功能是打造和調整大腦；它讓腦細胞更容易長出連結，學習的硬體先準備好。</li><li>有氧運動能調節壓力、焦慮與憂鬱相關的腦內化學物質，是該和其他治療並用的工具。</li><li>關鍵是規律與心跳：每週多數日子讓自己喘起來，再加一點需要動腦的技巧性運動。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>約翰・瑞提是哈佛醫學院的臨床精神科副教授，長年研究和治療注意力不足過動症，他和愛德華・哈洛威爾合寫的《分心不是我的錯》是這個領域的經典。這本《運動改造大腦》出版於 2008 年，由他和記者艾瑞克・海格曼合作完成。</p>
+<p>瑞提對運動的興趣很早就有。他在書裡提到，自己年輕時在波士頓看到一個現象：一些跑馬拉松的人因為受傷被迫停跑之後，出現了憂鬱或注意力渙散的症狀。這讓他開始想，運動對這些人來說，是不是一直在扮演類似藥物的角色？他後來也注意到，他的一些過動症病人靠著規律的激烈運動，把症狀控制得相當好。</p>
+<p>到了 2000 年代，神經科學累積了一批重要發現：成年人的大腦仍然會長出新的神經細胞；有一種蛋白質能促進神經連結，而運動會讓它增加。瑞提這本書做的事，就是把這些實驗室裡的研究，和學校、診間裡的真實故事串在一起，寫給一般人看。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「運動對腦袋好」這句話誰都聽過，但多數人把它當成一句模糊的健康口號。瑞提要回答的是更具體的問題：<strong>運動到底在大腦裡做了什麼？</strong></p>
+<p>他的答案分成三個層次。第一，運動讓腦內幾種重要的神經傳導物質達到比較好的平衡，讓人更清醒、更專注、心情更穩。第二，運動促進神經細胞之間形成連結，而這正是學習新東西的生理基礎。第三，運動促進海馬迴（跟記憶有關的區域）生出新的神經細胞。</p>
+<p>他甚至提出一個演化上的說法：人類的大腦是在「不斷移動」的生活裡演化出來的，狩獵和採集需要一邊移動一邊學習、記憶、規劃。所以動和想本來就是綁在一起的。現代人坐著不動，等於讓大腦在它不習慣的條件下運作。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、內帕維爾的零時體育課：先動再學</h3>
+<p>書的開場是美國伊利諾州內帕維爾學區的故事，這也是全書最有名的案例。這個學區的體育老師菲爾・勞勒發現，傳統體育課其實讓多數孩子大半時間站著排隊等上場，而且打擊了不擅長運動的學生。他和同事保羅・齊恩塔斯基一起改造了體育課：重點從「球類技能」改成「體適能」，讓學生戴心率監測器，成績看的是你有沒有待在自己的目標心跳區間，而不是跑多快。</p>
+<p>書裡有個很動人的小故事：有個不擅長運動的女孩跑得很慢，照以前的標準會被認為在偷懶。但老師下載她的心率數據一看，她的心跳一直維持在非常高的區間——她其實比誰都拚。新的評分方式讓這種孩子第一次在體育課得到肯定。</p>
+<p>接著他們在高中開了一堂「零時體育課」：讓閱讀能力比較落後的學生，在第一節課之前先到校做有氧運動，再去上閱讀課。一個學期下來，這些學生的閱讀進步幅度明顯高於沒有先運動的同學。學校後來建議學生把最難的科目排在體育課之後。</p>
+<p>書裡還提到，內帕維爾的八年級學生在 1999 年以學區的身分參加了一項國際數理評比，科學成績在全世界名列前茅，數學也排在很前面，而且這個學區的學生過重的比例遠低於全國平均。</p>
+<p><strong>限制在哪</strong>：瑞提自己也說，內帕維爾是個富裕、家長教育程度高的學區，成績好不能全部歸功於體育課。這是一個引人深思的案例，不是嚴格的對照實驗。零時課的比較比較有說服力，但規模也不大。</p>
+<h3>二、大腦的肥料：運動如何幫你學東西</h3>
+<p>要理解運動和學習的關係，得先知道學習在生理上是什麼。簡單說，學會一件事，就是某些神經細胞之間的連結被加強了；重複得越多，連結越牢。</p>
+<p>這裡的主角是一種叫「腦源性神經營養因子」的蛋白質，瑞提給它取了個好記的綽號：<strong>大腦的神奇肥料</strong>。把它灑在培養皿裡的神經細胞上，細胞會長出新的分支。加州大學的神經科學家卡爾・科特曼做了關鍵的實驗：讓老鼠自由跑滾輪，結果牠們腦中這種蛋白質的量增加了，而且是在跟學習記憶有關的海馬迴增加，跑得越多增加越多。</p>
+<p>另一個重要發現是「神經新生」。過去教科書說成年後腦細胞只會減少不會增加，後來研究證實成年人的海馬迴仍會長出新細胞，而運動是促進新生的有力方式。不過瑞提補了一個重點：新生的細胞如果沒有被用到，很快就會死掉。讓它們存活下來的方法是給予刺激——也就是學習新東西、處在豐富的環境裡。</p>
+<p>所以他的建議不是「邊跑步邊背單字」，而是：<strong>運動把大腦調到最適合學習的狀態，學習本身要在運動之後進行。</strong>高強度運動當下，血液會從前額葉分流，並不適合做複雜思考；結束之後血流回來，那才是黃金時段。書中引用過一項德國的研究，受試者在高強度運動之後學習新詞彙的速度，比休息或低強度運動的組別快了大約兩成。</p>
+<p>他也建議把有氧運動和「需要技巧的活動」搭配起來——像網球、舞蹈、攀岩、武術。有氧提供肥料，複雜動作則逼大腦用上這些新的資源去建立連結。</p>
+<p><strong>常見誤用</strong>：以為運動完就會自動變聰明。運動只是把土壤弄肥，種子還是要你自己去種。</p>
+<h3>三、壓力、焦慮與憂鬱：運動作為一種處方</h3>
+<p>書的中段，瑞提以精神科醫師的身分逐一談各種狀況。</p>
+<p><strong>壓力</strong>。他先替壓力平反：適度的壓力會讓細胞變得更強壯，就像肌肉要先被微小地破壞才會長大。運動本身就是一種可控制的壓力，它讓神經細胞經歷「受壓、恢復、變強」的循環，等於替大腦打預防針，之後面對生活壓力時門檻就提高了。問題出在長期、沒有恢復期的慢性壓力，那會讓壓力荷爾蒙持續偏高，反過來傷害海馬迴。</p>
+<p><strong>焦慮</strong>。焦慮發作時的身體感覺——心跳快、呼吸急——跟運動時的感覺很像。瑞提說，規律運動可以讓人重新學習：心跳加速不等於危險。同時運動消耗掉緊繃的肌肉張力，也增加了讓大腦平靜下來的化學物質。更重要的是，運動是「主動做點什麼」，這跟焦慮時的僵住、逃避正好相反。</p>
+<p><strong>憂鬱</strong>。書中引用杜克大學詹姆斯・布魯曼索團隊的一項知名研究：把憂鬱症患者分成運動組、抗憂鬱藥物組和兩者並用組，一段時間後三組的改善程度相當；後續追蹤還發現，持續運動的人復發的比例比較低。瑞提把憂鬱形容成大腦的連結萎縮、被鎖在負面迴路裡，而運動同時提升了幾種神經傳導物質，也增加了那種神奇肥料，幫助大腦重新建立連結。</p>
+<p>他另外用專章談了過動症、成癮、女性的荷爾蒙變化和老化。在過動症那章，他說運動對注意力系統的作用方向跟藥物相似，他有些病人把晨間運動當成管理症狀的一部分。</p>
+<p><strong>限制在哪</strong>：瑞提明白表示他不是叫大家停藥。他的立場是運動應該被當成治療的一部分，尤其嚴重的憂鬱症患者往往連下床都困難，這時候藥物和心理治療是讓人有力氣開始運動的前提。有身心狀況的讀者，任何調整都該跟醫師討論。此外，這本書出版至今已有一段時間，部分研究的樣本不大，後來的研究對「運動的效果有多強」看法不完全一致，但大方向仍被廣泛接受。</p>
+<h3>四、老化：把運動當成長期投資</h3>
+<p>談老化的那章，瑞提從自己母親的故事寫起——她原本很活躍，髖部受傷、活動量大減之後，心智狀況也一路走下坡。</p>
+<p>他整理的研究方向是：隨著年紀增長，大腦的微血管會減少、神經連結會變稀疏、前額葉和海馬迴的體積會縮小。而規律運動的年長者，在這幾方面的衰退都比較慢。書中介紹了伊利諾大學亞瑟・克雷默團隊的研究：讓原本久坐的年長者開始規律快走一段時間，比起只做伸展的對照組，他們的腦部影像和執行功能測驗都有改善。</p>
+<p>運動還透過間接的路徑保護大腦：改善心血管、穩定血糖、減少發炎、降低肥胖，而這些都是失智的風險因子。瑞提給年長者的建議是三管齊下：有氧、肌力訓練、以及平衡與柔軟度。</p>
+<p><strong>實用價值</strong>：這一章把運動從「現在心情好一點」拉到「二十年後還能不能自己想事情」，對很多人來說是更強的動機。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>瑞提的論證很像醫學教科書的寫法：先給一個驚人的案例（內帕維爾）抓住注意力，再解釋基礎機制（神經傳導物質、神奇肥料、神經新生），然後把同一套機制套用到一個又一個情境——學習、壓力、焦慮、憂鬱、注意力、成癮、荷爾蒙、老化。每一章的結論都指向同一句話：身體和大腦不是兩個系統，是一個。最後一章才給處方。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p>瑞提在書末給的理想目標是：每週大部分的日子做有氧運動，其中幾天中等強度、少數幾天高強度，另外加上肌力訓練。他也強調，從零開始的人先求有，每天走路就已經有幫助，有慢性病或久未運動的人應先諮詢醫師。</p>
+<p><strong>職場版</strong>：</p>
+<ol><li>把運動排在最需要動腦的工作之前：早上先快走或慢跑一段，再進辦公室處理最難的任務</li><li>下午昏沉時，用十分鐘爬樓梯或快走取代再一杯咖啡</li><li>用心跳而不是速度衡量自己：能感覺到喘、講話會斷句，就是有效區間</li><li>重要的簡報或考試當天，提早起來活動，不要臨時抱佛腳到最後一刻</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>找一個伴或加入團體：瑞提多次強調社交連結本身也對大腦有益，而且有人等你比較不會放棄</li><li>每週排一次需要技巧的運動：跳舞、桌球、羽球、瑜伽、攀岩都算</li><li>心情低落或焦躁時，把「先動十分鐘」當成第一步，而不是等有動力才動</li><li>陪長輩規律散步，並加一點簡單的肌力和平衡練習</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「運動可以取代藥物」</strong>——書裡的研究是說對某些人效果相當，瑞提的建議是並用。自行停藥不是這本書的主張。</li><li><strong>「要很激烈才有用」</strong>——瑞提確實認為強度越高效益越多，但他同樣強調，對久坐的人來說，從走路開始的進步幅度最大。最差的選項是因為做不到完美計畫而乾脆不動。</li><li><strong>「運動時順便學習效率最高」</strong>——反了。高強度運動當下不適合複雜思考，學習要放在運動之後。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《為什麼要睡覺》（馬修・沃克）：拾頁 8 月讀過。睡眠負責鞏固記憶，運動負責準備學習的硬體，兩本合起來就是大腦保養的兩根支柱。</li><li>《一流的人如何保持顛峰》（史托伯格、麥格尼斯）：「壓力加休息等於成長」這條公式，跟瑞提講的「適度壓力讓細胞變強」是同一個道理，分別用在運動員和大腦上。</li><li>《原子習慣》（詹姆斯・克利爾）：瑞提告訴你為什麼該動，克利爾教你怎麼讓「每天穿上跑鞋」真的發生。</li><li>《誰偷走了你的專注力？》（約翰・海利）：海利談環境如何傷害專注力，瑞提提供了一個你自己可以掌握的修復手段。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「運動是讓大腦發揮最佳功能最有力的單一工具。」（大意）</li><li>「體育活動真正的重點，是打造並調整大腦；鍛鍊肌肉和心肺，其實只是附帶效果。」（大意）</li><li>「運動本身不會讓你變聰明，它是讓大腦準備好學習。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你自己的經驗：有沒有哪一次運動之後，覺得腦袋特別清楚或心情明顯轉變？那次是什麼運動、多久、多喘？</li><li>如果把運動當成「吃一顆對大腦有用的藥」，你會把它排在一天的什麼時間？現在是什麼擋著你？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="spark" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "spark";
+      var TITLE = "運動改造大腦";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "spark";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>論生命之短暫｜拾頁</title>
+<meta name="description" content="你總覺得時間不夠、人生太短？兩千年前的羅馬哲學家塞內卡冷冷回你一句：生命並不短，是你把大部分都浪費掉了。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="on-the-shortness-of-life" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-29</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 12 分鐘</span></div>
+  <h1>論生命之短暫</h1>
+  <p class="title-en">On the Shortness of Life</p>
+  <p class="byline">塞內卡（Seneca）｜約西元 49 年</p>
+  <p class="hook">你總覺得時間不夠、人生太短？兩千年前的羅馬哲學家塞內卡冷冷回你一句：生命並不短，是你把大部分都浪費掉了。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>生命並不短，是我們浪費太多；懂得運用，人生足夠完成最重要的事。</li><li>我們對錢財斤斤計較，對時間卻任人取用——而時間才是唯一要不回來的東西。</li><li>別把生活押在明天：拖延和期待讓人錯過今天，而能掌握的只有現在。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>塞內卡全名盧修斯・安奈烏斯・塞內卡，大約在西元前四年前後出生於今天西班牙的科爾多瓦，在羅馬長大，是斯多噶學派最有名的三位代表人物之一（另外兩位是曾為奴隸的愛比克泰德，和皇帝馬可・奧理略）。</p>
+<p>他的一生起伏極大。他是當時極負盛名的演說家和作家，據說因為太出鋒頭而遭皇帝卡利古拉忌恨；到了克勞狄烏斯皇帝時，他被控與皇室女性有染，流放到科西嘉島，一待將近八年。西元四十九年他被召回羅馬，擔任年少的尼祿的老師。尼祿即位後，塞內卡成為帝國最有權勢的顧問之一，同時也累積了驚人的財富。後來尼祿越來越殘暴，塞內卡試圖退隱；西元六十五年，他被指控涉入一樁刺殺皇帝的陰謀，被尼祿下令自盡。</p>
+<p>《論生命之短暫》是一篇不長的文章，一般認為寫於西元四十九年前後，也就是他結束流放、回到羅馬的那段時間。文章是寫給一位名叫保利努斯的人——他當時負責羅馬城的糧食供應，是個責任重大、事務繁忙的高官，一般認為他是塞內卡的岳父或妻子的近親。所以這篇文章有一個很具體的讀者：一位能幹、盡責、忙了一輩子的公職人員。</p>
+<p>這篇兩千年前的文章近年又紅起來，被收進平價的經典小書系列，成為很多人接觸斯多噶哲學的第一本。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>文章開頭，塞內卡先引述當時人人都在抱怨的事：大自然太小氣，給人的壽命這麼短，才剛準備好要活，生命就結束了。連名醫和大哲學家都這麼說。</p>
+<p>塞內卡的回答成了整篇文章最有名的一段：<strong>我們擁有的時間並不短，是我們浪費了太多。</strong>生命其實夠長，如果整個好好投資，足以完成最偉大的事。但是當它被揮霍在奢侈和漫不經心裡，被花在沒有價值的事情上，等到死亡逼近，我們才發現它已經過去了——而我們甚至沒察覺它在流走。</p>
+<p>他打了個比方：一大筆財產落到不會管理的人手裡，轉眼就散光；一筆小錢交給懂得經營的人，卻會越用越多。壽命也是如此。所以問題從來不是「我有多少時間」，而是「我怎麼用它」。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、我們對錢小氣，對時間卻大方得離譜</h3>
+<p>塞內卡指出一個奇怪的矛盾。如果有人侵占你的土地，哪怕只是邊界上的一小塊，你會立刻拿起石頭和武器跟他拚命。可是別人闖進你的生活、占用你的時間，你不但不抵抗，還主動邀請他們進來。沒有人願意把錢分給別人，但每個人都把自己的生命分給了多少人啊。他說，人們守財時很吝嗇，一到了花時間的時候，卻變得極其揮霍——而時間恰恰是唯一值得吝嗇的東西。</p>
+<p>他請讀者做一個很像現代「時間審計」的練習。想像你對一位長者說：你已經活到人生的盡頭了，來算算帳吧。你這一生有多少時間被債主拿走，多少被情人拿走，多少被上司、被求你辦事的人拿走；多少花在夫妻爭吵、管教下人、為應酬在城裡奔走；再加上自己招來的病，和白白閒掉的時間。算完你會發現，你真正擁有的年歲比帳面上少得多。</p>
+<p>再回想一下：你什麼時候有過確定的計畫？有幾天是照你自己的打算度過的？你什麼時候真正屬於自己？在你沒察覺的時候，有多少人搶走了你的生命？</p>
+<p>為什麼會這樣？塞內卡的診斷是：<strong>因為時間看不見摸不著。</strong>別人向你要時間的時候，雙方都覺得那是不值錢的東西——請求的人隨口開口，答應的人隨口就給。可是等到重病臨頭，那些人會抱著醫生的膝蓋哀求；要是面臨死刑，他們願意花光所有財產換取多活幾天。</p>
+<p><strong>實用價值</strong>：把時間當成錢來想。你不會任由別人從你口袋掏錢，那每一個「可以占用你一點時間嗎」，也值得同樣認真地考慮。</p>
+<p><strong>限制在哪</strong>：塞內卡是對一位有地位、有選擇權的高官說話。對必須長時間工作才能維生的人來說，「把時間拿回來」沒有這麼容易，這是讀古代貴族作品時要自己補上的一層。</p>
+<h3>二、「忙碌的人」：活得最少的一群</h3>
+<p>文章裡出現最多次的一個詞，是「忙碌的人」（也有人譯作「被占據的人」）。塞內卡用它來指那些被外務塞滿、沒有一刻屬於自己的人。他的判語很重：忙碌的人什麼事都能做，唯獨不會生活；而生活，是最需要學習的一件事，要用一輩子去學。</p>
+<p>他舉了幾個地位最高的例子。第一位是羅馬的開國皇帝奧古斯都——擁有的比誰都多，卻不斷祈求休息，談話總是繞回同一個願望：有一天能卸下重擔、過清閒的日子。塞內卡說，這個能讓所有人得償所願的人，自己最盼望的竟然是從高位退下來的那一天。第二位是大演說家西塞羅，在政治風暴裡載浮載沉，在信中自嘆像個「半個囚犯」。塞內卡不以為然：真正的智者不會用這麼卑屈的字眼形容自己。</p>
+<p>有趣的是，塞內卡說的忙碌不只是工作狂。他花了不少篇幅嘲諷另一類人——看起來很悠閒，其實被無聊的事占滿。有人在理髮師那裡一坐幾個小時，為了每一根頭髮的位置開會討論；有人沉迷於收藏青銅器；有人把日子耗在棋戲、球戲和曬太陽上；有人被人抬上轎子，還要問旁人「我現在坐好了嗎」。他甚至批評一種學問上的浪費：有人熱衷考證無關緊要的瑣碎問題，例如誰是第一個做某件事的人。這些知識不會讓人更勇敢、更公正，只是比較精緻的打發時間。</p>
+<p>所以他區分了兩件事：<strong>清閒不等於無所事事，忙碌也不等於充實。</strong>判準只有一個——這段時間是不是你自己的，有沒有用在讓你成為更好的人的事上。</p>
+<p>他還有一句很刻薄的話：不要因為一個人滿頭白髮、滿臉皺紋，就以為他活了很久；他只是存在了很久。就像一個人剛離港就遇上暴風，被各方的風吹得在同一片海面上打轉，你不會說他航行了很遠，只會說他被顛簸了很久。</p>
+<p><strong>常見誤用</strong>：把這段讀成「工作沒有意義」。塞內卡自己一生著作不斷，也長期從政。他反對的是「不經選擇的忙」，以及把閒暇也過成另一種渾渾噩噩。</p>
+<h3>三、拖延與期待：把今天賠給明天</h3>
+<p>塞內卡對「等以後再好好活」這種想法特別不客氣。他描述一種人，說：等我五十歲就退下來休息，六十歲就放下所有職務。他問：誰向你保證你活得到那時候？把生命的殘渣留給自己，把只剩下做不了事的那段時間留給思考，你不覺得羞愧嗎？在該結束的時候才開始生活，未免太晚了。</p>
+<p>他對忙著規劃未來的人說了那句有名的話（大意）：<strong>生活最大的障礙是期待——它寄望於明天，卻丟失了今天。</strong>你在安排那些掌握在命運手裡的事，卻放掉了掌握在自己手裡的。一切未來的事都不確定，立刻去生活吧。</p>
+<p>另一句同樣有名（大意）：你們活著，好像自己會永遠活下去；你們從來沒想過自己多麼脆弱，也不留意已經過去了多少時間。你們像凡人一樣害怕所有事，卻像神一樣渴望所有東西。</p>
+<p>接著他把時間分成三段來談。過去是確定的，命運再也動不了它，它是我們唯一真正擁有的部分——但忙碌的人沒空回頭看；而且如果過去做了讓自己羞愧的事，回頭看也不愉快，所以只有問心無愧的人才能享用自己的過去。現在極其短暫，短到有些人覺得它不存在，它還沒到就已經在流走，忙碌的人被許多事分了心，根本抓不住它。未來則是不確定的。於是忙碌的人落得一場空：過去不敢看，現在抓不住，未來又怕。</p>
+<p>他還觀察到一個很現代的現象：這些人一邊嫌日子過得太快，一邊又嫌等待的時間太長。他們盼著某場表演、某個宴會趕快到來，中間的每一天都成了障礙，巴不得跳過去。塞內卡說，他們並不是真的覺得日子長，而是覺得日子可厭；等到他們喜愛的夜晚來了，他們又嫌它太短。</p>
+<p><strong>實用價值</strong>：留意自己嘴上的「等……之後」。等升職之後、等小孩大了之後、等退休之後。塞內卡會問：那件事裡面，有沒有哪個部分今天就能開始？</p>
+<h3>四、怎樣才算活得長：與最偉大的心靈作伴</h3>
+<p>批評完這麼多，塞內卡自己推薦的生活方式是什麼？他的答案是：把時間用在哲學上。在所有人當中，只有為智慧騰出時間的人才是真正清閒的，只有他們真正在生活。</p>
+<p>他的理由很動人。投入哲學的人不只是守住了自己的歲月，還把所有的時代都加到了自己的生命裡——過去的每一年都歸他所有。那些偉大學派的創立者是為我們而生的，替我們預備了一種生活的方式。我們可以和蘇格拉底辯論，和伊比鳩魯一起過平靜的日子，跟著斯多噶學派學習克服人性的弱點。</p>
+<p>他把這些思想家比作永遠不會拒絕你的朋友和主人。在羅馬，求見權貴的人要一大早去門口排隊，常常等了半天，主人卻推說不在或敷衍了事。可是這些哲人永遠有空，不會讓訪客空手而歸，白天晚上都可以去找他們；他們不會逼你去死，卻會教你如何面對死亡；他們不會消耗你的歲月，反而把自己的歲月送給你。</p>
+<p>他還說了一個很妙的想法：我們常說出身無法選擇，父母是命運給的；但在智慧這件事上，我們可以選擇要當誰的孩子。你可以被收養進任何一個高貴的思想家族，繼承的不只是名字，還有他們的全部財富——而這種財富越分享越多。</p>
+<p>文章最後，塞內卡回頭對保利努斯喊話：你已經為公眾盡了夠多的力，把人生最好的歲月都給了國家，現在留一點給自己吧。管理全世界的糧食帳目固然重要，但了解自己人生的帳目更重要。他提醒了一個前車之鑑：一位年過九十的老官員被皇帝免去職務後，竟然要全家人把他當作死人來哀悼，直到復職為止。塞內卡問：難道死在工作崗位上是那麼愉快的事嗎？</p>
+<p><strong>限制在哪</strong>：這裡有一個繞不過去的尷尬。塞內卡自己富可敵國，寫下這篇文章之後又回到權力中心，待在尼祿身邊很多年，直到晚年才真正嘗試退隱。從古代開始就有人批評他說一套做一套。比較公允的看法也許是：他很清楚這件事有多難，所以才寫得這麼迫切；他的文章是一個自己也在掙扎的人寫下的提醒，不是聖人的訓話。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>這篇文章的推進很像律師的辯護詞：先<strong>翻案</strong>（大家都說生命短，其實是我們浪費）→ 再<strong>舉證</strong>（看看我們怎麼任人拿走時間；看看那些地位最高的人如何渴望清閒而不可得）→ 然後<strong>診斷</strong>（原因在於時間無形、我們活得像不會死、又把生活一直推到明天）→ 接著<strong>開處方</strong>（把時間拿回來，用在智慧上，與歷代最好的心靈作伴）→ 最後<strong>對當事人喊話</strong>（保利努斯，你該退下來了）。全篇其實只有一個論點，從不同角度反覆敲打，直到你沒辦法再假裝沒聽見。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>做一次塞內卡式的時間審計：攤開上週的行事曆，圈出哪些時段是你自己決定的，哪些是別人拿走的</li><li>把時間當錢：別人要你一小時之前，問自己「如果他要的是等值的現金，我會給嗎」</li><li>每天保留一段不對外開放的時間，做你認為最重要的事</li><li>檢查你的「等……之後」：把退休後想做的事列出來，挑一件這個月就做一小部分</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>檢查你的閒暇：這週的空閒時間，有多少是真的休息，有多少只是被螢幕占據的另一種忙碌</li><li>每天留半小時給「歷代的朋友」：讀一點經過時間考驗的書（你現在讀拾頁就是在做這件事）</li><li>睡前回顧今天：今天有哪一段時間是真正為自己活的？</li><li>等待的時候不要只想快轉：排隊、通勤、等人的那幾分鐘，也是你的生命</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「塞內卡叫人不要工作、及時行樂」</strong>——他批評吃喝玩樂的人比批評工作狂還兇。他要的清閒是用來思考和修養，不是用來享樂。</li><li><strong>「活在當下就是不要規劃未來」</strong>——他反對的是把生活本身延後，不是反對做計畫。斯多噶學派很重視預想困難，只是不把幸福押在還沒到的那一天。</li><li><strong>「這是一本教你提高效率的時間管理書」</strong>——恰恰相反。效率是把更多事塞進時間裡；塞內卡問的是這些事值不值得塞進來。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《最後14堂星期二的課》（米奇・艾爾邦）：本月稍早讀過。墨瑞肩上的小鳥，和塞內卡說的「你們活得像永遠不會死」，是同一個提醒的兩種版本——一個溫柔，一個嚴厲。</li><li>《活出意義來》（維克多・弗蘭克）：弗蘭克同樣主張人生的份量不在長度，而在你如何回應它。</li><li>《深度工作力》（卡爾・紐波特）：紐波特保護注意力的那套方法，可以看成塞內卡「別讓人隨便拿走你的時間」的現代操作版。</li><li>《誰偷走了你的專注力？》（約翰・海利）：塞內卡時代搶走時間的是求見的訪客和無聊的宴會，今天換成了通知和演算法，問題的結構沒有變。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「我們擁有的時間並不短，是我們浪費了太多。」（It is not that we have a short time to live, but that we waste a lot of it.）</li><li>「你們活著，好像注定會永遠活下去。」（You live as if you were destined to live forever.，英譯大意）</li><li>「生活最大的障礙是期待，它寄望於明天，卻丟失了今天。」（The greatest obstacle to living is expectancy, which hangs upon tomorrow and loses today.，英譯大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>做完時間審計之後，上週有幾成的時間是你自己選擇怎麼用的？哪一類「被拿走的時間」最讓你意外？</li><li>你嘴上最常說的「等……之後我就……」是哪一句？如果塞內卡坐在你對面，他會怎麼反問你？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="on-the-shortness-of-life" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "on-the-shortness-of-life";
+      var TITLE = "論生命之短暫";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "on-the-shortness-of-life";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

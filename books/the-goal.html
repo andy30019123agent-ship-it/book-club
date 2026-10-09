@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>目標｜拾頁</title>
+<meta name="description" content="每個人都很忙、每台機器都滿載，為什麼公司還是在賠錢？因為「人人有效率」和「整體有產出」根本是兩回事，決定全局的只有那一個瓶頸。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-goal" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-10</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>目標</h1>
+  <p class="title-en">The Goal</p>
+  <p class="byline">伊利雅胡・高德拉特（Eliyahu M. Goldratt）｜1984</p>
+  <p class="hook">每個人都很忙、每台機器都滿載，為什麼公司還是在賠錢？因為「人人有效率」和「整體有產出」根本是兩回事，決定全局的只有那一個瓶頸。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>系統的產出由最慢的那一環決定；在瓶頸損失一小時，等於整個系統損失一小時。</li><li>讓非瓶頸全速運轉不是效率，只是在製造庫存；局部最佳化會傷害整體。</li><li>改善有固定步驟：找出瓶頸、榨出它的產能、其他一切配合它、再擴充它，然後重來。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>高德拉特是以色列的物理學家，不是管理學出身。他原本是幫朋友的工廠設計排程方法，結果一頭栽進生產管理的世界，後來發展出一套叫「限制理論」的思考方式。</p>
+<p>他想把這套想法推廣出去，卻選了一個當時沒人看好的形式：寫成小說。書裡沒有圖表堆疊的理論章節，只有一個快被關廠的廠長、一段快要破裂的婚姻，和一位只問問題不給答案的老師。這本書是和作家傑夫・科克斯合寫的，據說一開始找出版社處處碰壁，沒有人相信一本談工廠排程的小說會有人買。結果它賣了幾百萬本，成了全世界商學院和工廠主管的指定讀物，後來連軟體業談流程改善時也常回頭引用它。</p>
+<p>時代背景是八零年代初的美國製造業：日本車和日本電子產品正在席捲市場，美國工廠拚命買機器人、導入自動化、追求每台設備的稼動率，卻發現自己越來越沒有競爭力。高德拉特要挑戰的，就是當時被視為理所當然的成本會計和「效率」觀念。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼每個部門的指標都很漂亮，公司卻在賠錢？」</p>
+<p>主角羅哥是一家工廠的廠長。廠裡的機器人讓單位成本降了，每個工作站的效率數字都達標，但訂單永遠遲交、倉庫堆滿半成品、帳上現金越來越少。上司給他三個月，沒有起色就關廠。</p>
+<p>高德拉特的答案是：<strong>我們量錯了東西。</strong>把一個系統拆成一塊一塊，要求每一塊都效率最高，加起來並不會得到效率最高的系統，反而常常得到最糟的。</p>
+<p>雖然故事發生在工廠，但只要你的工作是「一件事要經過好幾個人或好幾個步驟才能完成」——寫程式要等審查、提案要等法務、看診要等檢驗報告——這本書講的就是你。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、目標是什麼：三個指標取代一堆指標</h3>
+<p>羅哥在機場巧遇以前的物理老師鍾納。他得意地說工廠導入機器人後，某個部門的生產力提高了三成多。鍾納只問了幾個問題：你們的出貨有增加嗎？庫存有減少嗎？人事費用有下降嗎？答案全是沒有。鍾納說，那你們的生產力其實沒有提高。然後丟下一個問題就去趕飛機了：你們公司的目標是什麼？</p>
+<p>羅哥想了很久。降低成本？提高品質？技術領先？市占率？他最後得到一個簡單到有點粗魯的結論：一家企業的目標是賺錢，其他都是手段。</p>
+<p>接著鍾納給他三個衡量標準，用來判斷任何行動是不是讓工廠更接近目標：</p>
+<ul><li><strong>有效產出</strong>：系統透過「銷售」賺進錢的速度。注意是賣出去，不是做出來。做出來堆在倉庫的不算。</li><li><strong>庫存</strong>：系統投資在「打算賣掉的東西」上面的錢。</li><li><strong>營運費用</strong>：系統為了把庫存變成有效產出而花掉的錢。</li></ul>
+<p>所有改善只有一個檢驗方式：有效產出有沒有上升，同時庫存和營運費用有沒有下降。用這個標準回頭看那批機器人——它們沒有讓工廠多賣一件產品，沒有少請一個人，卻為了讓機器「不要閒著」而多生產了一堆暫時用不到的零件。照新標準，那是退步。</p>
+<p><strong>實用價值</strong>：這三個指標的排序本身就是主張。高德拉特把有效產出擺第一，因為成本頂多降到零，產出的成長卻沒有上限。多數公司反過來，先砍費用。</p>
+<h3>二、健行隊裡的賀比：相依事件加上統計波動</h3>
+<p>全書最有名的一段發生在工廠之外。羅哥帶兒子的童軍團去健行，一群孩子排成一列走山路。他發現隊伍越拉越長，前面的人不見蹤影，後面的人落後一大截。</p>
+<p>他一邊走一邊想通了兩件事。第一，這是<strong>相依事件</strong>：後面的人不可能超越前面的人，每個人的速度都受制於他前面那一個。第二，每個人的步伐都有<strong>波動</strong>，時快時慢。直覺上，快慢應該會互相抵消。但在一條相依的鏈上，它們不會抵消——前面的人慢下來，後面所有人都被擋住；前面的人快起來，後面的人卻不見得跟得上。<strong>落後會累積，超前卻不會。</strong></p>
+<p>他在營地用火柴和骰子跟孩子們玩了一個遊戲來驗證：幾個碗排成一列，每人擲骰子決定能把多少根火柴傳給下一個碗。平均起來每人每回合應該傳三根半，但實際流到終點的火柴遠少於這個數字，中間的碗則堆起一堆卡住的火柴。那些卡住的火柴就是在製品庫存。</p>
+<p>然後他找到了隊伍裡走最慢的孩子，一個叫賀比的胖男孩，背著塞滿罐頭和鍋具的大背包。整隊的速度其實就等於賀比的速度。羅哥做了兩件事：把賀比調到隊伍最前面，讓其他人不會衝太遠；再把賀比背包裡的東西分給大家背。隊伍立刻緊密起來，整體速度也變快了。</p>
+<p>回到工廠，問題就變成：我的賀比在哪裡？</p>
+<p><strong>常見誤用</strong>：把賀比想成「表現差、該淘汰的人」。瓶頸是一個位置而不是一種人格，它只是產能相對於需求最吃緊的那個環節，任何系統一定有一個。</p>
+<h3>三、瓶頸與非瓶頸：一小時不等於一小時</h3>
+<p>羅哥和團隊找到工廠裡的兩個瓶頸：一台新型的數值控制加工機，和熱處理爐。它們前面堆的在製品最多，幾乎每張遲交的訂單都卡在這兩關。</p>
+<p>鍾納教他們重新算帳。傳統算法是：這台機器停一小時，損失就是這台機器一小時的成本。鍾納說不對——<strong>瓶頸停一小時，整間工廠就少出一小時的貨，損失是全廠一小時的有效產出。</strong>相反地，在非瓶頸省下的一小時是海市蜃樓，因為那些多出來的產能反正也過不了瓶頸。</p>
+<p>想通這點，一連串做法就出現了：</p>
+<ul><li>瓶頸機台不可以在午休和換班時停下來，人輪流吃飯，機器不停。</li><li>把品質檢驗移到瓶頸「之前」。讓瑕疵品浪費瓶頸的寶貴時間是最貴的錯誤。</li><li>瓶頸只做有訂單在等的東西，不做「反正遲早要用」的庫存品。</li><li>把塵封的舊機器搬回來分擔，把部分熱處理外包。</li><li>在零件上貼紅色和綠色標籤：紅色代表要經過瓶頸，任何工作站都優先處理。</li></ul>
+<p>接著出現更違反直覺的一步。非瓶頸的工作站應該<strong>閒下來</strong>。如果讓它們全速生產，做出來的東西只會堆在瓶頸前面，佔用現金、塞滿廠房、讓人找不到真正急的零件。投料的節奏應該由瓶頸的速度決定，而不是由「不要讓工人閒著」決定。同時，把加工批量切小，讓東西在廠內流得更快，交期就跟著縮短。</p>
+<p>這和當時的績效制度正面衝突：照成本會計，工人閒著、機器沒滿載、批量變小導致換線次數變多，每一項都會讓帳面上的「單位成本」變難看。羅哥得冒著數字變醜的風險，才能讓真正的獲利上升。</p>
+<p><strong>限制在哪</strong>：瓶頸不是固定的。工廠內部產能打開之後，限制移到了市場——訂單不夠。限制也可能是一條政策、一個根深柢固的觀念，那種看不見的瓶頸比機器難找得多。</p>
+<h3>四、五個聚焦步驟：持續改善的迴圈</h3>
+<p>故事後段，羅哥升職，要管的不再是一間工廠而是整個事業部。他和團隊回頭整理之前到底做了什麼，歸納出一套可以重複使用的程序：</p>
+<ol><li><strong>找出</strong>系統的限制。</li><li>決定如何<strong>充分利用</strong>這個限制——不花錢，先把現有產能榨乾。</li><li>讓其他一切<strong>配合</strong>上述決定。</li><li><strong>提升</strong>限制的產能——這時才考慮花錢買設備、加人。</li><li>如果限制被打破了，<strong>回到第一步</strong>，而且別讓慣性變成新的限制。</li></ol>
+<p>順序很重要。多數人一發現瓶頸就直接跳到第四步要預算；高德拉特要你先做第二、第三步，因為通常不花錢就能擠出可觀的產能。第五步的警告也是經驗之談：當初為了配合舊瓶頸訂下的規則，在瓶頸移走之後常常沒人記得廢除，於是它自己變成了阻礙。</p>
+<p>書的最後，鍾納把問題再往上拉一層，留給羅哥三個任何管理者都該會回答的問題：要改變什麼？要改變成什麼？如何引發改變？</p>
+<p><strong>實用價值</strong>：這套步驟給了「我該先改善哪裡」一個明確答案。資源有限的時候，改善非瓶頸是白費工。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>先定義目標</strong>（賺錢，用有效產出、庫存、營運費用衡量）→ <strong>理解系統的本質</strong>（相依事件加波動，使得整體受限於最慢的一環）→ <strong>找到瓶頸並圍繞它管理</strong>（瓶頸的一小時就是全系統的一小時，其他環節配合它）→ <strong>把做法提煉成可重複的程序</strong>（五個聚焦步驟）→ <strong>再提煉成思考方式</strong>（改什麼、改成什麼、怎麼改）。</p>
+<p>鍾納從頭到尾不給答案只問問題，這本身也是訊息：高德拉特認為人被直接告知的答案是不會真正接受的，要自己推導出來才算數。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>畫出你的工作流程：一件事從開始到交付要經過哪幾站？在每一站旁邊寫上「目前排隊等待的件數」。排隊最長的那一站，多半就是你的賀比。</li><li>先榨乾再擴充：瓶頸那個人或那個步驟，有沒有在做其他人也能做的雜事？先把那些移走。</li><li>把檢查挪到瓶頸前：例如交給資深同事審核之前，先用清單自己檢查一遍，不要讓他的時間花在抓錯字上。</li><li>停止過度生產：如果下游消化不了，上游做得再快也只是堆積。少開幾個新案子，先讓手上的流完。</li><li>檢視一條舊規定：它當初是為了解決什麼問題訂的？那個問題還在嗎？</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>找出你一天的瓶頸資源：對多數人是「能專心的那兩三個小時」。保護它，別拿來回訊息。</li><li>家務也是系統：洗衣機洗得再快，晾衣空間不夠就是卡住。先解決晾，再談洗。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「目標是賺錢，所以其他都不重要」</strong>——賺錢是營利事業的目標定義，品質、員工、顧客滿意是達成它的必要條件。高德拉特後來的著作也補充，非營利組織要換成自己的目標單位。重點是「先講清楚目標，再談改善」。</li><li><strong>「讓人閒著是浪費」</strong>——在非瓶頸，適度的閒置正是系統健康的表現，那叫保護性產能。讓每個人都百分之百忙碌，系統反而會塞住。</li><li><strong>「這是一本講工廠的書」</strong>——工廠只是舞台。專案管理、軟體開發、醫院流程都有人套用同一套邏輯。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《系統思考》（梅多斯）：梅多斯教你看存量、流量與回饋，高德拉特則告訴你在一個流動的系統裡先動哪一點。前者是地圖，後者是下手處。</li><li>《葛洛夫給經理人的第一課》（葛洛夫）：英特爾的葛洛夫用早餐店煮蛋來解釋「限制步驟」，和賀比是同一個概念。葛洛夫再把它延伸到經理人怎麼分配自己的時間。</li><li>《清單革命》（葛文德）：瓶頸前的品質檢查要靠什麼落實？葛文德的答案是清單。兩本搭著讀，一本告訴你檢查要放哪，一本告訴你怎麼檢查。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「在瓶頸損失的一小時，就是整個系統損失的一小時。」（An hour lost at a bottleneck is an hour lost for the entire system.）</li><li>「在非瓶頸省下的一小時，只是海市蜃樓。」（An hour saved at a non-bottleneck is a mirage.）</li><li>「生產力就是讓公司更接近目標的行動；沒有讓公司更接近目標的行動，都不算有生產力。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你目前的工作裡，「賀比」是誰或是哪個步驟？大家現在是在幫它減輕背包，還是在它前面越堆越多？</li><li>你有沒有被某個「看起來很有效率」的指標綁住，明知道它對整體沒幫助卻還是得顧它？如果可以換一個指標，你會換成什麼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-goal" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-goal";
+      var TITLE = "目標";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-goal";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

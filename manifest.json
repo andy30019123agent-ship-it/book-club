@@ -1,5 +1,275 @@
 [
   {
+    "date": "2026-11-30",
+    "slug": "the-fearless-organization",
+    "title": "心理安全感的力量",
+    "author": "艾美・艾德蒙森（Amy C. Edmondson）",
+    "theme": "職場成長",
+    "hook": "你以為會議上沒人反對就代表大家同意？更可能是大家算過了：說出來的風險是自己的，沉默的代價是公司的。安靜從來不是安全的訊號。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-fearless-organization.html"
+  },
+  {
+    "date": "2026-11-29",
+    "slug": "on-the-shortness-of-life",
+    "title": "論生命之短暫",
+    "author": "塞內卡（Seneca）",
+    "theme": "自我成長",
+    "hook": "你總覺得時間不夠、人生太短？兩千年前的羅馬哲學家塞內卡冷冷回你一句：生命並不短，是你把大部分都浪費掉了。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/on-the-shortness-of-life.html"
+  },
+  {
+    "date": "2026-11-28",
+    "slug": "guns-germs-and-steel",
+    "title": "槍炮、病菌與鋼鐵",
+    "author": "賈德・戴蒙（Jared Diamond）",
+    "theme": "邏輯思考",
+    "hook": "為什麼是歐洲人征服美洲，而不是反過來？如果你心裡浮現的答案跟「誰比較聰明」有關，戴蒙要用一萬三千年的證據告訴你：差別在土地，不在人。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/guns-germs-and-steel.html"
+  },
+  {
+    "date": "2026-11-27",
+    "slug": "together",
+    "title": "當我們一起",
+    "author": "維偉克・莫西（Vivek H. Murthy）",
+    "theme": "人際關係",
+    "hook": "你以為孤獨是個性問題，是不夠會交朋友？它其實像餓和渴，是身體在提醒你缺了東西——而且長期缺下去，傷的是健康。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/together.html"
+  },
+  {
+    "date": "2026-11-26",
+    "slug": "working-backwards",
+    "title": "亞馬遜逆向工作法",
+    "author": "柯林・布萊爾（Colin Bryar）、比爾・卡爾（Bill Carr）",
+    "theme": "職場成長",
+    "hook": "你以為亞馬遜靠的是貝佐斯一個人的遠見？兩位前高階主管說，真正厲害的是一套誰來做都能運轉的機制——從禁用投影片到先寫新聞稿再開發。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/working-backwards.html"
+  },
+  {
+    "date": "2026-11-25",
+    "slug": "emotional-agility",
+    "title": "情緒靈敏力",
+    "author": "蘇珊・大衛（Susan David）",
+    "theme": "自我成長",
+    "hook": "你以為成熟就是把負面情緒壓下去、保持正向？蘇珊・大衛說，硬撐和沉溺一樣會讓你卡住——情緒是資料，不是指令，更不是該消滅的敵人。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/emotional-agility.html"
+  },
+  {
+    "date": "2026-11-24",
+    "slug": "the-paradox-of-choice",
+    "title": "選擇的弔詭",
+    "author": "貝瑞・史瓦茲（Barry Schwartz）",
+    "theme": "邏輯思考",
+    "hook": "選項越多越自由、越自由越快樂？史瓦茲說，過了某個點之後，多出來的選擇只會讓你更難決定、更容易後悔，而且更愛怪自己。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-paradox-of-choice.html"
+  },
+  {
+    "date": "2026-11-23",
+    "slug": "im-ok-youre-ok",
+    "title": "我好，你也好",
+    "author": "湯瑪斯・哈里斯（Thomas A. Harris）",
+    "theme": "人際關係",
+    "hook": "你以為現在的你是成熟大人在說話？很多時候開口的是你腦中的爸媽，或那個五歲的自己。認得出是誰在講話，你才有得選。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/im-ok-youre-ok.html"
+  },
+  {
+    "date": "2026-11-22",
+    "slug": "the-coaching-habit",
+    "title": "你是來帶人，不是幫部屬做事",
+    "author": "麥可・邦吉・史戴尼爾（Michael Bungay Stanier）",
+    "theme": "職場成長",
+    "hook": "你以為幫部屬最快的方式是直接給答案？這正是你越來越忙、他們越來越依賴的原因。把建議吞回去，多問一句，往往更有用。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-coaching-habit.html"
+  },
+  {
+    "date": "2026-11-21",
+    "slug": "when",
+    "title": "什麼時候是好時候",
+    "author": "丹尼爾・品克（Daniel H. Pink）",
+    "theme": "自我成長",
+    "hook": "你花很多力氣研究「做什麼」和「怎麼做」，卻把「什麼時候做」交給直覺和運氣？品克說，時機不是一門藝術，而是一門有證據的科學。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/when.html"
+  },
+  {
+    "date": "2026-11-20",
+    "slug": "how-not-to-be-wrong",
+    "title": "數學教你不犯錯",
+    "author": "喬丹・艾倫伯格（Jordan Ellenberg）",
+    "theme": "邏輯思考",
+    "hook": "你覺得畢業後數學就沒用了？艾倫伯格說，你每天都在用數學做判斷，只是用得很粗糙——而粗糙的那一半，正是你最常出錯的地方。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/how-not-to-be-wrong.html"
+  },
+  {
+    "date": "2026-11-19",
+    "slug": "what-every-body-is-saying",
+    "title": "FBI教你讀心術",
+    "author": "喬・納瓦羅（Joe Navarro）",
+    "theme": "人際關係",
+    "hook": "你以為看人要看臉、看眼神？臉是全身最會說謊的地方。前 FBI 探員說，要知道一個人真正的感覺，先低頭看他的腳。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/what-every-body-is-saying.html"
+  },
+  {
+    "date": "2026-11-18",
+    "slug": "built-to-last",
+    "title": "基業長青",
+    "author": "詹姆・柯林斯（Jim Collins）、傑瑞・薄樂斯（Jerry I. Porras）",
+    "theme": "職場成長",
+    "hook": "你以為偉大的公司都始於一個絕妙點子和一位魅力領袖？兩位史丹佛學者比對了幾十家企業後發現，這兩樣東西都不是必要條件，有時還是阻礙。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/built-to-last.html"
+  },
+  {
+    "date": "2026-11-17",
+    "slug": "tuesdays-with-morrie",
+    "title": "最後14堂星期二的課",
+    "author": "米奇・艾爾邦（Mitch Albom）",
+    "theme": "自我成長",
+    "hook": "你以為人生的大問題可以等忙完這陣子再想？一位只剩幾個月可活的老教授告訴他的學生：等你學會怎麼死，你才真的學會怎麼活。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/tuesdays-with-morrie.html"
+  },
+  {
+    "date": "2026-11-16",
+    "slug": "calling-bullshit",
+    "title": "數據的假象",
+    "author": "卡爾・伯格斯特姆、傑文・魏斯特（Carl T. Bergstrom & Jevin D. West）",
+    "theme": "邏輯思考",
+    "hook": "你以為自己不會被唬，是因為聽得出空話？現在的唬爛早就換上數字、圖表和演算法的外衣——看起來越科學，你越不敢質疑。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/calling-bullshit.html"
+  },
+  {
+    "date": "2026-11-15",
+    "slug": "the-dance-of-anger",
+    "title": "生氣的藝術",
+    "author": "哈麗葉・勒納（Harriet Lerner）",
+    "theme": "人際關係",
+    "hook": "你以為生氣只有兩條路——吞下去或吵出來？兩條路其實通往同一個地方：什麼都不會變。憤怒是訊號，重點是你有沒有讀懂它。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-dance-of-anger.html"
+  },
+  {
+    "date": "2026-11-14",
+    "slug": "the-culture-code",
+    "title": "高效團隊默默在做的三件事",
+    "author": "丹尼爾・科伊爾（Daniel Coyle）",
+    "theme": "職場成長",
+    "hook": "一群聰明人湊在一起，為什麼常常輸給一群普通人？因為強團隊靠的不是成員多厲害，而是每天交換的那些小訊號：你在這裡很安全。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-culture-code.html"
+  },
+  {
+    "date": "2026-11-13",
+    "slug": "spark",
+    "title": "運動改造大腦",
+    "author": "約翰・瑞提（John J. Ratey）",
+    "theme": "自我成長",
+    "hook": "你以為運動是為了身材和心肺，變聰明要靠坐著讀書？瑞提醫師說順序搞反了——運動最大的受益者是大腦，肌肉只是順便。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/spark.html"
+  },
+  {
+    "date": "2026-11-12",
+    "slug": "the-book-of-why",
+    "title": "因果革命",
+    "author": "朱迪亞・珀爾、達納・麥肯錫（Judea Pearl & Dana Mackenzie）",
+    "theme": "邏輯思考",
+    "hook": "「相關不等於因果」你一定聽過，但然後呢？珀爾說，統計學卡在這句話一百年不敢往前走——只要先畫一張圖，資料就能回答「為什麼」。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-book-of-why.html"
+  },
+  {
+    "date": "2026-11-11",
+    "slug": "how-to-talk-so-kids-will-listen",
+    "title": "怎麼說，孩子會聽 vs. 如何聽，孩子願意說",
+    "author": "安戴爾・法伯、依蓮・馬茲麗許（Adele Faber & Elaine Mazlish）",
+    "theme": "人際關係",
+    "hook": "孩子不聽話，你以為是他欠管教？很多時候是你的第一句話就否定了他的感受——感覺不被接住的人，不管幾歲，都不會想合作。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/how-to-talk-so-kids-will-listen.html"
+  },
+  {
+    "date": "2026-11-10",
+    "slug": "the-goal",
+    "title": "目標",
+    "author": "伊利雅胡・高德拉特（Eliyahu M. Goldratt）",
+    "theme": "職場成長",
+    "hook": "每個人都很忙、每台機器都滿載，為什麼公司還是在賠錢？因為「人人有效率」和「整體有產出」根本是兩回事，決定全局的只有那一個瓶頸。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-goal.html"
+  },
+  {
+    "date": "2026-11-09",
+    "slug": "mastery",
+    "title": "喚醒你心中的大師",
+    "author": "羅伯・葛林（Robert Greene）",
+    "theme": "自我成長",
+    "hook": "你以為達文西、莫札特、達爾文是天生的天才？葛林翻遍他們的傳記後說，他們走的是同一條又長又不起眼的路——而那條路，一般人也走得上去。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/mastery.html"
+  },
+  {
+    "date": "2026-11-08",
+    "slug": "outliers",
+    "title": "異數",
+    "author": "麥爾坎・葛拉威爾（Malcolm Gladwell）",
+    "theme": "邏輯思考",
+    "hook": "你相信成功的人是靠天分加努力？葛拉威爾翻出他們的出生月份、成長年代和家庭背景，告訴你「白手起家」這個故事漏掉了大半。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/outliers.html"
+  },
+  {
+    "date": "2026-11-07",
+    "slug": "the-charisma-myth",
+    "title": "魅力學",
+    "author": "奧麗薇亞・福克斯・卡本尼（Olivia Fox Cabane）",
+    "theme": "人際關係",
+    "hook": "你以為魅力是天生的，有就有、沒有就沒有？其實它是一組可以開關的行為——而開關不在你的嘴巴，在你當下的心理狀態。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-charisma-myth.html"
+  },
+  {
+    "date": "2026-11-06",
+    "slug": "shoe-dog",
+    "title": "跑出全世界的人",
+    "author": "菲爾・奈特（Phil Knight）",
+    "theme": "職場成長",
+    "hook": "你以為 Nike 是靠天才行銷一路順風長大的？創辦人自己寫的版本是：十八年裡幾乎每個月都差一點倒閉，他只是沒有停下來。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/shoe-dog.html"
+  },
+  {
+    "date": "2026-11-05",
+    "slug": "the-gifts-of-imperfection",
+    "title": "不完美的禮物",
+    "author": "布芮尼・布朗（Brené Brown）",
+    "theme": "自我成長",
+    "hook": "你以為再瘦一點、再成功一點、再被多一點人喜歡，就會覺得自己夠好？布朗的研究說，活得踏實的人不是條件比較好，而是先相信了「我現在就值得」。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-gifts-of-imperfection.html"
+  },
+  {
+    "date": "2026-11-04",
+    "slug": "sapiens",
+    "title": "人類大歷史",
+    "author": "哈拉瑞（Yuval Noah Harari）",
+    "theme": "邏輯思考",
+    "hook": "你以為公司、國家、金錢是「真實存在」的東西？哈拉瑞說，它們全是人類共同相信的故事——而這個說故事的能力，正是我們統治地球的原因。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/sapiens.html"
+  },
+  {
+    "date": "2026-11-03",
+    "slug": "the-righteous-mind",
+    "title": "好人總是自以為是",
+    "author": "強納森・海德特（Jonathan Haidt）",
+    "theme": "人際關係",
+    "hook": "你以為自己是先講道理、才下判斷？其實你是先有感覺，再請理性當律師辯護。看懂這件事，才吵得贏——不，才終於不必吵。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-righteous-mind.html"
+  },
+  {
+    "date": "2026-11-02",
+    "slug": "leaders-eat-last",
+    "title": "最後吃，才是真領導",
+    "author": "賽門・西奈克（Simon Sinek）",
+    "theme": "職場成長",
+    "hook": "你以為團隊不合作是因為人不對？西奈克說，是環境讓人把力氣花在防自己人——領導者的工作不是管數字，是讓人敢把背交出來。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/leaders-eat-last.html"
+  },
+  {
+    "date": "2026-11-01",
+    "slug": "stolen-focus",
+    "title": "誰偷走了你的專注力？",
+    "author": "約翰・海利（Johann Hari）",
+    "theme": "自我成長",
+    "hook": "你以為自己專心不了是因為自制力太差？海利說，這就像有人往你身上倒癢粉，再怪你為什麼一直抓——專注力不是你弄丟的，是被偷走的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/stolen-focus.html"
+  },
+  {
     "date": "2026-10-31",
     "slug": "the-undoing-project",
     "title": "橡皮擦計畫",

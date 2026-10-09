@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>基業長青｜拾頁</title>
+<meta name="description" content="你以為偉大的公司都始於一個絕妙點子和一位魅力領袖？兩位史丹佛學者比對了幾十家企業後發現，這兩樣東西都不是必要條件，有時還是阻礙。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="built-to-last" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-18</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>基業長青</h1>
+  <p class="title-en">Built to Last</p>
+  <p class="byline">詹姆・柯林斯（Jim Collins）、傑瑞・薄樂斯（Jerry I. Porras）｜1994</p>
+  <p class="hook">你以為偉大的公司都始於一個絕妙點子和一位魅力領袖？兩位史丹佛學者比對了幾十家企業後發現，這兩樣東西都不是必要條件，有時還是阻礙。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>別當報時的人，要當造鐘的人：最重要的作品不是某個產品，而是能持續產出好產品的組織。</li><li>保存核心、刺激進步：核心價值和目的不能動，除此之外的做法、產品、策略全部可以改。</li><li>用膽大包天的目標、大量嘗試和永不滿足的機制推動進步，而不是只靠願景宣言。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>這本書出自史丹佛商學院的一項研究計畫。當時柯林斯還是年輕教師，薄樂斯是資深教授，兩人帶著研究團隊花了大約六年，想回答一個聽起來很大的問題：那些屹立數十年甚至上百年、在業界備受推崇的公司，和它們的競爭對手到底差在哪裡？</p>
+<p>他們的研究方法是這本書的賣點。先請數百位大企業執行長提名他們心目中最有遠見的公司，篩出十八家，全都創立於一九五零年之前，包括 3M、默克、惠普、波音、迪士尼、沃爾瑪、寶僑、嬌生、索尼等等。接著為每一家找一個「對照公司」——同一時期創立、同一行業、起步條件相近、也經營得不錯，只是沒有那麼出眾。例如惠普對照德州儀器、波音對照麥道、默克對照輝瑞。然後翻遍兩邊從創立以來的歷史資料逐一比較。</p>
+<p>拿「金牌」和「銀牌、銅牌」比，而不是和失敗者比，是為了避免得出「成功的公司都有辦公大樓」這類廢話。書中算過一筆帳：如果在一九二零年代中期各投入一塊錢，到九零年代初，高瞻遠矚公司那一組的累積報酬是大盤的十五倍以上，也是對照組的六倍以上。</p>
+<p>柯林斯後來又寫了《從A到A+》等書，成為當代最知名的管理作家之一，這本是他整套思想的起點。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「一家公司要怎麼做，才能在創辦人離開、產品換過好幾代之後，仍然是頂尖的？」</p>
+<p>作者一開頭就列出十幾個被研究推翻的迷思，其中最顛覆的兩個是：偉大的公司需要一個偉大的創業點子；偉大的公司需要魅力非凡的領導人。資料顯示都不成立。許多長青企業創立時根本沒有明確的產品構想，甚至一開始就失敗；而它們的領導人常常低調到外界叫不出名字。</p>
+<p>如果你在帶團隊、經營事業，或只是想知道自己待的公司有沒有「長命」的體質，這本書提供一組檢查的框架。把「公司」換成「部門」甚至「家庭」，許多觀念一樣適用。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、造鐘，而不是報時</h3>
+<p>想像有個人天賦異稟，隨時看一眼太陽和星星就能說出精確的時間。這很厲害。但如果他不是報時，而是造了一座鐘，在他死後還能繼續告訴大家時間，那不是更了不起嗎？</p>
+<p>擁有一個好點子或當一位有遠見的魅力領袖，是「報時」；打造一家能在任何領導人任內、歷經多次產品生命週期都持續興旺的公司，是「造鐘」。</p>
+<p>惠普的兩位創辦人在車庫裡創業時，並不知道要做什麼產品。他們試過保齡球道的犯規偵測器、望遠鏡的時鐘驅動裝置、幫助減肥的電擊器材，沒有一樣特別成功。他們先決定的是「要一起開一家什麼樣的公司」，產品是後來摸索出來的。索尼創業初期做的電鍋根本煮不好飯。相較之下，對照公司往往始於一個比較明確、比較成功的創業構想。</p>
+<p>作者的解釋是：把成功押在一個好點子上的創辦人，容易把公司當成實現點子的工具，點子過時了公司就沒戲唱；長青公司的創辦人則反過來，把產品看成壯大公司的工具，<strong>公司本身才是他們最重要的創作</strong>。</p>
+<p>這也連到領導人的問題。對照公司比較常出現強勢的明星執行長，人一走組織就鬆掉；長青公司則重視從內部培養接班人。研究涵蓋的漫長歷史裡，長青公司極少從外面空降執行長。</p>
+<p><strong>常見誤用</strong>：把「不需要好點子」讀成「不用想清楚就開公司」。作者的意思是別等完美點子才動手，而且要把心力投在制度與人上；不是說產品不重要。</p>
+<h3>二、保存核心，刺激進步</h3>
+<p>這是全書的中軸。作者借用陰陽的圖像來說明：長青公司同時做兩件看似矛盾的事——死守某些東西，同時不斷改變其他一切。他們稱之為拒絕「非此即彼的暴政」，擁抱「兼容並蓄的天才」：既要理念也要獲利，既要穩定也要變革。</p>
+<p><strong>核心理念</strong>由兩部分組成。一是<strong>核心價值</strong>：少數幾條不因時勢而改的根本信條，即使它在某個時期讓公司吃虧也不放棄。二是<strong>核心目的</strong>：公司除了賺錢以外的存在理由，一顆永遠追不到、卻一直指引方向的星。</p>
+<p>默克藥廠是書中最有力的例子。創辦家族的喬治・默克曾說，大意是：藥是為了人而做的，不是為了利潤；只要記住這一點，利潤自然會來。這不只是場面話——默克研發出一種能治療河盲症的藥，而患者多半在極度貧窮的地區，根本付不起錢。公司最後決定免費提供，並自己負擔發送的成本。</p>
+<p>有意思的是，作者發現核心理念並沒有「正確答案」。有的公司以顧客為核心，有的以員工，有的以創新，有的以產品品質。關鍵不在內容是什麼，而在於<strong>是否真心相信、是否長期一貫地照著做</strong>。對照公司往往也有漂亮的宣言，差別在於它們不拿宣言來做困難的決定。</p>
+<p>而核心以外的東西——產品線、策略、組織架構、辦公室規矩——都只是做法，不是神聖不可侵犯的。把做法誤當成核心，是老公司僵化的主因。</p>
+<p><strong>實用價值</strong>：遇到要不要改變的爭論時，先問「這屬於核心，還是只是做法？」多數爭執會因此簡單很多。</p>
+<h3>三、推動進步的機制：大目標、多嘗試、不滿足</h3>
+<p>光有核心只會變成博物館。作者歸納出幾種長青公司用來逼自己往前的方法。</p>
+<p><strong>膽大包天的目標</strong>。英文縮寫叫 BHAG，是這本書留給管理界最響亮的詞。它不是一般的年度目標，而是清楚、有說服力、帶點瘋狂、一聽就懂的大挑戰，就像「十年內把人送上月球」。波音在五零年代把公司的大半身家押在開發噴射客機上，當時它的主力是軍機，民航市場並不看好它；後來的大型廣體客機又賭了一次，一度逼得公司大幅裁員。對照公司則一再選擇觀望。</p>
+<p><strong>多方嘗試，留下行得通的</strong>。這是另一條路，更像生物演化。3M 是最佳代表：公司鼓勵技術人員拿一部分工作時間去做自己感興趣的題目，容許大量小實驗失敗。防水砂紙、遮蔽膠帶、透明膠帶、便利貼，都是這樣「長」出來的，沒有一樣來自高層的策略規劃。嬌生跨入嬰兒爽身粉也是意外——原本只是隨藥用膏布附贈、讓皮膚不那麼刺激的小罐滑石粉，顧客卻回頭指名要買。作者說，許多長青公司最好的行動是「機會主義式的摸索與意外」，事後看起來才像英明的策略。</p>
+<p><strong>永遠不夠好</strong>。長青公司刻意建立讓自己不舒服的機制。寶僑讓旗下品牌互相競爭；有的公司規定營收的一定比例必須來自近幾年推出的新產品；它們在景氣差的時候仍持續投資研發與人才培訓。這些公司不問「我們做得夠好了嗎」，只問「明天怎樣比今天更好」。</p>
+<p><strong>限制在哪</strong>：膽大包天的目標是高風險的賭注，書裡看到的是賭贏的案例。它必須和核心理念一致，而且組織要有本事撐過去，否則只是好大喜功。</p>
+<h3>四、教派般的文化與一致性</h3>
+<p>研究團隊發現，長青公司並不是對每個人都友善的好職場。它們的理念很鮮明，融入的人如魚得水，不合的人會像病毒被排出去一樣待不下去。作者用了「教派般的文化」這個說法：強烈的理念灌輸、嚴格的篩選、歸屬感與菁英意識。</p>
+<p>諾斯壯百貨是例子：新人不論學歷都從第一線做起，內部充滿表揚服務英雄的故事和排名，做不到的人很快就自己離開。迪士尼樂園用自己的一套語彙訓練員工——員工是「演員」，顧客是「來賓」，上班是「上台」。</p>
+<p>這裡有個容易被忽略的對比：這些公司在理念上控制得很緊，在做法上卻給了很大的自主空間。因為每個人都清楚核心是什麼，反而可以放心授權。</p>
+<p>最後一章談的是<strong>一致性</strong>。作者強調，全書沒有任何單一招數是關鍵；差別在於長青公司把核心理念和對進步的追求，落實到組織的每個角落——目標、策略、薪酬、辦公室配置、職位設計全都指向同一個方向，不發出互相矛盾的訊號。寫願景宣言是最容易的一步，把上百個小細節都調到一致才是真功夫。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>先換眼光</strong>（造鐘，把組織本身當成作品）→ <strong>定出不變的東西</strong>（核心價值與目的）→ <strong>明確區分可變的東西</strong>（一切做法）→ <strong>裝上推動進步的引擎</strong>（大目標、演化式嘗試、自我不滿足的機制、內部接班）→ <strong>用強文化守住核心</strong>（教派般的認同）→ <strong>最後把所有細節對齊</strong>（一致性）。</p>
+<p>整套邏輯的張力在於同時要兩樣：穩定與變動、信念與務實。作者認為平庸的組織是在兩者之間選邊，傑出的組織拒絕選。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>做「火星任務」練習：如果要派五到七個人去外星重建你們團隊最好的樣子，你會選誰？這幾個人身上共同的東西，比牆上寫的更接近真正的核心價值。</li><li>列兩張清單：一張寫「我們絕不改的」，一張寫「其實都可以改的」。如果第一張超過五條，多半混進了做法。</li><li>檢查矛盾訊號：公司說重視創新，但失敗的專案負責人考績被打低？挑一個不一致的地方修掉。</li><li>為團隊訂一個要花好幾年、成功機率只有一半多一點的目標，用一句話講完。</li><li>留一點預算和時間給沒有人指派的小實驗。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>寫下你個人的核心價值，三條就好。測試方法：如果它讓你付出代價，你還會堅持嗎？</li><li>區分「我是誰」和「我現在怎麼做」：職業、技能、住的城市都是做法，可以換。</li><li>用造鐘的想法帶孩子或經營家庭：與其每次替他解決問題，不如建立他能自己運作的習慣和規矩。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「照著做就能基業長青」</strong>——這是回顧式研究，找到的是相關性。名單上有幾家公司後來陷入困境甚至風光不再。有學者批評這類研究受「光環效應」影響：公司成功時，它的文化和領導在旁人眼中自然樣樣都好。把書當成思考框架，別當成保證。</li><li><strong>「核心價值要選好聽的」</strong>——作者明說價值是「發現」出來的，不是「設定」出來的。抄別人的漂亮詞彙只會製造犬儒。</li><li><strong>「長青公司不重視獲利」</strong>——它們非常賺錢。作者的說法是獲利像氧氣和食物，沒有就活不了，但它不是活著的意義。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《創新的兩難》（克里斯汀生）：克里斯汀生解釋管理良好的大公司為何會被新技術顛覆，等於替這本書補上一個警告——連「刺激進步」做得不錯的公司，也可能因為太聽現有顧客的話而錯過轉折。</li><li>《高效團隊默默在做的三件事》（科伊爾）：科伊爾寫嬌生信條在泰諾下毒事件中的作用，是「核心理念拿來做困難決定」最清楚的現場紀錄。</li><li>《好策略．壞策略》（魯梅特）：魯梅特對空泛的願景和目標很不客氣。兩本一起讀可以互相制衡：大目標要有，但背後得有診斷和具體行動。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「要當造鐘的人，不要當報時的人。」（Be a clock builder, not a time teller. 大意）</li><li>「保存核心，刺激進步。」（Preserve the core and stimulate progress.）</li><li>「我們努力不忘記：藥是為了人，不是為了利潤。利潤會隨之而來。」（書中引述喬治・默克，大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你待過的組織裡，有沒有一條被當成「神聖傳統」、其實只是做法的規矩？如果把它改掉，真正的核心會受損嗎？</li><li>如果給自己訂一個要花十年、說出來有點不好意思的膽大目標，那會是什麼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="built-to-last" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "built-to-last";
+      var TITLE = "基業長青";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "built-to-last";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

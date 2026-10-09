@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高效團隊默默在做的三件事｜拾頁</title>
+<meta name="description" content="一群聰明人湊在一起，為什麼常常輸給一群普通人？因為強團隊靠的不是成員多厲害，而是每天交換的那些小訊號：你在這裡很安全。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-culture-code" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-14</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>高效團隊默默在做的三件事</h1>
+  <p class="title-en">The Culture Code</p>
+  <p class="byline">丹尼爾・科伊爾（Daniel Coyle）｜2018</p>
+  <p class="hook">一群聰明人湊在一起，為什麼常常輸給一群普通人？因為強團隊靠的不是成員多厲害，而是每天交換的那些小訊號：你在這裡很安全。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>文化不是口號或天生氣質，是一組可以練的技能：建立安全感、分享脆弱、確立目標。</li><li>信任不是先有才敢示弱，而是有人先示弱、對方接住，信任才長出來。</li><li>好團隊把優先順序講到近乎囉嗦，用簡短的口頭禪讓每個人在關鍵時刻知道怎麼選。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>丹尼爾・科伊爾是記者出身的作家，之前寫過一本談技能如何養成的《天才密碼》，跑遍世界各地的「人才溫床」看頂尖表現是怎麼練出來的。寫完之後他留下一個疑問：有些地方不只是個人強，而是整個團體強得不合比例，那又是怎麼回事？</p>
+<p>為了這本書，他花了幾年時間走訪一批公認表現頂尖的團體——美國海軍海豹部隊、聖安東尼奧馬刺隊、皮克斯動畫、設計公司 IDEO、紐約一個即興喜劇團，甚至包括一個犯案手法高明的珠寶竊盜集團。他不是去問他們的理念，而是蹲在現場看他們怎麼互動：怎麼打招呼、怎麼開會、怎麼給回饋、出錯時怎麼說話。</p>
+<p>他同時也擔任一支美國職棒球隊的顧問，所以這本書有記者的觀察，也有實際幫組織動手做的經驗。2018 年出版時正逢「團隊文化」成為矽谷和管理圈的熱門話題，但多數討論停在抽象的價值觀。科伊爾的切入點比較小也比較具體：文化是由哪些可以觀察到的行為組成的？</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼有些團體加起來大於個別成員的總和，有些卻小於？」</p>
+<p>我們習慣把文化當成一種氣氛，覺得它像 DNA，有就有、沒有就沒有。科伊爾的主張是：<strong>文化是一組技能，學得來。</strong>他把觀察到的共同模式歸納成三項——建立安全感、分享脆弱、確立目標。三者有先後：先讓人覺得被接納，才談得上坦白；能坦白地合作，才有辦法朝同一個方向走。</p>
+<p>如果你曾經待過一個「每個人都很優秀但合不起來」的團隊，或你正想讓一群人願意說真話，這本書給的是可以直接照做的小動作。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、建立安全感：歸屬訊號</h3>
+<p>書的開場是一個小實驗。設計師史基曼找來好幾組人比賽：用生的義大利麵條、膠帶、繩子和一顆棉花糖，在限時內搭出最高的結構，棉花糖要放在頂端。參賽的有商學院學生，也有幼兒園的孩子。結果幼兒園的孩子搭得比商學院學生高。</p>
+<p>商學院學生看起來在合作，實際上花了大量心力在搞清楚彼此的位階：誰是老大？可以批評他的點子嗎？規則是什麼？他們的互動很客氣，底下卻充滿猶豫。幼兒園的孩子不管這些，肩並肩擠在一起，動手試、倒了再來、互相提醒。他們不比較聰明，只是沒有把力氣花在管理地位上。</p>
+<p>第二個實驗來自研究者費爾普斯。他安排一位演員混進小組，分別扮演三種「爛蘋果」：出言攻擊人的混蛋、不出力的懶鬼、唉聲嘆氣的消極者。幾乎每一組的表現都被拖垮了三到四成。只有一組例外——那組裡有個人，每當爛蘋果發作，他就身體前傾、微笑、問一個簡單的問題把大家拉回來，仔細聽完別人的回答再接話。他沒有做任何看起來像「領導」的事，只是不停地讓氣氛降溫，讓人覺得在這裡開口是安全的。</p>
+<p>科伊爾把這類行為稱為<strong>歸屬訊號</strong>：距離近、眼神接觸多、輪流說話、不打斷、彼此提問。這些訊號重複傳達三件事：你屬於這裡、你是特別的、我們有共同的未來。他引用麻省理工學院研究者潘特蘭的發現：只觀察一個小組的互動模式，完全不聽內容，就足以相當準確地預測他們的表現。</p>
+<p>馬刺隊的教練波波維奇是書中的代表人物。他罵球員罵得很兇，卻會記得每個球員的家人、花大量時間和大家吃飯、把球員拉到面前幾乎貼著臉說話。科伊爾說他傳達的是三句話：我在乎你這個人、我們的標準很高、我相信你做得到。書裡還提到一項研究：老師在批改的作文上只多加一句話，大意是「我給你這些意見，是因為我對你期待很高，而且我知道你做得到」，學生願意修改的比例就明顯上升。</p>
+<p><strong>常見誤用</strong>：把安全感當成一次性的團建活動。歸屬訊號要不斷重複，因為人的大腦一直在問「我在這裡還安全嗎」，上週的答案不適用於今天。</p>
+<h3>二、分享脆弱：信任是結果，不是前提</h3>
+<p>第二項技能顛倒了一般人以為的順序。我們通常認為，要先信任對方才敢露出弱點。科伊爾引用組織行為學者波澤的說法：其實是反過來——<strong>一個人先發出「我需要幫忙」的訊號，另一個人接住並回以同樣的訊號，信任才在這個來回之間產生。</strong>他把這叫做「脆弱迴路」。</p>
+<p>最震撼的例子是一九八九年的一架客機。飛機在高空中尾部引擎爆炸，所有液壓系統失效，這在當時被認為是不可能發生、也沒有任何程序可循的狀況。機長海恩斯沒有擺出「我來處理」的姿態。恰好機上有一位搭便機的飛行教官，進到駕駛艙幫忙。駕駛艙的錄音顯示，幾個人之間的對話全是短促的通報和提問：你那邊怎麼樣、誰有辦法、試試這個。機長甚至直接問大家有沒有主意。他們靠著調節左右引擎的推力勉強控制方向，最後迫降在機場，機上相當多的人活了下來。事後有其他資深機組員在模擬機裡重演同樣的故障，沒有人能把飛機帶到跑道。</p>
+<p>海豹部隊把這種互動變成制度。每次任務或訓練後都要開<strong>行動後檢討</strong>，所有人脫下階級，逐項回答：哪裡出錯了、我做了什麼、下次怎麼改。書中一位指揮官說，領導者能說的最重要的幾個字是「那是我搞砸的」。他們還用抬圓木這類訓練，逼一群人在痛苦中即時協調，誰的力道一鬆，其他人立刻感覺得到。</p>
+<p>皮克斯有「智囊團」會議，把還很粗糙的片子攤開，讓資深導演直率地指出問題；紐約的即興喜劇團用一種很難的長篇即興形式訓練新人，逼演員在台上完全依賴彼此。這些做法都不舒服，科伊爾認為那種不舒服就是重點——它是一群人在一起練習「誠實而不翻臉」的肌肉。</p>
+<p><strong>實用價值</strong>：位階最高的人要先開口。上司先說「這裡我不確定，你們怎麼看」，下面的人才敢跟。反過來不成立。</p>
+<p><strong>限制在哪</strong>：示弱要和工作有關。說「我這個判斷可能有盲點」是邀請合作；把情緒全倒給部屬則是另一回事。</p>
+<h3>三、確立目標：講到囉嗦的優先順序</h3>
+<p>第三項技能處理的是方向。一九八二年，有人在芝加哥地區對市售的泰諾止痛藥下毒，造成多人死亡。嬌生公司當時沒有現成的危機手冊。主管們在極短時間內做出一連串決定：全面回收市面上所有產品、主動警告民眾、和警方及媒體完全合作，寧可承受鉅額損失。科伊爾追溯這些決定的來源，發現是那份寫了幾十年的「信條」——開頭第一句就說公司的首要責任是對使用產品的人。更關鍵的是，事件發生前幾年，執行長才剛召集各級主管，花時間辯論這份信條到底還算不算數。所以危機來時，每個人腦中有同一個排序。</p>
+<p>紐約餐飲業者丹尼・梅爾的做法更日常。他經營的餐廳以款待聞名，他發現自己平常掛在嘴邊的那些短句，員工會真的拿去用，於是刻意整理出一整套，例如「研究客人」、「寫出精彩的最後一章」。這些話單獨看有點老套，但它們的功用是在服務生面對突發狀況的那幾秒鐘，提供一個判斷依據。</p>
+<p>科伊爾把這種環境叫做<strong>高目標環境</strong>：到處都是把「現在這個動作」和「我們要去的地方」連起來的小訊號。他也提醒，團隊其實常常搞不清楚優先順序——有調查請公司高層列出前幾大要務，再去問員工，能說對的人少得驚人。所以領導者要有心理準備：你覺得已經講到煩了，才剛開始有人聽進去。</p>
+<p>他另外區分兩種任務。<strong>重熟練</strong>的工作（例如餐廳服務）要的是明確的準則和口訣，像燈塔一樣指出標準路徑；<strong>重創新</strong>的工作（例如做動畫電影）則要給團隊自主權，領導者的角色是保護他們、陪他們度過必然的失敗。皮克斯的卡特莫爾說，所有電影一開始都很糟，他的工作是讓團隊有辦法把它從糟變成不糟。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>三項技能是一層疊一層的。<strong>安全感</strong>回答「我們有連結嗎」，沒有它，人會把力氣花在自保；<strong>脆弱</strong>回答「我們能不能把風險攤開來一起扛」，它把連結轉化成真正的協作；<strong>目標</strong>回答「這一切是為了什麼」，它讓協作有方向。</p>
+<p>貫穿三者的觀點是：文化不存在於牆上的標語，而存在於一次次的小互動裡。那些互動可以被設計、被練習、被修正。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>少說多聽：下次開會，你提出問題後忍住不補充，留一點沉默，讓最安靜的人有機會開口。</li><li>領導者先認錯：在本週的會議上講一件你最近判斷錯的事，以及你學到什麼。</li><li>開一次簡化版行動後檢討：專案告一段落後問三題——哪些做得好、哪些沒做好、下次要換什麼做法。請最資深的人最後發言。</li><li>寫下前三項優先順序，然後請每位成員各自寫一遍，對照差距。差距就是你要多講幾次的地方。</li><li>收到壞消息時先說謝謝。科伊爾稱之為「擁抱傳訊者」，否則下一個壞消息不會有人告訴你。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>對家人或朋友用一次那句回饋：「我跟你說這個，是因為我覺得你做得到。」</li><li>先開口求助：這週找一件小事請別人幫忙。你會發現對方多半因此更靠近你。</li><li>替家裡訂一句口頭禪，用來在兩難時做決定，例如「人比行程重要」。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「好文化就是大家和樂融融」</strong>——書中的團隊氣氛往往不輕鬆：回饋很直接、檢討很痛。安全感的意思是「說真話不會被踢出去」，不是「沒人說重話」。</li><li><strong>「示弱就是訴苦」</strong>——脆弱迴路的重點是承認自己需要別人，讓合作得以發生，它是工作上的行為，不是情緒宣洩。</li><li><strong>「文化靠找對的人」</strong>——書裡反覆強調的是互動模式。爛蘋果實驗顯示，一個人的行為能拖垮或撐住整組人，而那些行為是可以學的。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《心理安全感的力量》（艾德蒙森）：科伊爾第一項技能的研究基礎。艾德蒙森給的是嚴謹的定義和領導者工具箱，科伊爾給的是畫面和故事。月底我們會讀到。</li><li>《克服團隊領導的5大障礙》（藍奇歐尼）：藍奇歐尼說信任的根基是願意示弱，和脆弱迴路說的是同一件事，只是他用寓言加模型的方式呈現。</li><li>《創意電力公司》（卡特莫爾）：想看皮克斯智囊團的完整運作，去讀當事人自己寫的版本。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「脆弱不是在信任之後才出現，而是在信任之前。」（Vulnerability doesn't come after trust—it precedes it.）</li><li>「文化不是你『是』什麼，而是你『做』什麼。」（Culture is not something you are—it's something you do. 大意）</li><li>「我給你這些意見，是因為我對你有很高的期待，而且我知道你做得到。」（書中引用的研究用語，大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你待過的團隊裡，有沒有一個像實驗裡那位「讓氣氛降溫」的人？他具體做了什麼小動作？</li><li>如果要替你現在的團隊或家庭寫一句在兩難時幫忙做決定的口頭禪，你會寫什麼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-culture-code" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-culture-code";
+      var TITLE = "高效團隊默默在做的三件事";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-culture-code";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

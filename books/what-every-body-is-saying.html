@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FBI教你讀心術｜拾頁</title>
+<meta name="description" content="你以為看人要看臉、看眼神？臉是全身最會說謊的地方。前 FBI 探員說，要知道一個人真正的感覺，先低頭看他的腳。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="what-every-body-is-saying" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-19</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>FBI教你讀心術</h1>
+  <p class="title-en">What Every BODY Is Saying</p>
+  <p class="byline">喬・納瓦羅（Joe Navarro）｜2008</p>
+  <p class="hook">你以為看人要看臉、看眼神？臉是全身最會說謊的地方。前 FBI 探員說，要知道一個人真正的感覺，先低頭看他的腳。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>肢體語言來自大腦的邊緣系統，反應快又難造假；讀的是「舒適或不舒適」，不是說謊與否。</li><li>離大腦愈遠愈誠實：腳和腿最可靠，臉最會演；觀察要從腳往上看。</li><li>沒有單一動作代表說謊；先建立基準線，再看一組訊號的變化，並搭配情境判讀。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>喬・納瓦羅出生在古巴，八歲那年跟著家人流亡到美國。剛到的時候他一句英文都不會，在學校聽不懂老師和同學說什麼，只好靠看：誰的表情放鬆代表喜歡他，誰瞇起眼睛代表不歡迎他。他後來說，肢體語言是他在英文之前先學會的語言。</p>
+<p>這個習慣跟著他一輩子。他二十出頭被聯邦調查局招募，在局裡待了二十五年，主要做反情報工作——也就是抓間諜——並且是局內行為分析方面的專家。他的工作是坐在偵訊室裡，從對方的一舉一動判斷哪個問題碰到了痛處。</p>
+<p>退休之後，他把這套觀察方法整理出來，和心理學者馬文・卡林斯合作，在 2008 年出版這本書。它被翻譯成許多語言，成為非語言溝通領域最暢銷的入門書。英文書名把 everybody 拆成 every BODY，一語雙關：每個人在說什麼，其實是每副身體在說什麼。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「他嘴上說沒事，是真的沒事嗎？」「客戶點頭說會考慮，到底有沒有興趣？」</p>
+<p>我們每天都在猜別人的想法，而且多半只聽對方說的話。納瓦羅說，人與人的溝通有很大一部分不在語言裡，而在姿勢、動作、距離、表情當中；這些訊號大多不經過思考就流露出來，所以比話語更接近真實的感受。</p>
+<p>但這本書不是「一眼看穿說謊者」的祕笈。恰恰相反，納瓦羅是少數肯直說「測謊非常難」的專家。他教的是一件比較樸素、也比較有用的事：讀出對方此刻是舒服還是不舒服、有把握還是沒把握、想靠近還是想離開。光是這些，就足以讓你在談判、面試、帶小孩、談感情時少走很多冤枉路。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、誠實的大腦：邊緣系統不會演戲</h3>
+<p>納瓦羅用一個簡化的模型來解釋肢體語言為什麼可信。他把大腦粗分成三個部分，其中負責生存反應的「邊緣系統」是重點。這個部分從遠古就負責讓我們活下來，它對外界的反應是反射式的、即時的、不經思考的。他因此稱它為「誠實的大腦」。相對地，負責語言和思考的新皮質能計畫、能編故事，也就是能說謊。</p>
+<p>邊緣系統面對威脅有三種依序出現的反應，他特別強調順序是<strong>凍結、逃跑、戰鬥</strong>，而不是一般人說的「戰或逃」。</p>
+<p><strong>凍結</strong>最先出現。遠古的掠食者對移動的東西特別敏感，所以一察覺危險，最本能的反應是不動。現代版本是：被問到敏感問題時突然全身靜止、呼吸變淺、雙腳勾住椅腳；或者小孩被罵時縮起肩膀、把自己變小，他稱為「烏龜效應」。</p>
+<p><strong>逃跑</strong>在現代很少真的拔腿就跑，而是變成拉開距離：身體往後靠、轉向側邊、腳尖指向門口、拿包包或手臂擋在身前、閉上眼睛或揉眼睛來「遮斷」不想看到的東西。</p>
+<p><strong>戰鬥</strong>也多半轉成文明的形式：爭吵、挑釁的姿勢、侵入對方的空間。</p>
+<p>壓力反應之後，身體會想辦法讓自己平靜下來，這就是納瓦羅非常重視的<strong>安撫行為</strong>：摸脖子、搓額頭、摸臉、玩頭髮、吐一口長氣、手掌在大腿上來回擦。他提到女性常會摸頸部下方、鎖骨之間的凹陷處，或是玩項鍊；男性則比較常整理領帶、摸後頸。安撫行為本身不代表說謊，它只告訴你：剛剛某件事讓這個人不舒服了。</p>
+<p>所以全書的判讀主軸是一條很簡單的軸線：<strong>舒適或不舒適</strong>。看到訊號時先問：這是自在的表現，還是不自在的表現？</p>
+<p><strong>限制</strong>：納瓦羅用的三腦模型是幫助理解的簡化說法，現代神經科學對大腦分工的看法複雜得多。把它當成好記的比喻就好，不必當成解剖學。</p>
+<h3>二、從腳往上看：離大腦愈遠愈誠實</h3>
+<p>這是全書最反直覺、也最有名的一點。多數人看人先看臉，納瓦羅說臉是最不可靠的，因為我們從小就被訓練管理表情——「收到禮物要笑」「不要擺臭臉」。相反地，幾乎沒有人會想到要控制自己的腳。所以他建議觀察的順序是由下往上。</p>
+<p><strong>腳和腿</strong>。心情好的時候腳會輕快地抖動或彈跳，他叫它「快樂腳」，在牌桌底下尤其洩底。腳尖的方向透露一個人想去哪：兩個人在聊天，你走過去，如果他們只轉上半身、腳沒有轉過來，表示現在不方便加入；跟你說話的人腳尖朝向門口，表示他想走了。站著時雙腿交叉，等於把重心交出去，只有在放鬆和信任的時候才會這樣做。</p>
+<p><strong>軀幹</strong>。身體正面是最脆弱的部位，所以我們把正面朝向喜歡的人和事，對不喜歡的則轉開或拿東西擋住——抱枕、包包、交叉的手臂、扣起外套。身體往前傾代表投入，往後靠代表保留。</p>
+<p><strong>手臂</strong>。開心時手臂會做出「對抗地心引力」的動作，像球員得分後高舉雙手；沮喪時手臂下垂、貼緊身體。雙手叉腰是宣示權威，雙手抱在腦後、手肘往外張開是顯示自在與主導。</p>
+<p><strong>手</strong>。手很有表現力，也因此特別受注意。納瓦羅說，把手藏起來——放桌下、插口袋——會讓人不自覺地降低對你的信任，所以談話時最好讓手被看見。雙手指尖相抵成尖塔狀是最強的自信訊號之一；拇指朝上或露出口袋外也代表有把握。相反地，絞手、手指交握搓揉則是不安。</p>
+<p><strong>臉</strong>。臉可以造假，但仍有線索：瞳孔放大或縮小不受控制；閉眼、遮眼、延長的眨眼是在「遮斷」不想面對的訊息；抿緊嘴唇到幾乎看不見代表壓力；真心的笑會牽動眼睛周圍，禮貌的笑只動嘴角。他的原則是：當臉和身體其他部位的訊號互相矛盾時，相信負面的那個，相信離大腦比較遠的那個。</p>
+<h3>三、觀察的紀律：基準線、情境、成組的變化</h3>
+<p>納瓦羅在書的開頭就列了觀察的幾條守則，這部分比任何單一動作的解讀都重要，因為它決定你會不會誤判。</p>
+<p>第一，<strong>要刻意觀察</strong>。他區分「看」和「觀察」，就像福爾摩斯對華生說的：你有在看，但沒有在觀察。這是需要練習的習慣。</p>
+<p>第二，<strong>放在情境裡讀</strong>。車禍後站在路邊發抖的人是驚嚇，不是心虛；冷氣很強的會議室裡抱著手臂的人可能只是冷。</p>
+<p>第三，<strong>認得普世的訊號，也認得個人的習慣</strong>。抿嘴唇幾乎人人都代表壓力；但有些人天生就愛抖腳、愛摸鼻子，那是他的常態。</p>
+<p>第四，<strong>先建立基準線</strong>。這是最關鍵的一條。在談正事之前，先觀察對方平常怎麼坐、手放哪、說話速度如何。之後要看的不是某個動作本身，而是「偏離基準」的那一刻。平常抖腳的人突然不抖了，比不抖腳的人開始抖更值得注意。</p>
+<p>第五，<strong>找成組的訊號和突然的變化</strong>。單一動作像單一個字，意思不確定；多個訊號同時指向同一方向，才像一個完整的句子。而且要留意變化發生在哪句話、哪個問題之後。</p>
+<p>他舉過自己辦案的例子：偵訊一名嫌疑人時，他逐一提到幾種可能的凶器，對方聽到其他幾種都沒有反應，只在聽到其中一種時眼皮垂下、閉得特別久。這個遮斷動作沒有證明任何事，但告訴調查人員該往哪個方向追——後來證實那正是凶器。這個故事說明了他的方法：肢體訊號是「線索」，告訴你哪裡值得多問，不是「證據」。</p>
+<p>還有一條常被忽略：<strong>觀察時不要讓對方察覺</strong>。盯著人看會改變對方的行為，你就讀不到自然的反應。</p>
+<h3>四、關於測謊：專家也只比丟銅板好一點</h3>
+<p>書的最後一章專談欺騙，口氣比前面保守得多。納瓦羅引用研究指出，一般人判斷別人有沒有說謊，準確率大約跟丟銅板差不多；受過訓練的專業人士，包括法官和執法人員，平均也沒有高出多少。</p>
+<p>他直接打破幾個流行的迷思：沒有任何一個動作等於說謊，世界上不存在「皮諾丘的鼻子」。摸鼻子、眼神飄移、不敢直視，都不是說謊的可靠指標。誠實的人被懷疑時也會緊張，緊張的訊號和說謊的訊號長得一樣。</p>
+<p>所以他提出的不是「測謊法」，而是一套比較謹慎的做法：先讓對方放鬆，建立舒適的基準；問問題後留時間觀察，不要連珠炮；留意<strong>舒適與不舒適</strong>的轉換落在哪個話題上；再看兩個輔助指標——<strong>同步性</strong>（嘴上說「不是」頭卻在點、話和表情對不上）和<strong>強調</strong>（真心相信自己說的話的人，會自然地用手勢、眉毛、身體前傾來加強；編故事的人因為腦子忙著想詞，動作反而減少、顯得僵硬）。</p>
+<p>他的結論很誠實：這些只能提高你注意到問題的機率，最後還是要靠查證事實。</p>
+<p><strong>常見誤用</strong>：讀完書就在生活裡當起判官，看到伴侶摸脖子就質問「你是不是有事瞞我」。納瓦羅的方法是用來引導你「多問一句、多關心一下」，不是用來定罪。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>肢體訊號來自不經思考的邊緣系統</strong>（所以比語言誠實）→ <strong>判讀的主軸是舒適或不舒適</strong>（所以不必背上百個動作的意思）→ <strong>身體各部位可信度不同，從腳往上看</strong>（所以知道該看哪裡）→ <strong>要先建立基準線、放回情境、看成組的變化</strong>（所以不會誤判）→ <strong>即使如此也不能直接推論說謊</strong>（所以要把觀察當成提問的起點）。</p>
+<p>前兩步是原理，第三步是地圖，後兩步是使用說明書和警語。最容易被跳過的是後兩步，偏偏它們最重要。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（會議與談判）</strong>：</p>
+<ol><li>會議開始前的閒聊時間，記下每個人的基準：坐姿、手的位置、說話節奏。</li><li>提出關鍵條件（價格、期限）的那一刻，別看自己的簡報，看對方：有沒有抿嘴、往後靠、摸脖子、腳收到椅子底下？</li><li>看到不舒適的訊號就停下來問：「這部分是不是有什麼顧慮？」把猜測交給對話去驗證。</li><li>管理自己的訊號：手放在桌面上讓人看見；有把握時可以用尖塔手勢；不要把手插口袋。</li><li>想加入別人的談話前，先看他們的腳有沒有轉向你。</li></ol>
+<p><strong>生活版（家人與朋友）</strong>：</p>
+<ol><li>練習「從腳往上看」：在咖啡廳或捷運上觀察陌生人，猜他們的關係和心情，純當練習。</li><li>孩子或伴侶說「沒事」但出現安撫動作時，不戳破，只多留一點時間陪著，或輕輕問一句。</li><li>留意自己的安撫行為：你什麼時候會摸脖子、搓手？那常是你自己還沒意識到的壓力。</li><li>聊天時把身體正面和腳尖轉向對方，這是最簡單的「我在聽」。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「學會這本書就能看穿誰在說謊」</strong>——作者自己說辦不到。書教的是讀情緒狀態，不是讀真假。</li><li><strong>「雙手抱胸就是防衛、摸鼻子就是說謊」</strong>——任何「一個動作等於一個意思」的說法都違背書裡的基本守則。沒有基準線和情境，單一動作不能解讀。</li><li><strong>「這是用來占別人便宜的技巧」</strong>——納瓦羅談的更多是如何察覺別人的不安並回應它，讓對方更自在。觀察力用在體貼上，比用在識破上有用得多。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《魅力學》（卡本尼）：這批前面讀過。卡本尼教你管理自己發出去的訊號，納瓦羅教你讀別人的；兩人都認為身體很難長時間違背內心。</li><li>《如何讓人喜歡我》（范・愛德華茲）：同樣談非語言訊號，但著重在怎麼在社交場合建立好感，引用較多實驗室研究；納瓦羅則來自偵訊現場的實務經驗，判讀上更謹慎。</li><li>《快思慢想》（康納曼）：邊緣系統的即時反應很像系統一。康納曼會提醒你，你對別人肢體語言的「直覺判讀」本身也是系統一的產物，同樣會出錯——這正是納瓦羅堅持要基準線和成組訊號的原因。</li><li>《關鍵對話》（派特森等）：書中說對話要先確保對方有「安全感」，納瓦羅的舒適／不舒適訊號，正好是判斷對方安全感有沒有流失的即時儀表。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「你有在看，但你沒有在觀察。」（作者引用福爾摩斯的話；You see, but you do not observe.）</li><li>「腳是全身最誠實的部位。」（大意）</li><li>「沒有任何單一行為能代表說謊。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你自己壓力大時的「安撫行為」是什麼？是別人告訴你的，還是你自己發現的？</li><li>回想一次你覺得「他嘴上說好，但感覺怪怪的」的經驗：現在回頭看，你當時其實接收到了哪些身體訊號？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="what-every-body-is-saying" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "what-every-body-is-saying";
+      var TITLE = "FBI教你讀心術";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "what-every-body-is-saying";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

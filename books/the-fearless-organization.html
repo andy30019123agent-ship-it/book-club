@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心理安全感的力量｜拾頁</title>
+<meta name="description" content="你以為會議上沒人反對就代表大家同意？更可能是大家算過了：說出來的風險是自己的，沉默的代價是公司的。安靜從來不是安全的訊號。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-fearless-organization" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-30</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>心理安全感的力量</h1>
+  <p class="title-en">The Fearless Organization</p>
+  <p class="byline">艾美・艾德蒙森（Amy C. Edmondson）｜2018</p>
+  <p class="hook">你以為會議上沒人反對就代表大家同意？更可能是大家算過了：說出來的風險是自己的，沉默的代價是公司的。安靜從來不是安全的訊號。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>心理安全感不是氣氛好，而是相信「提問、認錯、唱反調不會被羞辱或懲罰」。</li><li>它不等於降低標準：高標準加上高安全感才是學習區，只有高標準會把人逼進焦慮區。</li><li>領導者有三件事可做：把工作定調為需要大家發聲、主動邀請意見、對壞消息做出有建設性的回應。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>艾美・艾德蒙森是哈佛商學院的教授，研究團隊學習和組織行為幾十年。「心理安全感」這個詞不是她發明的，但它能從學術期刊走進一般公司的會議室，主要是她的功勞。</p>
+<p>她的起點是一次意外的研究結果。九零年代讀博士班時，她參與一項醫院用藥錯誤的研究，原本的假設很直覺：合作得好的護理團隊，出錯應該比較少。資料回來卻完全相反——團隊氣氛越好、主管越受信賴的單位，紀錄到的錯誤越多。她困惑了一陣子才想通：這些團隊不是犯的錯比較多，而是比較願意把錯報出來、攤開來討論。那些數字漂亮的單位，錯誤只是被藏起來了。</p>
+<p>後來另一項研究讓這個概念爆紅。一家大型科技公司花了幾年分析內部上百個團隊，想找出高績效團隊的共同點。他們本來預期答案會是成員的學歷、資歷或性格組合，結果這些都不太有解釋力。最能區分團隊好壞的因素是心理安全感，而且它是其他幾項因素的地基。</p>
+<p>這本書在 2018 年出版，可以看成艾德蒙森把二十多年的研究整理給實務工作者的版本。她在書中強調的背景是：當工作越來越依賴知識、判斷與協作，員工腦中的想法和疑慮如果說不出口，組織就等於白白付了薪水。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼聰明、有經驗的人，明明看到問題卻不說？」</p>
+<p>艾德蒙森的回答是：因為沉默幾乎永遠是對個人最安全的選擇。她稱之為<strong>發聲與沉默的不對稱</strong>。開口提問，可能顯得無知；承認錯誤，可能顯得無能；提出異議，可能顯得難搞。這些代價是立即的、確定的、落在自己身上的。至於開口的好處——避免一場事故、改善一個產品——則是延後的、不確定的、歸於整個組織的。沒有人因為保持沉默而被開除過。</p>
+<p>所以除非有人刻意改變這個算式，否則「不說」會是預設值。這本書就是在講怎麼改變它。</p>
+<p>它的讀者不限於主管。任何曾在會議上把話吞回去、事後又後悔的人，都能從裡面看懂自己當時在算什麼。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、定義：心理安全感是什麼、不是什麼</h3>
+<p>艾德蒙森給的定義很精確：<strong>心理安全感是一種共同的信念，相信在這個團隊裡承擔人際風險是安全的。</strong>人際風險指的是那些可能讓你在別人眼中變得難看的行為——問笨問題、求助、承認失誤、反對上司的看法。</p>
+<p>她花了不少篇幅澄清它不是什麼，因為這個詞紅了之後被誤用得很嚴重：</p>
+<ul><li><strong>不是當好人。</strong>心理安全的團隊往往吵得更兇，因為大家敢直說。表面和諧、私下抱怨的團隊恰恰是缺乏安全感。</li><li><strong>不是人格特質。</strong>它跟你內向或外向無關，是一個團體的氣候。同一個人換個團隊，開口的意願可以完全不同。</li><li><strong>不等於信任。</strong>信任是我對某個人的判斷；心理安全感是我對「這個團體會怎麼反應」的預期。</li><li><strong>不是降低標準。</strong>這是最常見、也最要命的誤會。</li></ul>
+<p>針對最後一點，她畫了一個二乘二的圖。橫軸是績效標準的高低，縱軸是心理安全感的高低。兩者都低是<strong>冷漠區</strong>，大家來混日子。安全感高、標準低是<strong>舒適區</strong>，氣氛愉快但沒什麼挑戰。標準高、安全感低是<strong>焦慮區</strong>——這是很多公司的現況，人被要求做到最好，卻不敢問、不敢報告壞消息，結果只能靠藏和賭。兩者都高才是<strong>學習區</strong>，人們既被期待做得好，又能公開談論哪裡還做不好。</p>
+<p>換句話說，心理安全感和高標準是兩個獨立的旋鈕，不是蹺蹺板的兩端。</p>
+<p><strong>實用價值</strong>：這張圖可以直接拿來診斷自己的團隊。多數抱怨「我們團隊沒人敢講話」的主管，其實是把標準調得很高，卻沒有同時處理另一個旋鈕。</p>
+<h3>二、沉默的代價：那些本來可以避免的災難</h3>
+<p>書的中段是一連串案例，共同點是事前都有人知道問題，卻沒有說出口，或說了沒人理。</p>
+<p>一家歐洲汽車大廠為了在美國賣柴油車，在軟體裡動手腳通過排放檢測。艾德蒙森關注的不是造假的技術細節，而是它的土壤：高層訂下工程上幾乎做不到的目標，而且以嚴厲、不容許失敗的管理風格聞名，工程師面對的選擇是「告訴老闆做不到」或「想辦法讓數字過關」。在恐懼的文化裡，後者看起來比較安全。</p>
+<p>一家美國大銀行要求行員向每位客戶銷售多項產品，目標高到不切實際，達不到就被當眾檢討。結果是員工在客戶不知情的情況下替他們開了大量帳戶。</p>
+<p>一家曾經稱霸手機市場的北歐公司，中階主管不敢把軟體落後的真實進度往上報，高層則不敢對外承認趕不上新對手。研究這家公司的學者發現，恐懼是雙向的，層層美化之後，最上面的人看到的是一個不存在的樂觀版本。</p>
+<p>還有攸關人命的例子。太空梭升空時有碎片撞擊機翼，一位工程師看了影片很擔心，想爭取用衛星拍攝確認損傷。他在會議上沒有堅持發言，事後解釋是自己的層級太低，那不是他能開口的場合。另一場是機場跑道上兩架大型客機相撞的空難，肇事班機的副駕駛和飛航工程師都對是否已取得起飛許可有疑慮，話卻說得很委婉，被資深機長一句話帶過。</p>
+<p>艾德蒙森的重點是：這些組織不缺聰明人，也不缺資訊，缺的是資訊往上流動的管道。<strong>恐懼不會讓人更努力，只會讓人更會藏。</strong></p>
+<p><strong>常見誤用</strong>：把這些案例讀成「基層員工沒有道德勇氣」。她的分析方向相反——期待個人當英雄不是辦法，要改的是讓說真話成本那麼高的環境。</p>
+<h3>三、無懼的職場長什麼樣子</h3>
+<p>對照組同樣具體。</p>
+<p>動畫公司皮克斯有「智囊團」會議：每部片子在製作過程中反覆被拿出來給一群資深創作者看，評語可以非常直接，但有幾條規矩——針對片子不針對人、意見只是建議、導演保有最終決定權。創辦人坦白說他們的片子初期都很糟，這句話本身就是在降低提出問題的門檻。</p>
+<p>一家避險基金把「極度透明」當作原則，鼓勵員工公開批評任何人的想法，包括創辦人。艾德蒙森把它當成較極端的例子，也提醒那種做法不見得適合每個組織。</p>
+<p>一家科技公司的實驗部門會公開獎勵主動喊停自己專案的團隊。邏輯是：登月等級的嘗試大多會失敗，越早承認越省錢，所以要讓喊停變成一件光榮的事。</p>
+<p>最動人的是日本一座核電廠的故事。大地震和海嘯之後，鄰近的另一座電廠發生了嚴重事故，而這一座同樣受創，卻安全停機。廠長在一片混亂中站到白板前，不斷把他知道的和不知道的寫出來——餘震的次數、海嘯警報、目前的判斷——讓員工自己評估風險、決定要不要去執行危險的搶修。他不假裝有把握，判斷錯了就公開更正、改變計畫。員工拖著沉重的電纜，在限時內完成了原本需要更多人更多天的工程。</p>
+<p>另一個例子是南非的礦業公司。新任執行長無法接受每年有礦工死亡，下令暫時關閉出事的礦場，並用當地傳統的議事方式，讓礦工和主管圍坐，把以前不敢講的安全疑慮說出來。事故數字後來明顯下降。</p>
+<p><strong>限制在哪</strong>：艾德蒙森很小心地說，心理安全感是必要條件而不是充分條件。它讓人願意把知道的事說出來，但說出來的內容好不好，還要靠能力、紀律與策略。</p>
+<h3>四、領導者的工具箱：定調、邀請、回應</h3>
+<p>最後一部分是做法，分成三個階段。</p>
+<p><strong>第一步，定調。</strong>先改變大家對工作的理解。如果一項工作被描述成「照標準流程做就不會錯」，那出錯就等於有人失職，自然沒人敢報。領導者要講清楚這份工作充滿不確定、彼此高度依賴，因此「我們一定會漏看東西，需要每個人的眼睛」。她提到一位兒童醫院的營運主管，一上任就跟所有人說醫療照護是極其複雜、容易出錯的系統，把錯誤從「誰的過失」重新定義成「系統的訊號」。同時也要強調目的——這件事為誰而做、為什麼值得冒著尷尬開口。</p>
+<p>在這裡她也整理了失敗的三種類型：<strong>可預防的失敗</strong>（明知道該怎麼做卻沒照做）、<strong>複雜的失敗</strong>（多個因素以沒見過的方式湊在一起）、<strong>聰明的失敗</strong>（在未知領域做了設計良好的小實驗，結果不如預期）。三種要用不同的態度對待，第三種甚至該鼓勵。把所有失敗都當成第一種來懲罰，就沒有人敢做實驗。</p>
+<p><strong>第二步，邀請參與。</strong>光說「我的門永遠開著」沒有用。要展現<strong>情境式的謙遜</strong>：承認自己不知道全部答案。然後問真正的問題——不是「有沒有問題？」這種只會換來沉默的句子。那位醫院主管發現直接問「你這週有看到什麼錯誤嗎」沒人回答，於是改問：「你這週照顧的病人，每件事都像你希望的那樣安全嗎？」同一件事換個問法，話匣子就開了。此外還要建立固定的結構，例如定期的檢討會、跨層級的座談，讓發聲不必靠勇氣。</p>
+<p><strong>第三步，有建設性地回應。</strong>前面做得再好，只要有一次對報壞消息的人發火，就會全部歸零。回應包含三件事：先表達感謝，不管消息內容好壞；把失敗去污名化，討論接下來怎麼辦而不是追究是誰；但對於明知故犯、違反清楚規定的行為，仍然要處分。最後這點很重要——心理安全感不是什麼都可以，界線清楚反而讓人更安心。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>現代工作依賴知識與協作</strong> → 所以組織需要每個人把看到的、想到的說出來 → 但<strong>開口對個人有風險，沉默則沒有</strong>，於是沉默成為預設 → 沉默的組織會錯過警訊、學不到東西，嚴重時釀成災難 → 能反轉這個算式的是<strong>心理安全感</strong>，而它主要由直屬領導者的行為塑造 → 具體做法是<strong>定調、邀請、回應</strong>，並且和高標準一起調高。</p>
+<p>整本書其實在反覆講一件事：沒人說話不代表沒事。領導者要預設自己聽到的不是全貌，然後主動把沒聽到的部分挖出來。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>把二乘二的圖畫出來，誠實標出你的團隊在哪一區。如果在焦慮區，先別調降標準，從下面幾條做起。</li><li>換一個問法：把「大家有沒有問題？」改成「這個計畫裡，你最不放心的是哪一點？」或「我可能漏掉了什麼？」</li><li>先說自己的不確定：在會議開頭講一句「這部分我沒把握，需要你們幫我看」。</li><li>下次有人帶來壞消息，第一句話固定說「謝謝你告訴我」，然後才問細節。</li><li>區分三種失敗：檢討時先問這是可預防的、複雜的、還是聰明的失敗，再決定怎麼處理。</li><li>你不是主管也能做：對同事的提問認真回應、公開說「我不知道」、有人發言後補一句「這點很重要」。安全感是整個團隊一起做出來的。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>孩子打破東西或考差了來自首時，先謝謝他願意說，再談怎麼補救。你的第一個反應決定他下次還說不說。</li><li>對伴侶或家人問一次：「有沒有什麼事，是你一直想跟我說但覺得說了我會不高興的？」然後只聽，不辯解。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「心理安全感就是大家要客氣、不能批評」</strong>——正好相反。它是讓直率的批評得以發生的條件。</li><li><strong>「有了心理安全感就不能追究責任」</strong>——艾德蒙森明確主張兩者並行，明知故犯仍要處分。</li><li><strong>「這是主管的事，做一次就好」</strong>——領導者的影響最大，但每個成員回應別人發言的方式都在加分或扣分；而且它很脆弱，要靠一次次的回應累積，一次失控的發火就能打回原形。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《失敗的力量》（席德）：席德比較航空業和醫療業怎麼面對錯誤，是「沉默的代價」那一章的延伸閱讀，案例更完整。</li><li>《徹底坦率》（金・史考特）：史考特教主管怎麼說直話，艾德蒙森處理的是讓部屬也敢對你說直話。少了後者，前者會變成單向的訓話。</li><li>《最後吃，才是真領導》（西奈克）：月初讀過的「安全圈」和心理安全感講的是同一種需求。西奈克訴諸生物學和故事，艾德蒙森提供定義、研究和可操作的步驟。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「心理安全感不是要人客客氣氣，而是能夠坦率。」（Psychological safety is not about being nice. 大意）</li><li>「從來沒有人因為保持沉默而被開除。」（大意）</li><li>「心理安全感是把腳從煞車上移開，但它不是踩下油門的那股動力。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想最近一次你在會議上把話吞回去：你當時在心裡算了什麼？如果說出口，你最怕發生的事是什麼？</li><li>用那張二乘二的圖看你現在的團隊或家庭，你們落在哪一區？如果要往學習區移一步，你自己可以先做哪一個小動作？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-fearless-organization" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-fearless-organization";
+      var TITLE = "心理安全感的力量";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-fearless-organization";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

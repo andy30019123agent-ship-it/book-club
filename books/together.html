@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>當我們一起｜拾頁</title>
+<meta name="description" content="你以為孤獨是個性問題，是不夠會交朋友？它其實像餓和渴，是身體在提醒你缺了東西——而且長期缺下去，傷的是健康。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="together" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-27</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>當我們一起</h1>
+  <p class="title-en">Together</p>
+  <p class="byline">維偉克・莫西（Vivek H. Murthy）｜2020</p>
+  <p class="hook">你以為孤獨是個性問題，是不夠會交朋友？它其實像餓和渴，是身體在提醒你缺了東西——而且長期缺下去，傷的是健康。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>孤獨不是軟弱，是像飢渴一樣的生理警訊，提醒你該回到人群。</li><li>孤獨分親密、關係、集體三個層面；有伴侶不代表不缺朋友或歸屬感。</li><li>解方不在認識更多人，而在每天專心陪伴、願意求助，以及為別人付出。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>維偉克・莫西是內科醫師，父母從印度移民，他在美國邁阿密長大，從小看著爸媽在自家開的診所裡照顧病人。2014 年他被任命為美國第十九任公共衛生署長，是這個職位上相當年輕的一位，後來在另一任政府中又再度回任。</p>
+<p>上任之初，他花了幾個月在全美各地傾聽，原本以為會聽到的是鴉片類藥物成癮、肥胖、心臟病、暴力。這些確實都有，但他發現許多故事底下藏著同一條暗線：人們覺得自己是一個人面對這一切。家長、老師、退伍軍人、企業主管，很少有人直接說「我很孤獨」，他們說的是「我覺得沒人在乎我」「我好像隱形了」。</p>
+<p>這個發現也勾起他自己的記憶。他在書裡坦白，小時候是個害羞的孩子，最怕的是學校午餐時間——端著餐盤不知道能坐哪裡。這份難堪他當年從來沒有告訴父母，不是因為父母不愛他，而是因為說出口就像承認自己不討人喜歡。</p>
+<p>卸任後他寫下這本書，2020 年春天出版，剛好遇上新冠疫情讓全世界的人被迫隔離。一本談孤獨的書在那個時間點問世，成了某種巧合的註腳。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我身邊有人，為什麼還是覺得空？」「孤獨不就是心情問題嗎，值得一位公衛首長寫一本書？」</p>
+<p>莫西的回答是：值得，因為孤獨是公共衛生問題。它和壽命、心血管疾病、憂鬱、焦慮、成癮都有關聯；而且它很普遍，只是因為丟臉，大家都不說，於是每個人都以為只有自己這樣。</p>
+<p>這本書分兩部分。前半解釋孤獨是什麼、從哪裡來、為什麼在現代特別嚴重；後半談怎麼重建連結——在個人、家庭、社區的層次。它不是速效的交友指南，而比較像一位醫師的長篇診斷書：先讓你知道這個症狀是真的，再告訴你藥在哪裡。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、孤獨是訊號，不是缺陷：像餓、像渴</h3>
+<p>莫西先把幾個詞分清楚。<strong>孤獨</strong>是主觀的感受：你需要的連結和你實際擁有的連結之間有落差。<strong>孤立</strong>是客觀的狀態：身邊真的沒有人。<strong>獨處</strong>則是自己選擇的、平靜的一個人。所以一個人可以獨居而不孤獨，也可以身在熱鬧的婚宴上孤獨得要命。</p>
+<p>他把孤獨細分成三個層面：</p>
+<ul><li><strong>親密的孤獨</strong>：渴望一個能完全信任、分享內心深處的人——知己或伴侶。</li><li><strong>關係的孤獨</strong>：渴望有品質的友誼和陪伴，一群可以一起吃飯、出遊、互相支援的人。</li><li><strong>集體的孤獨</strong>：渴望屬於某個有共同目標與興趣的群體，一種「我們」的感覺。</li></ul>
+<p>三個層面要分別滿足。這解釋了為什麼婚姻美滿的人仍可能覺得寂寞（缺朋友或缺歸屬），或者朋友一大群的人仍覺得沒有人真正懂他。</p>
+<p>接著是全書最關鍵的重新定義。他引用已故神經科學家卡喬波的研究：人類的祖先靠群體才能活下來，落單就代表容易被掠食、找不到食物。所以演化在我們身上裝了一個警報——離群的時候會難受，像餓了催你吃、渴了催你喝，孤獨催你回到族人身邊。它是正常運作的生存機制，不是性格缺陷。</p>
+<p>問題出在警報響太久。落單的遠古人類必須隨時提防危險，所以孤獨會讓身體進入高度警戒：睡得淺、容易驚醒、對威脅過度敏感。短期這能保命，長期就成了慢性壓力。更麻煩的是，處在警戒狀態的人會把別人中性的表情讀成敵意，變得更防衛、更專注在自己身上，結果正好把想靠近的人推開。孤獨於是自我加強：愈孤獨愈難與人連結，愈難連結愈孤獨。</p>
+<p>加上羞恥感——承認孤獨好像等於承認自己沒人要——人們就更不會說，也更不會求助。</p>
+<p><strong>實用價值</strong>：把孤獨當成訊號而非判決，是能夠處理它的第一步。你不會因為肚子餓而覺得自己是個失敗的人。</p>
+<h3>二、孤獨傷身：一個被低估的健康風險</h3>
+<p>身為醫師，莫西花了不少篇幅談孤獨與健康的關聯。他引用最多的是心理學家霍特－倫斯塔的整合分析：把大量研究合在一起看，社會連結薄弱的人早逝的風險明顯較高。她的團隊做過一個讓人印象深刻的比較——缺乏社會連結對壽命的影響，相當於每天抽十五支菸，比肥胖和缺乏運動的影響還大。</p>
+<p>他也整理了其他研究的方向：孤獨與心臟病、中風、失智、憂鬱、焦慮、睡眠品質差的風險升高有關。機制上，長期處於壓力狀態會讓身體持續發炎、壓力荷爾蒙居高不下。</p>
+<p>他特別談到孤獨和成癮、暴力的關係。在他走訪的社區裡，許多與藥物搏鬥的人形容，成癮的核心是一種斷裂感；而復原最有力的支撐，是重新被一群人接納。他寫到一些幫派裡的年輕人，加入的理由與其說是錢，不如說是終於有地方把他當自己人。</p>
+<p><strong>限制</strong>：這類研究多半是觀察性的，顯示的是關聯，因果方向不容易完全釐清——身體不好的人本來也比較難出門社交。「十五支菸」是幫助理解嚴重性的比喻，不是精確的換算。莫西引用這些數據的用意是提醒大家把社會連結放進健康清單裡，和飲食、運動、睡眠並列。</p>
+<h3>三、我們怎麼走到這一步：文化、流動與科技</h3>
+<p>為什麼現代人特別孤獨？莫西沒有給單一元凶，而是描述了幾股力量。</p>
+<p><strong>文化</strong>。他比較了重視集體與重視個人的社會。傳統的緊密社群提供強大的歸屬感，他舉了像哈特派這類共同生活、共同勞動的宗教社群為例，孤獨在其中很少見；但代價是對不合群的人很嚴厲，一旦被排除就一無所有。現代個人主義社會給了人選擇的自由，卻也把「建立關係」變成每個人自己的功課。他並不主張回到過去，而是希望找到第三條路：保有自由，同時有意識地經營歸屬。</p>
+<p>他也談到男性的處境。許多文化教男孩「堅強、不要示弱」，男孩到了青春期，逐漸失去童年時那種親密的友誼，長大後往往只剩伴侶一個可以說心事的人。他介紹了源自澳洲的「男士工棚」：一群男人聚在一起修東西、做木工，手上有事忙，話就在不知不覺中說了出來。「肩並肩」比「面對面」更容易讓不習慣談感受的人打開。</p>
+<p><strong>流動</strong>。為了升學和工作搬遷、工時長、通勤久、鄰里之間不再往來，都讓關係需要刻意安排才會發生。</p>
+<p><strong>科技</strong>。他的態度是持平的：科技可以用來加深連結（和遠方的家人視訊、找到同好），也可以取代連結（用滑動態代替見面）。關鍵在怎麼用。他特別擔心的是「分心」——我們人坐在彼此對面，注意力卻在手機上，這稀釋了相處的品質；還有社群媒體上無止境的比較，讓人覺得別人的生活都比自己精彩。</p>
+<h3>四、重新連結：三個圈、獨處，以及為別人付出</h3>
+<p>後半本談解方。莫西借用人類學的觀察，把關係畫成三個同心圓，正好對應前面的三種孤獨：<strong>內圈</strong>是少數幾位可以完全做自己、危機時會第一個找的人；<strong>中圈</strong>是一起吃飯聊天的朋友；<strong>外圈</strong>是同事、鄰居、點頭之交。三圈都需要，但能投注的時間有限，所以他主張先把內圈顧好。</p>
+<p>他談了幾條具體路徑。</p>
+<p><strong>先和自己連結</strong>。聽起來矛盾，但莫西認為獨處是連結的基礎。一個人如果無法安靜地和自己相處、不認識也不接納自己，就很難不帶著討好或防衛去面對別人。他把獨處和自我慈悲看成一種訓練：定期留一段沒有螢幕的安靜時間，讓自己沉澱。</p>
+<p><strong>服務</strong>。這是他最強調的解方。孤獨讓人的注意力向內縮、放大自己的不足；幫助別人則把注意力轉向外面，同時提醒你「我有東西可以給」。他認為服務同時打破了孤獨的兩個惡性機制：自我專注和價值感低落。</p>
+<p><strong>在社區與組織裡建立連結的文化</strong>。他講了加州安納翰市長的例子：這位市長把「仁慈」當成施政的主軸，鼓勵市民和學童做善意的小事，試著改變整座城市的氣氛。他也分享自己擔任署長時在辦公室推行的小做法：每週開會時，請一位同事用幾分鐘，透過幾張照片介紹自己的生活。只是幾分鐘，同事之間看待彼此的眼光就變了——原本安靜的人開始發言，大家更願意互相支援。他還提到英國在 2018 年設立了專門處理孤獨問題的部長級職位，顯示這已被當成需要政策回應的議題。</p>
+<p><strong>從孩子開始</strong>。最後一章談下一代：在螢幕包圍的環境裡，孩子需要大人示範什麼叫專心陪伴，也需要學習辨識情緒、處理衝突的能力。</p>
+<p>書末他歸納了幾個每個人都做得到的原則，大意是：每天花一點時間和你愛的人相處；相處時把注意力完整地給對方，放下會讓你分心的東西；擁抱獨處；幫助別人，也讓別人幫助你。</p>
+<p><strong>常見誤用</strong>：把解方理解成「多參加活動、多認識人」。莫西談的是品質——十五分鐘全心的通話，勝過一整晚心不在焉的聚會。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>孤獨是演化留下的警訊</strong>（所以不必羞恥）→ <strong>警訊長期不解除會傷害身心，並讓人更難連結</strong>（所以要認真處理）→ <strong>現代的文化、流動與科技讓連結不再自動發生</strong>（所以要刻意經營）→ <strong>從和自己連結開始，顧好內圈，再往外擴</strong>（所以有順序）→ <strong>服務他人是打破孤獨循環最有力的行動</strong>（所以解方是付出，不是索取）→ <strong>把連結做進家庭、職場與社區的日常</strong>（所以這是大家的事）。</p>
+<p>莫西想說的是：連結不是生活的裝飾品，是地基。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>會議開頭留兩分鐘，請一位同事分享一件工作以外的近況——莫西的照片分享的精簡版。</li><li>每天找一位同事做一次不談公事的短對話，手機收起來。</li><li>有人幫了你，具體地謝他；有人看起來不對勁，問一句「你還好嗎？」然後真的聽。</li><li>遠距工作的人，固定排一次視訊閒聊，別讓所有互動都變成任務交接。</li><li>練習開口求助。讓別人幫你，是給對方一個被需要的機會。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>每天十五分鐘給內圈的人：打電話、一起吃飯、睡前聊天。這段時間不看螢幕。</li><li>分別檢查三個圈：我缺的是知己、是朋友，還是歸屬感？缺哪一圈補哪一圈。</li><li>每天留一小段獨處：散步、靜坐、寫幾行字。</li><li>每週做一件幫助別人的小事，認識的不認識的都可以。</li><li>想到某個很久沒聯絡的朋友時，當下就傳訊息，別等「有空再約」。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「孤獨就是一個人」</strong>——孤獨是主觀的落差。獨居的人可能很滿足，人群中的人可能很寂寞。別用人數判斷自己或別人。</li><li><strong>「都是手機和社群媒體害的」</strong>——莫西認為科技是放大器，不是唯一原因。孤獨的問題早於智慧型手機，背後還有文化和生活型態的變化。</li><li><strong>「承認孤獨代表我有問題」</strong>——全書想翻轉的正是這個想法。孤獨是幾乎人人都有的經驗，說出口常常是連結的開始。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《脆弱的力量》（布朗）：布朗說連結需要讓自己被看見，而羞恥感會擋在中間；這正好解釋了莫西觀察到的「大家都孤獨、大家都不說」。</li><li>《依附》（樂維、赫勒）：《依附》處理的是內圈——伴侶關係裡的安全感；《當我們一起》把鏡頭拉遠，補上朋友與社群這兩圈。</li><li>《交心》（杜希格）：莫西說相處的品質比數量重要，杜希格則具體示範了怎麼把一場對話談得深——先聽出對方要的是解決、是同理，還是認同。</li><li>《活出意義來》（弗蘭克）：弗蘭克認為意義來自為某人或某件事付出，莫西則從公衛的角度得出相近的結論：服務他人是孤獨的解藥。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「孤獨是一種自然的訊號，就像飢餓與口渴，提醒我們缺少了生存所需的東西。」（大意）</li><li>「獨處與孤獨不同：獨處是自願的、平靜的，是和自己連結的時刻。」（大意）</li><li>「服務他人把我們的注意力從自己身上移開，同時提醒我們：自己有東西可以給。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>親密、關係、集體三種孤獨，你目前最有感的是哪一種？你原本以為的「缺人陪」，會不會其實是另一圈在缺？</li><li>你上一次全心全意、沒有看手機地陪一個人十五分鐘，是什麼時候？這週你想把這十五分鐘給誰？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="together" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "together";
+      var TITLE = "當我們一起";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "together";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

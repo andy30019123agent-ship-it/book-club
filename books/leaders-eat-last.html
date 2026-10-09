@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>最後吃，才是真領導｜拾頁</title>
+<meta name="description" content="你以為團隊不合作是因為人不對？西奈克說，是環境讓人把力氣花在防自己人——領導者的工作不是管數字，是讓人敢把背交出來。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="leaders-eat-last" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-02</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>最後吃，才是真領導</h1>
+  <p class="title-en">Leaders Eat Last</p>
+  <p class="byline">賽門・西奈克（Simon Sinek）｜2014</p>
+  <p class="hook">你以為團隊不合作是因為人不對？西奈克說，是環境讓人把力氣花在防自己人——領導者的工作不是管數字，是讓人敢把背交出來。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>領導者的首要工作是畫出「安全圈」，讓人不必防自己人，才有力氣對付外面的威脅。</li><li>多巴胺讓人衝業績，催產素和血清素才讓人互相信任；只靠前者的組織會上癮然後崩壞。</li><li>領導的特權是有代價的：危險來時，你得願意把別人的需要排在自己前面。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>賽門・西奈克原本做的是廣告行銷，後來以一場談「黃金圈」的演講和《先問，為什麼？》成名，成了全球最常被企業請去演講的人之一。那本書講的是「為什麼有些組織特別能鼓舞人」，但他自己後來發現，光有動人的「為什麼」還不夠——很多公司口號漂亮，員工卻每天上班都在自保。</p>
+<p>這本書的書名來自他和美國海軍陸戰隊一位退役中將的對話。西奈克問他，陸戰隊的向心力到底從哪來？對方只回了一句：「長官最後吃。」在陸戰隊的餐廳裡，排隊打飯的順序是階級最低的士兵先拿、軍官殿後，沒有哪條規定這樣寫，大家就是這樣做。這個畫面成了全書的核心意象：領導者把別人的需要擺在自己前面，換來的是部屬願意為他、為彼此拚命。</p>
+<p>2014 年出版時，美國職場正處在金融海嘯後的餘波裡：裁員成了常態管理工具，員工對雇主的信任跌到谷底。西奈克想回答的是，我們怎麼把工作場所搞成一個人人自危的地方，又該怎麼修回來。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼有些團隊的人願意為彼此犧牲，有些團隊卻充滿算計、推責任、搶功勞？」</p>
+<p>多數人的直覺是：因為前者找到了比較好的人。西奈克的答案相反——<strong>同一批人放進不同的環境，行為會完全不同。</strong>當人覺得身邊的同事和上司可能傷害自己，他會把大量心力拿去防備內部：寫自保用的信、藏資訊、不敢承認錯誤。當人覺得自己被保護，同樣的心力就會轉向外面，去對付競爭者和真正的難題。而決定環境是哪一種的，就是領導者。</p>
+<p>如果你帶過團隊卻覺得大家各掃門前雪，或你自己就在一個每天都得小心說話的辦公室，這本書提供的是一套解釋——用生物學解釋，而不只是道德勸說。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、安全圈：領導者真正的產品</h3>
+<p>書的開場是一段阿富汗戰場的故事。一位代號「強尼・布拉佛」的 A-10 攻擊機飛行員，在夜間替地面的特種部隊護航。雲層很厚，他看不到地面的狀況，只從無線電裡聽出弟兄遇上了麻煩。他決定穿雲而下，在群山環繞的峽谷裡低空飛行，一趟又一趟地掃射支援，子彈打光後還回頭引導僚機繼續打。那一夜地面部隊全員生還。</p>
+<p>事後有人問他為什麼冒這種險，他的回答很平淡：因為他們也會為我這麼做。</p>
+<p>西奈克從這裡拉出「安全圈」的概念。外面的世界永遠有危險——競爭對手、景氣、技術變化——這些我們控制不了。我們能控制的是圈子裡面：組織內部有沒有危險。如果一個人擔心被上司羞辱、被同事捅刀、哪天莫名其妙被裁掉，他等於同時在打兩場仗。領導者的工作，就是把安全圈畫大，大到連最基層的人都站在裡面。</p>
+<p>他用機械設備商巴里威米勒的執行長查普曼（Bob Chapman）當例子。查普曼接手一家被併購的工廠時，發現辦公室職員可以自由走動、打電話，產線工人卻要打卡、聽鈴聲才能休息，連拿備用零件都得隔著鐵籠向人申請。他拿掉打卡鐘、拆了鐵籠，理由很簡單：你把人當成不可信任的對象，他們就會表現得不可信任。後來金融海嘯重創訂單，董事會討論裁員，查普曼拒絕了，改成讓全公司上至執行長下至作業員都輪流放幾週無薪假。他的說法是：與其讓少數人承受很多，不如大家都承受一點。結果員工開始自發互相調換假期——經濟狀況好一點的，替撐不住的同事多休幾週。</p>
+<p><strong>實用價值</strong>：安全圈不是福利，而是一種承諾——「我不會為了保住數字而犧牲你」。只要這句話在關鍵時刻兌現過一次，團隊的行為就會改變。</p>
+<h3>二、四種化學物質：自私的與無私的</h3>
+<p>西奈克花了很大篇幅談人體裡的四種化學物質，把它們分成兩組。</p>
+<p><strong>腦內啡和多巴胺是「自私的」</strong>。腦內啡掩蓋身體的疼痛，讓人撐過勞累；多巴胺是達成目標時的快感，劃掉待辦事項、達到業績、看到手機通知跳出來，都是它。這兩種東西讓個人把事情做完，沒有它們我們不會有動力。</p>
+<p><strong>血清素和催產素是「無私的」</strong>。血清素來自被認可、被尊重的感覺——畢業典禮上你在台上領證書，台下的父母同時也覺得驕傲，就是這種東西把人和「為我付出的人」綁在一起。催產素來自信任、友誼與真誠的付出，握手、擁抱、有人花時間幫你，都會讓它分泌。它累積得慢，但效果持久。</p>
+<p>還有第五個角色：<strong>皮質醇</strong>，也就是壓力荷爾蒙。它是為了應付短暫危險而設計的——草叢裡有動靜，全身警戒。問題是在一個不安全的辦公室裡，那種「草叢有動靜」的感覺是全天候的。皮質醇長期偏高會壓抑免疫系統，也會抑制催產素，讓人更難同理別人。換句話說，壞的工作環境不只是讓人不開心，是真的會讓人生病、讓人變得更自私。</p>
+<p>西奈克的診斷是：現代企業的獎勵制度幾乎全押在多巴胺上——季目標、獎金、排名。多巴胺有成癮性，而且每次都需要更大的劑量。一個只剩多巴胺的組織，會養出為了達標不擇手段的人。</p>
+<p><strong>限制在哪</strong>：這套荷爾蒙說法是科普等級的簡化，神經科學家不會把四種物質分得這麼乾淨。把它當成好記的比喻就好，別當成精確的生理學。</p>
+<h3>三、抽象化：當人變成數字</h3>
+<p>人是在小團體裡演化出來的。書中引用人類學家鄧巴的研究：一個人能維持真實關係的上限大約是一百五十人。超過這個規模，其他人對我們來說就開始變成抽象概念。</p>
+<p>西奈克把這點和著名的米爾格蘭電擊實驗連起來。那個實驗裡，受試者被要求對「答錯的學習者」施加越來越強的電擊。當受試者看不到也聽不到對方時，絕大多數人會一路按到最高伏特；但當對方就在同一個房間、甚至必須親手把對方的手壓在電擊板上時，願意繼續的人就少得多。<strong>距離讓殘忍變得容易。</strong></p>
+<p>把這個邏輯搬進企業：當高層看到的只是試算表上的「人力成本」，裁掉幾千人只是把一個數字調低。他回顧了美國企業的轉折——八零年代起，大規模裁員從萬不得已的手段，變成為了達成季度預期的例行工具，「股東價值最大化」成了最高原則。他拿奇異公司的威爾許與好市多的創辦人辛尼格做對比：前者靠年年淘汰末段員工和頻繁裁員衝高股價，後者堅持給員工高於同業的薪資福利，被華爾街嫌太大方。拉長時間看，好市多的走勢穩得多，而且景氣差的時候員工沒有逃。</p>
+<p>書裡給的解方很樸素：讓人見到人。讓做決策的人見到被決策影響的人；讓員工見到自己工作真正幫到的對象；把組織切成彼此認識的小單位。</p>
+<p><strong>常見誤用</strong>：有人讀完得出「公司不能太大」的結論。西奈克說的不是規模本身，而是大組織要刻意設計，讓每個人都活在一個「認得彼此」的單位裡。</p>
+<h3>四、領導的代價：特權不是白拿的</h3>
+<p>為什麼我們願意讓領導者拿比較高的薪水、比較好的辦公室、比較多的關注？西奈克用演化的角度解釋：群體裡的「老大」先吃、先挑伴侶，這是大家默許的，因為有交換條件——危險來的時候，最強壯的那個要衝在前面。</p>
+<p>所以我們其實不氣高薪本身。我們氣的是有人拿了老大的待遇，危險來時卻犧牲別人保全自己。領了巨額獎金之後宣布裁員，冒犯的正是這條深層的社會契約。</p>
+<p>他還講了一個小故事：一位卸任的國防部高官受邀演講，前一年還在任時，他坐商務艙、有專人接送，後台有人用瓷杯替他端上咖啡；今年卸任了，自己搭經濟艙、自己叫車，後台的人指指牆角的咖啡機，他自己用保麗龍杯倒了一杯。他對台下說：那個瓷杯從來不是給我的，是給那個職位的。</p>
+<p>另一個例子是潛艦艦長馬凱特（David Marquet）。他接手一艘表現吊車尾的核子潛艦，卻發現自己受訓熟悉的是另一款艦型，根本沒辦法事事下令。他乾脆反過來：不再下命令，要求官兵改口說「我打算……」，把決定權交給掌握資訊的人。這艘艦後來成了艦隊裡評比最高的之一。</p>
+<p><strong>實用價值</strong>：領導是一種選擇，不是一個職稱。沒有頭銜的人只要願意照顧身邊的人，就在做領導的事；有頭銜卻只顧自己的人，只是一個「有權的人」。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>人天生需要安全感</strong>（我們是靠互相照應活下來的物種）→ <strong>身體用化學物質獎勵合作、用皮質醇懲罰孤立</strong>（所以環境會直接改變行為）→ <strong>現代企業卻把人抽象成數字、只用多巴胺驅動</strong>（於是內部變成危險地帶）→ <strong>解方是領導者重新扛起代價</strong>（先保護人，人才會保護組織）。</p>
+<p>每一環都在說同一件事：信任不是喊出來的，是有人先付出代價換來的。而該先付的那個人，是位置比較高的那個。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（你有帶人，或你是資深成員）</strong>：</p>
+<ol><li>找出團隊裡的「鐵籠」：哪些規定其實在說「我不信任你」？報帳要三層簽核、請假要寫理由、開會要點名。挑一條拿掉。</li><li>壞消息先保人：有人搞砸事情時，第一句話先問「你還好嗎、需要什麼」，檢討放到第二步。大家會記得你第一句說了什麼。</li><li>把抽象變具體：下次看報表前，先找一位數字背後的真人聊十五分鐘——客戶、第一線同事都行。</li><li>給時間，不只給錢：幫同事看一份簡報、陪新人走一次流程。西奈克說時間和精力才是催產素的來源，因為那是不可再生的資源。</li><li>試一次「我打算……」：讓部屬帶著判斷來找你，而不是帶著問題來等你裁示。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>吃飯時手機離桌：把注意力完整給眼前的人，是最便宜的信任投資。</li><li>留意自己的多巴胺來源：今天有幾次快感來自通知和按讚，幾次來自真的幫到某個人？</li><li>在家也「最後吃」：家人都累的時候，你先去洗碗、先去倒垃圾，不必宣布。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「所以領導者要當濫好人、不能要求績效」</strong>——不是。陸戰隊是要求最嚴格的組織之一。安全圈保證的是「你不會被自己人犧牲」，不是「你做得不好也沒關係」。</li><li><strong>「多巴胺是壞東西」</strong>——四種物質都需要。沒有多巴胺就沒有人把事情做完。問題出在比例失衡：組織只獎勵達標，不獎勵互助。</li><li><strong>「永不裁員才是好公司」</strong>——書裡反對的是把裁員當成美化財報的第一選項。企業遇到真正的生存危機時仍可能得縮編，差別在於領導者有沒有先把自己放進受損的名單。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《克服團隊領導的5大障礙》（藍奇歐尼）：同樣把「信任」放在金字塔最底層，但藍奇歐尼給的是診斷工具和開會方法，西奈克給的是「為什麼信任這麼根本」的生物學理由。一本講怎麼修，一本講為什麼壞。</li><li>《心理安全感的力量》（艾德蒙森）：安全圈的學術版。艾德蒙森用醫院和企業的研究證明，敢開口的團隊學得快、出事少——這個月底我們就會讀到它。</li><li>《徹底坦率》（金・史考特）：西奈克談「關心」，史考特補上另一半——關心之外還要敢直接挑戰。只有安全沒有直話，團隊會變得舒服但平庸。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「領導的真正代價，是願意把別人的需要放在自己的需要之前。」（The true price of leadership is the willingness to place the needs of others above your own.）</li><li>「領導不是當老大，而是照顧好歸你負責的人。」（大意）</li><li>「當我們感覺身處安全圈之內，就會把力氣用來對抗外面的危險，而不是用來提防彼此。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你待過最「安全」的一個團隊：是哪一個具體時刻，讓你確定「這裡的人不會犧牲我」？那個時刻是誰創造的？</li><li>你現在的工作環境裡，有沒有一個相當於「鐵籠」的規定或習慣？如果你有權拿掉它，你擔心會發生什麼事？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="leaders-eat-last" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "leaders-eat-last";
+      var TITLE = "最後吃，才是真領導";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "leaders-eat-last";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

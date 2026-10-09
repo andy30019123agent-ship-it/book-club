@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>喚醒你心中的大師｜拾頁</title>
+<meta name="description" content="你以為達文西、莫札特、達爾文是天生的天才？葛林翻遍他們的傳記後說，他們走的是同一條又長又不起眼的路——而那條路，一般人也走得上去。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="mastery" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-09</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 14 分鐘</span></div>
+  <h1>喚醒你心中的大師</h1>
+  <p class="title-en">Mastery</p>
+  <p class="byline">羅伯・葛林（Robert Greene）｜2012</p>
+  <p class="hook">你以為達文西、莫札特、達爾文是天生的天才？葛林翻遍他們的傳記後說，他們走的是同一條又長又不起眼的路——而那條路，一般人也走得上去。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>大師不是天生的：先找到自己的「人生志業」，再走過學徒、創造、精通三個階段。</li><li>學徒期的目標不是薪水和頭銜，而是學到東西——把自己放進能練到真功夫的位置。</li><li>長年沉浸之後，理性與直覺會合而為一，那種「一眼看穿」的能力是時間換來的。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>羅伯・葛林是美國作家，最有名的作品是《權力世界的叢林法則》（The 48 Laws of Power），那本書冷酷地拆解歷史上的權謀手段，讓他紅遍商界和嘻哈圈，也招來不少批評。在成為作家之前，他換過非常多份工作——編輯、翻譯、好萊塢的寫手等等，一直到三十幾歲才找到「把歷史故事寫成人性手冊」這條路。這段到處碰壁的經歷，後來成為這本書的重要底色。</p>
+<p>《喚醒你心中的大師》出版於 2012 年。葛林說，他在研究歷史上那些握有權力的人時，一直看到同一個模式：真正站上頂峰的人，都經歷過相似的養成過程。於是他花了幾年讀傳記，研究達文西、莫札特、達爾文、富蘭克林、歌德、法拉第、愛因斯坦這些歷史人物，同時訪談了九位當代的高手，包括神經科學家拉瑪錢德朗、動物科學家天寶・葛蘭汀、程式設計師兼創業推手保羅・葛拉漢、建築師卡拉特拉瓦、拳擊教練佛萊迪・羅區、機器人學家松岡陽子、語言學家丹尼爾・艾弗列特等人。</p>
+<p>這本書寫在「一萬小時法則」正流行的年代，也寫在很多人相信「找到捷徑、快速成功」的年代。葛林的立場剛好相反：他想告訴你這條路沒有捷徑，但有地圖。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼有些人能把一件事做到出神入化，而我好像什麼都只會一點？」常見的答案是天分。葛林不否認每個人天生的傾向不同，但他認為「天才是神祕禮物」這個說法害人不淺——它讓我們把大師當成另一種生物，然後安心地放棄。</p>
+<p>他的主張是：<strong>精通是一個過程，而且這個過程有固定的結構。</strong>每個人心裡都有一股天生的偏好，把這股偏好找出來，再經過長時間、有方法的磨練，大腦會真的改變，最後出現一種看起來像魔法的直覺能力。書的架構就照這條路排：找到志業、當學徒、找師父、學會看人、進入創造期、最後抵達精通。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、人生志業：先找到那件「非你不可」的事</h3>
+<p>葛林相信每個人小時候都對某些事物有說不上來的強烈吸引力，他稱之為內在的傾向。長大後，父母的期待、同儕的眼光、對金錢的焦慮會把這個聲音蓋掉，我們於是選了「看起來合理」的工作，然後越做越空。</p>
+<p>他舉達文西為例：達文西是私生子，沒辦法走父親公證人的路，也沒受過正規的學院教育；小時候他常跑到野外，拿父親辦公室的紙去畫花草、動物、流水。這股「想把看到的東西弄懂並畫下來」的衝動，後來貫穿了他一生看似雜亂的興趣——繪畫、解剖、機械、水利，其實都是同一件事。</p>
+<p>另一個例子是天寶・葛蘭汀。她有自閉症，小時候難以用語言表達，卻對動物和視覺化的思考特別敏感。她沒有試圖變成「正常人」，而是順著這個特質走，後來成為設計牲畜處理設施的專家。葛林用她來說明：你的獨特之處，包括那些看起來是缺陷的地方，正是線索。</p>
+<p>書中給了幾種找到志業的策略，例如回到童年的原點去找線索、找一個競爭不擁擠而自己能稱霸的小領域、發現走錯路就勇敢離開、以及把人生看成一段會轉彎的旅程而不是一條直線。葛林自己就是最後一種——他前面那些雜七雜八的工作，最後全部成為寫作的養分。</p>
+<p><strong>限制在哪</strong>：「每個人都有命定的志業」比較像一種信念，不是可以驗證的事實。有些人到中年仍然沒有強烈的召喚，這本書對這種情況能給的幫助有限。比較實用的讀法是：把它當成「留意什麼事會讓你一直想回去做」的提醒。</p>
+<h3>二、理想的學徒期：你要賺的是能力，不是薪水</h3>
+<p>這是全書最扎實的一章。葛林說，離開學校之後的五到十年，是人生最關鍵卻最常被浪費的階段。這段時間的目標只有一個：<strong>把自己改造成有真本事的人。</strong>所以選工作的標準應該是「哪裡學得最多」，而不是哪裡錢多、名聲好。</p>
+<p>他最愛舉的例子是達爾文。年輕的達爾文對父親替他安排的醫學和神職都沒興趣，只喜歡採集標本。後來他得到機會，以博物學者的身分登上小獵犬號，進行了將近五年的環球航行。這趟旅程沒什麼報酬，又苦又危險，但他在船上和各地日復一日地觀察、採集、記錄、與自己的假設搏鬥。回到英國時，他已經從一個漫無目標的年輕人變成紀律嚴明的科學家。葛林說，那趟航行就是達爾文的學徒期。</p>
+<p>學徒期被拆成三個步驟：</p>
+<p><strong>深度觀察（被動模式）</strong>。剛進一個環境，先別急著表現或改革。安靜地看：這裡真正的規則是什麼、權力怎麼運作、誰做得好而他們好在哪裡。</p>
+<p><strong>技能習得（練習模式）</strong>。挑出最核心的技能，一次練一樣，大量重複到變成自動反應。葛林在這裡提到廣為流傳的一萬小時說法，也強調練習要專注在自己不擅長的地方，而且要能忍受枯燥。他形容這是一個加速循環：越練越熟，越熟越有趣，越有趣就練得越久。</p>
+<p><strong>實驗（主動模式）</strong>。在還沒覺得「準備好」之前，就開始把作品拿出去接受批評，用真實的回饋檢驗自己。</p>
+<p>富蘭克林也是例子：他年輕時在哥哥的印刷廠當學徒，為了練寫作，會把自己欣賞的文章讀熟，隔幾天憑記憶重寫，再跟原文對照找差距。沒有人教他，他自己設計了回饋機制。</p>
+<p><strong>常見誤用</strong>：把「學徒期要吃苦」當成忍受爛工作的理由。葛林的標準是「有沒有在學」。如果一個位置既沒有東西可學，也沒有人可觀摩，待著就只是消耗。</p>
+<h3>三、師父與社交智慧：兩個常被忽略的加速器</h3>
+<p>葛林主張，好的師父能幫你省下大量的摸索時間，因為他把自己多年犯過的錯濃縮起來直接傳給你。他舉的例子是法拉第：出身貧寒、只是個裝訂工學徒的法拉第，去聽了化學家漢弗里・戴維的演講，把筆記仔細整理、裝訂成冊送給戴維，後來爭取到在他實驗室當助手的機會。法拉第在戴維身邊學到做實驗的整套方法，幾年後開始有自己的發現，最終走出師父的影子。</p>
+<p>這裡有兩個重點。第一，師父憑什麼教你？你得先讓自己有用——法拉第是靠那本筆記和勤奮證明的。第二，師徒關係有保存期限。葛林說得很白：你的目標是吸收師父的本事，然後超越他；如果一直待在他的陰影下，你會變成他的複製品。</p>
+<p>另一個加速器是「社交智慧」。葛林認為很多有才華的人卡住，不是因為能力，而是因為看不懂人：太天真、太以自我為中心、把別人的行為都往自己身上解讀。富蘭克林年輕時就吃過這種虧——他輕信了一位地方大人物的口頭承諾，遠渡重洋到倫敦，才發現對方答應的資助和介紹信根本不存在。這次教訓之後，他開始練習退後一步觀察人的實際行為而非言語，日後成為出色的外交家。葛林在這章列出嫉妒、從眾、僵化、自我中心、懶惰、善變、被動攻擊等幾種他認為人人身上都有的特質，提醒你別期待別人不是這樣。</p>
+<p><strong>限制在哪</strong>：這一章帶著葛林一貫的冷眼風格，讀起來容易讓人變得多疑。把它當成「降低被人際問題絆倒的機率」的防身術就好，不必當成待人的全部哲學。</p>
+<h3>四、創造期與精通：直覺是練出來的</h3>
+<p>學徒期結束後，危險來了：你已經熟悉規則，很容易就停在「熟練的匠人」，照著學來的方法安全地做下去。葛林說，要進入創造期，必須刻意讓頭腦保持開放，他稱為「原初的心智」——像孩子一樣帶著好奇去看熟悉的東西。</p>
+<p>莫札特是他的例子。莫札特從小被父親嚴格訓練並帶著四處巡演，技巧早已純熟，卻有很長一段時間必須寫符合雇主和父親期待的音樂。葛林描述的關鍵轉折，是他二十多歲時離開家鄉薩爾茲堡、定居維也納，擺脫了這些束縛，才真正寫出只屬於他的作品。也就是說，連莫札特都是先經過十幾年的學徒期，才迎來創造力的爆發。</p>
+<p>書中給的創造策略包括：選一個讓你有強烈情感投入的題目、容許自己長時間處在「還沒有答案」的不確定裡（他借用詩人濟慈的說法，稱為消極能力）、在專注和放鬆之間交替、以及留意反常的小現象。</p>
+<p>最後一個階段才是精通。葛林的描述是：當你在一個領域沉浸了夠多年，大量的知識和經驗在腦中內化，你會開始「感覺」到整體，不必一步一步推理就能看出問題在哪。他舉了作家普魯斯特：年輕時被當成不務正業的社交名流，實際上花了多年大量閱讀、翻譯、做筆記、觀察人，這些累積最後匯流成《追憶似水年華》。葛林強調這種直覺不是神祕力量，而是理性訓練的最高形式，兩者融合在一起。</p>
+<p><strong>實用價值</strong>：當你覺得自己「沒有靈感、沒有直覺」，這本書的回答是——時間還沒到，而不是你沒有天分。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>一條很清楚的時間軸：<strong>找到傾向</strong>（你要往哪裡去）→ <strong>學徒期</strong>（觀察、練技能、做實驗，把自己變成有本事的人）→ <strong>借力</strong>（師父幫你加速，社交智慧幫你不被絆倒）→ <strong>創造期</strong>（打破學來的框架，做出自己的東西）→ <strong>精通</strong>（長年累積讓直覺和理性合一）。每一步都不能跳，而且每一步的敵人不同：第一步的敵人是別人的期待，第二步是沒耐心，第三步是自大和天真，第四步是安逸。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>評估現在的工作時，把「這一年我學到了什麼新能力」放在薪水和頭銜前面</li><li>到新環境的前三個月，每天記下一條你觀察到的「不成文規則」，先看懂再開口改</li><li>挑一項核心技能，每天安排一段專攻弱點的練習，並找到可以對照的標準</li><li>找一位你想學的前輩，先想清楚自己能幫他什麼，再去請教；給這段關係設想一個畢業的時間</li><li>作品做到七八成就拿出去給人看，蒐集真實的批評</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>回想十歲左右，什麼事會讓你做到忘記吃飯？列三樣，看看現在的生活裡還剩多少</li><li>給自己一個學徒式的副業專案：不為賺錢，只為練一樣技能</li><li>被某人惹惱時，先問「他平常對別人也這樣嗎」，練習不把事情個人化</li><li>每週留一段不追求產出的時間，讓腦袋在專注之外有機會把東西連起來</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「所以只要撐滿一萬小時就會成為大師」</strong>——葛林重視的是時間的品質：有沒有針對弱點、有沒有回饋、有沒有從練習走到實驗。原地重複十年不算。</li><li><strong>「這是教人不擇手段往上爬的書」</strong>——因為作者的名聲，很多人這樣預期。這本其實是他最正面的一本，談的是把自己練好；社交智慧那章談的是自保和看清，不是算計。</li><li><strong>「大師都是孤獨的天才」</strong>——書裡的人幾乎都有師父、有同儕、有長時間不起眼的養成。天才單打獨鬥的形象，正是葛林想拆掉的。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《刻意練習》（安德斯・艾瑞克森）：拾頁 8 月讀過。艾瑞克森用研究說明「怎麼練才有效」，葛林用傳記說明「一輩子的路怎麼排」。前者是學徒期第二步的科學版。</li><li>《恆毅力》（安琪拉・達克沃斯）：興趣、練習、目的、希望——跟葛林的志業加學徒期幾乎可以一一對應，只是多了測量工具。</li><li>《跨能致勝》（大衛・艾波斯坦）：艾波斯坦會提醒你，很多高手是繞了很多路才找到方向的。這跟葛林自己的經歷其實吻合，可以用來平衡「越早專精越好」的印象。</li><li>《心流》（契克森米哈伊）：葛林描述的加速循環，背後就是心流的機制。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「未來屬於那些學會更多技能，並以創造性的方式把它們結合起來的人。」（The future belongs to those who learn more skills and combine them in creative ways.）</li><li>「學徒期的目標不是金錢、好職位、頭銜或文憑，而是你心智與性格的轉變。」（大意）</li><li>「精通不是天分或才華的結果，而是時間與高度專注投入某個領域的結果。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>如果用「學到多少」而不是「賺到多少」來評分，你做過的哪一份工作分數最高？那份工作有什麼條件？</li><li>你現在比較像卡在哪一關：不知道志業在哪、學徒期沒耐心、還是已經熟練卻不敢做自己的東西？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="mastery" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "mastery";
+      var TITLE = "喚醒你心中的大師";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "mastery";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

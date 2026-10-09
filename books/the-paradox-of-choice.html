@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>選擇的弔詭｜拾頁</title>
+<meta name="description" content="選項越多越自由、越自由越快樂？史瓦茲說，過了某個點之後，多出來的選擇只會讓你更難決定、更容易後悔，而且更愛怪自己。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-paradox-of-choice" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-11-24</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>選擇的弔詭</h1>
+  <p class="title-en">The Paradox of Choice</p>
+  <p class="byline">貝瑞・史瓦茲（Barry Schwartz）｜2004</p>
+  <p class="hook">選項越多越自由、越自由越快樂？史瓦茲說，過了某個點之後，多出來的選擇只會讓你更難決定、更容易後悔，而且更愛怪自己。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>選項超過一定數量後，帶來的不是自由而是癱瘓、後悔與更高的期待。</li><li>凡事追求「最好」的最大化者，選得可能比較好，卻比「夠好就好」的知足者不快樂。</li><li>解法是主動設限：決定哪些事值得花力氣選，其餘用規則、習慣和「夠好」帶過。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>貝瑞・史瓦茲是美國心理學家，在賓州的斯沃斯莫爾學院教了幾十年書，研究領域橫跨心理學與經濟學，長期關注一個問題：市場社會的價值觀如何影響人的幸福感。</p>
+<p>這本書出版於 2004 年。那個時間點，美國的超市貨架、有線電視頻道、退休金方案、手機資費都已經多到令人眼花，而網路購物才剛起步。主流的想法是：選擇越多，每個人越能找到最適合自己的，社會整體也就越幸福。史瓦茲提出了相反的觀察——美國人的物質選擇比上一代多得多，但調查中自認快樂的人並沒有增加，憂鬱的比例反而上升。</p>
+<p>書的開場是他自己的小故事。他去店裡買牛仔褲，店員問他要修身、舒適、寬鬆還是特寬鬆，要石洗、酸洗還是仿舊，要鈕扣還是拉鍊。他以前買牛仔褲只要五分鐘，這次花了很久，還試了一堆。最後買到的褲子確實比以前合身——但他走出店門時感覺反而更差。更好的結果、更糟的感受，就是書名「弔詭」的由來。台灣早年的譯本甚至直接把這個故事放進書名裡。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p><strong>為什麼擁有更多選擇，沒有讓我們更滿意？</strong></p>
+<p>史瓦茲先說清楚他不反對選擇。沒有選擇的人生幾乎無法忍受，從沒有選擇到有一些選擇，是巨大的進步。他的主張是：選擇和幸福的關係不是一路向上的直線。選項從少變多，一開始好處很明顯；但繼續增加下去，好處越來越小，成本卻越來越大——比較的時間、做錯的擔憂、對放棄選項的惋惜——到某個點之後，淨效果轉為負的。</p>
+<p>而現代富裕社會，在很多領域早就越過了那個點。這本書要講的，就是越過之後會發生什麼事，以及個人可以怎麼辦。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、選擇過載：選項太多，人反而不選</h3>
+<p>書中最有名的證據是「果醬實驗」，由心理學家艾恩嘉與萊普完成。他們在一家高級超市擺試吃攤位，有時陳列二十四種果醬，有時只擺六種。二十四種的攤位吸引了比較多人駐足；但實際掏錢購買的比例，六種的攤位高出許多——大約是三成對上百分之三，差了十倍。選項多很吸睛，卻讓人下不了手。</p>
+<p>同樣的模式出現在重要得多的決定上。有研究分析了大量美國企業的退休金方案後發現，公司提供的基金選項越多，員工的參加率反而越低。很多人看到幾十檔基金就決定「之後再研究」，然後就一直沒有之後——等於白白放棄雇主相對提撥的錢。</p>
+<p>史瓦茲還談到醫療。過去醫生直接告訴病人該怎麼治療；現在的做法是列出方案與風險，由病人自己決定。這在倫理上是進步，但書中引述的調查顯示，多數人被問到「如果你得了重病，想不想自己決定療法」時回答想；真正的患者卻大多希望不要由自己來決定。把選擇權交出去的同時，也把負擔和責任一起交給了最不適合承擔的人。</p>
+<p><strong>限制</strong>：這裡要誠實補充。這本書出版之後，學界對「選擇過載」做了大量重複研究，結果並不一致——有彙整多項研究的分析發現，平均下來效果接近於零；後續研究則指出它在特定條件下才明顯，例如選項彼此難以比較、選擇者沒有明確偏好、有時間壓力時。所以比較準確的說法是：選擇過載確實存在，但不是「選項一多必然變糟」的鐵律。</p>
+<h3>二、最大化者與知足者：你要「最好」還是「夠好」</h3>
+<p>這是全書最有用的區分，概念源自諾貝爾經濟學獎得主司馬賀（Herbert Simon）。</p>
+<p><strong>最大化者</strong>的目標是「最好的那一個」。買電視要比完所有型號、看遍所有評測；就算已經買了，看到別的選項還是會想自己是不是買錯了。<strong>知足者</strong>的目標是「夠好」。他們有明確的標準，可能還很高，但只要找到第一個符合標準的選項就停手，不再回頭看。</p>
+<p>史瓦茲和同事設計了一份量表來測量這種傾向，題目像是「看電視時，我常常一邊看一邊轉台，看看有沒有更好的」「我很難替朋友挑禮物」。結果發現，最大化傾向越強的人，生活滿意度、快樂與樂觀程度越低，憂鬱傾向和後悔感越高。</p>
+<p>最能說明問題的是他們後來做的一項求職研究：追蹤一批即將畢業的大學生找工作。最大化者找到的工作，起薪明顯比知足者高；但他們對求職過程與結果更不滿意，更焦慮、更悲觀。客觀上贏了，主觀上輸了。</p>
+<p>為什麼？因為在選項爆炸的世界裡，「最好」是一個幾乎無法驗證的目標。你永遠有還沒看過的選項，所以永遠無法確定自己拿到了最好的。知足者的標準則是握在自己手上的，達到了就是達到了。</p>
+<p><strong>常見誤用</strong>：把知足等同於隨便或沒追求。知足者可以有很高的標準，差別只在於「達標即止」。史瓦茲也提到，多數人不是全面的最大化者，而是在某些領域特別放不下——找出是哪些領域，就能對症下藥。</p>
+<h3>三、為什麼選多了更不快樂：四個心理機制</h3>
+<p>史瓦茲解釋了好選項太多為何會侵蝕滿足感，至少有四條路徑。</p>
+<p><strong>機會成本</strong>。選了甲，就放棄了乙、丙、丁各自的優點。選項越多，被放棄的好處加起來越可觀，你對甲的滿意度就被扣得越多。更麻煩的是，我們會在腦中拼出一個不存在的完美選項：甲的價格、乙的地點、丙的景觀——然後拿現實跟它比。</p>
+<p><strong>後悔</strong>。有兩種：決定之後的懊悔，以及決定之前就開始擔心會懊悔。後者會讓人拖延、乾脆不選，或選擇最不容易被責怪的保守選項。史瓦茲引用一項有趣的觀察：奧運銅牌得主看起來常比銀牌得主開心——銀牌想的是「差一點就金牌」，銅牌想的是「差一點就沒牌」。滿足感取決於你拿自己跟哪個想像中的結果比。</p>
+<p><strong>適應</strong>。新買的東西帶來的快樂會消退，而且消退得比我們預期的快。如果你為了一個選擇花了三個月研究，它的好處卻在三週內就習以為常，那筆投入的報酬率就很差。選擇的成本是一次付清的，快樂卻會逐日打折。</p>
+<p><strong>期待升高與自責</strong>。只有一種牛仔褲的時候，不合身是世界的錯；有上百種的時候，不合身就是你的錯——那麼多選擇，你怎麼沒挑到對的？選項越多，期待越高，結果越難超出期待；而一旦失望，可以怪的人只剩自己。史瓦茲認為，這種「一切都操之在我，所以不如意都是我的問題」的歸因方式，是富裕社會憂鬱增加的原因之一。他在這裡借用了心理學對習得無助與歸因風格的研究。</p>
+<p>還有一項是<strong>社會比較</strong>：選擇的結果好不好，我們常靠跟別人比來判斷，而最大化者特別容易受比較影響。別人的選擇永遠看起來不錯，尤其你只看得到他們展示出來的那一面。</p>
+<h3>四、解方：替自己設限</h3>
+<p>史瓦茲在書末提出十一條建議，可以歸成幾組。</p>
+<p><strong>決定什麼值得選</strong>。他稱之為「選擇何時做選擇」。回顧最近幾次決定，估算各花了多少時間精力、最後多得到多少好處，你會發現很多決定根本不值得那樣的投入。可以替自己訂規則：買衣服最多逛兩家店、選餐廳只比較三家。他區分了「挑揀者」和「選擇者」——前者被動地在別人給的選項裡挑，後者會先問這件事對我重不重要、甚至要不要選。把省下來的力氣留給真正重要的決定。</p>
+<p><strong>多當知足者</strong>。在大多數事情上明確定義「夠好」的標準，達標就收手。</p>
+<p><strong>讓決定不可逆</strong>。直覺上，可以退貨、可以反悔比較好。但研究顯示，知道可以改變心意的人，對自己的選擇反而比較不滿意——因為心裡那個「要不要換」的程序一直沒關。決定一旦定案，心理上會自動開始替它找優點。史瓦茲把這一點延伸到感情：一直想著「會不會有更好的對象」，會吃掉經營眼前這段關係的心力。</p>
+<p><strong>調整心態</strong>。少想被放棄的選項的好處；練習感恩，刻意注意已經選到的東西的優點；預期自己會適應，別期待新東西能帶來長久的興奮；降低期待；減少跟別人比較。</p>
+<p><strong>把限制當朋友</strong>。書末用了一個魚缸的比喻：魚缸裡的魚看似被限制，但打破魚缸，魚得到的不是自由而是死亡。規則、習慣、承諾與社會連結固然限制了選項，卻也讓我們不必每天從零開始做每一個決定。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>前提</strong>：選擇是好事，但邊際效益遞減 → <strong>現象</strong>：選項過多時人會癱瘓、不選或選得更草率 → <strong>個別差異</strong>：追求最好的最大化者受害最深，夠好就好的知足者相對免疫 → <strong>機制</strong>：機會成本、後悔、適應、期待與自責、社會比較，把「客觀上更好的結果」轉成「主觀上更差的感受」 → <strong>解方</strong>：選項不會自己變少，所以要主動設限——挑戰場、定標準、關掉回頭路、調整比較對象。</p>
+<p>一句話：自由的價值在於讓你過想要的生活，而不是讓你把人生花在挑選上。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>分級：把決定分成「可逆且影響小」「可逆但影響大」「不可逆」三類，第一類限時五分鐘或直接授權別人。</li><li>先寫標準再看選項：挑供應商、選工具、面試人選之前，先列出三到五條「夠好」的條件，第一個全部符合的就進入決選。</li><li>替別人減少選項：給主管或客戶提案時，別丟十個方案，給兩三個並附上你的推薦。</li><li>決定後關門：定案的事在下次固定檢討日之前不重開討論。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>找出你的最大化領域（旅遊住宿？三C？餐廳？），替它訂一條規則，例如「最多比較三個」或「研究時間上限三十分鐘」。</li><li>日常瑣事固定化：平日早餐、通勤穿搭、固定採買清單，把選擇變成習慣。</li><li>買了就不再看比價和評測；取消追蹤那些只會讓你覺得「別人選得比較好」的帳號。</li><li>睡前寫下今天一件選對的小事——這是史瓦茲說的感恩練習，用來對抗適應與後悔。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「選擇越少越好」</strong>——史瓦茲從沒這樣說。完全沒有選擇是剝奪；他說的是「一些」比「沒有」好，但「更多」不一定比「一些」好，存在一個甜蜜點。</li><li><strong>「知足就是降低標準、放棄追求」</strong>——知足者的標準可以很高，重點是有明確的停止條件。在真正重要的少數事情上，你當然可以花力氣追求更好。</li><li><strong>「果醬實驗證明選項多一定賣不好」</strong>——那只是一項研究，之後的重複實驗結果好壞參半。選擇過載是有條件的現象，不是放諸四海皆準的定律；把它當成提醒而不是公式。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《快思慢想》（康納曼）：損失比獲得更有感、我們不擅長預測自己未來的感受——史瓦茲談機會成本與適應時，用的正是康納曼與特沃斯基的研究。拾頁書庫已有，可回頭對照。</li><li>《少，但是更好》（麥基昂）：史瓦茲解釋為什麼選項多會拖垮人，麥基昂則提供職場上「只做最重要的事」的實踐方法。一個講原因，一個講做法。</li><li>《快樂為什麼不幸福？》（吉伯特）：專門談人為什麼老是猜錯什麼會讓自己快樂，包括「不可逆的決定反而比較滿意」這項發現，是本書第三、四節最好的補充。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「學習選擇很難，學習選得好更難；而在一個可能性無窮的世界裡學習選得好，還要更難，也許太難了。」（Learning to choose is hard. Learning to choose well is harder. And learning to choose well in a world of unlimited possibilities is harder still, perhaps too hard.）</li><li>「選擇多到某個程度之後，它不再解放我們，而是讓我們動彈不得。」（大意）</li><li>「夠好，就真的夠好了。」（大意，概括書中對知足者的主張）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你在哪個領域是不折不扣的最大化者？最近一次為它花掉的時間，換來的「多一點點好」值得嗎？</li><li>回想一個你做完之後就沒再回頭想的決定，和一個至今還會想「當初是不是該選另一個」的決定——兩者的差別在哪裡？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-paradox-of-choice" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-paradox-of-choice";
+      var TITLE = "選擇的弔詭";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-paradox-of-choice";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

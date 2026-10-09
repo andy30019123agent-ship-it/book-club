@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>魔鬼盤據的世界｜拾頁</title>
+<meta name="description" content="你以為相信外星人綁架、占星和靈療的人只是不夠聰明？薩根說他們其實充滿好奇心——問題是沒有人教過他們，怎麼分辨一個美妙的故事和一個真的故事。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-demon-haunted-world" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-22</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>魔鬼盤據的世界</h1>
+  <p class="title-en">The Demon-Haunted World</p>
+  <p class="byline">卡爾・薩根（Carl Sagan）｜1995</p>
+  <p class="hook">你以為相信外星人綁架、占星和靈療的人只是不夠聰明？薩根說他們其實充滿好奇心——問題是沒有人教過他們，怎麼分辨一個美妙的故事和一個真的故事。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>科學不是一堆知識，是一種思考方式：對新想法開放，同時用最嚴格的標準檢驗它。</li><li>無法被檢驗、無法被推翻的說法，就算聽起來再厲害，也等於什麼都沒說。</li><li>一個靠科技運作卻沒人懂科學的社會很危險——懷疑的能力是民主的基本功。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>卡爾・薩根一九三四年出生在紐約布魯克林，父親是成衣廠的工人。他常講起小時候的兩件事：一是家人帶他去看世界博覽會，那個「未來世界」的展覽讓他著了迷；二是他跑去圖書館說想找一本講星星的書，館員先遞給他一本介紹好萊塢明星的。拿到對的書之後，他讀到太陽是一顆恆星、而星星是遙遠的太陽，從此沒有回頭。</p>
+<p>他後來成為行星科學家，在康乃爾大學任教多年，參與過美國太空總署多項行星探測任務，包括登陸火星的維京號，以及帶著一張「給外星文明的唱片」飛出太陽系的航海家號。但全世界認識他，是因為一九八〇年的電視影集《宇宙》——那可能是有史以來最多人看過的科學節目之一。他是那個年代科學的代言人。</p>
+<p>《魔鬼盤據的世界》出版於一九九五年，隔年年底他就因病過世，這是他生前最後幾本書之一，也是最像遺囑的一本。那時的美國，外星人綁架的故事登上暢銷榜，通靈、水晶治療、占星專欄隨處可見，而學生的科學測驗成績卻不斷下滑。書的副標是「科學，黑暗中的燭光」，典出十七世紀一本反對獵巫的小書。部分章節是他和妻子安・德魯彥合寫的。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「在一個充滿動人說法的世界，一般人要怎麼分辨真的和假的？如果大家都分不出來，會發生什麼事？」</p>
+<p>書的開頭是一段計程車上的對話。來接薩根的司機認出他是「那個科學家」，興奮地問了一連串問題：軍方是不是藏著冷凍的外星人屍體？亞特蘭提斯在哪裡？通靈、預言是真的嗎？薩根一個一個回答說證據很薄弱，看著對方越來越失望。但薩根在意的不是這個人容易受騙，而是另一件事：這個人明明對世界充滿好奇、聰明、健談，他想知道宇宙的事，可是整個社會遞給他的全是偽科學。真正的科學裡有同樣驚人的事——大陸會漂移、我們身上的原子來自死去的恆星——卻從來沒有人好好講給他聽。</p>
+<p>所以這本書做兩件事。一是交出一套工具，讓不是科學家的人也能自己檢驗說法。二是提出一個警告：<strong>科學與民主靠的是同一種習慣——要求證據、容許質疑、願意認錯。</strong>前者衰退，後者也撐不久。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、科學是一種思考方式：懷疑與驚奇的結合</h3>
+<p>薩根認為多數人對科學的誤解，是把它當成一本寫滿答案的書。他反覆強調，科學首先是一套方法，一種對待想法的態度。這個態度由兩種看起來互相矛盾的東西組成。</p>
+<p>一邊是<strong>開放</strong>：對任何新想法，不管聽起來多離奇，都願意聽聽看。科學史上很多後來被證實的理論，一開始聽起來都像胡說。另一邊是<strong>懷疑</strong>：對所有想法，不管新舊、不管誰說的，都用最嚴格的標準檢驗，包括自己最喜歡的那一個。只有開放沒有懷疑，你會什麼都信，分不出好想法和壞想法；只有懷疑沒有開放，你什麼新東西都學不到，變成一個自以為是的老頑固。難的是兩者同時握著。</p>
+<p>他特別指出科學最不尋常的一點：它內建了糾錯機制。科學家發表結果，等於邀請所有同行來挑毛病；提出最漂亮理論的人，會被最努力地攻擊。在這個圈子裡，推翻一位大師公認的理論是成名的最快途徑，所以沒有任何說法能靠權威永遠站著。薩根坦承科學家也是人，也會嫉妒、固執、看走眼，科學史上的錯誤一大堆——但這套制度的設計，就是不依賴任何個人的美德。</p>
+<p>他也談到為什麼科學這麼難推廣。科學的答案常常讓人不舒服：它說我們不在宇宙的中心，說很多事「目前還不知道」，說你深信的親身經驗可能是錯覺。偽科學剛好相反，它迎合我們的願望：你是特別的、死去的親人還在、宇宙在關照你。薩根沒有嘲笑這些願望，他說自己多麼希望能再跟過世的父母說上幾分鐘話——正因為這樣，他才更要小心，因為我們最想相信的事，就是最容易被騙的地方。</p>
+<p><strong>實用價值</strong>：把「我希望它是真的」當成一個警報，而不是一個理由。<strong>限制</strong>：薩根對科學社群的自我糾錯比較樂觀；現實中糾錯可能很慢，也會受經費與名聲影響。他承認這一點，但認為沒有更好的替代品。</p>
+<h3>二、我車庫裡的龍：不能被推翻的說法等於沒說</h3>
+<p>這是全書最有名的一個思想實驗，值得完整走一遍。</p>
+<p>假設我很認真地告訴你：「我的車庫裡住著一條會噴火的龍。」你當然想看。我帶你去車庫，你只看到梯子、空油漆罐和一輛舊腳踏車。「龍在哪？」我說：「就在這裡啊，忘了告訴你，牠是隱形的。」</p>
+<p>你想了一個辦法：在地上灑麵粉，就能看到腳印。我說：「好主意，但這條龍是飄在空中的。」那用紅外線感測器偵測牠噴的火？「牠的火沒有溫度。」那用噴漆把牠噴出形狀？「牠沒有實體，漆附不上去。」</p>
+<p>你提出的每一個檢驗，我都有一個專門的理由說明它為什麼行不通。薩根在這裡問了一個關鍵問題：<strong>一條隱形、無實體、飄浮、噴著沒有溫度的火的龍，跟根本沒有龍，差別在哪裡？</strong>如果沒有任何可以想像的觀察能推翻我的說法，那我說「車庫裡有龍」到底是在說什麼？</p>
+<p>他小心地劃了界線：你無法證明我錯，不等於我對。無法否證的說法在真假這件事上是空的，不管它帶給人多少啟發或驚奇。他接著把故事往前推一步：假如不只我一個，而是很多彼此不認識的人都說自己車庫裡有同樣的龍呢？這確實值得認真研究——但合理的態度仍然是暫時不接受，同時保持開放，並且想一想有沒有別的解釋：為什麼這麼多人會有同樣的錯覺？</p>
+<p>這正是他處理外星人綁架的方式，也是書名的由來。他注意到，當代人描述的被外星人帶走的經驗——半夜醒來動彈不得、床邊有奇怪的身影、身體被侵犯——跟中世紀歐洲人描述的被惡魔侵擾的經驗，幾乎一模一樣。不同的時代用當時手邊的故事去解釋同一種體驗，從前是魔鬼，現在是外星人。他認為更省事的解釋在我們的大腦裡：半睡半醒時出現的幻覺與身體麻痺，是相當普遍的現象，再加上記憶容易被暗示塑造。他同時提醒，那些深信魔鬼存在的年代發生過什麼：獵巫，成千上萬的人被刑求與處死。輕信從來不是無害的。</p>
+<p><strong>常見誤用</strong>：把這個論證當成「沒看到就不存在」。薩根說的是「不能檢驗的主張不值得相信」，而不是「還沒找到證據的東西一定是假的」——他自己一生都在認真尋找外星生命。</p>
+<h3>三、鬼扯偵測工具箱：一套隨身帶的檢查清單</h3>
+<p>如果這本書只留下一章，會是這一章。薩根把科學家的職業習慣整理成一組一般人也能用的工具。重點包括：</p>
+<ul><li><strong>盡可能找獨立的來源來確認「事實」。</strong>同一件事只有一個出處，就要小心。</li><li><strong>鼓勵各方有見識的人公開辯論證據。</strong></li><li><strong>訴諸權威沒有分量。</strong>權威以前錯過，以後還會錯。科學裡沒有權威，頂多只有專家。</li><li><strong>多想幾個假設。</strong>有東西要解釋時，把所有可能的解釋都列出來，再想辦法一個一個排除。</li><li><strong>不要因為某個假設是你想出來的就愛上它。</strong>問自己為什麼喜歡它，然後試著找理由推翻它——你不做，別人會做。</li><li><strong>盡量量化。</strong>有數字的東西比較容易在幾個競爭的說法之間分出高下，模糊的說法怎麼解釋都行。</li><li><strong>論證的每一環都要成立</strong>，不只是大部分。</li><li><strong>奧坎剃刀：</strong>兩個假設解釋得一樣好的時候，選比較簡單的那個。</li><li><strong>問這個說法能不能被否證。</strong>不能檢驗的主張沒有多大價值。</li></ul>
+<p>工具箱的另一半是「不要做什麼」：他列了一長串常見的推理謬誤。攻擊提出論點的人而不是論點本身；「沒人能證明它是假的，所以它是真的」；只記得命中、忘記落空（算命準了你會記一輩子，不準的全忘了）；把先後當成因果；把相關當成因果；非黑即白，只給兩個選項；滑坡；刻意用模糊的字眼。</p>
+<p>他還講了一個實地測試。魔術師詹姆斯・蘭迪曾在澳洲策畫一場騙局：讓一位年輕的搭檔假扮成能讓古老靈體附身的通靈者「卡洛斯」，配上一份捏造的經歷。當地媒體大幅報導，幾乎沒有人打一通電話去查證那些資料。等到蘭迪公開真相，重點已經很清楚：騙倒大家不需要高明的手法，只需要沒有人去問最基本的問題。</p>
+<p><strong>實用價值</strong>：這套清單可以直接拿來檢查投資話術、健康偏方、網路爆料。<strong>限制</strong>：工具箱最難用在自己身上。薩根說得很明白，它不只是拿來檢驗別人的，對自己珍愛的信念要一樣嚴格。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>這本書由二十多篇文章組成，可以看成四個樂章。<strong>第一樂章</strong>講科學是什麼、為什麼迷人、為什麼跟偽科學不同。<strong>第二樂章</strong>是一長串案例：外星人綁架、火星上的「人臉」、麥田圈、通靈、信仰療法，並把它們跟歷史上的魔鬼信仰與獵巫對照，說明輕信的代價。<strong>第三樂章</strong>交出工具：車庫裡的龍與鬼扯偵測工具箱。<strong>第四樂章</strong>轉向社會：科學教育為什麼失敗、怎麼教孩子保持提問、識字與自由的關係，最後落在科學與民主的連結。他指出兩者要求同樣的東西——想法的自由交流、對權威的不輕信、用證據而不是地位來裁決。美國的建國者當中，有好幾位本身就熱愛科學。</p>
+<p>書裡有一段後來常被引用的憂慮：他擔心在子孫的時代，社會的運作完全依賴科技，卻幾乎沒有人懂科技；人們失去了自己設定議題、質疑掌權者的能力，分不清什麼讓人感覺良好、什麼才是真的，不知不覺滑回迷信與黑暗。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>聽到一個很吸引人的提案或數據，先問：「什麼結果出現，就代表這個說法是錯的？」對方答不出來，就是車庫裡的龍。</li><li>開會時把「某某大老闆也這麼說」和「證據是什麼」分開記。前者不能取代後者。</li><li>自己提方案時，主動列出兩個其他可能的解釋，並說明你為什麼排除它們。</li><li>重要資訊找第二個獨立來源。兩篇報導如果引用的是同一份新聞稿，只算一個來源。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>遇到健康偏方或投資老師，套三條：有獨立來源嗎？有數字嗎？說法能被檢驗嗎？</li><li>留意「只記命中」：把某個你覺得很準的預測來源，認真記錄一個月，命中與落空都記。</li><li>孩子（或朋友）問「為什麼」時，不知道就說不知道，然後一起查。薩根認為孩子天生是科學家，是大人的敷衍把好奇心磨掉的。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這是一本嘲笑迷信的人的書」</strong>——薩根全書的語氣是同情的。他批評的是提供偽科學的產業與失職的教育和媒體，並明白表示懷疑不該帶著高高在上的輕蔑。</li><li><strong>「薩根反對宗教與靈性」</strong>——他批評的是可以檢驗卻經不起檢驗的具體主張。他多次寫到科學本身就能帶來深刻的敬畏感，並不認為科學與靈性的感受互相排斥。</li><li><strong>「懷疑就是什麼都不信」</strong>——工具箱的第一個條件是開放。一律否定跟一律相信一樣省力，都不需要思考。薩根要的是依證據調整相信的程度。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《理性》（平克，拾頁書庫，12-14）：平克把貝氏推理、機率等正式工具教得更系統；薩根給的是態度與一套口袋清單。先讀薩根被打動，再讀平克把工具補齊。</li><li>《快思慢想》（康納曼，拾頁 07-07）：薩根列出的那些謬誤——只記命中、把先後當因果——康納曼從大腦的運作解釋了它們為什麼會發生。</li><li>《真確》（漢斯・羅斯林，拾頁 07-30）：同樣相信一般人可以學會用證據看世界，同樣帶著溫度。羅斯林處理的是對世界現況的誤解，薩根處理的是對真假的判準。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「科學不只是一套知識，更是一種思考方式。」（Science is more than a body of knowledge; it is a way of thinking.）</li><li>「如實地理解宇宙，遠勝過執著於錯覺，不管那錯覺多麼令人滿足、令人安心。」（It is far better to grasp the Universe as it really is than to persist in delusion, however satisfying and reassuring.）</li><li>「沒有找到證據，不等於找到了沒有的證據。」（Absence of evidence is not evidence of absence.——書中談「訴諸無知」謬誤時引用的說法）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你有沒有一條自己的「車庫裡的龍」——一個你相信、但想不出任何情況能讓你承認它錯了的想法？寫下來看看，它對你的意義是什麼？</li><li>鬼扯偵測工具箱的九條裡，你覺得自己最常漏掉哪一條？最近有沒有哪一次，如果用了它，結果會不一樣？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-demon-haunted-world" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-demon-haunted-world";
+      var TITLE = "魔鬼盤據的世界";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-demon-haunted-world";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

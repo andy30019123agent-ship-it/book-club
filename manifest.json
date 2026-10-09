@@ -1,5 +1,284 @@
 [
   {
+    "date": "2026-12-31",
+    "slug": "outlive",
+    "title": "超預期壽命",
+    "author": "彼得・阿提亞（Peter Attia）",
+    "theme": "自我成長",
+    "hook": "你以為長壽就是活到很老，健康就是等生病了再好好治？阿提亞說，現代醫學擅長把人從急症救回來，卻在慢性病面前出手太晚——真正的仗要提早幾十年打。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/outlive.html"
+  },
+  {
+    "date": "2026-12-30",
+    "slug": "the-structure-of-scientific-revolutions",
+    "title": "科學革命的結構",
+    "author": "湯瑪斯・孔恩（Thomas S. Kuhn）",
+    "theme": "邏輯思考",
+    "hook": "你以為科學是一塊磚一塊磚往上疊、越疊越接近真理？孔恩說真正的大進展比較像拆掉重蓋——而且住在舊房子裡的人，通常到最後都不肯搬。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-structure-of-scientific-revolutions.html"
+  },
+  {
+    "date": "2026-12-29",
+    "slug": "men-are-from-mars",
+    "title": "男人來自火星，女人來自金星",
+    "author": "約翰・葛瑞（John Gray）",
+    "theme": "人際關係",
+    "hook": "你以為伴侶不照你的方式回應，就是不夠愛你？這本九〇年代的超級暢銷書說，他可能只是在用另一套語言愛你——但它把人分成兩個星球的做法，本身也值得你懷疑。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/men-are-from-mars.html"
+  },
+  {
+    "date": "2026-12-28",
+    "slug": "build",
+    "title": "創建之道",
+    "author": "東尼・法戴爾（Tony Fadell）",
+    "theme": "職場成長",
+    "hook": "你以為好產品就是功能強、規格高？iPod 之父說：客戶買的是從第一眼看到廣告到拆箱、安裝、求助的整段經歷，而你多半只做了中間那一小塊。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/build.html"
+  },
+  {
+    "date": "2026-12-27",
+    "slug": "rich-dad-poor-dad",
+    "title": "富爸爸，窮爸爸",
+    "author": "羅勃特・T・清崎（Robert T. Kiyosaki）",
+    "theme": "自我成長",
+    "hook": "你以為好好讀書、找份穩定工作、買間房子就是財務安全？清崎說這套劇本教的是怎麼替錢工作，而學校從來沒教過另一半：怎麼讓錢替你工作。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/rich-dad-poor-dad.html"
+  },
+  {
+    "date": "2026-12-26",
+    "slug": "the-art-of-strategy",
+    "title": "思辨賽局",
+    "author": "阿維納什・迪克西特、貝利・奈勒波夫（Avinash K. Dixit & Barry J. Nalebuff）",
+    "theme": "邏輯思考",
+    "hook": "你以為做決定是自己跟自己的事？只要結果還取決於別人怎麼做，你就已經在賽局裡了——而多數人輸，是因為只想了自己那一步。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-art-of-strategy.html"
+  },
+  {
+    "date": "2026-12-25",
+    "slug": "just-listen",
+    "title": "先傾聽就能說服任何人",
+    "author": "馬克・葛斯頓（Mark Goulston）",
+    "theme": "人際關係",
+    "hook": "你以為說服靠的是論點夠強、口才夠好？一位訓練過人質談判專家的精神科醫師說，對方的大腦還在防衛時你講什麼都是白講——能開門的不是你說了什麼，是他覺得被懂了。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/just-listen.html"
+  },
+  {
+    "date": "2026-12-24",
+    "slug": "only-the-paranoid-survive",
+    "title": "10倍速時代",
+    "author": "安德魯・葛洛夫（Andrew S. Grove）",
+    "theme": "職場成長",
+    "hook": "你以為公司是被對手打垮的？葛洛夫說，真正致命的是遊戲規則悄悄改變的那個時刻——而身在其中的人，往往最後一個知道。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/only-the-paranoid-survive.html"
+  },
+  {
+    "date": "2026-12-23",
+    "slug": "cant-hurt-me",
+    "title": "我，刀槍不入",
+    "author": "大衛・哥金斯（David Goggins）",
+    "theme": "自我成長",
+    "hook": "你以為「我已經盡力了」是事實？哥金斯說那多半只是大腦為了保護你而提早喊的停，而他用自己的身體當實驗品，去看那條線後面到底還剩多少。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/cant-hurt-me.html"
+  },
+  {
+    "date": "2026-12-22",
+    "slug": "the-demon-haunted-world",
+    "title": "魔鬼盤據的世界",
+    "author": "卡爾・薩根（Carl Sagan）",
+    "theme": "邏輯思考",
+    "hook": "你以為相信外星人綁架、占星和靈療的人只是不夠聰明？薩根說他們其實充滿好奇心——問題是沒有人教過他們，怎麼分辨一個美妙的故事和一個真的故事。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-demon-haunted-world.html"
+  },
+  {
+    "date": "2026-12-21",
+    "slug": "humble-inquiry",
+    "title": "MIT最打動人心的溝通課",
+    "author": "艾德加・席恩（Edgar H. Schein）",
+    "theme": "人際關係",
+    "hook": "你以為專業就是有答案、領導就是下指令？席恩說，在一個沒人能獨自掌握全局的世界，「直接講」正是關係和安全出事的起點——你該練的是問你真的不知道的事。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/humble-inquiry.html"
+  },
+  {
+    "date": "2026-12-20",
+    "slug": "hidden-potential",
+    "title": "隱性潛能",
+    "author": "亞當・格蘭特（Adam Grant）",
+    "theme": "職場成長",
+    "hook": "你以為成就高的人是天生資質好？格蘭特說我們看錯了地方：該看的不是一個人起點多高，而是他走了多遠，以及怎麼走的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/hidden-potential.html"
+  },
+  {
+    "date": "2026-12-19",
+    "slug": "the-war-of-art",
+    "title": "藝術的戰爭",
+    "author": "史蒂芬・普雷斯菲爾德（Steven Pressfield）",
+    "theme": "自我成長",
+    "hook": "你以為自己遲遲不動筆是因為沒靈感、沒時間、還沒準備好？普雷斯菲爾德說那些都是同一個敵人換的面具，它叫「阻力」，而且你越在乎的事，它擋得越兇。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-war-of-art.html"
+  },
+  {
+    "date": "2026-12-18",
+    "slug": "the-art-of-statistics",
+    "title": "統計的藝術",
+    "author": "大衛・史匹格哈特（David Spiegelhalter）",
+    "theme": "邏輯思考",
+    "hook": "你以為統計是套公式算答案？史匹格哈特說，數字不會自己說話——從「怎麼算一棵樹」到「培根會不會致癌」，每一步都是人的判斷，也都可能把你帶偏。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-art-of-statistics.html"
+  },
+  {
+    "date": "2026-12-17",
+    "slug": "the-art-of-communicating",
+    "title": "諦聽與愛語",
+    "author": "一行禪師（Thich Nhat Hanh）",
+    "theme": "人際關係",
+    "hook": "你以為溝通不良是因為不會講、對方不肯聽？一行禪師說，問題出在更前面：你連自己心裡在說什麼都沒聽見，就急著開口了。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-art-of-communicating.html"
+  },
+  {
+    "date": "2026-12-16",
+    "slug": "crossing-the-chasm",
+    "title": "跨越鴻溝",
+    "author": "傑佛瑞・墨爾（Geoffrey A. Moore）",
+    "theme": "職場成長",
+    "hook": "新產品有一批死忠粉絲，就代表市場接受了？錯。早期叫好的人和主流大眾之間隔著一道深溝，多數新創就死在這裡。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/crossing-the-chasm.html"
+  },
+  {
+    "date": "2026-12-15",
+    "slug": "die-with-zero",
+    "title": "別把你的錢留到死",
+    "author": "比爾・柏金斯（Bill Perkins）",
+    "theme": "自我成長",
+    "hook": "你以為多存一點總沒錯，存越多越安全？柏金斯反問：每一塊到死都沒花的錢，都是你用一段生命換來卻白白作廢的工時，這真的叫穩健嗎？",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/die-with-zero.html"
+  },
+  {
+    "date": "2026-12-14",
+    "slug": "rationality",
+    "title": "理性",
+    "author": "史迪芬・平克（Steven Pinker）",
+    "theme": "邏輯思考",
+    "hook": "人類能登月、能做出疫苗，卻也相信陰謀論和假新聞——平克說這不矛盾：人不是不會理性，而是只在跟自己切身有關的地方才把理性拿出來用。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/rationality.html"
+  },
+  {
+    "date": "2026-12-13",
+    "slug": "mating-in-captivity",
+    "title": "情欲徒刑",
+    "author": "埃絲特・沛瑞爾（Esther Perel）",
+    "theme": "人際關係",
+    "hook": "你以為感情越親密、越無話不談，熱情就會越旺？沛瑞爾說恰恰相反：愛需要靠近，慾望卻需要距離——把兩個人黏到沒有縫，火就沒有空氣了。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/mating-in-captivity.html"
+  },
+  {
+    "date": "2026-12-12",
+    "slug": "the-ride-of-a-lifetime",
+    "title": "我生命中的一段歷險",
+    "author": "羅伯特・艾格（Robert Iger）",
+    "theme": "職場成長",
+    "hook": "你以為帶領大公司靠的是強勢和算計？迪士尼執行長回顧四十五年：真正讓他談成皮克斯、漫威、星際大戰的，是尊重、坦誠和清楚的優先順序。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-ride-of-a-lifetime.html"
+  },
+  {
+    "date": "2026-12-11",
+    "slug": "the-compound-effect",
+    "title": "複利效應",
+    "author": "戴倫・哈迪（Darren Hardy）",
+    "theme": "自我成長",
+    "hook": "你以為人生是被幾個重大決定決定的？哈迪說，真正把人分開的是那些小到你懶得記的選擇，它們不痛不癢，所以沒有人防備。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-compound-effect.html"
+  },
+  {
+    "date": "2026-12-10",
+    "slug": "the-model-thinker",
+    "title": "多模型思維",
+    "author": "史考特・佩吉（Scott E. Page）",
+    "theme": "邏輯思考",
+    "hook": "你以為聰明人是找到了那個「對的理論」？佩吉說剛好相反——只靠一個模型看世界的人最容易錯得離譜，會思考的人手上永遠同時握著好幾個。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-model-thinker.html"
+  },
+  {
+    "date": "2026-12-09",
+    "slug": "the-laws-of-human-nature",
+    "title": "人性18法則",
+    "author": "羅伯・葛林（Robert Greene）",
+    "theme": "人際關係",
+    "hook": "你以為自己看人很準、做決定很理性，被情緒牽著走的是別人？葛林說，人性的第一條法則就是：每個人都高估自己的理性，包括正在點頭的你。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-laws-of-human-nature.html"
+  },
+  {
+    "date": "2026-12-08",
+    "slug": "slow-productivity",
+    "title": "慢速工作力",
+    "author": "卡爾・紐波特（Cal Newport）",
+    "theme": "職場成長",
+    "hook": "你每天回訊息、開會、忙到沒空喘氣，卻說不出這個月做成了什麼？因為你被訓練成「看起來很忙」，而不是真的有產出。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/slow-productivity.html"
+  },
+  {
+    "date": "2026-12-07",
+    "slug": "learned-optimism",
+    "title": "學習樂觀・樂觀學習",
+    "author": "馬汀・塞利格曼（Martin Seligman）",
+    "theme": "自我成長",
+    "hook": "你以為樂觀是天生的個性、是「凡事往好處想」？塞利格曼說，樂觀其實是你在跌倒那一刻對自己說的那句解釋，而那句話可以改。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/learned-optimism.html"
+  },
+  {
+    "date": "2026-12-06",
+    "slug": "mistakes-were-made",
+    "title": "錯不在我？",
+    "author": "卡蘿・塔芙瑞斯、艾略特・亞隆森（Carol Tavris & Elliot Aronson）",
+    "theme": "邏輯思考",
+    "hook": "你以為死不認錯的人是在騙別人？這本書說更可怕的是他們先騙過了自己——而且同一套機制，此刻正在你腦中安靜運轉。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/mistakes-were-made.html"
+  },
+  {
+    "date": "2026-12-05",
+    "slug": "connect",
+    "title": "史丹佛人際動力學",
+    "author": "大衛・布雷弗德（David Bradford）、卡蘿・羅賓（Carole Robin）",
+    "theme": "人際關係",
+    "hook": "你以為關係好是因為「合得來」，所以不合就算了？史丹佛開了半世紀的課說：深厚的關係是一套學得會的技術，而大多數人卡在不敢多說那 15%。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/connect.html"
+  },
+  {
+    "date": "2026-12-04",
+    "slug": "rework",
+    "title": "工作大解放",
+    "author": "傑森・福萊德、大衛・海尼梅爾・漢森（Jason Fried & David Heinemeier Hansson）",
+    "theme": "職場成長",
+    "hook": "你以為要做大事，就得先寫完整計畫、加班、開會、募資、擴編？這本書說：這些「正常做法」多半是慣性，不是必要。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/rework.html"
+  },
+  {
+    "date": "2026-12-03",
+    "slug": "the-body-keeps-the-score",
+    "title": "心靈的傷，身體會記住",
+    "author": "貝塞爾・范德寇（Bessel van der Kolk）",
+    "theme": "自我成長",
+    "hook": "你以為「事情過了就過了，想開一點就好」？范德寇說，創傷不是一段故事，而是身體還在執行的警報——大腦早就知道安全了，身體卻沒收到通知。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-body-keeps-the-score.html"
+  },
+  {
+    "date": "2026-12-02",
+    "slug": "the-tipping-point",
+    "title": "引爆趨勢",
+    "author": "麥爾坎・葛拉威爾（Malcolm Gladwell）",
+    "theme": "邏輯思考",
+    "hook": "你以為大改變需要大力氣、大預算、大多數人點頭？葛拉威爾說，流行像傳染病——少數幾個人、一點點包裝、一個對的情境，就足以讓整件事翻盤。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-tipping-point.html"
+  },
+  {
+    "date": "2026-12-01",
+    "slug": "social-intelligence",
+    "title": "SQ：I-You 共融的社會智能",
+    "author": "丹尼爾・高曼（Daniel Goleman）",
+    "theme": "人際關係",
+    "hook": "你以為情緒是自己的事，關起門來消化就好？高曼說，你的大腦天生就跟身邊的人連著線——別人的臉色，正在悄悄改寫你的身體。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/social-intelligence.html"
+  },
+  {
     "date": "2026-11-30",
     "slug": "the-fearless-organization",
     "title": "心理安全感的力量",

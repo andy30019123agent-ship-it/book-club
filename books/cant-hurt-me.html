@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我，刀槍不入｜拾頁</title>
+<meta name="description" content="你以為「我已經盡力了」是事實？哥金斯說那多半只是大腦為了保護你而提早喊的停，而他用自己的身體當實驗品，去看那條線後面到底還剩多少。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="cant-hurt-me" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-23</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>我，刀槍不入</h1>
+  <p class="title-en">Can't Hurt Me</p>
+  <p class="byline">大衛・哥金斯（David Goggins）｜2018</p>
+  <p class="hook">你以為「我已經盡力了」是事實？哥金斯說那多半只是大腦為了保護你而提早喊的停，而他用自己的身體當實驗品，去看那條線後面到底還剩多少。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>大腦會在你離真正極限還很遠時就喊停；作者稱之為只用了四成的力。</li><li>問責之鏡：對自己說實話，把問題寫出來貼在鏡子上，一張一張處理。</li><li>刻意去做不舒服的事，讓心長出老繭；撐不住時，打開裝著過往勝利的餅乾罐。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>大衛・哥金斯的履歷看起來像虛構的：美國海軍海豹部隊成員、通過陸軍遊騎兵學校並獲選為優秀結業生、空軍戰術空管出身，退役前後跑遍各種超級馬拉松和超級鐵人賽，還一度保有二十四小時引體向上的世界紀錄。</p>
+<p>但這本書從頭到尾想說的是另一件事：這個人原本是個什麼樣的人。</p>
+<p>他在紐約州水牛城一帶長大。父親經營一間溜冰場，外人看來是體面的生意人，在家卻長期毆打妻兒。哥金斯和哥哥從小就得在溜冰場通宵工作，天亮直接去上學，在課堂上睡著。後來母親帶著孩子逃到印第安那州的一個小鎮，日子從恐懼變成貧窮：住補助住宅、靠社會福利過活。他是那個幾乎全白人的小鎮裡少數的黑人孩子，遇過充滿惡意的種族歧視。長期的壓力讓他口吃、掉頭髮、皮膚出狀況，功課完全跟不上，靠作弊混過一年又一年。</p>
+<p>二十出頭時，他是個體重接近三百磅的夜班除蟲工人，每天下班買一大杯奶昔和一盒甜甜圈。這本回憶錄二〇一八年出版，沒有走傳統出版社的路，卻靠口碑成為暢銷書。台灣版由方智出版。</p>
+<p>讀這本書要有一個心理準備：作者做的很多事在醫學上是危險的，他自己也付出了代價。以下轉述他的經歷與主張，不是訓練建議。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>一個人的起點很差：家庭破碎、沒有資源、沒有自信、身上還帶著傷，他有沒有可能不靠任何外力，光憑改變自己的腦袋走到完全不同的地方？</p>
+<p>哥金斯的回答是可以，但方法和多數勵志書相反。<strong>他不教你愛自己、不教你找熱情，他教你對自己誠實到殘酷的地步，然後主動走進痛苦，直到痛苦不再能嚇住你。</strong>書名的意思就是這個：不是不會痛，是痛不再能決定你做什麼。</p>
+<p>每一章結尾他都留了一道「挑戰」給讀者，所以這本書既是回憶錄，也是一套他自己發明的心理訓練。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、問責之鏡：先別騙自己</h3>
+<p>高中時，哥金斯的成績爛到畢業都成問題，而他想從軍，需要通過軍方的入伍測驗。某天晚上他站在浴室的鏡子前，把頭髮剃光，然後第一次對鏡子裡的人說實話：你很笨，是因為你不讀書；你沒有未來，是因為你一直作弊、一直找藉口。</p>
+<p>他開始把該面對的事寫在便利貼上，貼滿鏡子：要讀的書、要改的習慣、要減的體重。每天早晚刮鬍子時對著它們檢討自己，做到了才撕下來。他把這個叫「<strong>問責之鏡</strong>」。入伍測驗他考了不只一次才過，但他過了。</p>
+<p>哥金斯承認，他對自己說話的方式很粗暴，不見得適合每個人。但他堅持核心的道理：我們對朋友客氣是應該的，對自己客氣卻常常只是在包庇。「我骨架大」「我不是讀書的料」「環境不允許」，這些話一說出口，問題就從「我能處理的事」變成「不關我的事」。</p>
+<p>第一章的挑戰也與此相連：把你人生中拿到的爛牌全部寫下來，一張都不要漏。目的不是訴苦，是把它們從模糊的怨氣變成清楚的清單。清單才有辦法一項一項面對。</p>
+<p><strong>限制在哪</strong>：對自己嚴厲和自我羞辱之間的界線很細。對本來就有憂鬱或嚴重自我否定傾向的人，這套做法可能雪上加霜。誠實是重點，辱罵不是。</p>
+<h3>二、長繭的心與「奪魂」</h3>
+<p>除蟲的那段日子，某天早上他在電視上看到一部關於海豹部隊訓練的紀錄片，看到那些人在冰冷的海水裡發抖，卻不退出。他決定去報名。問題是他的體重超過海軍標準一百多磅，而他只有不到三個月。多數招募官直接掛他電話。</p>
+<p>他照樣做到了：每天騎車、游泳、跑步好幾個小時，吃得極少。進了基礎水下爆破訓練後，他又因為傷病被打回重來，一年之內經歷了三次「地獄週」，也就是連續五天多幾乎不睡、不停在冷水和沙地裡操練的淘汰關卡。最後一次他帶著腿部的應力性骨折，用膠帶把小腿和腳踝纏緊，硬是撐完。</p>
+<p>從這段經歷他提煉出兩個觀念。</p>
+<p><strong>長繭的心</strong>。手做粗活會長繭，長了繭就不容易破皮。他認為心也一樣：你越常主動去做不舒服的事，面對不適的耐受力就越厚。所以他的建議是每天刻意找一件不想做的事去做，從很小的開始：整理床鋪、洗碗、比平常早起、在雨天出門跑步。重點不在那件事本身，在於反覆告訴大腦「不舒服不等於不能做」。</p>
+<p><strong>奪魂</strong>。這個詞聽起來很兇，其實是一個心理戰術。地獄週裡教官的工作是找出最弱的人把他逼退。哥金斯帶的那一艇人已經累到極點，他卻鼓動隊友：既然他們等著看我們垮，我們就偏偏在最慘的時候做得最好。他們扛著小艇又唱又喊，速度比誰都快。他說，當你在對方最期待你崩潰的時刻交出最好的表現，被消耗的反而是對方的氣勢，而你會得到一股額外的能量。他把這招推廣到任何有人看輕你的場合：不吵、不解釋，用超出預期的表現回應。</p>
+<p><strong>常見誤用</strong>：把奪魂理解成羞辱別人。他說得很清楚，這是在自己腦袋裡進行的遊戲，目的是讓自己在逆境中找到力氣，不是去踐踏誰。</p>
+<h3>三、四成法則與餅乾罐</h3>
+<p>二〇〇五年，哥金斯的幾位海豹部隊同袍在阿富汗的一次行動中殉職。他想為照顧陣亡特種部隊成員子女的基金會募款，選了一個最能吸引注意的方式：參加號稱最艱難的惡水超級馬拉松。主辦方告訴他得先有百英里賽的完賽紀錄。</p>
+<p>於是他幾乎沒做跑步訓練，就報名了聖地牙哥一場二十四小時耐力賽，目標一百英里。當時他是個練舉重的大塊頭。跑到七十英里時，他的身體已經全面崩潰：腳的小骨頭出現骨折、脛骨劇痛、肌肉抽筋到站不起來，而且排出帶血的尿。他坐在椅子上，連走到廁所的力氣都沒有。然後他站起來，先走，後來又跑，把剩下的里程完成了。</p>
+<p>事後回想，他得出全書最有名的一個觀念：當你的大腦告訴你「已經到極限了」，你其實大約只用了四成的力。他用車子的限速器來比喻：有些車出廠時被設定了速度上限，引擎明明還有力，系統卻不讓你再快。大腦也有這樣的裝置，目的是保護你，所以它會提早很多就拉警報。他不是說一次把限速器拆掉，而是每次多推百分之五到十，慢慢把上限往後移。</p>
+<p>那麼在最想放棄的那一刻要靠什麼撐？他的答案是「<strong>餅乾罐</strong>」。小時候家裡再窮，媽媽總會在罐子裡放些餅乾，他每次只准拿一兩片，會很珍惜地吃。長大後他把這個畫面變成心理工具：罐子裡放的是你過去所有跨過的難關，包括不起眼的小勝利。撐不住時，在心裡伸手進去拿一片，提醒自己「我做過比這更難的事」。</p>
+<p>書裡也寫了失敗。他挑戰引體向上世界紀錄，第一次是在全國性的電視節目現場，失敗了；第二次雙手皮開肉綻，又失敗；第三次才成功。每次失敗後他會做軍中式的「行動後檢討」：把哪裡做對、哪裡出錯、下次怎麼調整逐條寫下來，不放過自己，也不沉溺。</p>
+<p><strong>必須講的風險</strong>：那場百英里賽後他的狀況，以醫學的角度看是需要立即就醫的緊急情形。「四成」這個數字是他的個人體感，不是研究數據。他後來還被查出有先天性的心臟缺損，動了手術，也曾因為長年過度訓練而身體全面出狀況。忽視身體的警訊可能造成永久傷害，這是這本書最不該被照抄的部分。</p>
+<h3>四、不凡中的不凡：沒有終點線</h3>
+<p>很多人達成一個大目標後就停了。哥金斯觀察到，即使在海豹部隊這種菁英單位，多數人一通過訓練就開始吃老本。他提出「不凡中的不凡」：進到一個厲害的群體之後，還要繼續把自己當新人練，否則你只是從一個舒適圈搬到另一個比較高級的舒適圈。</p>
+<p>這不只是體能上的事。他談到如何排時間：把一整週以十五到三十分鐘為單位記下來，你會發現自己浪費的時間多得驚人，所謂「沒時間」多半站不住腳。他在軍中服役的同時準備超馬，靠的就是清晨通勤前的訓練和午休時間。</p>
+<p>書的後段，他的身體垮了。多年累積的緊繃讓他一度以為自己快死了，才第一次停下來。他發現自己從小因為壓力而長期僵硬，於是開始每天花很長時間伸展，身體才慢慢好轉。躺在地上伸展的那些時間，他也終於回頭看童年，理解了父親，也放過了那個被嚇壞的小男孩。這是全書比較少被引用、卻很重要的一段：一個靠硬撐走到這裡的人，最後學到的是放鬆。</p>
+<p><strong>實用價值</strong>：對一般人來說，「不凡中的不凡」最能用的版本是：達標之後問一句「接下來呢」，而不是把它當成可以開始鬆懈的許可。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>十章十個挑戰，順序有它的道理：<strong>先看清現實（盤點爛牌、問責之鏡）→ 再鍛鍊耐受力（每天做不舒服的事、在別人看衰時交出表現）→ 接著學會在極限處延伸（想像成功、餅乾罐、四成法則）→ 最後建立長期系統（排時間、持續當新人、失敗後做檢討）。</strong></p>
+<p>貫穿全部的只有一個信念：你對自己的認識，大部分來自從沒被測試過的假設。痛苦是他用來做測試的工具。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p>以下取其精神，把強度降到一般人安全可行的範圍；涉及運動訓練請循序漸進，有任何病史先問過醫師。</p>
+<p><strong>職場版</strong>：</p>
+<ol><li>做一次問責之鏡：寫下三件你一直用藉口帶過的工作問題，每件旁邊寫上「我能做的下一步」。</li><li>每天先做一件最不想做的小事（回那封難回的信、打那通電話），再做別的。</li><li>被否定或被看輕時，試試不辯解，把下一次交付做得比對方預期的好一截。</li><li>專案結束後寫一頁檢討：做對了什麼、哪裡出錯、下次改什麼。成功的案子也要寫。</li><li>記錄一週的時間流向，找出一個每天至少半小時的漏洞。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>做你的餅乾罐：列出十件你撐過來的事，大小不拘，存在手機裡。</li><li>下次運動或讀書想停的時候，告訴自己「再多百分之五」，做完就收工。是百分之五，不是一倍。</li><li>選一件小小的不適當作日常練習：冷一點的水沖最後十秒、早起十五分鐘、走樓梯。</li><li>每週留一段完全不硬撐的時間做伸展或散步。這也是書裡的一課。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「痛就對了，越痛越有效」</strong>——他自己因為無視警訊差點賠上性命。書裡真正可轉移的是「大腦喊停不一定代表真的不行」，不是「受傷也要繼續」。</li><li><strong>「他是天生的硬漢」</strong>——整本書的前三分之一都在證明相反的事：他是個膽小、作弊、放棄過好幾次的人。他要說的是心理韌性是練出來的。</li><li><strong>「這是一本教你打敗別人的書」</strong>——他的對手從頭到尾都是自己腦袋裡的聲音。連「奪魂」也是用來點燃自己，不是傷害別人。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《藝術的戰爭》（普雷斯菲爾德）：普雷斯菲爾德說的「阻力」和哥金斯說的限速器，是同一個敵人的兩種描述。前者溫文，後者粗獷，結論一致：帶著恐懼照做。</li><li>《心靈的傷，身體會記住》（范德寇）：哥金斯的童年正是范德寇描寫的那種長期受虐環境，口吃、掉髮都是身體的反應。把兩本書一起讀，會對他的「硬撐」和書末才學會的放鬆有更完整的理解。</li><li>《寬容，讓自己更好》（聶夫）：完全相反的路線。聶夫主張用善待朋友的方式善待自己，並提出這比自我批評更能持久。讀完這兩本，你可以自己判斷哪種聲音對你有效。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「你正處在這樣的危險之中：活得太舒適、太安逸，以至於到死都沒發現自己真正的潛能。」（You are in danger of living a life so comfortable and soft, that you will die without ever realizing your true potential.）</li><li>「當你覺得自己已經到了極限，你其實只用了大約四成的力。」（大意）</li><li>「我們每個人的腦袋裡都有一場戰爭要打，而唯一能打贏它的人是你自己。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>如果今晚站在你的問責之鏡前，你最不想寫上去、卻知道應該寫的那張便利貼是什麼？</li><li>你的餅乾罐裡會放哪三件事？哪一次「以為撐不過去」的經驗，後來成了你的底氣？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="cant-hurt-me" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "cant-hurt-me";
+      var TITLE = "我，刀槍不入";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "cant-hurt-me";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

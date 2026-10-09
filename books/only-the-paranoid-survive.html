@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10倍速時代｜拾頁</title>
+<meta name="description" content="你以為公司是被對手打垮的？葛洛夫說，真正致命的是遊戲規則悄悄改變的那個時刻——而身在其中的人，往往最後一個知道。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="only-the-paranoid-survive" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-24</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>10倍速時代</h1>
+  <p class="title-en">Only the Paranoid Survive</p>
+  <p class="byline">安德魯・葛洛夫（Andrew S. Grove）｜1996</p>
+  <p class="hook">你以為公司是被對手打垮的？葛洛夫說，真正致命的是遊戲規則悄悄改變的那個時刻——而身在其中的人，往往最後一個知道。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>當影響事業的某股力量放大到十倍，就會出現「策略轉折點」：舊做法失靈，往上或往下就看這一段。</li><li>轉折點沒有鈴聲，警訊先出現在第一線；領導者要聽壞消息、讓不同意見大聲吵。</li><li>過轉折點要先放任摸索，再收攏方向；最後把資源和自己的時間明確壓到新方向上。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>安德魯・葛洛夫 1936 年生於匈牙利布達佩斯的猶太家庭，童年經歷過納粹占領，青年時遇上 1956 年匈牙利革命被鎮壓，他趁亂越過邊境逃到西方，輾轉抵達美國時幾乎身無分文、英文也不好。他一邊打工一邊讀完紐約的大學，再到加州大學柏克萊分校拿到化工博士，進入半導體業。1968 年英特爾成立時，他是最早加入的成員之一，1987 年起擔任執行長。</p>
+<p>在他手上，英特爾做了一件很少有公司做得到的事：放棄自己起家的本業（記憶體晶片），全力轉向微處理器，並在個人電腦起飛的年代成為這個產業的核心。1990 年代中，葛洛夫被視為全世界最受推崇的經理人之一。</p>
+<p>這本書出版於 1996 年，正是英特爾如日中天的時候。但書的內容卻是一位執行長在回顧自己差點把公司帶進死路的經過，以及他從中得到的教訓。書名《Only the Paranoid Survive》來自他常掛在嘴上的一句話：唯有偏執狂得以倖存。他說的偏執，是對「事情可能已經變了」保持戒心。拾頁書庫裡另一本《葛洛夫給經理人的第一課》講的是日常的管理功夫；這一本講的是非常時期。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「當整個產業的遊戲規則改變時，身在其中的人要怎麼察覺，又要怎麼帶著組織活著走過去？」</p>
+<p>葛洛夫給這種時刻取了一個名字：<strong>策略轉折點</strong>。這本書就是在回答三個問題——它是什麼、怎麼分辨它來了、來了之後怎麼辦。雖然他寫的是公司，但書的最後一章直接把同一套邏輯用在個人的職業生涯上：你的工作也會遇到轉折點，而且沒有人會替你留意。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、策略轉折點與「十倍速」的力量</h3>
+<p>葛洛夫借用了策略學者波特分析產業競爭的幾股力量——既有的競爭者、供應商、客戶、潛在的新進者、替代的做法——並補上他認為同樣重要的一股：<strong>協力業者</strong>，也就是產品和你互補、跟你唇齒相依的公司（對英特爾來說，就是做電腦和做軟體的公司）。</p>
+<p>平常這些力量大致平衡，企業只要照既有的方式把事情做好就行。但當其中任何一股力量的強度變成原來的十倍左右，平衡就破了。原本管用的做法開始失靈，公司對自己的命運失去掌控。這個從舊結構過渡到新結構的時期，就是策略轉折點。過得去，公司會登上新的高度；過不去，就是一路下滑。</p>
+<p>他舉了很多產業的例子來說明「十倍」長什麼樣子：</p>
+<ul><li><strong>競爭的十倍</strong>：大型連鎖量販店開進小鎮，對鎮上的小店來說，那不是多了一個對手，而是整個環境都變了。</li><li><strong>技術的十倍</strong>：電影從默片進入有聲片。有些默片巨星和導演抗拒了很多年；也有人成功轉換，在新時代繼續當明星。</li><li><strong>另一個技術的十倍</strong>：貨櫃的出現讓海運的裝卸效率大幅提升，願意改造的港口崛起，沒跟上的老港口沒落。</li><li><strong>法規的十倍</strong>：管制的建立或解除，可以在一夕之間改變一整個產業的面貌。</li></ul>
+<p>電腦業本身則是葛洛夫最熟的例子。早年的電腦公司是「垂直」的：一家公司從晶片、硬體、作業系統到應用軟體、銷售全部自己做，客戶買的是一整套。個人電腦出現後，產業變成「水平」的：晶片、電腦、作業系統、應用軟體各有一層，每層由不同的公司競爭，客戶可以自由搭配。在舊結構裡稱霸的公司，很多在新結構裡找不到位置。</p>
+<p><strong>這個概念的實用價值</strong>：它提醒你區分兩種變化。大多數變化是普通的競爭起伏，照常應對就好；少數變化是結構性的，這時候越努力照舊法做，陷得越深。</p>
+<h3>二、英特爾的親身經歷：走出門，再走回來</h3>
+<p>英特爾是靠記憶體晶片起家的，在很長一段時間裡，「英特爾」幾乎就等於「記憶體」。但到了 1980 年代，日本廠商帶著更高的品質、更低的價格和龐大的產能投入這個市場。葛洛夫坦白寫道，一開始聽到客戶說日本貨品質比較好，英特爾內部的反應是不相信、質疑數據，直到自己驗證才不得不承認。</p>
+<p>接下來的一兩年，公司不斷虧損，內部會議一場接一場，卻沒有人敢說出那個結論。記憶體對英特爾來說不只是一項產品，而是自我認同：它是技術的火車頭，業務人員也認為沒有完整的產品線就無法面對客戶。</p>
+<p>轉捩點發生在 1985 年的某一天。葛洛夫在辦公室裡和當時的董事長暨執行長摩爾討論困境，他望著窗外，轉頭問了一個問題：「如果我們被掃地出門，董事會找來一位新的執行長，你想他會怎麼做？」摩爾毫不猶豫地回答：「他會讓我們退出記憶體事業。」葛洛夫愣了一下，然後說：「那我們何不自己走出這扇門，再走回來，自己動手做這件事？」</p>
+<p>這個故事有兩個值得注意的後續。第一，即使想通了，執行起來仍然非常痛苦、拖了很久——葛洛夫說他連對同事開口講出這個決定都有困難。第二，當高層終於下定決心，卻發現公司中階的生產和財務主管，早就依據各產品的獲利情形，一步步把工廠的產能從記憶體挪給微處理器了。換句話說，第一線的人用實際行動，比高層更早做出了策略選擇。葛洛夫把高層口中的策略和組織實際在做的事之間的落差，稱為「策略矛盾」——它本身就是轉折點已經來臨的訊號。</p>
+<p>書中另一個自我檢討的案例是 1994 年的 Pentium 處理器瑕疵事件。晶片在極罕見的除法運算中會出現微小的誤差，英特爾的工程師判斷一般使用者幾乎不可能遇到，所以原本只打算為有需要的專業用戶更換。但事件經網路討論和媒體報導後迅速擴大，一家大型電腦公司宣布暫停出貨，英特爾最後宣布無條件更換所有晶片，為此認列了數億美元的損失。葛洛夫事後的體悟是：英特爾靠著「Intel Inside」的廣告，已經在不知不覺中從一家賣零件給工程師的公司，變成了直接面對消費大眾的品牌——規則變了，而他們還在用舊規則回應。</p>
+<p><strong>限制在哪</strong>：這些都是事後整理的敘述，讀起來脈絡清楚；葛洛夫自己一再強調，身在其中時一切都模糊得多。</p>
+<h3>三、怎麼分辨訊號和雜訊：聽卡珊德拉的話</h3>
+<p>轉折點最麻煩的地方是它沒有明確的開始。葛洛夫說，就像爬山時你很難指出哪一步開始是下坡。所以真正的功夫在於分辨：眼前這個變化是<strong>訊號</strong>還是<strong>雜訊</strong>？</p>
+<p>他提供了幾個可以問自己的問題：</p>
+<ul><li><strong>你的頭號競爭者是不是換人了？</strong>他建議做個想像實驗：如果你只有一顆子彈，你會留給哪個對手？如果答案開始變得不確定，或者和以前不一樣，就要注意。</li><li><strong>你最重要的協力夥伴是不是快要換人了？</strong></li><li><strong>身邊的人是不是好像突然「不行了」？</strong>包括你自己。可能不是大家變笨了，而是環境變了，舊的能力不再對得上。</li></ul>
+<p>更重要的是資訊從哪裡來。葛洛夫借用希臘神話裡那位預言災難卻沒人相信的女祭司，把組織裡最早看到危險的人叫做<strong>卡珊德拉</strong>。他們通常是中階主管和第一線的業務——用他的話說，雪是從邊緣開始融化的。這些人離市場最近，最先感覺到風向變了，而且因為身處一線，飯碗直接受影響，所以比總部的人更認真看待警訊。</p>
+<p>問題是壞消息很難往上傳。所以領導者要做幾件事：主動接觸平常接觸不到的基層和外部的人；容許甚至鼓勵激烈的辯論，讓不同層級、不同立場的人把話攤開來吵，而且不能因為有人講了不中聽的話就懲罰他。葛洛夫特別強調<strong>恐懼</strong>的殺傷力——一旦人們害怕說出真話會有後果，壞消息就會停止流動，高層就瞎了。</p>
+<p>另一個提醒是不要迷信數據。數據記錄的是過去，新興的變化在初期往往只有零星的個案和傳聞。資深的管理者得學會在資料還不完整時，就憑經驗和判斷去辯論，而不是等到數字確鑿才行動——到那時通常已經晚了。當然，也不是每個警訊都是真的，他舉過英特爾內部評估過某項新興製程技術、最後判斷它不構成威脅的例子。重點是要認真辯過，而不是忽視。</p>
+<p><strong>常見的誤用</strong>：把「偏執」解讀成不信任同事、凡事抓在手上。葛洛夫的偏執是對外部環境的警覺，而他的處方恰恰是更多的傾聽和更開放的爭論。</p>
+<h3>四、穿越死亡之谷：先放任混亂，再收拾混亂</h3>
+<p>知道轉折點來了之後，從舊模式走到新模式的那段路，葛洛夫稱為「死亡之谷」。他把過程分成兩個階段。</p>
+<p><strong>第一階段：讓混亂發生。</strong>在還看不清方向的時候，高層不該急著下定論，而要容許組織裡出現各種嘗試和實驗——不同的產品、技術、通路、客群。這個階段也伴隨著情緒上的掙扎：否認、逃避（例如把心力放在自己拿手卻無關緊要的事情上，或是去做轉移注意力的併購），最後才是接受。葛洛夫承認，過去的成功會形成一種慣性，領導者往往是靠舊模式升上來的，所以也最難放手。</p>
+<p><strong>第二階段：駕馭混亂。</strong>當方向逐漸清楚，就要反過來，用極其清晰的語言告訴所有人「我們要往哪裡去」以及「我們不再做什麼」。這時候含糊是最大的敵人。葛洛夫寫到，在轉型期他曾被員工追問「所以我們到底還做不做某項業務」，那讓他明白自己講得還不夠明確。</p>
+<p>光說不夠，還要有<strong>策略行動</strong>。他區分「策略計畫」和「策略行動」：前者是對未來的描述，後者是現在就做、看得見的事——把最好的人調去新業務、把預算挪過去、關掉舊產線。他特別指出，領導者自己的行事曆就是最有力的策略工具：你把時間花在哪裡、見了誰、不再去哪些會議，組織裡的人都看在眼裡。</p>
+<p>最後一章談個人。葛洛夫說，每個人都是自己這門生意的唯一員工，你的職涯同樣會遇到轉折點——產業移轉、技術更替、公司改組。同樣的原則也適用：留意環境的變化、聽聽那些提醒你的人、趁現職還穩定時就去試新的可能，並且在還有選擇的時候行動，而不是等到被迫行動。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p><strong>是什麼</strong>：某股力量放大十倍 → 產業結構改變 → 策略轉折點。 <strong>怎麼察覺</strong>：轉折點沒有鈴聲 → 訊號先出現在邊緣（卡珊德拉）和「說的與做的不一致」（策略矛盾）→ 靠開放的辯論來分辨訊號與雜訊，前提是組織裡沒有恐懼。 <strong>怎麼通過</strong>：先放任實驗（讓混亂發生）→ 再給出明確方向（駕馭混亂）→ 用資源和時間的實際調動來落實。 <strong>對個人</strong>：把自己的職涯當成一家公司，用同一套方法經營。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>做「一顆子彈」測試：現在對你的部門或產品威脅最大的是誰？跟兩年前的答案一樣嗎？</li><li>問自己葛洛夫的問題：「如果換一個全新的人來接我的位子，他第一件會改掉的事是什麼？」然後想想你為什麼還沒做</li><li>每個月找一位第一線的同事（業務、客服、現場），只問一件事：「最近你看到什麼讓你不安的事？」</li><li>對照你說的優先事項和你上個月行事曆上實際花的時間，找出落差</li><li>有人提出不中聽的意見時，先說謝謝、問清楚，不要當場反駁</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>每年檢視一次自己的技能：哪些正在升值、哪些可能被取代？</li><li>趁現職穩定時，用小成本試探下一步（上一門課、接一個小案子、認識另一個領域的人）</li><li>找兩三位在不同產業的朋友，定期交換彼此看到的變化</li><li>留意自己的否認：如果某個變化讓你特別不想談，那往往正是該好好想的地方</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「偏執就是疑神疑鬼、控制一切」</strong>——葛洛夫說的是對環境變化的警覺，做法是開放的討論和傾聽壞消息，而不是不信任人。</li><li><strong>「所以要一直轉型、不斷變來變去」</strong>——他明確要求先分辨訊號和雜訊。把每一次市場起伏都當成轉折點來大動作回應，和完全不回應一樣危險。</li><li><strong>「這是只跟高階主管有關的書」</strong>——書裡最早看到真相、最早採取行動的，正是中階主管；最後一章更是直接寫給每一個要對自己職涯負責的人。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《葛洛夫給經理人的第一課》（葛洛夫）：同一位作者。那本講承平時期怎麼把管理做扎實——產出、會議、一對一面談；這本講環境劇變時怎麼帶路。兩本合起來才是完整的葛洛夫。</li><li>《創新的兩難》（克里斯汀生）：克里斯汀生從學術角度解釋了為什麼優秀的公司會被新技術顛覆——因為它們理性地服務現有的好客戶。這正好補上了「轉折點為什麼這麼難看見」的理論；葛洛夫本人後來也十分推崇這套理論。</li><li>《基業長青》（柯林斯、薄樂斯）：談長壽企業「保存核心、刺激進步」的共同特質。葛洛夫的故事提供了一個尖銳的提問：當所謂的核心本身就是該放棄的東西時，怎麼辦？</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「成功孕育自滿，自滿孕育失敗。唯有偏執狂得以倖存。」（Success breeds complacency. Complacency breeds failure. Only the paranoid survive.）</li><li>「如果我們被掃地出門，董事會找來新的執行長，你想他會怎麼做？……那我們何不自己走出這扇門，再走回來，自己動手？」（葛洛夫與摩爾的對話，大意）</li><li>「先讓混亂發生，再來駕馭混亂。」（Let chaos reign, then rein in chaos.）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>把葛洛夫的問題用在自己身上：如果今天換一個人來接手你的工作或你的人生安排，他最可能馬上停掉或改掉的是什麼？</li><li>你所在的行業或職務，有沒有哪股力量正在往「十倍」的方向變化？你聽到的最早的警訊是從誰那裡來的？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="only-the-paranoid-survive" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "only-the-paranoid-survive";
+      var TITLE = "10倍速時代";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "only-the-paranoid-survive";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

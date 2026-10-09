@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>學習樂觀・樂觀學習｜拾頁</title>
+<meta name="description" content="你以為樂觀是天生的個性、是「凡事往好處想」？塞利格曼說，樂觀其實是你在跌倒那一刻對自己說的那句解釋，而那句話可以改。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="learned-optimism" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-07</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>學習樂觀・樂觀學習</h1>
+  <p class="title-en">Learned Optimism</p>
+  <p class="byline">馬汀・塞利格曼（Martin Seligman）｜1990</p>
+  <p class="hook">你以為樂觀是天生的個性、是「凡事往好處想」？塞利格曼說，樂觀其實是你在跌倒那一刻對自己說的那句解釋，而那句話可以改。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>無助是學來的：反覆經歷「做什麼都沒用」，人會在還能行動時就先放棄。</li><li>樂觀與悲觀的差別在解釋風格：壞事是永久的、全面的、都怪我，還是暫時的、局部的。</li><li>用 ABCDE 反駁自己的災難化想法；樂觀要有彈性，代價高的事仍該保守。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>一九六〇年代中期，二十出頭的塞利格曼到賓州大學唸研究所，一進實驗室就撞見一件怪事。學長姐們正在抱怨實驗做不下去：那批狗先前被綁著接受過輕微但躲不掉的電擊，現在換到一個只要跳過矮柵欄就能躲開電擊的箱子裡，牠們卻不跳，就趴在那裡嗚咽著承受。</p>
+<p>當時主流的行為主義認為，動物只會學「刺激與反應」，不會學到「期待」這種看不見的東西。塞利格曼卻覺得，這些狗學到的正是一個想法：我做什麼都沒用。他和同學梅爾設計了有名的三組實驗來驗證：第一組的狗可以用鼻子頂板子把電擊關掉；第二組的電擊與第一組同步，但自己做什麼都關不掉；第三組完全沒被電。之後三組都放進可以逃的箱子，第一組和第三組很快學會跳過去，只有第二組的多數就地放棄。</p>
+<p>這就是「習得性無助」。它後來成為理解憂鬱症的重要模型，也是這本書的起點。但塞利格曼的興趣很快轉了方向：實驗裡總有一部分的狗，以及後來一部分的人，怎麼樣都不放棄。他們有什麼不一樣？能不能教？</p>
+<p>二十五年的研究寫成了一九九〇年出版的這本書。幾年後他當選美國心理學會主席，倡議心理學不該只研究人怎麼壞掉，也要研究人怎麼活得好，這就是「正向心理學」的開端。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>同樣是被主管退件、被客戶拒絕、考試考砸，為什麼有人隔天照常出門，有人一蹶不振？一般的說法是抗壓性、個性、命。</p>
+<p>塞利格曼的答案比較具體：<strong>差別在於你怎麼向自己解釋「這件壞事為什麼會發生」。</strong>這套習慣他稱為「解釋風格」，多半在童年就定型，但它是學來的，所以也能重學。整本書就是三件事：解釋風格是什麼、它影響多大、怎麼改。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、習得性無助：放棄是學來的</h3>
+<p>狗的實驗之後，其他研究者把同樣的設計搬到人身上。受試者被放進一個有刺耳噪音的房間，有些人按對按鈕就能關掉，有些人怎麼按都沒用。之後換到另一個情境，只要把手移到盒子另一邊噪音就會停，先前「怎麼按都沒用」的那組人，多數就坐著忍。</p>
+<p>重點是塞利格曼接下來注意到的事：不管是狗還是人，總有一部分受試者不會變得無助，大約三分之一。也有少數人從一開始就不太嘗試，不需要任何無助訓練。這個「誰會放棄、誰不會」的差異，把他從無助的研究帶向樂觀的研究。</p>
+<p>他也由此提出一個當時頗具挑戰性的觀點：憂鬱在相當程度上是一種「相信自己的行動無關緊要」的狀態。這與貝克等人發展的認知治療方向一致，也就是憂鬱的核心是想法的習慣，而不只是童年的陰影或體內的化學。</p>
+<p><strong>限制在哪</strong>：憂鬱的成因很多，這個模型解釋了其中一部分，不是全部。有意思的是，梅爾幾十年後重新檢視神經機制，認為被動可能是面對長期逆境的預設反應，真正需要學的是「我有控制力」。這個修正沒有推翻本書的實用結論，反而呼應它：掌控感是可以練的。</p>
+<h3>二、解釋風格的三個維度</h3>
+<p>塞利格曼和同事把「人怎麼解釋壞事」拆成三個面向。</p>
+<p><strong>永久性</strong>：這件事會一直這樣，還是暫時的？悲觀的說法是「我永遠做不好簡報」，樂觀的說法是「我今天沒準備夠」。前者用的是「總是」「從不」，後者用的是「這次」「最近」。</p>
+<p><strong>普遍性</strong>：這件事毀了一切，還是只限於這一塊？被一位客戶拒絕後，悲觀的人覺得「我根本不適合這行，我的人生就是這樣」；樂觀的人覺得「這位客戶不買單」。能把失敗關在一個抽屜裡的人，其他抽屜還能照常運作。</p>
+<p><strong>個別性</strong>：原因在我，還是在環境？悲觀的人把壞事全攬在身上，自尊跟著垮。這一項最容易被誤解，後面再談。</p>
+<p>有趣的是，面對好事，兩種人的解釋剛好顛倒：樂觀者覺得好事是持久的、會擴散的、跟自己有關的；悲觀者覺得那是僥倖、僅此一次。</p>
+<p>為了證明這套東西有預測力，塞利格曼做了幾項很有名的研究。最常被引用的是與一家大型壽險公司的合作。賣保險是被拒絕的職業，新進業務員流失率極高。他讓應徵者除了公司原本的職能測驗外，再多做一份解釋風格問卷。追蹤下來，樂觀組的業績明顯高於悲觀組，也比較少離職。公司甚至另外錄取了一批「職能測驗沒過、但樂觀分數很高」的人，這支特別部隊後來賣得比一般錄取的悲觀者好。</p>
+<p>另一個例子是游泳選手。研究團隊請教練在選手游完後故意報一個比實際慢的成績，再讓他們休息後重游一次。樂觀風格的選手第二次維持水準甚至更快，悲觀風格的選手則變慢。書裡提到，後來在奧運拿下多面金牌的畢昂迪就是樂觀組的一員。</p>
+<p><strong>限制在哪</strong>：這些研究多是相關性與追蹤資料，問卷也有測量誤差；書中把樂觀連到健康、甚至連到選舉勝負的部分，後續研究的結果強弱不一，有的效果比書裡呈現的小。把它讀成「解釋風格是重要因素之一」比較公允。</p>
+<h3>三、ABCDE：跟自己的想法辯論</h3>
+<p>怎麼改？塞利格曼借用認知治療的架構，先教你看見一個平常看不見的環節。</p>
+<p><strong>A（逆境）</strong>：發生了什麼事。<strong>B（想法）</strong>：你怎麼解讀它。<strong>C（後果）</strong>：你因此有什麼感受、做了什麼。多數人以為是 A 直接造成 C：「他沒回訊息，所以我很沮喪。」其實中間夾著 B：「他沒回，一定是我講錯話，他討厭我了。」讓你沮喪的是那句 B。</p>
+<p>他請讀者先做幾天的 ABC 紀錄，光是把 B 寫下來，很多人就會嚇一跳：原來我每天對自己說這麼重的話。如果是別人這樣說你，你早就回嘴了；偏偏是自己說的，就照單全收。</p>
+<p>接著是 <strong>D（反駁）</strong>，有四個著力點：</p>
+<ul><li><strong>證據</strong>：這個想法有事實支持嗎？有沒有反例？</li><li><strong>其他可能</strong>：壞事通常有很多原因，你是不是只挑了最永久、最全面、最針對自己的那個？</li><li><strong>含意</strong>：就算想法是真的，後果真有那麼嚴重嗎？</li><li><strong>用處</strong>：一直抱著這個想法，對現在有幫助嗎？</li></ul>
+<p>最後是 <strong>E（激發）</strong>：反駁成功後，留意自己的情緒和行動力有什麼變化。</p>
+<p>他也分了「轉移注意」和「反駁」兩招：前者是救急（對自己喊停、約定晚點再想、寫下來），後者才是治本。</p>
+<p><strong>實用價值</strong>：這不是自我催眠。反駁靠的是證據，不是口號。塞利格曼特別強調，空喊「我很棒」沒用，因為你自己不信；有效的是像律師一樣，替被告（你自己）認真查證。</p>
+<h3>四、彈性的樂觀：悲觀有它的位置</h3>
+<p>這本書最容易被忽略、也最成熟的一段，是塞利格曼替悲觀說的話。</p>
+<p>有研究讓人判斷自己對某個燈泡有多少控制力。結果輕度憂鬱的人判斷得比較準，不憂鬱的人則高估了自己的影響力。這個現象被稱為「憂鬱的現實主義」，有人形容為「比較難過，卻比較明白」。換句話說，樂觀在某種程度上是一種有用的偏誤。</p>
+<p>所以塞利格曼不主張無條件樂觀，他提的準則是看<strong>失敗的代價</strong>。代價低的事，例如打下一通業務電話、開口邀人、試一個新點子，用樂觀；代價高或不可逆的事，例如機師判斷要不要再除一次冰、該不該酒後開車、要不要瞞著配偶做重大決定，就該讓悲觀踩煞車。他還建議一家公司裡兩種人都要有：業務、企劃需要樂觀，財務、安全控管需要一點審慎的悲觀。</p>
+<p>書中也用相當篇幅談孩子。他與同事的長期追蹤顯示，孩子的解釋風格與母親的相近，也會受到老師怎麼批評他們的影響。比方說，把失敗歸因於「你不夠專心」（可變）還是「你不是這塊料」（不可變），孩子吸收的東西很不一樣。</p>
+<p><strong>常見誤用</strong>：把樂觀當成不看風險的理由。書裡說得很白，樂觀是工具，不是信仰。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>一條線走到底：<strong>無助是學來的 → 會不會無助，取決於你如何解釋挫折 → 解釋風格有永久、普遍、個別三個維度，可以測量，也能預測表現 → 既然是學來的習慣，就能用 ABCDE 重學 → 但要用得有彈性，看代價決定什麼時候樂觀。</strong></p>
+<p>前半部講「為什麼」，中段用工作、學校、運動、健康各種場域證明「有多大影響」，後半部才是「怎麼做」。它比一般勵志書扎實的地方，在於每一步背後都有一個實驗或一份追蹤資料。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（提案被退件之後）</strong>：</p>
+<ol><li>先寫 ABC：A「提案被退」；B「我根本不會做企劃，主管覺得我很廢」；C「整個下午什麼都做不了」。</li><li>找證據：過去十次提案過了幾次？主管退件時批評的是哪一段？</li><li>找其他原因：預算被砍？時機不對？這次數據準備不夠？挑「可變、局部」的那個先處理。</li><li>問用處：就算我能力真的不足，坐著難過有幫助嗎？下一步最小的行動是什麼？</li><li>檢查代價：重改再送，失敗代價低，適合樂觀；要不要因此遞辭呈，代價高，先放一放。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>連續三天，記下三件讓你心情掉下去的小事，各寫出 A、B、C。</li><li>圈出 B 裡面的「總是、從來、每個人、完蛋了」，這些字是永久與普遍的訊號。</li><li>把最常出現的一句 B 寫在紙上，請你信任的朋友幫你反駁，再換自己來。</li><li>對孩子或伴侶的批評，改成指向具體、可改的行為，而不是指向他這個人。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「樂觀就是正向思考、多講好話」</strong>——塞利格曼明確反對空洞的自我肯定。關鍵是失敗時怎麼解釋，而且反駁必須有證據。</li><li><strong>「把原因推給外在就對了」</strong>——個別性這一項不是教人卸責。他強調，該負責的還是要負責；重點是把問題看成「這次我做錯的事」（可改），而不是「我這個人有問題」（不可改）。</li><li><strong>「悲觀是缺點，應該根除」</strong>——書中明講悲觀者往往看得比較準，高風險的判斷需要它。目標是有選擇，不是變成另一個人。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《心靈的傷，身體會記住》（范德寇）：同樣從習得性無助的實驗出發，卻提醒我們有些無助深植於身體，不是靠反駁想法就能鬆開。兩本合看，能知道認知方法的力量與邊界。</li><li>《哈佛最受歡迎的快樂工作學》（艾科爾）：正向心理學的職場應用版，可以看成塞利格曼這條路的下游。</li><li>《快思慢想》（康納曼）：康納曼把樂觀偏誤當成需要提防的判斷錯誤，塞利格曼把它當成可以善用的資源。兩人的結論其實相容：看場合。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「悲觀者的特徵是，他們傾向相信壞事會持續很久、會毀掉他們做的每件事，而且都是自己的錯。」（大意）</li><li>「樂觀真正的作用發生在你失敗的那一刻：重點不是空洞的正向口號，而是你如何對自己解釋挫折。」（大意）</li><li>「我們需要的不是盲目的樂觀，而是彈性的樂觀——睜著眼睛的樂觀。」（大意；原書用語為 flexible optimism）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想最近一次不順心的事，你當下對自己說的那句話是什麼？它落在永久、普遍、個別的哪一格？</li><li>你的生活或工作裡，哪些決定適合放手樂觀、哪些其實該讓悲觀把關？你平常有分清楚嗎？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="learned-optimism" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "learned-optimism";
+      var TITLE = "學習樂觀・樂觀學習";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "learned-optimism";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

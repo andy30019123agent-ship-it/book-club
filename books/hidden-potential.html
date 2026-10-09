@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隱性潛能｜拾頁</title>
+<meta name="description" content="你以為成就高的人是天生資質好？格蘭特說我們看錯了地方：該看的不是一個人起點多高，而是他走了多遠，以及怎麼走的。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="hidden-potential" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-20</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>隱性潛能</h1>
+  <p class="title-en">Hidden Potential</p>
+  <p class="byline">亞當・格蘭特（Adam Grant）｜2023</p>
+  <p class="hook">你以為成就高的人是天生資質好？格蘭特說我們看錯了地方：該看的不是一個人起點多高，而是他走了多遠，以及怎麼走的。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>潛能不看起點看進步幅度；推動進步的是可以後天練的「品格技能」，不是天賦。</li><li>主動找不舒服、像海綿一樣吸收有用的意見、接受不完美，是三項最關鍵的品格技能。</li><li>沒有人靠自己爬上去：好的鷹架（方法、樂趣、同伴）和公平的機會制度，才讓潛能被看見。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>亞當・格蘭特是華頓商學院的組織心理學教授，很年輕就拿到終身教職，寫過《給予》《反叛，改變世界的力量》《逆思維》等暢銷書，其中《反叛，改變世界的力量》也在拾頁書庫裡。他擅長的事情，是把心理學和社會科學的研究接上生動的真人故事。</p>
+<p>這本書有一個很個人的出發點。格蘭特高中時參加跳水隊，按他自己的說法，他身體僵硬、彈跳力差、動作不協調，隊友還開玩笑說他走路像科學怪人。但他遇到一位願意花時間在他身上的教練，幾年苦練之後，他從校隊裡墊底的選手，進步到拿到全國青少年等級賽事的參賽資格。他從來不是最有天分的那個，但他進步的幅度比多數有天分的人都大。</p>
+<p>2023 年出版的《隱性潛能》，就是他回頭研究這件事：為什麼我們的學校、公司、選才制度，老是盯著「誰一開始就很強」，而錯過了那些只要給對條件就能走很遠的人？</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「一個起點普通的人，要怎麼做到超出所有人（包括自己）預期的事？」</p>
+<p>多數談成功的書，研究的是天才和神童。格蘭特故意反過來，找的是「大器晚成」和「本來不被看好」的人。他的核心主張是：<strong>潛能不是你從哪裡開始，而是你能走多遠。</strong>而決定你走多遠的，主要不是天賦，是三樣東西——品格技能、支撐你的鷹架、以及願不願意給你機會的制度。全書就照這三部分展開。</p>
+<p>書的開場故事很有代表性。1990 年代初，紐約哈林區一所公立中學的西洋棋隊，隊員多半來自貧困家庭、學棋的時間很晚，卻在全國中學錦標賽上打敗了那些從小請私人教練的名校隊伍。他們的教練艾希利後來成為知名的西洋棋特級大師。格蘭特的問題是：他們贏，靠的是什麼？答案不是哪個孩子特別天才，而是教練先教他們一套做事的方式——紀律、主動、互相幫忙——然後才教棋。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、品格技能：比聰明更能預測你走多遠</h3>
+<p>格蘭特引用了經濟學家切蒂（Raj Chetty）團隊的一項著名研究。研究者追蹤一批在幼稚園階段被隨機分班的美國孩子，一路看到他們成年。結果發現：遇到經驗豐富的幼稚園老師的孩子，長大後的收入明顯比較高。</p>
+<p>奇怪的是，這些孩子在認知能力測驗上的領先，到了小學中高年級就幾乎消失了。那收入的差距從哪來？研究者回頭看老師對孩子的行為評量，發現好老師留下來的，是另一類東西：孩子比較<strong>主動</strong>（會發問、會自己找答案）、比較<strong>利他</strong>（跟同學處得好、會合作）、比較<strong>自律</strong>（專心、不搗亂）、比較<strong>有毅力</strong>（願意挑戰難題、撐得久）。這些才是一路跟著他們到成年的東西。</p>
+<p>格蘭特把這些叫做<strong>品格技能</strong>，並刻意強調「技能」兩個字：它們不是天生定型的個性，而是可以學、可以練的能力。他對品格的定義是：你能不能讓自己的價值觀壓過當下的本能。</p>
+<p><strong>這個概念的實用價值</strong>：它把「我就是這種個性」這句話鬆開了。內向的人可以學會主動，急性子的人可以練出耐心——不是變成另一個人，而是多一項拿得出來的能力。</p>
+<h3>二、三項關鍵的品格技能：找不舒服、當海綿、接受不完美</h3>
+<p><strong>第一項：主動走向不舒服。</strong>格蘭特先戳破一個流傳很廣的觀念——「每個人有適合自己的學習風格」。很多人相信自己是「視覺型」或「聽覺型」學習者，但研究並不支持「照偏好的風格學，就學得比較好」這個說法。你喜歡的方式只是讓你舒服，不代表讓你進步。</p>
+<p>他寫了幾位會說很多種語言的人，他們並非從小就有語言天分，有的甚至在學校學外語學得很挫折。他們後來的突破來自同一個轉變：不再等「準備好了」才開口，而是從第一天就硬著頭皮講，並且把犯錯當成目標本身——刻意追求每天講錯很多次。因為要學會一項技能，你得先在還不會的時候就去用它。不舒服不是學習的副作用，而是學習正在發生的訊號。</p>
+<p><strong>第二項：當一塊會挑選的海綿。</strong>海綿的重點不只是吸得多，還要會過濾。格蘭特用的詞是「吸收力」：主動去找新的資訊，而且目的是為了成長，不是為了餵養自尊。他講了投資界一位知名女性主管的故事：出身清寒的她，從年輕時就養成到處請教、把別人的批評當成養分的習慣。</p>
+<p>這裡有一個很好用的技巧：<strong>不要問「回饋」，要問「建議」。</strong>你問「我剛才做得怎麼樣」，對方不是客套稱讚，就是挑你過去的毛病；你問「下次我可以怎麼做得更好」，對方就會往前看，給你具體能用的東西。同時也要挑來源——意見值不值得聽，要看對方是不是真的懂、是不是真的在乎你、是不是真的了解你的狀況。</p>
+<p><strong>第三項：做一個「不完美主義者」。</strong>完美主義聽起來像優點，但研究顯示它和實際表現的關係很弱，卻和倦怠高度相關。完美主義者容易鑽進無關緊要的細節、迴避沒把握的挑戰、為了一點小錯責備自己很久。</p>
+<p>格蘭特舉的例子是日本建築師安藤忠雄。他年輕時當過拳擊手，沒有受過正規的建築學院教育，靠自學和旅行走上這條路。他的清水混凝土建築，刻意在某些地方留下不完美，把有限的心力和預算集中在最關鍵的體驗上——光線、空間、人走進去的感受。這呼應了日本美學裡「侘寂」的觀念：在不完美中看見美。</p>
+<p>實際的做法是：為每件事訂一個清楚而且夠高的目標，但先想清楚「哪些地方必須做到好、哪些地方夠用就行」。格蘭特自己練跳水時，教練教他每一跳只針對一個重點給自己打分數，而不是追求零缺點。</p>
+<p><strong>常見的誤用</strong>：把「接受不完美」當成降低標準。格蘭特說的是把標準放在對的地方，然後用進步而不是用零缺點來衡量自己。</p>
+<h3>三、鷹架：讓人撐過低潮的臨時支架</h3>
+<p>蓋房子的時候，鷹架是暫時搭起來、幫工人搆到自己搆不到的高度的結構，房子蓋好就拆掉。格蘭特用它來比喻那些幫你度過學習關卡的支持，它通常來自別人，針對你當下卡住的地方，而且是暫時的。書中講了三種。</p>
+<p><strong>把練習變得好玩。</strong>「刻意練習」很有效，但也很磨人，許多人就是在枯燥的反覆裡磨光了熱情。格蘭特提出「刻意遊戲」：把技能練習設計成有變化、有挑戰、帶點競賽感的遊戲。他寫到一位籃球明星和他的訓練師，把投籃訓練做成一關一關、要跟時間和自己的紀錄比賽的遊戲，而不是站在原地投幾百顆球。差別在於，前者養出的是讓人想再來一次的熱情，後者養出的常是倦怠。</p>
+<p><strong>卡住時，後退一步才能前進。</strong>進步很少是直線的。書中寫了一位大聯盟投手的故事：他在生涯快走到盡頭時，決定從頭學一種極難掌握的球路——蝴蝶球。這表示他得先變得比原來更差，在小聯盟裡重新摸索好幾年，東找西問、拼湊老前輩的經驗，最後才在三十多歲迎來生涯最好的球季。格蘭特的重點是：停滯時繼續用同一招加倍努力，往往沒用；有時候你得退回去換一條路，並且找人當嚮導——不是找一張完美的地圖，而是從好幾個人那裡各拿一點方向。這段過程中，另外找一件能給你小小成就感的事（例如一項嗜好或副業）也有幫助，因為在一個地方感受到進展，會把動力帶回到卡住的那一邊。</p>
+<p><strong>藉著教別人來撐住自己。</strong>美國海軍在二戰期間訓練的第一批黑人軍官候選人，面對的是不相信他們能通過的環境。他們的對策是把所有人綁在一起：每個人把自己擅長的科目教給其他人，晚上聚在一起互相考。最後整批人的成績好到讓上級懷疑、要求重考，重考的結果一樣好。格蘭特從這裡談到幾個研究發現：教別人的人自己學得更好；而鼓勵別人的過程，也會讓你對自己更有信心。當你覺得自己不行的時候，去指導一個同樣在掙扎的人，往往比等別人來鼓勵你更有效。</p>
+<p><strong>限制在哪</strong>：鷹架需要有人願意搭。如果你身邊沒有這樣的人，書裡的建議是先成為別人的鷹架——這通常也是把人吸引到你身邊的方式。</p>
+<h3>四、機會的制度：別讓潛能被篩掉</h3>
+<p>最後一部分把鏡頭拉到學校和組織。</p>
+<p><strong>教育</strong>：格蘭特介紹了芬蘭的教育經驗。芬蘭學生在國際評比中表現很好，而且強弱之間的落差小。他歸納的原因包括：把老師當成受高度尊重、高度專業的工作來培養；讓同一位老師連續帶同一批學生好幾年，因此有時間真正了解每個孩子；重視遊戲和閱讀的樂趣；以及在孩子落後時及早給予個別協助。背後的信念是：每個孩子都有潛能，制度的任務是不讓任何人掉隊，而不是早早挑出優勝者。</p>
+<p><strong>團隊</strong>：2010 年智利礦災，三十三名礦工被困在地底深處。救援之所以成功，一個關鍵在於主事者沒有只聽位階最高、聲音最大的專家，而是設法讓各種來源的點子都能被聽到——其中一個重要的構想，就來自一位年輕、名不見經傳的工程師。格蘭特由此談到研究上的發現：團隊裡話最多的人常被當成領導者，但話多不等於點子好。他建議的做法之一是「腦力書寫」——先讓每個人各自寫下想法，再匯集起來評估，避免討論被少數人帶著走；另外，提案管道不要只有直屬主管這一條梯子，要像格子架一樣有多條路可以往上送。</p>
+<p><strong>選才</strong>：書中寫了一位出身農工家庭的工程師，申請太空人一再被拒，前後十多次，最後才被選上。問題出在篩選制度只看你現在的位置，看不到你是從多遠的地方爬上來的。格蘭特主張，評估一個人要把<strong>難度</strong>和<strong>進步的軌跡</strong>算進去：同樣的成績，在逆境中拿到的，含金量更高；一路往上的曲線，比一直持平的高分更能預測未來。面試也可以改成讓人實際做一段工作，並且給一次重來的機會，看他怎麼學。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>格蘭特的論證是由內而外的三層：</p>
+<p><strong>個人層</strong>（品格技能）：願意不舒服、會吸收、不被完美綁住——這讓你「能」進步。 <strong>人際層</strong>（鷹架）：有趣的練習、迂迴的路徑、互相教導的同伴——這讓你在想放棄的時候「撐得住」。 <strong>制度層</strong>（機會）：不早早篩人的學校、聽得見小聲音的團隊、看得見進步幅度的選才——這讓你的進步「被看見」。</p>
+<p>三層缺一不可。只談個人努力，會變成責怪那些沒有機會的人；只談制度，又會忽略個人確實可以學會的東西。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>挑一項你想學的技能，設定一個「犯錯額度」——例如這週要在會議上講出三個不成熟的想法</li><li>下次做完簡報或交出作品，問一位信得過的同事：「下次我可以把哪一點做得更好？」只問建議，不問評價</li><li>開始一個任務前先寫下：這件事哪兩個地方必須做到很好，其他地方「夠用」的標準是什麼</li><li>找一位比你資淺的同事，教他一件你自己也還在練的事</li><li>主持討論時，先讓每個人各自寫下想法再開口</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>把一項你覺得枯燥的練習（運動、樂器、語言）改成有計分、有關卡的小遊戲</li><li>在某件事上卡關很久時，允許自己退回去換方法，並去請教三個走過類似路的人</li><li>另外養一個能讓你感覺到小進展的嗜好</li><li>回顧自己時，把問題從「我現在夠不夠好」換成「跟一年前比，我走了多遠」</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「所以天賦不重要，只要努力就行」</strong>——格蘭特沒有否認天賦存在，他說的是我們高估了它、又太早用它來篩人。而且書中的關鍵字不是「努力」，是努力的方式和周圍的支持。</li><li><strong>「走向不舒服就是硬撐、吃苦」</strong>——他同時用了一整章談「把練習變好玩」。目的是進步，不是受苦；會讓人倦怠的苦練，正是他要你避開的。</li><li><strong>「這是一本個人勵志書」</strong>——全書有三分之一在談制度。格蘭特很明確地說，潛能沒被發揮，很多時候是機會結構的問題，而不是個人不夠拚。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《異數》（葛拉威爾）：葛拉威爾強調成功背後的時機、家庭和文化等外在條件；格蘭特接著往下問，在既有條件下，個人和制度各自還能做些什麼。兩本一起讀，可以避免掉進「全靠自己」或「全靠運氣」任一邊。</li><li>《喚醒你心中的大師》（葛林）：葛林描繪的是長年學徒式修練通往精通的路；格蘭特補上了現代研究的觀點，特別是「怎麼讓這條漫長的路走得下去」。</li><li>《原子習慣》（克利爾）：克利爾處理的是每天的行為怎麼建立；格蘭特處理的是更上一層的學習態度和支持系統。前者給你工具，後者告訴你工具該用在哪個方向。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「潛能不在於你從哪裡出發，而在於你走了多遠。」（Potential is not a matter of where you start, but of how far you travel.）</li><li>「品格，是你讓價值觀優先於本能的能力。」（大意）</li><li>「衡量進步的標準，不是你到達的高度，而是你為了到那裡爬過多少距離。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>有沒有哪件事，你因為「還沒準備好」或「怕做得不夠好」而一直沒開始？如果允許自己做得很爛，第一步會是什麼？</li><li>回想一位曾經當過你「鷹架」的人——他做了什麼讓你撐過去？你現在可以為誰做同樣的事？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="hidden-potential" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "hidden-potential";
+      var TITLE = "隱性潛能";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "hidden-potential";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

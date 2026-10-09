@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>工作大解放｜拾頁</title>
+<meta name="description" content="你以為要做大事，就得先寫完整計畫、加班、開會、募資、擴編？這本書說：這些「正常做法」多半是慣性，不是必要。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="rework" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-04</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 12 分鐘</span></div>
+  <h1>工作大解放</h1>
+  <p class="title-en">Rework</p>
+  <p class="byline">傑森・福萊德、大衛・海尼梅爾・漢森（Jason Fried & David Heinemeier Hansson）｜2010</p>
+  <p class="hook">你以為要做大事，就得先寫完整計畫、加班、開會、募資、擴編？這本書說：這些「正常做法」多半是慣性，不是必要。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>長期計畫其實是猜測；把決定留到資訊最多的時候做，先動手做出東西來。</li><li>資源少不是缺點而是優勢：限制逼你只留下最核心的東西，做半個好產品勝過一個半吊子產品。</li><li>打斷是生產力的頭號敵人；會議、加班、「越快越好」都在偷走真正能做事的整段時間。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>傑森・福萊德和大衛・海尼梅爾・漢森是軟體公司 37signals 的兩位核心人物。這家公司 1999 年在芝加哥成立，一開始只是幫客戶做網站的設計工作室。他們為了管理自己手上的案子，寫了一套專案管理工具，後來發現客戶也想用，就把它變成產品賣——這就是 Basecamp。漢森當時人還在丹麥，遠端幫忙寫程式；他在開發 Basecamp 的過程中順手整理出來的程式框架，就是後來在工程師圈子很有名的 Ruby on Rails。</p>
+<p>這家公司的特別之處在於「不照矽谷的劇本走」：不靠創投的錢燒市占、不追求快速擴編、員工分散在不同城市遠距工作、人數長年維持在很小的規模，卻從很早就開始賺錢，服務的使用者數以百萬計。2010 年他們把這套做事哲學寫成《Rework》。</p>
+<p>這本書的形式也很「他們」：沒有長篇論述，而是幾十篇各一兩頁的短文，每篇一個主張、一張插圖，語氣直接到有點挑釁。它出版的時間點，正好是「創業就該募資、燒錢、衝成長」的說法最響亮的年代，所以讀起來像是有人在派對上大聲說：其實不必這樣。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「要把一件事做起來，是不是一定得照大家說的那一套？」——完整的商業計畫書、長工時、一週好幾場會、先找投資人、看到別人出什麼功能就跟。兩位作者的回答是：這些做法之所以被當成理所當然，多半只是因為大家都這麼做，而不是因為它們有效。</p>
+<p>所以這本書不是一套方法論，比較像一份「拆除清單」：把工作裡那些你以為不能少的東西，一項一項拿出來問「真的需要嗎？」它對創業的人有用，對在大公司上班、想把手上的小專案做好的人同樣有用。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、計畫是猜測，先動手才是真的</h3>
+<p>書裡有一篇的標題就叫〈計畫就是猜測〉。作者的意思不是「不要想未來」，而是提醒你：除非你會算命，否則長期的商業計畫本質上是一種想像。市場、對手、客戶、景氣，太多因素不在你手上。他們建議乾脆把話說白——把「商業計畫」叫做「商業猜測」，把「財務規劃」叫做「財務猜測」，你就不會太把它當真。</p>
+<p>計畫真正的危險在於它會讓過去綁架未來。你在專案開始前寫下計畫，那正是你對這件事了解最少的時候；等你真的做下去、資訊最多的時候，卻因為「計畫上是這樣寫的」而不敢轉彎。作者的建議是把時間尺度縮短：決定這週要做什麼，而不是今年要做什麼；找出下一件最重要的事，做完再說。</p>
+<p>相連的主張是「現在就推出」。他們問了一個很好用的問題：如果你只剩兩週就得上線，你會砍掉什麼？這個問題會逼你分清楚「必須有」和「有也不錯」。另一篇〈從震央開始〉用熱狗攤當例子：開熱狗攤，你可以煩惱調味料、推車、店名、裝飾，但震央只有一個——熱狗本身。沒有熱狗，其他都不成立；所以先把熱狗做好。</p>
+<p>他們也不信「從失敗中學習」這句話被捧得那麼高。失敗只告訴你什麼行不通，沒告訴你什麼行得通；而成功的經驗可以直接再用一次。書中引用過一項關於創業者的研究作為佐證，大意是：之前成功過的創業者，下一次成功的機率明顯較高，而失敗過的人，下一次的成功率和第一次創業的人差不多。</p>
+<p><strong>限制在哪</strong>：這套「邊做邊看」的做法，在軟體這種改版成本低的行業特別好用。如果你做的是蓋橋、製藥、發射火箭這類錯了很難重來的事，前期規劃的份量自然要重得多。讀的時候記得作者是站在哪個產業說話。</p>
+<h3>二、限制是優勢：少做一點，做好一點</h3>
+<p>多數人覺得自己缺時間、缺錢、缺人。作者把這句抱怨整個翻過來：資源有限是好事，因為它逼你想辦法、逼你不浪費。他們舉了文學和商業的例子：海明威、卡佛這類作家，用最簡單的語言寫出最有力的作品；西南航空長期只用單一機型，機師、空服、維修人員因此可以互相支援，零件也只需要備一種。</p>
+<p>由此延伸出全書最常被引用的一句話：做半個產品，不要做一個半吊子的產品。想要的功能如果全都塞進去，每一樣都只能做到勉強；不如砍掉一半，把剩下的做到很好。他們把自己比作博物館的策展人——一間博物館之所以好，不是因為把所有藝術品都堆進去，而是因為有人決定了哪些東西「不放」。</p>
+<p>對競爭對手也是同一個邏輯。一般人的直覺是「對手有的我都要有，再多加一點」，作者主張反過來「比對手做得更少」：解決簡單的問題，把難纏、複雜的問題留給對手。書中舉過 Flip 攝影機的例子：當時它沒有一堆按鈕和選單，功能少得可憐，卻因為簡單到誰都會用而大賣。</p>
+<p>這個精神也用在對客戶的態度上：預設說「不」。客戶提的功能要求不必一條條記下來，因為真正重要的要求會一再出現，你想忘也忘不掉。他們甚至接受「讓客戶長大後離開」——與其為了留住少數越來越進階的老客戶而把產品改得越來越複雜，不如讓產品始終適合剛上門的新客戶。</p>
+<p>還有一篇談「把心力放在不會變的事情上」。流行會變，但有些東西十年後客戶還是要：亞馬遜押的是出貨快、選擇多、價格好，不會有人哪天醒來希望包裹慢一點到。把投資放在這種地方，才不會白花。</p>
+<p><strong>常見的誤用</strong>：把「少做」當成偷懶的藉口。作者說的少，是為了把留下來的部分做到好；如果砍完之後連核心都做得馬虎，那不是精簡，只是做得不夠。</p>
+<h3>三、打斷是生產力的敵人：會議有毒、加班無用</h3>
+<p>這是全書最貼近上班族日常的一塊。作者觀察到，很多人真正做出東西的時間是清晨或深夜，原因很簡單：那時候沒人打擾。白天的辦公室充滿了拍肩膀、訊息、電話和會議，把一天切成一段一段的碎片，而需要動腦的工作偏偏需要一整段不被打斷的時間。他們把這種狀態叫「獨處區」，並建議刻意安排，例如固定半天大家都不互相講話，或把即時的溝通（當面、電話）盡量改成對方可以晚點再回的方式（寫下來）。</p>
+<p>至於會議，他們直接說「有毒」。理由包括：談的常是抽象概念而不是實際的東西、資訊密度低、容易離題、總有人沒準備。最有力的是那道簡單的算術：一場一小時的會如果有十個人參加，它花掉的不是一小時，而是十個小時的工作時間。真的非開不可時，他們的建議很具體——設定計時器、時間到就散；人越少越好；要有明確的議程；從一個具體的問題開始；結束時要有解法，並指定誰負責執行。</p>
+<p>對工作狂，他們更不客氣。熬夜加班看起來像英雄，實際上常是用蠻力掩蓋思考上的懶惰——不去找更聰明的做法，只是把時數堆上去。而且疲勞會讓判斷變差，做出來的決定品質更低。書裡說得很直白：真正的英雄早就回家了，因為他找到更快把事情做完的方法。相關的幾篇還有〈去睡覺〉（缺睡會讓你固執、沒創意、脾氣差）和〈越快越好是毒藥〉（當每件事都標上「盡快」，這個詞就失去意義，只剩下人為製造的壓力）。</p>
+<p>另一個實用的提醒是「你的估計很爛」。人對於一件事要花多久的判斷一向不準，越大的專案偏差越大。解法是把大事拆小：把十二週的專案拆成十二個一週的專案，把一長串待辦清單拆成幾張短的。小的東西估得準，做完一件也有進展的感覺，而這種「小勝利」正是讓人繼續做下去的動力。</p>
+<p><strong>實用價值</strong>：這一塊不需要你是老闆才能用。你可以從自己的行事曆開始：守住一段不看訊息的時間、拒絕沒有議程的會、把「盡快」換成一個明確的時間。</p>
+<h3>四、行銷與用人：教得比對手多，痛了再請人</h3>
+<p>沒有大筆行銷預算怎麼辦？作者的答案是「建立觀眾」而不是「買廣告」：持續分享有用的東西，讓人主動回來找你。他們用廚師當榜樣——知名主廚會出食譜書、上電視教你做菜，把看家本領公開，卻不擔心你因此開一家餐廳打垮他，因為食譜不等於那家餐廳。所以公司也應該「教得比對手多」，把自己怎麼做事攤開來講。還有一招叫「賣你的副產品」：木材業把鋸木屑、木片都拿去賣錢；37signals 自己也一樣，這本書和他們之前寫的文章，本來就是做產品過程中累積下來的心得。</p>
+<p>用人方面，他們反對為了「以後可能需要」而先請人，主張「痛了再請」：先自己做過那份工作，知道它到底需要什麼，等到真的撐不住才補人。挑人的標準也很不一樣——履歷和年資參考價值有限，重要的是這個人能不能自己管好自己（他們稱為「一人經理」），以及文字寫得好不好，因為寫得清楚的人通常也想得清楚。</p>
+<p>對於公司規定，他們有個很妙的比喻：政策是組織的疤痕組織。每出一次錯就立一條新規定，久了公司就被一層層的疤綁得動彈不得。所以不要在第一刀就留疤——有人犯錯，先當面講清楚就好，一再發生才考慮定規則。</p>
+<p><strong>限制在哪</strong>：這些建議預設的是一家小而自主、可以自己決定步調的公司。如果你的行業需要大量資金才能起步，或你身在一個制度已經很重的大組織，有些做法只能取其精神、打折使用。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>這本書雖然是短文集，背後有一條很清楚的線：<strong>把「看起來在工作」和「真的有產出」分開。</strong></p>
+<p>計畫書、長工時、會議、擴編、募資、功能清單——這些都是「看起來很認真」的活動。作者一項一項問：它真的讓東西變好了嗎？如果沒有，就拿掉。拿掉之後剩下的是什麼？是一個明確的核心（震央）、一小群能自己管自己的人、一段段不被打斷的時間，以及儘早把東西放到真實使用者面前。</p>
+<p>所以四個概念其實是同一個想法的四個切面：不靠預測而靠實做（計畫）、不靠多而靠精（限制）、不靠時數而靠專注（打斷）、不靠砸錢而靠分享與自己動手（行銷與用人）。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>對手上的專案問「如果兩週內要交，我會砍什麼？」把答案列出來，其中至少一項真的砍掉或延後</li><li>找出這件事的「震央」——少了它就不成立的那一塊——本週只先把它做到能用</li><li>每天在行事曆上劃一段不看訊息、不接會議的時間，並事先告訴同事這段時間你晚點回覆</li><li>下次被邀請參加沒有議程的會，先回問：「這場要決定什麼？我可以用文字先給意見嗎？」</li><li>把待辦清單裡拖最久的大項目，拆成三個各自能在半天內做完的小項目</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>想了很久的個人計畫（寫作、副業、學東西），不要再規劃了，本週末做出一個最小的成品給一個人看</li><li>把「沒時間」換個說法：這件事值不值得我少看一小時影片？答案如果是值得，時間就有了</li><li>預算或時間有限時，先問「限制之下最好的版本長什麼樣」，而不是等條件齊全</li><li>累的時候去睡，不要用熬夜硬撐；隔天再看，同一個問題常常變簡單</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書叫人不用計畫、想到就做」</strong>——作者反對的是把長期計畫當成不能改的劇本，不是反對思考。他們要的是短週期的決定：想清楚下一步，做完再決定再下一步。</li><li><strong>「反對加班等於鼓勵少做事」</strong>——重點從來不是工時長短，而是產出。作者其實要求很高：把東西砍到剩核心，然後把核心做到很好。這比無腦加班難。</li><li><strong>「小公司才適用，跟上班族無關」</strong>——書裡的例子多來自小公司，但像保護專注時間、拆小任務、對多餘的要求說不、少開沒必要的會，都是個人層級就能做的事。真正不能照搬的是募資、定價、用人這些需要決策權的部分。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《深度工作力》（紐波特）：兩本書都把「不被打斷的整段時間」當成最稀缺的資源。《工作大解放》從公司怎麼運作的角度下手，《深度工作力》從個人怎麼訓練專注力下手，合起來讀剛好是內外兩面。</li><li>《少，但是更好》（麥基昂）：同樣主張「少」，但麥基昂談的是個人怎麼在人生和工作裡辨認真正重要的少數事；《工作大解放》談的是產品和公司怎麼少。前者偏原則，後者偏實戰。</li><li>《什麼才是經營最難的事？》（霍羅維茲）：這是很好的反面對照。霍羅維茲寫的是拿了創投的錢、在生死邊緣快速擴張的公司，那個世界有很多《工作大解放》沒處理的難題。兩本一起看，你會知道「小而穩」和「大而快」是兩種不同的賽局。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「做半個產品，不要做一個半吊子的產品。」（Build half a product, not a half-assed product.）</li><li>「會議有毒。」「打斷是生產力的敵人。」（Meetings are toxic. / Interruption is the enemy of productivity.）——書中兩篇的標題</li><li>「工作狂不是英雄。真正的英雄已經回家了，因為他找到了更快把事情做完的方法。」（大意，出自談工作狂的一篇）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你現在的工作裡，哪一件事是「大家都這樣做，但你其實懷疑它有沒有用」的？如果明天就停掉，最壞會發生什麼？</li><li>拿你手上最重要的一件事來想：它的「震央」是什麼？你目前花的時間，有多少比例真的用在震央上？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="rework" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "rework";
+      var TITLE = "工作大解放";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "rework";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

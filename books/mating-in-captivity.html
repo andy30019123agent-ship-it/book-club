@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>情欲徒刑｜拾頁</title>
+<meta name="description" content="你以為感情越親密、越無話不談，熱情就會越旺？沛瑞爾說恰恰相反：愛需要靠近，慾望卻需要距離——把兩個人黏到沒有縫，火就沒有空氣了。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="mating-in-captivity" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-13</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>情欲徒刑</h1>
+  <p class="title-en">Mating in Captivity</p>
+  <p class="byline">埃絲特・沛瑞爾（Esther Perel）｜2006</p>
+  <p class="hook">你以為感情越親密、越無話不談，熱情就會越旺？沛瑞爾說恰恰相反：愛需要靠近，慾望卻需要距離——把兩個人黏到沒有縫，火就沒有空氣了。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>愛要安全感，慾望要未知感；兩者方向相反，長期關係的功課是同時容納。</li><li>親密不等於融為一體：保有各自的世界，才看得見對方身上還有你不認識的部分。</li><li>長期關係裡的熱情不靠「自然而然」，要像安排重要的事一樣刻意留位置。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>埃絲特・沛瑞爾在比利時安特衛普長大，父母都是納粹集中營的倖存者。她後來多次提到，成長的社區裡有兩種倖存者：一種人「沒有死」，謹慎、戒備、不敢再相信快樂；另一種人「活了回來」，重新去冒險、去玩、去愛。她的父母屬於後者。這個童年觀察成了她日後工作的底色——她理解的情慾，不只是性，而是一種「活著的感覺」。</p>
+<p>她在以色列念書，之後到美國受訓成為伴侶與家族治療師，在紐約執業，會說九種語言，個案來自各種文化背景。2006 年出版的這本書是她的第一本著作，被翻成二十多種語言，把她推成當代最知名的伴侶治療師之一；後來的演講、播客和第二本談外遇的書，都是從這裡延伸出去的。</p>
+<p>這本書出現的時間點也有意思。二十一世紀初的西方婚姻觀已經演變成一個高難度的組合：伴侶要是最好的朋友、最懂你的知己、平等的合夥人、盡責的共同家長，同時還得是讓你心跳的情人，而且一輩子。沛瑞爾要問的是：這張清單本身，是不是藏著矛盾？</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼明明感情很好、彼此相愛的伴侶，會漸漸沒有慾望？」</p>
+<p>流行的解釋是：一定是關係哪裡出了問題——溝通不夠、不夠親密、有沒解決的怨氣。按這個邏輯，只要把關係修好、把話說開，熱情自然就回來。沛瑞爾在診療室裡看到的卻是另一幅景象：很多伴侶感情好得很，會聊天、會互相照顧、彼此信任，就是不再想要對方。有些甚至是感情越好，越沒有。</p>
+<p>於是她提出這本書的核心命題：<strong>愛與慾望是兩回事，而且它們要的東西相反。</strong>愛要的是「擁有」——靠近、熟悉、可預測、安全；慾望要的是「想要」——距離、新鮮、未知、一點點風險。我們要求同一個人、同一段關係，同時提供這兩種東西。</p>
+<p>她不是說這辦不到。她是說，這不是一個可以一次「解決」的問題，而是一個要長期「管理」的張力。書名裡的「captivity」——圈養、囚禁——指的就是這個處境：我們把一種野生的東西，帶進了一個追求安定的家。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、安全感與冒險心：火需要空氣</h3>
+<p>沛瑞爾認為每個人身上都有兩股基本需求在拉扯。一股要安穩：歸屬、依靠、可以預期的明天。另一股要探索：新奇、變化、驚喜。過去，這兩種需求由不同的地方滿足——婚姻提供經濟與社會的穩定，熱情則不見得是婚姻的責任。現代的愛情婚姻把兩者全放進同一個屋簷下。</p>
+<p>而我們經營關係的方式，幾乎全部在增加第一種。同居、合併帳戶、共享行事曆、知道對方每一刻在哪——每一步都讓關係更穩，同時也在一點一點消除未知。可是慾望恰恰靠未知活著。她有一句常被引用的話：<strong>火需要空氣。</strong>把兩個人之間的縫隙全部填滿，火就悶熄了。</p>
+<p>書裡有不少個案是這樣的：一對伴侶互相體貼到極點，什麼都一起做，連情緒都同進同出。他們把這叫親密，但其中一方說，他對伴侶的感覺越來越像家人。沛瑞爾的解讀是：當兩個人融合到沒有界線，就沒有「另一個人」可以去渴望了——你沒辦法渴望一個已經完全屬於你、你已經完全知道的東西。</p>
+<p>她在工作中常問伴侶一個問題：你在什麼時候最受對方吸引？得到的答案跨文化地相似——當他離開一陣子又回來的時候；當我看到她在台上、在工作中、在一群人裡發光的時候；當他做了讓我意外的事的時候。共同點是：<strong>那些時刻，伴侶短暫地從「我的另一半」變回一個獨立的、有點陌生的人。</strong></p>
+<p><strong>實用價值</strong>：這給了「各自有自己的生活」一個比「保持新鮮感」更扎實的理由。你的興趣、朋友、專業，不是從關係裡偷走的時間，而是關係需要的氧氣。</p>
+<p><strong>限制在哪</strong>：這個論點預設雙方已經有足夠的安全感。對一段本來就不穩、充滿不信任的關係，再拉開距離只會更糟。沛瑞爾談的是「太安全」的伴侶，不是「不夠安全」的。</p>
+<h3>二、親密的迷思：說得越多，不一定要得越多</h3>
+<p>當代對親密的定義幾乎等於「談話」：把感受說出來、彼此完全透明、沒有秘密。沛瑞爾對此提出兩個質疑。</p>
+<p>第一，這是一種偏重語言的親密觀。有些人——她觀察到尤其是許多男性——表達親近的方式是身體的、行動的，而不是談話的。當一段關係規定「先好好談，才有身體的親近」，等於只承認其中一種語言。對某些人來說，身體的接觸本身就是他們說話的方式。</p>
+<p>第二，完全的透明不見得滋養慾望。知道對方的一切、分享自己的一切，帶來的是熟悉與安心，但也拿走了神祕。她的看法是，每個人都應該保有一塊內在的私人空間——不是欺瞞，而是「我有一些想法與幻想只屬於我自己」。尊重對方有你到不了的地方，本身就是一種親密。</p>
+<p>她還談到另一個尷尬的現象：我們在客廳裡追求的價值——平等、公平、凡事協商、體貼不強求——搬進臥室後，有時反而讓氣氛變得四平八穩。情慾的想像世界不太講政治正確，它常常包含主動與被動、追逐與臣服這類「不對等」的戲碼。沛瑞爾的重點是：<strong>在彼此信任的遊戲裡扮演這些角色，和現實生活中的不平等是兩回事。</strong>能分清楚這一點的伴侶，才有空間去玩。</p>
+<p><strong>常見誤用</strong>：把這段讀成「所以不用溝通」或「保有祕密是好事」。她反對的是把親密窄化成只有一種形式，以及把「全知」當成愛的證明，並不是替隱瞞背書。</p>
+<h3>三、情慾是想像力，也是「活著」的感覺</h3>
+<p>沛瑞爾刻意用「情慾」（eroticism）而不是「性」。她的區分是：性是行為，情慾是意義——是人類獨有的、由想像力轉化過的東西。她稱這種能力為「情慾智能」（erotic intelligence）：製造期待、保留懸念、玩耍、好奇的能力。</p>
+<p>這解釋了為什麼很多伴侶的問題不在次數，而在「沒有感覺」。當親密行為變成待辦清單上的一項、排在洗碗和回信後面，它就失去了遊戲的性質。而遊戲的前提是：沒有非達成不可的目標、允許不確定、有一點淘氣。</p>
+<p>她特別花了一章談有了孩子之後的伴侶。新手父母把所有的創意、耐心、玩心都給了孩子——替孩子安排活動、製造驚喜、溫柔撫觸——留給彼此的只剩後勤協調。家變成一個以孩子為中心、極度安全也極度可預測的地方。沛瑞爾並不是批評用心的父母，她是指出：伴侶之間的那份能量被整個改道了，而且沒有人覺得有權利把它要回來。</p>
+<p>這裡她也戳破一個浪漫迷思：<strong>「熱情應該是自然發生的。」</strong>交往初期確實如此，因為一切都還是未知。但在長期關係裡等待「自然而然」，通常等於等待「永遠不會」。她的講法是，長期伴侶之間的親密多半是預先安排的——而預先安排並不掃興，它本身可以是期待的一部分，就像你會為一頓重要的晚餐訂位、打扮、整天想著它。</p>
+<h3>四、第三者的影子</h3>
+<p>書的後段處理忠誠。沛瑞爾的切入點不是道德判斷，而是一個觀察：每一段兩人關係裡，都有「第三者」的影子存在——不一定是真實的人，而是「對方有可能被別人吸引、也有可能選擇離開」這個事實。</p>
+<p>多數伴侶處理這個影子的方式是否認與封鎖：假裝它不存在，或用監控和規定把它擋在外面。沛瑞爾認為，承認它存在反而是健康的。意識到伴侶是自由的、有魅力的、並不理所當然屬於你，正是讓你繼續想要他的原因之一。忠誠在她看來是一個持續在做的選擇，不是簽完名就自動生效的狀態。</p>
+<p>她也鼓勵伴侶把「我們之間的界線是什麼」當成可以明白討論的題目，而不是各自默默假設。至於具體該怎麼約定，她沒有給標準答案——她的個案來自太多不同的文化，不同的伴侶會有不同的安排。</p>
+<p><strong>限制在哪</strong>：這一章是全書爭議最大的部分。批評者認為她對界線的開放態度可能被人拿去合理化傷害伴侶的行為。讀的時候抓住她的本意比較安全：重點是誠實面對「對方不是你的財產」，不是鼓勵任何一種特定的做法。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>沛瑞爾的論證是一條清楚的線：<strong>現代伴侶把安全與熱情兩種相反的需求放進同一段關係</strong> → 我們擅長建造安全，於是<strong>過度的靠近與透明擠掉了慾望需要的距離與未知</strong> → 要把慾望找回來，靠的不是更多的「修補關係」，而是<strong>重新承認對方是一個獨立的人</strong>（保有各自的空間、看見對方在自己世界裡的樣子、承認第三者的影子）→ 並且<strong>刻意為玩耍與想像留位置</strong>（情慾智能、預先安排）。整本書沒有給步驟清單，她給的是一種看待關係的眼光：這是一個需要持續平衡的矛盾，不是一個等著被修好的故障。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（這本書談的是伴侶，但「距離產生吸引」的道理在工作關係也通）：</strong></p>
+<ol><li>別讓自己只剩「同事眼中的功能」：偶爾讓團隊看到你在專業之外的另一面，人會對有層次的人保持興趣</li><li>長期合作的夥伴，定期換個場景一起工作或吃飯——熟悉的關係需要新的背景才看得到新的東西</li><li>檢查你有沒有把所有創意和耐心都耗在工作上，回家只剩後勤模式</li></ol>
+<p><strong>生活版：</strong></p>
+<ol><li>問彼此那個問題：「你什麼時候最受我吸引？」聽答案，不要辯解</li><li>各自保有一件「我自己的事」——一門課、一群朋友、一項運動——並且偶爾去看對方做他擅長的事</li><li>把約會排進行事曆，並且把它當成重要的事來準備，而不是「有空再說」</li><li>有孩子的伴侶：每個月至少有一段時間，你們的身分是伴侶而不是爸媽，話題不准是孩子和家務</li><li>練習不必什麼都報備、什麼都問清楚。留一點「我不知道他今天過得怎樣，等他自己說」的空白</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「所以關係太親密不好，要疏遠一點」</strong>——她區分的是「親密」和「融合」。兩個完整的人靠得很近是親密；兩個人糊成一個是融合。問題在後者。</li><li><strong>「沒有熱情就代表不愛了」</strong>——全書的出發點正好相反：很多失去慾望的伴侶深深相愛。把這兩件事分開看，才不會因為其中一件降溫就判整段關係死刑。</li><li><strong>「這本書在替外遇找理由」</strong>——她談第三者的影子，是要伴侶誠實面對對方的自由與吸引力，並不是主張背叛無妨。她後來另外寫了一整本書專門談外遇造成的傷害與修復。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《抱緊我》（蘇珊・強森）：拾頁書庫裡談依附的那本，立場幾乎是沛瑞爾的對面——強森認為安全的情感連結才是熱情的基礎。兩本一起讀最有意思：一個說先有安全才敢冒險，一個說太安全就不想冒險，而多數伴侶兩種功課都要做。</li><li>《七個讓愛延續的方法》（約翰・高特曼）：用實驗室數據研究什麼樣的互動讓婚姻穩定。高特曼教你把「愛」的這一半顧好，沛瑞爾處理的是他較少觸及的「慾望」那一半。</li><li>《愛之語》（蓋瑞・巧門）：巧門講每個人接收愛的方式不同，和沛瑞爾質疑「親密只能靠談話」的觀點可以互相印證。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「愛享受的是了解你的一切；慾望需要的是神祕。」（Love enjoys knowing everything about you; desire needs mystery.）</li><li>「火需要空氣。」（Fire needs air.）</li><li>「長期關係裡的熱情不是自然發生的，它是兩個人刻意為它留出位置的結果。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>「安全感」和「新鮮感」，你在關係裡比較缺哪一個？你們平常的相處方式，是在增加哪一個？</li><li>你上一次覺得伴侶（或某個很熟的人）「有點陌生、讓你重新看他一眼」是什麼時候？當時他在做什麼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="mating-in-captivity" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "mating-in-captivity";
+      var TITLE = "情欲徒刑";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "mating-in-captivity";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

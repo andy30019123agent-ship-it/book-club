@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>錯不在我？｜拾頁</title>
+<meta name="description" content="你以為死不認錯的人是在騙別人？這本書說更可怕的是他們先騙過了自己——而且同一套機制，此刻正在你腦中安靜運轉。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="mistakes-were-made" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-06</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>錯不在我？</h1>
+  <p class="title-en">Mistakes Were Made (But Not by Me)</p>
+  <p class="byline">卡蘿・塔芙瑞斯、艾略特・亞隆森（Carol Tavris & Elliot Aronson）｜2007</p>
+  <p class="hook">你以為死不認錯的人是在騙別人？這本書說更可怕的是他們先騙過了自己——而且同一套機制，此刻正在你腦中安靜運轉。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>認知失調讓我們在做錯事之後，不是修正行為，而是修改想法來替自己辯護。</li><li>一小步辯護會推著你走下一步，兩個原本相似的人最後站到金字塔的兩端。</li><li>解方是把「我做了一件蠢事」和「我是個蠢人」拆開，才有空間認錯。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>這本書是兩位資深社會心理學家的合作。艾略特・亞隆森是二十世紀最重要的社會心理學家之一，年輕時在史丹佛跟著費斯廷格（Leon Festinger）做研究——費斯廷格正是「認知失調」理論的提出者。亞隆森後來把這個理論往前推了一大步：他主張失調最強烈的時候，不是兩個隨便的想法互相衝突，而是某件事威脅到「我是個聰明、正派的好人」這個自我形象的時候。他寫的教科書《社會性動物》是好幾代心理系學生的入門書。</p>
+<p>卡蘿・塔芙瑞斯也是社會心理學博士，長年寫作科普與評論，特別擅長拆穿打著心理學旗號的偽科學。兩人是多年老友，這本書的緣起，據他們自己說，是看著當時的公共人物一次又一次面對明顯的錯誤卻絕不改口，想弄清楚一個問題：這些人到底是在說謊，還是真的相信自己？</p>
+<p>書在二〇〇七年出版，之後多次增訂，加進新的政治與社會案例。書名來自政治人物最愛的一種句型：「是有一些錯誤被犯下了。」被動語態，沒有主詞——錯誤存在，但沒有任何人犯了它。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼聰明、正直的人，會做出蠢事、壞事，然後真心覺得自己沒錯？」</p>
+<p>一般人的解釋是：他們在說謊，在保住面子。作者的答案更讓人不安：<strong>多數時候他們沒有在對別人說謊，他們是在對自己辯護——而自我辯護比說謊更強大、也更危險，因為當事人完全察覺不到。</strong>說謊的人知道真相在哪；自我辯護的人，已經把真相改寫了。</p>
+<p>這本書把同一套機制，從邪教信徒、政治人物、檢察官、心理治療師，一路追到吵架的夫妻。讀到後面你會發現它不是一本講「那些人」的書，它講的是每一個人。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、認知失調：我們不是理性的動物，是「合理化」的動物</h3>
+<p>認知失調指的是：當一個人同時抱著兩個互相打架的想法，或者做的事跟自己的信念衝突時，心裡會產生一種很不舒服的緊繃，像餓和渴一樣，逼你做點什麼讓它消失。</p>
+<p>理論的起點是一個末日教派。一九五〇年代，費斯廷格和同事混進了一個小團體，領袖宣稱某一天洪水將毀滅世界，外星飛碟會來接走信徒。有些信徒辭了工作、送掉家產。研究者想知道：當預言落空，這些人會怎樣？常識說他們會醒過來。實際發生的是，那一夜過去、飛碟沒來，在漫長的沉默之後，領袖宣布收到新訊息：因為這一小群人的虔誠，世界得救了。原本低調的信徒從此開始熱切地對外傳教。付出越多的人，信得越深——因為承認「我為一個騙局賠上了一切」太痛了，改寫信念反而容易。</p>
+<p>亞隆森自己早年做過一個經典實驗來驗證這一點：請學生加入一個討論小組，一部分人要先通過很難堪的入會考驗，另一部分人輕鬆過關，然後所有人聽到的都是同一段刻意安排得極其無聊的討論錄音。結果經過難堪考驗的人，反而覺得這個小組比較有趣、成員比較聰明。「我吃了這麼多苦才進來」和「這個團體很爛」不能並存，所以大腦改掉後者。</p>
+<p>失調還會跟確認偏誤合作：一旦選了邊，我們會放大支持自己的證據，對反面證據雞蛋裡挑骨頭。書中提到的腦部造影研究顯示，人在面對不利於自己立場的資訊時，負責推理的區域並不活躍；等到找到理由把那筆資訊打發掉，獎賞迴路反而亮了起來。</p>
+<p><strong>實用價值</strong>：下次你為一個決定找到第三個、第四個理由時，停一下——理由越找越多，常常不是因為決定越來越對，而是因為不安越來越大。<strong>限制</strong>：失調理論解釋的是「事後」的心理，不代表人永遠不會認錯；書裡後半段也舉了能認錯的人。</p>
+<h3>二、選擇的金字塔：一小步辯護，如何把人帶到很遠的地方</h3>
+<p>這是全書最好用的一張圖。想像兩個大學生，對考試作弊的態度差不多——覺得不太好，但也沒那麼嚴重。期末考時，兩人都卡在一題關鍵題，旁邊同學的答案剛好看得到。一個人瞄了，一個人沒瞄。</p>
+<p>接下來的事才是重點。瞄了的那個需要化解「我是誠實的人」和「我剛剛作弊」的衝突，於是他告訴自己：作弊沒什麼大不了，大家都這樣，制度本來就不公平。沒瞄的那個也要化解「我想拿高分」和「我放掉了機會」的衝突，於是他告訴自己：作弊比我原本想的更可惡，作弊的人應該被退學。兩個人原本並肩站在金字塔頂端，各往一邊滑下去，到了底部已經相隔很遠，而且都認為自己一向如此。</p>
+<p>作者用這個模型解釋很多「好人怎麼一步步變成這樣」的故事：收廠商小禮物的醫師、從小帳開始做假的主管。書中引用米爾格蘭的服從實驗時特別強調，電擊的強度是一小格一小格往上加的——每一步都只比上一步多一點，而上一步你已經替自己辯護過了，於是沒有任何一格是明顯該停的地方。</p>
+<p>這個機制反過來也成立。班傑明・富蘭克林想拉攏一位敵視他的議員，他沒有送禮，而是開口向對方借一本珍貴的書。對方借了，之後態度大轉。因為「我幫了他」和「我討厭他」會失調，最省力的解法是：我大概其實沒那麼討厭他。我們不只因為喜歡一個人而幫他，也因為幫了他而喜歡他；同理，我們不只因為討厭一個人而傷害他，也會因為傷害了他而更討厭他。</p>
+<p><strong>實用價值</strong>：最該小心的不是大決定，而是金字塔頂端那個看起來無關緊要的第一步。<strong>常見誤用</strong>：拿這個模型去診斷別人「你就是在自我辯護」。它最有價值的用法是對著自己。</p>
+<h3>三、記憶是自我辯護的歷史學家</h3>
+<p>多數人相信記憶像錄影帶，也許會模糊，但不會造假。作者用大量研究說明：記憶每次被想起都會被重新編輯，而編輯的方向並不隨機——它會往「讓現在的我看起來合理」的方向修。</p>
+<p>我們會把自己過去的立場記得跟現在比較像，把自己在衝突中的責任記得比較小，把別人的過錯記得比較大。書中用「父母的錯」當例子：成年後對人生不滿意的人，常會把童年記得比當年的紀錄更糟，因為這樣現在的不順就有了解釋。極端的情況是整段虛構的記憶，書中談到有人出版了細節歷歷的受難回憶錄，後來被證實完全不是本人的經歷——而他自己看起來是真心相信的。</p>
+<p>這一章接著進入全書最沉重的部分：一九八〇、九〇年代在美國流行的「喚回被壓抑的記憶」治療。有些治療師深信來訪者的症狀來自被遺忘的童年創傷，用催眠、引導想像等方法去「找」，結果在許多個案身上植入了從未發生的事，拆散了家庭。當後來的研究顯示這些方法會製造假記憶時，不少治療師並沒有改變做法——承認錯誤等於承認自己傷害了本來要幫助的人，那個失調太大了。</p>
+<p>司法體系是同一個故事。作者檢視了許多後來靠 DNA 證據翻案的冤案：即使科學證據已經排除了被告，仍有檢察官和警探堅持當初沒抓錯，並想出越來越曲折的說法來解釋證據。他們不是壞人，正因為他們自認是伸張正義的好人，「我把一個無辜的人關了十幾年」才更無法接受。</p>
+<p><strong>實用價值</strong>：對自己「記得很清楚」的事，尤其是吵架時誰先說了什麼，保留三分懷疑；重要的事留下當時的紀錄。<strong>限制</strong>：這不等於所有創傷記憶都是假的——作者批評的是特定的誘導式手法，不是倖存者本身。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書是一條由內往外的鏈：<strong>失調</strong>是引擎（做錯事讓我不舒服）→ <strong>自我辯護</strong>是出口（改想法比改行為容易）→ <strong>金字塔</strong>是軌跡（每次辯護都把下一步墊高）→ <strong>記憶與偏誤</strong>是善後（把過去改寫成支持現在）→ 最後擴大到<strong>關係與社會</strong>：夫妻各自累積「都是你」的版本，直到其中一方把對方從「做了討厭的事的人」改寫成「討厭的人」；衝突雙方各自認為自己只是在回應對方的挑釁。</p>
+<p>結尾兩章轉向出路。作者的核心主張是：我們把「犯錯」和「愚蠢」綁在一起，所以沒人敢認錯；要鬆開這個結，得學會同時抱住兩個想法——「我是個不錯的人」以及「我做了一件錯事」。前者不必因為後者而倒下，後者也不該因為前者而被抹掉。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>做重大決定前寫下「什麼證據出現，我就承認這個決定錯了」。事後再訂標準，標準一定會偏向你。</li><li>找一個沒有投入這個案子的人當檢查者。當事人看不到自己的盲點，這不是能力問題，是位置問題。</li><li>檢討會用「哪個環節讓這件事發生」開頭，而不是「誰的錯」。責怪的氣氛越重，大家的自我辯護越強，你越拿不到真實資訊。</li><li>認錯的句型練成三段：我做了什麼、造成了什麼、我接下來怎麼補。不要用「如果有人感到不舒服」這種沒有主詞的句子。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>吵架時發現自己在腦中列對方的罪狀，把它當成警訊：我是不是正在為某件自己做得不太好的事找理由？</li><li>把「你就是這種人」換成「你昨天做的那件事讓我不舒服」。批評行為，關係還有路；改寫對方的人格，就開始往金字塔底下滑了。</li><li>對一筆已經花掉的錢、一段已經投入的時間，問自己：如果今天從零開始，我還會選它嗎？</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書在罵那些政客和壞人」</strong>——作者一再強調機制是普遍的。把它當成看別人笑話的書，剛好示範了書裡說的盲點：我們看得見別人的偏誤，看不見自己的。</li><li><strong>「既然是大腦機制，那就不能怪我」</strong>——解釋不等於開脫。作者的立場是：正因為這個傾向是預設值，才更需要制度（外部審查、紀錄、獨立意見）和個人練習來對抗它。</li><li><strong>「認錯就是自責」</strong>——書裡區分得很清楚：把錯誤歸到「我這個人很糟」會讓人更想逃；歸到「我這次的做法錯了」才修得動。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《快思慢想》（康納曼，拾頁 07-07）：康納曼畫出大腦有哪些偏誤，這本書回答「為什麼知道了還是改不掉」——因為偏誤背後有一個要保護的自我形象。</li><li>《逆思維》（亞當・格蘭特，拾頁 08-14）：格蘭特談怎麼養成「樂於發現自己錯了」的習慣，可以看成這本書的處方篇。先讀這本知道阻力從哪來，再讀那本學怎麼繞過它。</li><li>《影響力》（席爾迪尼，拾頁 08-04）：其中「承諾與一致」那個按鈕，就是認知失調被別人拿來利用的版本。得寸進尺的銷售手法，走的正是金字塔的斜坡。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「多數人在面對自己犯錯的證據時，不會改變看法或做法，而是更頑強地替它辯護。」（大意）</li><li>「朋友犯了錯，朋友還是朋友，錯誤也還是錯誤。」（When a friend makes a mistake, the friend remains a friend, and the mistake remains a mistake.——書中引用以色列前總理裴瑞斯的話）</li><li>「自我辯護比說謊更有力，也更危險：它讓人相信自己做的已經是當時最好的選擇。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想一個你曾經堅持很久、後來才承認看錯的判斷（一個人、一份工作、一筆投資）：當初讓你撐那麼久的「理由」，現在回頭看，哪些其實是事後才補上的？</li><li>你身邊有沒有一個能直接告訴你「這次你錯了」的人？如果沒有，是因為沒有這樣的人，還是因為你沒給過他們這個位置？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="mistakes-were-made" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "mistakes-were-made";
+      var TITLE = "錯不在我？";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "mistakes-were-made";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

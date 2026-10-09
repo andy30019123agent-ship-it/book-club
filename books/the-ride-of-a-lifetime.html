@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我生命中的一段歷險｜拾頁</title>
+<meta name="description" content="你以為帶領大公司靠的是強勢和算計？迪士尼執行長回顧四十五年：真正讓他談成皮克斯、漫威、星際大戰的，是尊重、坦誠和清楚的優先順序。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-ride-of-a-lifetime" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-12</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>我生命中的一段歷險</h1>
+  <p class="title-en">The Ride of a Lifetime</p>
+  <p class="byline">羅伯特・艾格（Robert Iger）｜2019</p>
+  <p class="hook">你以為帶領大公司靠的是強勢和算計？迪士尼執行長回顧四十五年：真正讓他談成皮克斯、漫威、星際大戰的，是尊重、坦誠和清楚的優先順序。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>領導者的優先事項只能有幾個，而且要講到每個人都背得出來——艾格只講三件事。</li><li>大交易靠的是信任：尊重對方、說實話、守住承諾，比精算的談判技巧更有力。</li><li>維持現狀才是最大的風險；要創新，就得有膽量拆掉自己還在賺錢的生意。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>羅伯特・艾格在紐約長島的勞工社區長大。父親聰明、有理想，卻長年受躁鬱症所苦，工作一個換過一個；艾格從十幾歲就到處打工，鏟雪、當保母、在五金行幫忙。他後來說，這段成長經驗讓他很早就養成兩件事：對工作來者不拒，以及不想成為一個對人生充滿遺憾的人。</p>
+<p>1974 年，他進入美國廣播公司（ABC）當攝影棚的現場雜工，起薪很低，做的是幫忙搬東西、跑腿的工作。接下來四十五年他沒有換過東家——只是東家被買了兩次：先是被規模小得多的首都城市傳播公司買下，後來又一起被迪士尼買下。他一路換了二十個左右的職位、跟過十幾個老闆，2005 年成為迪士尼執行長。</p>
+<p>他接手時的迪士尼狀況很糟：動畫部門連年失利，前任執行長艾斯納和董事會、和創辦人家族的羅伊・迪士尼、和皮克斯的賈伯斯全都鬧翻。十多年後，迪士尼先後買下皮克斯、漫威、盧卡斯影業和二十一世紀福斯的大部分資產，並推出自己的串流平台，成為全球最大的娛樂公司之一。這本 2019 年出版的書，一半是回憶錄，一半是他整理的領導心得。書一開頭他就列出十項他認為真正領導力必備的特質：樂觀、勇氣、專注、果斷、好奇、公平、體貼、真誠、不懈追求完美、正直。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「一個人怎麼從最底層做到帶領一家巨型公司，而且在位期間還能讓它脫胎換骨？」</p>
+<p>艾格沒有給一套理論，他給的是一連串現場：被老闆當眾考驗的時候、自己搞砸的時候、被跳過升遷的時候、要說服一個不信任你的人把畢生心血賣給你的時候。讀完你會發現他的答案很樸素——把人當人對待、清楚說出你要去哪裡、然後敢下注。這本書對不當執行長的人一樣有用，因為裡面多數場景其實是「怎麼跟老闆相處」「怎麼接下一個自己不熟的工作」「怎麼承認錯誤」。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、從老闆身上學：追求完美，但要把人當人</h3>
+<p>艾格早期在 ABC 體育部工作，上司是電視體育轉播的傳奇人物亞利奇（Roone Arledge）。亞利奇對節目的要求高到近乎折磨人：他會在播出前最後一刻推翻整個剪輯，逼所有人重來，只因為他覺得可以更好。艾格從他身上學到一句貫穿全書的話——「創新，不然就等死」，以及一種態度：不接受「這樣就夠好了」。多年後他看到紀錄片裡那位一輩子只求把壽司捏得更好的日本師傅，覺得那正是同一種精神：為了工作本身的榮譽感而不斷精進。</p>
+<p>但亞利奇也給了他反面教材：對人反覆無常、讓部屬活在恐懼裡。艾格提醒，追求完美和把人逼到崩潰是兩回事。有一次他在會議上被問到某個失誤是誰的錯，他直接說「是我」。事後有人告訴他，這句話讓大家對他的敬意大增。他因此得到一條守則：出錯就承認，然後往前走；你要創造一個「誠實犯錯可以被原諒」的環境，前提是自己先做到。</p>
+<p>後來買下 ABC 的首都城市傳播，兩位老闆墨菲和柏克是完全不同的風格：為人正派、作風節儉、不設層層關卡，把權力下放給他們信任的人。他們做了一個外界覺得很冒險的決定——讓完全沒有好萊塢經驗的艾格去洛杉磯掌管 ABC 的娛樂節目部門。艾格的應對方式很值得學：他不裝懂，坦白告訴團隊「這些我不懂，請教我」，同時在自己真正要負責的事情上（做決定、扛風險）絕不退縮。他在任內支持了當時極為另類的影集《雙峰》，也放行過一齣把警察劇和歌舞劇混在一起、最後慘敗的實驗作品。他的態度是：既然要鼓勵創新，就得允許失敗，而且失敗時自己站出來認。</p>
+<p>柏克還給過他一張紙條，是全書最妙的一則忠告，大意是：別去做「長號潤滑油」的生意。你也許能成為全世界最好的長號潤滑油製造商，但全世界一年也只用得了幾夸脫。意思是，別把心力投在那些耗掉資源卻沒多少回報的小事上。</p>
+<p><strong>這個概念的實用價值</strong>：艾格把每一任老闆都當成教材，好的學起來，壞的記下來提醒自己別犯。這是任何職位的人都能做的事。</p>
+<h3>二、三個優先事項：講清楚、講到大家背得出來</h3>
+<p>迪士尼買下 ABC 之後，艾格在艾斯納手下工作了十年。艾斯納早年讓迪士尼起死回生，但後期變得悲觀、事必躬親，又設了一個權力很大的總部策略規劃單位，所有業務部門的重要決定都得經過它審核，整家公司因此變得又慢又沒士氣。艾格從這段時間學到的教訓之一是：<strong>悲觀會傳染，沒有人願意跟隨一個悲觀的人。</strong></p>
+<p>艾斯納下台時，董事會並不想直接讓艾格這個「二把手」接任，他得通過一輪又一輪漫長、有時近乎羞辱的面試。一位顧問給了他關鍵的建議：你不能替過去辯護，只能談未來；而且你的優先事項不能超過三個，一多，就等於沒有。</p>
+<p>艾格於是定下了三件事，之後十幾年幾乎沒有變過：</p>
+<ol><li><strong>把絕大部分的資源投入高品質的品牌內容</strong>——內容越來越多的時代，好品牌更有價值。</li><li><strong>全面擁抱科技</strong>——用它來做出更好的作品，也用它直接接觸觀眾。</li><li><strong>成為真正的全球公司</strong>——深入像中國、印度這樣的市場。</li></ol>
+<p>他強調，領導者的責任就是把優先事項反覆、清楚地講出來。如果你說不清楚，下面的人就得自己猜，時間、精力和資金就這樣被浪費掉。他上任後的頭幾個動作都對著這三件事：打電話給賈伯斯修補關係、和羅伊・迪士尼談和、大幅削減那個讓人動彈不得的策略規劃單位，把決定權還給各事業。</p>
+<p><strong>常見的誤用</strong>：把「優先事項」寫成十幾條面面俱到的清單。艾格的重點正是「少」——少到每個員工都能脫口而出。</p>
+<h3>三、四筆大交易：信任比條件重要</h3>
+<p>艾格當上執行長前不久，去參加香港迪士尼樂園的開幕遊行。他看著花車一輛輛經過，突然發現：上面的角色如果是近十年的，幾乎全是皮克斯的，沒有一個來自迪士尼自己的動畫部門。他因此確定，迪士尼動畫是這家公司的心臟，而這顆心臟出了問題；最快的解法，就是買下皮克斯。</p>
+<p>問題是皮克斯的老闆賈伯斯當時跟迪士尼形同決裂。艾格先從小事建立關係：他打電話給賈伯斯，談把電視節目放上蘋果裝置的想法，雙方很快談成了把 ABC 影集放上 iTunes 的合作。之後他鼓起勇氣提出「迪士尼買皮克斯」這個自己都覺得有點瘋狂的想法。賈伯斯沒有掛電話，而是約他到蘋果，兩人在白板上列優缺點。賈伯斯寫下一大串缺點，優點只有寥寥幾條，但其中一條的份量壓過所有缺點——賈伯斯自己說，少數幾個扎實的優點，比幾十個缺點更有力。</p>
+<p>交易宣布前不到一小時，賈伯斯拉著艾格在皮克斯園區散步，告訴他一件只有妻子和醫生知道的事：他的癌症復發了。他說，艾格有權知道這件事，也可以因此退出。艾格的判斷是：這筆交易是為了皮克斯，不是為了賈伯斯一個人，於是照常進行。他也承諾保護皮克斯的文化——保留它的名字、園區、甚至員工的各種小傳統，並讓皮克斯的創意領袖回頭帶領迪士尼動畫。</p>
+<p>之後的漫威和盧卡斯影業，走的是同一條路。漫威的老闆珀爾馬特出了名的低調多疑，艾格親自去拜訪，花時間談彼此的出身和家庭；賈伯斯還主動打電話向對方擔保「艾格說話算話」。盧卡斯要賣的是他一輩子的作品，艾格很清楚對方最在意的是自己的傳承會被怎麼對待，所以整個過程都用尊重的方式進行——但在「買下之後由迪士尼做創意決定」這件事上，他也坦白講清楚，不給虛假的承諾。</p>
+<p>艾格的總結是：在這種規模的交易裡，數字當然重要，但真正讓事情成或不成的，是對方相不相信你。<strong>一點點尊重，可以走很遠；少了它，代價往往很高。</strong></p>
+<p><strong>限制在哪</strong>：別把這段讀成「只要真誠就能談成」。每筆交易背後都有扎實的策略判斷——它們全都對準他的第一個優先事項（高品質品牌內容）。先有清楚的策略，真誠才有地方發揮。</p>
+<h3>四、敢顛覆自己：維持現狀才是最大的風險</h3>
+<p>到了任期後段，艾格面對的是整個產業的地震：觀眾離開有線電視，轉向串流。迪士尼當時把電影和影集授權給別的串流平台，每年能收到可觀的授權金。但艾格認為，繼續這樣做等於把自己最好的內容拿去養大未來的對手。</p>
+<p>他做了一個短期內很痛的決定：取得一家串流技術公司的控制權，把自家內容從別人的平台收回，自己做串流服務直接面對觀眾。這意味著主動放棄一大筆穩定的收入，也意味著要改變公司內部衡量主管績效的方式——因為舊的獎勵制度是獎勵他們守住舊生意。他把這叫做在別人顛覆你之前，先顛覆自己。買下二十一世紀福斯的大部分資產，也是為了讓這個新平台有足夠的內容。</p>
+<p>書裡也沒有迴避艱難的時刻。上海迪士尼樂園開幕那一週，美國奧蘭多發生重大槍擊案，緊接著又有一名小男孩在奧蘭多的迪士尼度假區被鱷魚攻擊身亡。艾格人在上海，堅持親自打電話給那對父母。他說那是他職業生涯最難打的一通電話，但他認為這種時候不能躲在公關聲明後面。另一個例子是，旗下電視網一齣收視極高的影集，主角發了一則帶有種族歧視的推文，他當天就決定停播——他寫道，這種事不需要算財務損失，只需要問「什麼是對的」。</p>
+<p><strong>實用價值</strong>：兩個可以帶走的判斷準則。一是遇到關乎價值觀的事，先問對錯，再談代價；二是當你發現自己在保護一個正在萎縮的舒適區時，問問自己是不是該親手拆掉它。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>艾格的十項特質看起來零散，其實可以串成一條線：</p>
+<p><strong>樂觀與好奇</strong>讓你看得到機會（從遊行花車看出該買皮克斯）→ <strong>專注</strong>把機會收斂成少數幾個講得清楚的優先事項 → <strong>勇氣與果斷</strong>讓你敢為這些優先事項下大注、敢拆掉舊生意 → <strong>公平、體貼、真誠、正直</strong>讓別人願意跟你做這些事——不論是部屬，還是握有你需要的東西的賈伯斯、盧卡斯 → <strong>追求完美</strong>確保最後做出來的東西配得上這一切。</p>
+<p>前半本書（學習）是這些特質怎麼從一個個老闆身上長出來，後半本書（領導）是它們怎麼在一次次大決定裡派上用場。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>寫下你這份工作（或你的團隊）今年最重要的三件事，每件一句話。超過三件就繼續刪</li><li>找一個同事問：「你覺得我們今年最重要的事是什麼？」如果他答的跟你寫的不一樣，就是你講得不夠</li><li>下次出錯，在別人追究前先說「這是我的問題，我打算這樣補救」</li><li>接到自己不熟的任務時，直接向懂的人開口：「這部分我不懂，可以教我嗎？」不要裝懂</li><li>要請別人合作或讓步之前，先花時間弄清楚對方最在意的是什麼</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>檢查自己有沒有在做「長號潤滑油」——花很多力氣、卻幾乎沒人需要的事——挑一件停掉</li><li>遇到涉及原則的抉擇，先問「什麼是對的」，把得失的計算放在後面</li><li>該道歉或該傳達壞消息時，親自說，不要透過別人或一則訊息帶過</li><li>面對改變時留意自己的悲觀，問一句：「如果這件事會成功，會是因為什麼？」</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「艾格的成功就是靠併購，有錢就做得到」</strong>——那幾筆交易在當時都被許多人看衰，而且買下來之後搞砸的併購案比比皆是。書裡真正的重點是買之前建立信任、買之後保護對方的文化。</li><li><strong>「十項特質是成功公式」</strong>——那是一位執行長回顧自己經驗後的整理，不是研究結論。有用的讀法是把它當成一面鏡子，而不是照表操課的清單。</li><li><strong>「樂觀就是報喜不報憂」</strong>——艾格說的樂觀，是相信團隊做得到並把這份信心傳出去；同一本書裡他一再強調要誠實面對壞消息。樂觀與坦誠是並存的。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《創意電力公司》（卡特莫爾）：皮克斯共同創辦人從另一側寫同一樁併購，以及怎麼保護一個創意組織不被官僚化。兩本對照著讀，可以看到買方和被買方各自在意什麼。</li><li>《什麼才是經營最難的事？》（霍羅維茲）：同樣是執行長的第一人稱，但霍羅維茲寫的是新創公司在生死邊緣的掙扎，口吻粗礪得多。艾格示範的是在龐大組織裡怎麼推動改變。</li><li>《創新的兩難》（克里斯汀生）：解釋了為什麼成功的大公司很難顛覆自己。艾格轉向串流的那段，正是一個大企業試著正面回應這個兩難的實例。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「我們能做的最冒險的事，就是維持現狀。」（The riskiest thing we can do is just maintain the status quo.）</li><li>「避免去做製造長號潤滑油的生意。你也許能成為世上最好的長號潤滑油製造商，但到頭來，全世界一年只用得了幾夸脫。」（柏克給艾格的紙條，大意）</li><li>「真正的正直——知道自己是誰，並由自己清楚的是非觀引導——是一種祕密武器。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>如果只能用三句話講你今年工作或生活的優先事項，會是哪三句？有哪件你一直在做的事，其實不在這三句裡？</li><li>你遇過最好和最糟的主管，各教了你什麼？有沒有哪一點，是你提醒自己「將來絕對不要這樣」的？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-ride-of-a-lifetime" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-ride-of-a-lifetime";
+      var TITLE = "我生命中的一段歷險";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-ride-of-a-lifetime";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

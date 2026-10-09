@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>富爸爸，窮爸爸｜拾頁</title>
+<meta name="description" content="你以為好好讀書、找份穩定工作、買間房子就是財務安全？清崎說這套劇本教的是怎麼替錢工作，而學校從來沒教過另一半：怎麼讓錢替你工作。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="rich-dad-poor-dad" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-27</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>富爸爸，窮爸爸</h1>
+  <p class="title-en">Rich Dad Poor Dad</p>
+  <p class="byline">羅勃特・T・清崎（Robert T. Kiyosaki）｜1997</p>
+  <p class="hook">你以為好好讀書、找份穩定工作、買間房子就是財務安全？清崎說這套劇本教的是怎麼替錢工作，而學校從來沒教過另一半：怎麼讓錢替你工作。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>作者對資產的定義很簡單：把錢放進你口袋的是資產，把錢拿走的是負債。</li><li>收入增加而支出跟著增加，就是老鼠賽跑；他主張把心力放在累積會產生現金流的資產。</li><li>財務知識是可以學的技能；作者認為工作該為了學習，而不只為了薪水。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>羅勃特・清崎是在夏威夷長大的日裔美國人。他說自己有兩個爸爸。一個是親生父親，學歷很高，在夏威夷的教育體系裡做到高階主管，一生努力工作，卻總是在為帳單煩惱，他稱為「窮爸爸」。另一個是好朋友邁克的父親，連中學都沒唸完，卻經營著好幾門生意，後來成為當地的有錢人，他稱為「富爸爸」。</p>
+<p>兩個爸爸都很聰明、都很勤奮、都給他建議，但建議完全相反。一個說「好好唸書，將來找家好公司」，另一個說「好好唸書，將來買下一家好公司」。一個說「我買不起」，另一個要他改口問「我要怎樣才買得起」，因為前一句讓大腦停工，後一句逼大腦開工。清崎九歲時決定聽富爸爸的。</p>
+<p>這本書一九九七年起初是自費出版，原本的用途之一是幫他設計的理財桌遊做宣傳，後來意外登上暢銷榜，成為全球最賣座的個人理財書之一，也讓「富爸爸」變成一整個系列品牌。台灣版由高寶出版。</p>
+<p>有幾件事得先說在前面。第一，「富爸爸」這個人是否真實存在，多年來一直受到質疑，從未有獨立的證實；比較穩妥的讀法是把他當成一個用來說理的角色。第二，書中對會計、稅務和投資的說法有不少過度簡化之處，受到許多財務專業人士批評。第三，以下是轉述作者的觀點，不是投資建議。這本書真正的影響力在於改變很多人「看待錢的方式」，而不在它的具體做法。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>為什麼有些收入很高的專業人士一輩子都在為錢焦慮，而有些學歷普通的人卻累積了財富？</p>
+<p>清崎的回答是：<strong>差別不在賺多少，在於懂不懂錢怎麼運作。</strong>學校教你怎麼成為好員工，沒有教你讀財務報表、分辨資產與負債、理解稅務和投資。於是多數人一出社會就照著同一套劇本走：領薪水、付帳單、加薪、換更大的房子和更貴的車、再付更多帳單。他把這個循環叫作「老鼠賽跑」。全書以六堂課的形式，講富爸爸怎麼教他跳出這個輪子。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、有錢人不為錢工作：恐懼與欲望的陷阱</h3>
+<p>故事從九歲開始。清崎和邁克想賺錢，想出的第一個辦法是把鄰居用完的牙膏管收集起來（那個年代的牙膏管是鉛做的），熔掉之後灌進石膏模，鑄成硬幣。窮爸爸回家看到，耐心地向兩個孩子解釋這叫偽造貨幣，是違法的，然後建議他們去請教邁克的爸爸。</p>
+<p>富爸爸答應教，條件是兩個孩子每週六到他的小超市工作幾個小時，擦罐頭、整理貨架，時薪一毛錢。幾個星期後清崎受不了了，氣沖沖地去找富爸爸理論，覺得自己被剝削。富爸爸卻說：很好，你現在嘗到的滋味，就是大多數人一輩子的感受。他們對薪水不滿，卻又不敢離開，於是只會抱怨、要求加薪，然後繼續做。</p>
+<p>接著富爸爸做了一件更狠的事：把時薪降成零。他要兩個孩子在沒有薪水的情況下繼續工作，看看腦袋會冒出什麼。結果清崎注意到，店員會把賣不完的漫畫書撕掉封面退給經銷商，書本身就丟掉。他把那些漫畫要過來，和邁克在地下室開了一間漫畫閱覽室，向附近的孩子收入場費，還請了邁克的妹妹來顧店。他們自己不必在場，錢照樣進來。</p>
+<p>富爸爸想教的第一課是：多數人被兩種情緒牽著走。<strong>恐懼</strong>（怕沒錢付帳單）讓人去找工作；<strong>欲望</strong>（想著加薪後可以買什麼）讓人一直做下去。薪水一來，恐懼暫時平息，欲望又冒出來，於是再回到工作。他不是說工作不好，是說如果不認得這兩種情緒，再高的薪水也只是讓輪子轉得更快。</p>
+<p><strong>限制在哪</strong>：這個故事的真實性無法查證，而且「免費工作可以激發創意」在現實職場很容易變成剝削的藉口。它作為寓言有啟發性，不宜當作職涯策略。</p>
+<h3>二、資產與負債：一句話的定義</h3>
+<p>這是全書最核心、也最具爭議的一課。清崎說，有錢人買入資產，窮人和中產階級買入他們以為是資產的負債。而他對兩者的定義刻意簡單到小孩也懂：</p>
+<p><strong>資產是把錢放進你口袋的東西；負債是把錢從你口袋拿走的東西。</strong></p>
+<p>他用幾張極簡的圖說明三種人的現金流。窮人：薪水進來，直接變成生活開銷流出去。中產階級：薪水進來，流向房貸、車貸、卡費這些負債的還款，再加上生活開銷。有錢人：資產欄裡的東西（出租的房地產、股票、債券、不需要自己在場的生意、版權）產生收入，收入再拿去買更多資產。</p>
+<p>由此他得出那個最常被引用、也最常被罵的結論：<strong>自住的房子不是資產。</strong>按照他的定義，自住的房子每個月讓你付房貸、稅金、保險、維修，錢是往外流的。他並沒有說不該買房，他說的是不要騙自己那是一項投資，更不要因為收入增加就急著換更大的房子，把原本可以拿去買生財資產的錢鎖在裡面。</p>
+<p>接著的一課叫「關注自己的事業」。他區分了「職業」和「事業」：職業是你替誰工作，事業是你的資產欄。他的建議是保留正職，但把賺來的錢持續投進資產欄，而且一塊錢進了資產欄就別再讓它出來，把它當成替你工作的員工。想買奢侈品可以，等資產產生的現金流夠付了再買。</p>
+<p><strong>有爭議的地方</strong>：會計上，自住房屋當然列為資產，房貸才是負債；清崎用的是自己的「現金流定義」，而且完全忽略了房屋可能增值、以及不買就得付房租這兩件事。許多財務專業人士認為這個說法誤導。比較持平的讀法是：它提醒你區分「帳面上值錢的東西」和「會持續帶來收入的東西」，但不能當作買不買房的判準。</p>
+<h3>三、財務智商：稅務、公司與「創造」金錢</h3>
+<p>清崎認為「財務智商」由四種知識組成：會計（讀得懂數字）、投資（錢生錢的方法）、市場（供需與時機）、法律（稅務優惠與公司的保護）。</p>
+<p>在談稅務和公司的那一課，他的說法是：受薪者是先被扣稅，再用剩下的錢生活；擁有公司的人是先支出，再就剩下的利潤繳稅。他認為了解這套規則是有錢人越來越有錢的原因之一。</p>
+<p>在「有錢人創造金錢」那一課，他主張財務知識讓人看得見別人看不見的機會，並用自己在房地產市場低迷時的幾筆交易當例子：用很少的自備款買下被低估的房子，再轉手或出租。他推廣自己設計的桌遊，理由也是如此：他認為人需要在安全的環境裡反覆練習做財務決策。</p>
+<p><strong>需要特別提醒的地方</strong>：這兩課是全書受批評最多的部分。評論者指出，書中對公司節稅的描述過度簡化，各國法規差異極大，照做可能有法律風險；他舉的交易例子無法查證，也沒有呈現失敗的案例與槓桿的風險。清崎名下的一家公司後來也曾聲請破產。讀這一段時，請只帶走「財務知識值得學」這個原則，不要帶走具體手法。</p>
+<h3>四、為學習而工作，以及五個內在障礙</h3>
+<p>最後一課談的是技能。清崎說，窮爸爸重視專精與學位，富爸爸則要他「什麼都懂一點」。他照著富爸爸的建議，在不同階段刻意選擇能學到東西的工作：他加入過海軍陸戰隊，他說那是為了學領導；退伍後他去一家大型影印機公司當業務員，原因是他非常害羞、害怕被拒絕，而銷售正是他最弱的一項。</p>
+<p>書裡有個小場景：一位很有才華的記者來採訪他，說自己想成為暢銷作家。清崎建議她去上一門銷售課，對方覺得受到冒犯，她擁有文學碩士學位，怎麼能去當推銷員。清崎指著自己書上的字樣說，上面寫的是「暢銷」作家，不是「最會寫的」作家。他的重點是：很多有才華的人離成功只差一項技能，通常是溝通、銷售或管理。</p>
+<p>即使懂了這些，為什麼多數人還是不行動？他列了五個障礙：</p>
+<ul><li><strong>恐懼</strong>：怕賠錢。他說每個人都怕，差別在怎麼處理失敗。</li><li><strong>憤世嫉俗</strong>：用「萬一怎樣」的懷疑把自己勸退，或讓旁人的唱衰決定自己的行動。</li><li><strong>懶惰</strong>：他特別指出，最常見的懶惰是「很忙」，忙到沒空處理真正重要的事。</li><li><strong>壞習慣</strong>：最有名的一條是「先付錢給自己」，收入進來先撥一部分去儲蓄或投資，再付其他開銷。</li><li><strong>傲慢</strong>：不懂裝懂。他說自己賠錢多半是因為自以為懂。</li></ul>
+<p><strong>實用價值</strong>：這一部分是全書風險最低、最能直接用的。刻意補上自己最弱的那項通用技能，以及「先付錢給自己」，都不需要相信其他有爭議的主張就能受用。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>六堂課排起來是這樣的：<strong>先處理心態（別讓恐懼和欲望把你綁在薪水上）→ 再建立語言（資產與負債的定義、看懂現金流）→ 然後確立目標（持續擴大資產欄）→ 接著補上工具（稅務、公司、投資的知識）→ 最後回到人本身（用工作換技能，並克服讓你不行動的五個障礙）。</strong></p>
+<p>整本書其實只在講一個轉換：從「我替錢工作」的視角，換成「我讓錢替我工作」的視角。做法你可以不同意，但這個視角一旦看過就很難忘記，這是它暢銷二十多年的原因。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p>以下是認識自己財務狀況的練習，不是投資建議；任何實際的投資、貸款或稅務安排，請依自身條件並諮詢合格的專業人士。</p>
+<p><strong>職場版</strong>：</p>
+<ol><li>盤點你的技能組合：除了本業專長，溝通、銷售、帶人、看懂財報，哪一項最弱？</li><li>為最弱的那一項找一個低成本的練習機會：主動接一次對外簡報、參與一次報價、請財務同事帶你看一次公司的報表。</li><li>下次評估工作機會時，除了薪水，多問一題：這份工作能讓我學到什麼兩年後還有用的東西？</li><li>留意自己什麼時候說「我很忙」：那件被你忙掉的事，是不是其實最重要？</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>畫一張自己的現金流圖：錢從哪裡進來、流到哪些項目去。只是畫出來，不必評價。</li><li>用清崎的定義把手上的東西分兩邊：哪些每月帶錢進來，哪些每月把錢帶走。看看兩邊的比例。</li><li>把「我買不起」換成「我要怎樣才買得起」練習一週，觀察腦袋的反應有沒有不同。</li><li>檢查一下：上次收入增加時，你的固定支出是不是也跟著增加了？</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書教你具體怎麼投資致富」</strong>——它幾乎沒有可操作的投資方法，例子也無從驗證。它是一本談觀念的書，把它當操作手冊會很危險。</li><li><strong>「所以不該買房、不該上班、不必唸書」</strong>——清崎說的是別把自住房當成投資、別只靠薪水、別以為學歷等於財務能力。他本人也建議多數人保留正職。</li><li><strong>「富爸爸的話就是有錢人的共識」</strong>——這只是一位作者（透過一個可能是虛構的角色）的看法。許多同樣成功的投資人主張的恰恰是分散、低成本、少用槓桿。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《致富心態》（豪瑟）：同樣談錢與心理，但豪瑟強調運氣、風險與「夠了就好」，對槓桿和冒險的態度保守得多。兩本一起讀，能避免被清崎的自信帶著跑。</li><li>《納瓦爾寶典》（喬根森編）：納瓦爾說要擁有資產與槓桿而不是出租時間，和「資產欄」的想法一脈相承，但他談得更現代，也更強調專長與長期的信譽。</li><li>《別把你的錢留到死》（柏金斯）：清崎教你怎麼累積，柏金斯問你累積到什麼時候為止。一個管開頭，一個管結尾。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「窮人和中產階級為錢工作。有錢人讓錢為他們工作。」（The poor and the middle class work for money. The rich have money work for them.）</li><li>「資產把錢放進你的口袋，負債把錢從你的口袋拿走。」（大意）</li><li>「重要的不是你賺了多少錢，而是你留住了多少錢。」（It's not how much money you make. It's how much money you keep.）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你從小聽到關於錢的「家訓」是什麼？現在回頭看，哪一句你還相信，哪一句你想重新檢查？</li><li>清崎說自住的房子不算資產，你同意嗎？你會怎麼定義什麼東西對你來說才算「資產」？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="rich-dad-poor-dad" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "rich-dad-poor-dad";
+      var TITLE = "富爸爸，窮爸爸";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "rich-dad-poor-dad";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

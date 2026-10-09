@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引爆趨勢｜拾頁</title>
+<meta name="description" content="你以為大改變需要大力氣、大預算、大多數人點頭？葛拉威爾說，流行像傳染病——少數幾個人、一點點包裝、一個對的情境，就足以讓整件事翻盤。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-tipping-point" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-02</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>引爆趨勢</h1>
+  <p class="title-en">The Tipping Point</p>
+  <p class="byline">麥爾坎・葛拉威爾（Malcolm Gladwell）｜2000</p>
+  <p class="hook">你以為大改變需要大力氣、大預算、大多數人點頭？葛拉威爾說，流行像傳染病——少數幾個人、一點點包裝、一個對的情境，就足以讓整件事翻盤。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>改變不是等比例慢慢發生的，而是累積到臨界點後突然爆開——像流行病一樣。</li><li>引爆靠三件事：對的少數人、黏得住的訊息、推一把的情境，缺一個都難。</li><li>想推動改變，別撒大網；把資源集中在少數關鍵節點與關鍵細節上。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>麥爾坎・葛拉威爾出生於英國、在加拿大鄉間長大，父親是數學教授，母親是牙買加裔的心理治療師。他大學念歷史，畢業後進了新聞圈，先在《華盛頓郵報》跑科學與商業新聞，一九九六年轉到《紐約客》當專職寫手。他的招牌寫法從那時定型：找一篇冷門的學術研究，配上一個讓人放不下的故事，再把兩者擰成一個你從沒想過的結論。</p>
+<p>《引爆趨勢》的種子，就是他一九九六年在《紐約客》寫的一篇文章。當時他負責跑愛滋病的新聞，學到流行病學家看世界的方式：疾病不是穩穩地一點一點增加，而是在某個門檻之前幾乎看不見，跨過門檻後一發不可收拾。同一時間，紐約市的犯罪率正以沒人預料到的速度往下掉。他心裡冒出一個問題：如果犯罪也是一種「流行病」呢？如果流行、謠言、暢銷書，全都照同一套規則走呢？</p>
+<p>這本書二〇〇〇年出版，是葛拉威爾的第一本書，後來成了那個年代行銷、公衛、教育圈人手一本的讀物，「引爆點」這個詞也從此變成日常用語。要留意的是：他是說故事的記者，不是做研究的學者——這是這本書好讀的原因，也是它後來被挑戰的原因。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼有些點子、產品、行為會突然紅起來，而另一些明明更好，卻無聲無息？」</p>
+<p>我們的直覺是線性的：投入多少，回收多少；要大結果，就要大動作。葛拉威爾借用流行病學提出另一種看法：<strong>社會現象的擴散像病毒傳染，有三個違反直覺的特徵——它有感染性、小原因能造成大結果、改變不是漸進而是在某一刻劇烈發生。</strong>那個「某一刻」，就是引爆點。</p>
+<p>他開場用的例子是一雙鞋。暇步士（Hush Puppies）這個老牌麂皮休閒鞋，九〇年代初一年只賣約三萬雙，公司差點要把它收掉。然後曼哈頓下城有一小群年輕人開始穿——正因為沒人穿才穿。接著設計師看到了，把鞋放上伸展台。到一九九五年，銷量跳到四十幾萬雙，隔年再翻數倍。公司從頭到尾沒做什麼，是幾十個年輕人把一個品牌「傳染」給了全美國。</p>
+<p>所以這本書真正要教的是：如果引爆有規則，那我們能不能刻意製造它？</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、少數原則：資訊不是平均地流動，是經過少數人轉手</h3>
+<p>一七七五年四月的一個晚上，波士頓的銀匠保羅・李維（Paul Revere）得知英軍隔天要出兵，連夜騎馬往北，沿途敲門示警。到了天亮，各地民兵已經集結完畢，這就是美國獨立戰爭的第一場戰役。但同一個晚上，還有另一個人威廉・道斯（William Dawes）帶著同樣的消息往另一個方向騎，路程差不多，經過的城鎮也不少——他那條路線卻幾乎沒人被動員。</p>
+<p>同樣的訊息，為什麼一個引爆、一個熄火？葛拉威爾的答案是：差別在傳話的人。李維是那種哪個社團都參一腳、走到哪都認識人的人，他知道每個鎮上該敲哪一扇門。</p>
+<p>葛拉威爾把這種關鍵少數分成三種人：</p>
+<ul><li><strong>連結者（Connectors）</strong>：認識的人多到不合理，而且橫跨很多不同的圈子。心理學家米爾格蘭做過一個著名的實驗，請內布拉斯加州的一批人，透過「認識的人」把一份包裹輾轉寄給波士頓的一位股票經紀人。結果包裹平均經過五、六手就到了，這就是「六度分隔」的來源。但葛拉威爾提醒大家注意比較少被提的那部分：最後送到的包裹，有一半是經過同樣三個人的手。我們並不是每個人都跟每個人差六步，而是少數幾個人，跟所有人只差幾步。</li><li><strong>內行人（Mavens）</strong>：熱愛蒐集資訊、更熱愛分享的人。那種會主動告訴你哪家超市在偷偷調價、哪台車最划算的朋友。他們不為了什麼好處，純粹是喜歡幫人做對決定，所以大家信他們。</li><li><strong>推銷員（Salesmen）</strong>：有本事讓半信半疑的人點頭的人。書中談到，他們的說服力很多來自語言以外的東西——表情、節奏、情緒的感染力，跟他們講話，你會不自覺地被帶著走。</li></ul>
+<p><strong>實用價值</strong>：想讓一件事傳開，問題不是「我要觸及多少人」，而是「我有沒有找到那幾個對的人」。<strong>限制</strong>：這是全書後來被挑戰最多的一點。社會學家鄧肯・華茲等人用模擬與實驗檢驗過，發現大型擴散多半不是靠少數「超級影響者」，更關鍵的是整個群體當時是否容易被影響。少數原則是很好的提醒，但別把它當成鐵律。</p>
+<h3>二、定著因素：訊息本身要「黏」得住</h3>
+<p>找到對的人，訊息卻沒人記得，一樣白搭。葛拉威爾把這個特質叫「定著」（stickiness）：讓人聽了忘不掉、而且會照著做。</p>
+<p>他花了很多篇幅講兒童節目。《芝麻街》的製作團隊做了當時電視圈沒人做的事：拿節目去實測。研究人員讓孩子看節目，同時在旁邊放會分心的幻燈片，記錄孩子的眼睛什麼時候離開螢幕。他們因此發現一個設計上的錯誤——原本專家建議把真人與布偶分開，免得孩子搞混虛實，結果只有真人的街景橋段孩子根本不看。把大鳥和奧斯卡放回街上之後，注意力才回來。後來的《藍色斑點狗》（Blue's Clues）更極端：同一集連播五天，主持人問完問題會停下來等孩子回答。大人覺得無聊透頂，孩子卻因為重複與參與，學得更牢。</p>
+<p>另一個例子是耶魯大學的破傷風實驗。研究者發給學生不同版本的宣導手冊，有的溫和、有的附上嚇人的照片，想看哪一種能讓學生真的去打疫苗。結果嚇不嚇人幾乎沒差，去接種的人都只有個位數的百分比。真正有效的是加上一張校園地圖，把健康中心圈出來，並寫上可以去的時段——接種比例一下子拉到將近三成。學生不是不知道破傷風危險，他們缺的是「這件事怎麼塞進我的生活」。</p>
+<p><strong>實用價值</strong>：訊息沒效，先別急著加大音量或加重恐嚇，回頭看包裝的小細節——有沒有具體的下一步？有沒有讓人參與？<strong>常見誤用</strong>：把定著理解成「標語要洗腦」。書裡的重點是實測和修改，不是靈感。</p>
+<h3>三、環境力量：人比你以為的更受當下情境左右</h3>
+<p>第三條規則是全書最有野心、也最有爭議的一條：行為會不會擴散，高度取決於當時當地的環境，而且常常是很小的環境細節。</p>
+<p>主例子是紐約。八〇年代的紐約地鐵滿是塗鴉、逃票成風，重大犯罪居高不下。九〇年代，交通當局與警方採用「破窗理論」的想法：一扇破窗沒人修，等於告訴所有人這裡沒人管，更嚴重的失序就會跟著來。於是他們不從重案下手，而是先清塗鴉——被塗的車廂不清乾淨就不准上線——再抓逃票。葛拉威爾認為，正是這些「小事」的改變，讓犯罪這場流行病退了燒。</p>
+<p>他再用一個心理學實驗把這個想法推到個人層次。普林斯頓神學院的研究者請神學生準備一段短講，有些人的題目正是「好撒馬利亞人」的寓言，然後叫他們走到另一棟樓去講。半路上安排了一個倒在門口咳嗽呻吟的人。誰會停下來？結果跟講題無關、跟他們當初為何念神學也沒什麼關係，真正有差的只有一句話：出發前，研究者是說「你已經遲到了」還是「時間還早」。趕時間的那組只有一成停下來，不趕的那組有六成多。</p>
+<p>同一章還有「一百五十法則」：人類學家鄧巴推估，一個人能維持真實人際關係的上限大約一百五十人。做 Gore-Tex 的戈爾公司就照這個數字管理，每座廠房不超過一百五十人，超過就再蓋一座，因為人數一多，靠人情與默契運作的那套就失靈了。</p>
+<p><strong>限制</strong>：紐約犯罪下降的原因，學界至今仍在爭論，經濟好轉、人口結構、毒品市場變化等都有人主張，破窗執法究竟占多少比重並沒有定論，它後來衍生的執法方式也引發很大的社會爭議。葛拉威爾本人多年後也公開重新檢討過這一章。把它讀成「情境比我們想的重要」很穩，讀成「抓小罪就能治大罪」就超出證據了。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書其實是一個公式：<strong>流行＝傳的人 × 傳的內容 × 傳的環境</strong>。少數原則處理「誰來傳」，定著因素處理「傳什麼、怎麼包裝」，環境力量處理「在什麼條件下傳」。三者是相乘而不是相加——任何一項是零，結果就是零。</p>
+<p>後半本用幾個長案例示範三條規則怎麼一起作用：滑板鞋品牌怎麼把小眾的酷翻譯給大眾、密克羅尼西亞的青少年自殺潮與美國的青少年吸菸為何像流行病一樣擴散。結論落在一個聽起來矛盾的建議：資源有限時，不要平均用力，要做「貼 OK 繃式」的精準介入——把力氣全放在那幾個會讓整體翻轉的點上。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「在公司推一個新做法」為例）</strong>：</p>
+<ol><li>畫出你的三種人：誰是跨部門都吃得開的連結者？誰是大家遇到問題會去問的內行人？誰最會說服主管？先說服這三個人，再談全員公告。</li><li>把訊息縮成「下一步」：不要只寄一份十頁的說明，附上「週三下午兩點、三樓會議室、帶筆電，十五分鐘設定完」——這就是你的校園地圖。</li><li>實測再修：先給五個同事試用，觀察他們在哪一步卡住或分心，改完再推。</li><li>控制規模：新做法先在一個小於一百五十人、彼此認識的單位試行，讓同儕壓力幫你的忙。</li></ol>
+<p><strong>生活版（以「讓全家開始運動」為例）</strong>：</p>
+<ol><li>找家裡的連結者：誰一開口大家都會跟？先約他，不要先約最需要運動的那個人。</li><li>改環境的小細節：球鞋放門口、把集合時間訂在晚餐後原本就會一起出門丟垃圾的時段。</li><li>降低趕時間的感覺：人一趕就什麼好事都做不了。把運動排在沒有下一個行程追著的時段。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「只要找到網紅就能爆紅」</strong>——這是把少數原則讀成萬靈丹。書裡是三條規則一起作用，而且後來的研究指出，「群體本來就容易被點燃」可能比「誰來點火」更重要。</li><li><strong>「引爆點可以事前精準預測」</strong>——書中的案例幾乎都是事後回頭解釋的。它給你一張檢查清單，不是一台預測機器。事後看得懂，不代表事前算得出。</li><li><strong>「環境決定一切，所以個人沒有責任」</strong>——葛拉威爾說的是情境的影響比我們以為的大，不是說人格與選擇不存在。神學生實驗裡，趕時間的那組仍然有人停下來。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《影響力》（席爾迪尼，拾頁 08-04）：兩本都在談人為什麼會被帶著走。席爾迪尼從個人心理的六個按鈕講起，葛拉威爾拉高到群體擴散。先讀《影響力》懂單一個人怎麼點頭，再讀這本看點頭如何連成一片。</li><li>《黑天鵝效應》（塔雷伯，拾頁 07-18）：同樣反對線性思考，但態度相反。塔雷伯強調極端事件事前無法預測、事後才被編成故事——正好是讀《引爆趨勢》時該放在旁邊的一帖解毒劑。</li><li>《異數》（葛拉威爾，拾頁書庫）：同一位作者把「情境比個人重要」的想法從流行搬到成功。兩本一起讀，能看出他一貫的主張，以及一貫的弱點——故事太漂亮時要多問一句證據夠不夠。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「引爆點就是那個神奇的時刻：一個想法、一股趨勢或一種社會行為越過門檻，傾斜，然後像野火一樣蔓延。」（The tipping point is that magic moment when an idea, trend, or social behavior crosses a threshold, tips, and spreads like wildfire.）</li><li>「想法、產品、訊息和行為的傳播方式，就像病毒一樣。」（Ideas and products and messages and behaviors spread just like viruses do.）</li><li>「看看你周圍的世界。它看起來也許不可動搖、無法改變，其實不然。只要在對的地方輕輕一推，它就會傾斜。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想一件你親眼看著「突然紅起來」的事（一家店、一個梗、公司裡的一個做法）：用三條規則回頭拆，是誰傳的、哪裡黏、當時的情境是什麼？有哪一條其實解釋不通？</li><li>你最近想推動的一件事，如果只能把力氣花在一個人或一個細節上，你會選哪個？為什麼是它？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-tipping-point" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-tipping-point";
+      var TITLE = "引爆趨勢";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-tipping-point";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

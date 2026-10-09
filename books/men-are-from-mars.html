@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>男人來自火星，女人來自金星｜拾頁</title>
+<meta name="description" content="你以為伴侶不照你的方式回應，就是不夠愛你？這本九〇年代的超級暢銷書說，他可能只是在用另一套語言愛你——但它把人分成兩個星球的做法，本身也值得你懷疑。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="men-are-from-mars" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-29</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>男人來自火星，女人來自金星</h1>
+  <p class="title-en">Men Are from Mars, Women Are from Venus</p>
+  <p class="byline">約翰・葛瑞（John Gray）｜1992</p>
+  <p class="hook">你以為伴侶不照你的方式回應，就是不夠愛你？這本九〇年代的超級暢銷書說，他可能只是在用另一套語言愛你——但它把人分成兩個星球的做法，本身也值得你懷疑。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>伴侶的反應跟你預期不同，不一定是不愛，而是壓力下的需求與表達方式不同。</li><li>對方訴苦時先聽別急著修；對方退開時給空間別追著問。</li><li>「火星金星」是好記的比喻不是科學定律——把它當成觀察個人差異的起點，別當性別標籤。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>約翰・葛瑞的經歷很不典型。他年輕時追隨超覺靜坐的創辦人瑪赫西大師，當了九年的獨身修行者和私人助理，之後才回到美國，轉向兩性關係的講座與諮商。他的心理學博士學位來自一所後來被加州政府勒令關閉的未經認證學校——這一點在書走紅之後常被批評者提起，也提醒我們：這本書的根基是作者帶工作坊累積的觀察，不是學術研究。</p>
+<p>1992 年書一出版就成了現象。它在九〇年代長年停在暢銷榜上，全球賣出上千萬冊，被翻成數十種語言，「火星」和「金星」從此成為談論男女差異的日常用語。台灣早年的譯本書名是《男女大不同》，後來的版本才改用直譯的書名。</p>
+<p>它紅的背景值得一提。九〇年代初，雙薪家庭已是常態，傳統的性別分工鬆動了，但伴侶之間該怎麼相處的新腳本還沒寫好。很多人在婚姻裡感到困惑：我這麼努力，為什麼對方還是不滿意？葛瑞給了一個讓人如釋重負的答案——不是你們誰有問題，是你們不一樣。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼我明明是出於好意，對方卻覺得受傷或被冒犯？」</p>
+<p>葛瑞用一個寓言開場：很久以前，火星人和金星人相遇、相愛，並且很清楚彼此來自不同的星球，所以相處時處處體諒對方的不同。後來他們一起搬到地球，某天早上醒來卻得了失憶症——忘了彼此來自不同星球，開始預期對方應該和自己一樣思考、一樣反應。衝突從此開始。</p>
+<p>他的核心論點是：<strong>伴侶之間大多數的摩擦，不是因為不愛，而是因為我們假設對方跟自己一樣，於是用「自己想被對待的方式」去對待對方。</strong>我難過時希望有人聽我說，所以你難過時我拚命找你說話——偏偏你難過時想一個人靜一靜。</p>
+<p>全書就是一本「對方星球的使用說明」：男性（火星人）通常怎樣、女性（金星人）通常怎樣、彼此可以怎麼調整。葛瑞自己也說這是一般化的描述，並非每個人都符合。這句但書很重要，後面談誤讀時會回來。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、修理先生與家庭改進委員會</h3>
+<p>這是全書最有名、也最多人拍大腿的一段。</p>
+<p>葛瑞描述的火星人重視能力、效率和成就，覺得自己最大的價值在於「能解決問題」。所以當伴侶下班回來訴苦——主管怎樣、同事怎樣、今天多累——他的本能反應是提供解決方案：「那妳就直接跟他講啊」「不然換工作」。他覺得自己在幫忙。葛瑞給他取了個綽號：<strong>修理先生</strong>。</p>
+<p>但在葛瑞描述的金星上，訴說本身就是目的。她講這些不是要答案，是想被聽見、被理解，在說的過程中把情緒整理好。對方丟來的解決方案，聽在她耳裡變成：「妳的煩惱很簡單，是妳自己處理不好」，或者「我不想再聽了」。</p>
+<p>反過來的錯誤也一樣常見。金星人重視關係與互相照顧，表達愛的方式是主動給建議、幫對方變得更好：「你應該先打電話問一下」「你這樣穿不好看」「開慢一點」。葛瑞稱之為<strong>家庭改進委員會</strong>。她覺得這是關心；火星人接收到的卻是：「妳不相信我有能力把事情做好。」對一個把能力當成自我價值的人來說，沒被要求就給的建議，等於不信任。</p>
+<p>葛瑞的處方很簡單：一方練習「只聽、不修」，偶爾回一句「聽起來真的很累」就夠了；另一方練習「不請自來的建議先忍住」，改用信任和感謝來表達支持。</p>
+<p><strong>實用價值</strong>：就算把性別拿掉，這一段依然成立——人在訴苦時，多半要的是理解而不是方案；而沒被邀請的建議，常被聽成批評。這大概是全書最經得起時間考驗的觀察。</p>
+<h3>二、洞穴與橡皮筋、波浪</h3>
+<p>第二組概念談壓力下的反應，和親密感的節奏。</p>
+<p><strong>洞穴</strong>：葛瑞說，火星人遇到壓力時會退進自己的「洞穴」——變得沉默、心不在焉、盯著電視或手機，獨自把問題想通。這時候他不想談，也不希望有人跟進來。金星人面對壓力的方式則是找人說話。於是經典的場面出現了：他退開，她覺得被拒絕，追上去問「你怎麼了？我們談談」；他覺得被逼，退得更深。葛瑞的建議是：別跟進洞穴，他處理完自己會出來；而進洞的一方至少要交代一句「我需要靜一下，晚點回來找妳」，讓對方知道這不是針對她。</p>
+<p><strong>橡皮筋</strong>：葛瑞用它比喻男性對親密的週期——靠近一段時間後，會有一股想拉開距離、找回獨立感的衝動；拉到底之後，又會彈回來，而且帶著更多的愛意。如果在他拉開時硬把他拉回來，或在他回來時因為受傷而懲罰他，這條橡皮筋就失去彈性了。</p>
+<p><strong>波浪</strong>：對應的女性比喻。葛瑞說她的自我感受像波浪一樣起伏——狀態好的時候充滿愛與能量，但波峰過後會往下掉，落入一段低潮，這時她會特別需要被聽、被陪。低潮不是誰造成的，也不需要被「修好」，它走到谷底自己會回升。伴侶在這時候說「妳哪有什麼好不開心的」，只會讓波浪卡在半途。</p>
+<p><strong>限制在哪</strong>：這些比喻生動好記，但沒有研究支持「退開」和「起伏」是某個性別的專利。現實中，壓力下退縮的女性、情緒起伏明顯的男性都很多。心理學裡的依附理論對同一個現象有另一種不分性別的解釋：一方越追、另一方越逃，是兩種不安全感互相勾動的結果。把「洞穴」讀成「有些人需要獨處來恢復」，把「波浪」讀成「情緒有週期，低潮需要的是陪伴不是糾正」，會更準確。</p>
+<h3>三、不同的情感需求與計分方式</h3>
+<p>葛瑞認為，雙方最核心的情感需求不一樣，所以我們常常大方地給出「對方不那麼需要」的東西。</p>
+<p>他列出兩組各六項。他筆下的女性最需要的是：<strong>關心、了解、尊重、專一的投入、認可、安心的保證</strong>。男性最需要的是：<strong>信任、接納、感謝、欣賞、肯定、鼓勵</strong>。照他的說法，金星人拚命給對方關心與照顧（因為那是她自己最想要的），火星人卻覺得被當成小孩；火星人以為給予信任就是不過問、不干涉，金星人卻覺得被冷落。</p>
+<p>另一個常被引用的觀察是<strong>計分方式</strong>。葛瑞說，火星人以為做一件大事可以得很多分——買一份貴重的禮物、安排一趟旅行，然後可以休息好一陣子。但在金星的記分板上，<strong>每一個愛的表示都是一分，不論大小</strong>：一趟旅行是一分，出門前的一個擁抱也是一分，主動問一句「今天過得怎樣」也是一分。所以他覺得自己已經給了很多，她卻覺得帳戶是空的。</p>
+<p>他的建議是把心力放在「很多小事」上：回家先找她打聲招呼、聽她說話時把手上的東西放下、主動分擔一件家務、偶爾傳訊息說想她。而另一方要做的是，對這些小事明確地表達感謝——因為在葛瑞的框架裡，被感謝正是對方最需要的東西。</p>
+<p><strong>常見誤用</strong>：把這兩張清單當成性別規定。比較好的用法是把十二項混在一起，兩個人各自圈出自己最在意的三項，再交換看。你很可能會發現，你們的答案並不照著星球分。</p>
+<h3>四、怎麼開口：請求與情書</h3>
+<p>書的後半是技巧。有兩項最具體。</p>
+<p><strong>開口要求支持</strong>。葛瑞觀察到，很多人不直接開口，期待對方「如果愛我就該自己知道」，等不到就累積怨氣，最後用抱怨的方式講出來。他主張：直接說、簡短說、不要附帶指責。他甚至計較到用字——英文裡「你能不能……」（could you）聽起來像在質疑對方的能力，「你願不願意……」（would you）才是請求。而且要允許對方說不；只有可以被拒絕的才叫請求，不能被拒絕的叫命令。</p>
+<p><strong>情書技巧</strong>。情緒太滿、一開口就會吵架時，先寫一封不一定要寄出的信，依序寫下五層：<strong>憤怒</strong>（我氣的是什麼）、<strong>悲傷</strong>（我難過的是什麼）、<strong>恐懼</strong>（我怕的是什麼）、<strong>懊悔</strong>（我抱歉的是什麼）、<strong>愛</strong>（我在乎的、我希望的是什麼）。葛瑞的想法是，憤怒通常只是最表層，底下一層一層藏著更脆弱的感受；只表達最上面那層，對方只會防衛；寫到最底下那層，你自己會先軟下來。他還建議接著寫一封「我希望收到的回信」，讓對方知道你需要聽到什麼。</p>
+<p>這個練習不分性別都好用，也是書裡被諮商工作者沿用得最多的工具之一。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>葛瑞的推論可以排成四步：<strong>伴侶衝突的主因是「以為對方跟我一樣」</strong> → 所以要先<strong>認識彼此在壓力下、在親密節奏上的不同</strong>（修理與傾訴、洞穴與波浪、橡皮筋）→ 再<strong>認識彼此真正需要的東西不同</strong>（兩組情感需求、計分方式）→ 最後<strong>學會用對方接得住的方式表達</strong>（直接請求、情書技巧）。它的結構其實是一套「翻譯」的流程：先承認有兩種語言，再學對方的文法，最後才開口說。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版：</strong></p>
+<ol><li>同事來吐苦水時，先問一句：「你是想要我聽，還是想要我給意見？」這一句可以避開修理先生的全部地雷</li><li>想給建議前先問：「我有個想法，你想聽嗎？」沒被邀請的建議，不分性別都容易被聽成不信任</li><li>記得「小事一分」：一句具體的謝謝、順手幫忙帶一杯咖啡，累積起來比年終的一次大感謝有用</li><li>需要支援時直接、簡短地開口，並且讓對方有說不的空間</li></ol>
+<p><strong>生活版：</strong></p>
+<ol><li>伴侶訴苦時計時五分鐘，只准說「嗯」「然後呢」「聽起來真的很累」，不准提方案</li><li>需要獨處時明講：「我需要靜一個小時，不是在生你的氣，晚點我來找你。」</li><li>一起做十二項需求的圈選練習，各選三項，交換看答案</li><li>下次氣到不想講話，寫一封五層的情書：憤怒、悲傷、恐懼、懊悔、愛。寫完再決定要不要給對方看</li><li>這週每天做一件「一分的小事」，不期待回報，看看週末氣氛有沒有不同</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「男女天生就是不同物種，改不了」</strong>——這是這本書招致最多批評的地方。後來有心理學家彙整大量研究後提出「性別相似性」的看法：在大多數心理特質上，男女之間的差異很小，遠小於同性別內部的個別差異。葛瑞描述的模式，有多少來自天性、多少來自社會期待，書裡並沒有分辨。</li><li><strong>「所以他不講話、她情緒化都是正常的，忍耐就好」</strong>——書的原意是理解之後調整相處方式，不是替任何行為開脫。「我就是火星人」不能拿來當拒絕溝通的理由。</li><li><strong>「這是有科學根據的兩性心理學」</strong>——它是一位工作坊講師的觀察整理，沒有經過嚴謹的實證檢驗。把它當成一組幫助你開啟對話的比喻，比當成教科書恰當得多。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《愛之語》（蓋瑞・巧門）：拾頁書庫裡同年代的另一本關係暢銷書。巧門同樣主張「你給的不一定是對方要的」，但他按個人而不是按性別來分五種愛的語言，比較不容易落入刻板印象。</li><li>《七個讓愛延續的方法》（約翰・高特曼）：如果你想要有實驗數據支持的伴侶建議，讀這本。高特曼在實驗室裡長期觀察夫妻互動，找出預測婚姻成敗的具體行為，可以拿來檢驗葛瑞的哪些直覺站得住腳。</li><li>《抱緊我》（蘇珊・強森）：用依附理論解釋「一個追、一個逃」的循環。同一個現象，葛瑞說是星球不同，強森說是雙方都在害怕失去連結——後者不分性別，也更貼近目前伴侶治療的主流看法。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「當男人和女人能夠尊重並接受彼此的不同，愛才有機會綻放。」（大意）</li><li>「男人需要記住：女人談論問題，不一定是要你解決，而是想讓你靠近。」（大意）</li><li>「我們誤以為，如果對方愛我們，就會用我們表達愛的方式來回應。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你比較常當「修理先生」還是「家庭改進委員會」？上一次這樣做的時候，對方的反應是什麼？</li><li>書裡說的火星／金星特質，有哪些在你身上是反過來的？這讓你怎麼看「男女大不同」這個說法？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="men-are-from-mars" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "men-are-from-mars";
+      var TITLE = "男人來自火星，女人來自金星";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "men-are-from-mars";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

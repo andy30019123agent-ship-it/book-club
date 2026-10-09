@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>別把你的錢留到死｜拾頁</title>
+<meta name="description" content="你以為多存一點總沒錯，存越多越安全？柏金斯反問：每一塊到死都沒花的錢，都是你用一段生命換來卻白白作廢的工時，這真的叫穩健嗎？">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="die-with-zero" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-15</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>別把你的錢留到死</h1>
+  <p class="title-en">Die with Zero</p>
+  <p class="byline">比爾・柏金斯（Bill Perkins）｜2020</p>
+  <p class="hook">你以為多存一點總沒錯，存越多越安全？柏金斯反問：每一塊到死都沒花的錢，都是你用一段生命換來卻白白作廢的工時，這真的叫穩健嗎？</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>人生的目標是把正向體驗的總量最大化，而不是把過世時的資產最大化。</li><li>體驗有保存期限：健康、時間、金錢三者很少同時充足，有些事過了那個年紀就做不了。</li><li>作者主張財富該有高峰，之後有計畫地花用與贈與；給孩子的錢，生前給比遺產有用。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>比爾・柏金斯的本業是能源交易員。他年輕時在紐約商品交易所的交易廳當最基層的助理，薪水微薄，後來成為避險基金經理人，賺了很多錢，也以玩高額撲克聞名。換句話說，這是一個靠「計算風險與報酬」吃飯的人，寫了一本關於怎麼花錢、怎麼花時間的書。</p>
+<p>他的出發點是伊索寓言裡的螞蟻與蚱蜢。螞蟻整個夏天都在工作，蚱蜢整個夏天都在玩，冬天一到蚱蜢餓死，寓意是要勤勞儲蓄。柏金斯問了一個沒人問的問題：那螞蟻呢？牠什麼時候才可以玩？如果牠就這樣工作到死，這算是好結局嗎？</p>
+<p>這本書出版於二〇二〇年。當時「財務自由、提早退休」的風潮正盛，主流建議是盡量存、盡早存。柏金斯站到對面：他不反對儲蓄，他反對的是不經思考、沒有終點的儲蓄。</p>
+<p>讀之前要先交代兩件事。第一，作者非常有錢，他的例子（包下加勒比海小島辦生日）離多數人很遠，他自己也承認。第二，這本書談的是一種人生哲學，不是理財規劃；以下都是轉述他的主張，不是在建議你怎麼處理自己的錢。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>我們花了大半輩子學怎麼賺錢和存錢，卻幾乎沒人教怎麼把錢「用掉」。於是很多人一路延後享受，等到終於有錢有閒，身體已經不允許了；或者帶著一大筆沒花的錢離開。</p>
+<p>柏金斯的核心問題是：<strong>如果錢是用生命的時間換來的，那麼怎樣在有限的一生裡，把金錢、時間、健康配置成最多的「值得活的經驗」？</strong>他的答案用書名就講完了：把目標設成「歸零」。不是真的要在嚥氣那天剛好花到最後一塊錢，而是以此為方向，逼自己認真規劃。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、你的人生是體驗的總和，而且體驗會配息</h3>
+<p>柏金斯二十出頭時，和一位叫傑森的朋友合租公寓，兩人都窮。傑森決定借一筆對他們來說很大的錢，去歐洲當幾個月背包客。柏金斯覺得他瘋了，回來可是要還債的。幾個月後傑森帶著一堆故事回來：在希臘小島認識的人、搭夜車、在青年旅館和各國旅人徹夜聊天。柏金斯說，他聽著那些故事，第一次懷疑自己才是做錯決定的人。</p>
+<p>等他三十歲、有錢了，自己去了一趟歐洲。他發現已經太遲：他不想再住多人房的青年旅館，也不想和一群二十歲的陌生人混在一起。那種旅行有它專屬的年紀，他錯過了。而傑森多年後談起那趟旅行，說就算當初利息再高都值得。</p>
+<p>從這裡他提出「<strong>記憶股息</strong>」的概念。買一樣東西，價值會折舊；買一段體驗，體驗結束後你還會一再想起、和人聊起、看照片時再經歷一次，每一次回味都是一筆小小的配息。越年輕獲得的體驗，領股息的年數越長。</p>
+<p>他寫到自己的父親。父親晚年行動不便，沒辦法再出門旅行，柏金斯就把父親年輕時打大學美式足球的比賽影片整理好，放進一台平板電腦送給他。父親坐在椅子上看著自己當年的身影，又哭又笑，說那是他收過最好的禮物。人到最後，能享用的主要就是回憶。</p>
+<p><strong>限制在哪</strong>：「體驗優於物品」有一些心理學研究支持，但把體驗量化成點數、畫成曲線，是作者自己的思考模型，不是科學測量。把它當成整理想法的工具就好。</p>
+<h3>二、三種資源的錯位：為什麼不能一直等</h3>
+<p>柏金斯認為，享受人生需要三樣東西同時到位：金錢、空閒時間、健康。問題在於它們很少同時充足。年輕時有健康和時間，沒有錢；中年有錢有健康，沒有時間；老年有錢有時間，健康卻在流失。</p>
+<p>所以他主張各階段要做「交換」：年輕人不該過度省吃儉用，因為他們最充足的健康正在悄悄過期；中年人該考慮用錢買時間，把不想做的雜事外包；所有年齡的人都該在健康上投資，因為健康決定了你能從每一塊錢、每一小時裡榨出多少體驗。</p>
+<p>他自己年輕時就被上過一課。當他還是領低薪的助理時，很得意自己存下了一筆小錢，結果主管直接罵他是笨蛋：你來這行是要賺大錢的，未來收入會高出現在很多，卻在最該體驗生活的年紀為了一點存款苦自己？這段話促成他思考「消費平滑」這個經濟學觀念：如果你合理預期未來收入會成長，把現在的生活壓到極限其實是不理性的。</p>
+<p>他還提到一個很多人沒想過的角度：能從一筆錢得到的享受，會隨年紀下降。同樣一趟旅行，三十歲、五十歲、八十歲去，能做的事完全不同。他引用退休研究裡常見的分法：退休後有還能到處跑的「活躍期」、慢下來的階段、和幾乎不出門的階段。許多退休者實際花的錢遠比自己存的少，資產到過世時不減反增，並不是因為他們不想享受，是因為身體先讓他們花不動了。</p>
+<p><strong>有爭議的地方</strong>：批評者指出，他的推論高度依賴「未來收入會成長、不會遇到重大意外」這些假設，對收入不穩或沒有安全網的人並不成立。醫療與長照花費也可能遠超過預期。柏金斯的回應是用年金和長照保險來對沖活太久的風險，但這類工具是否合適、划不划算，因人而異。</p>
+<h3>三、時間桶：把人生切成一格一格</h3>
+<p>很多人有「人生清單」，上面寫著一輩子想做的事，然後就放著，默認「以後有機會再做」。柏金斯說這份清單有個致命的缺陷：沒有日期。</p>
+<p>他提出的替代做法叫「<strong>時間桶</strong>」。把從現在到預期壽命的時間，以五年或十年為一格畫出來，再把想做的事一件一件放進「最適合做它的那一格」。你會立刻發現有些事擠在同一格裡，有些事的適合期比你以為的短得多：高強度的登山和滑雪、帶年幼的孩子去遊樂園、和還走得動的父母出國。</p>
+<p>這背後是他書裡最有感染力的一個想法：<strong>人在真正死亡之前，會先經歷很多次小小的死亡。</strong>他講到女兒小時候很愛和他一起看某部卡通電影，有一天他再提議，女兒已經沒興趣了。那個「會窩在爸爸身邊看卡通的小女孩」已經不在，換成了一個大一點的孩子。他不知道哪一次是最後一次，因為沒有人會通知你。每個人生階段都會結束，只是我們通常事後才發現。</p>
+<p><strong>實用價值</strong>：時間桶把抽象的「人生苦短」變成了一張可以排程的表。就算你不同意他對金錢的主張，這個工具本身值得一試。</p>
+<h3>四、財富高峰與生前贈與</h3>
+<p>如果目標是歸零，那資產就不該一路往上到死。柏金斯主張每個人都該有一個「<strong>淨資產高峰</strong>」，過了那個時間點，就開始有計畫地動用本金。他認為對多數人而言，這個時間點落在中年後段的某個區間，並強調關鍵是日期而不是金額：等到某個數字才開始花的人，往往會一直把數字往上調。</p>
+<p>最常見的反對是：「那孩子怎麼辦？」他的回答很乾脆：你要給孩子的錢，本來就不算你的錢，應該先劃出去；而且要在你活著的時候給。他指出，一般人收到遺產時多半已經步入中老年，早就過了最需要用錢的階段：買第一間房、養小孩、創業、轉換跑道。同一筆錢，在子女二三十歲時拿到，和六十歲時拿到，效用天差地遠。他認為較理想的時機大約是對方二十多歲後段到三十多歲前段，夠成熟不會亂花，又還來得及改變人生。</p>
+<p>捐款也是同樣的邏輯。想留給慈善機構的錢，現在給就能現在發揮作用，沒有理由等到你死。</p>
+<p>他還把這套想法延伸到風險上：年輕時失敗的成本最低、復原的時間最長，所以最該冒險的是年輕的時候。等到「準備好了」再行動，常常只是把機會讓給年紀。</p>
+<p><strong>限制在哪</strong>：何時贈與牽涉各地的稅制、家庭關係與自己晚年的保障，書裡的區間是作者的看法，不是通則。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書九條「規則」可以收成一條鏈：<strong>人生的目的是累積正向體驗 → 體驗會產生記憶股息，所以越早越划算 → 但體驗需要金錢、時間、健康三者配合，而它們的高峰錯開 → 所以要用時間桶排出每件事的最佳時機 → 所以財富不該無限累積，應該有高峰、有計畫地花與給 → 目標設定為歸零，是為了強迫自己不再用「以後再說」過日子。</strong></p>
+<p>他反覆攻擊的敵人只有一個：自動駕駛。照慣性工作、照慣性存錢、照慣性延後，從來不問這些錢到底是為了什麼。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p>以下是把書中的思考工具轉成練習，不是財務建議；涉及實際的金錢決定，請依自己的狀況並諮詢專業人士。</p>
+<p><strong>職場版</strong>：</p>
+<ol><li>算一次你的「時薪」：把一筆想買的東西換算成要工作幾小時，問自己願不願意用這段生命去換。</li><li>列出你為了工作一再延後的三件事，各自寫上「最晚到幾歲還做得了」。</li><li>找出一件可以花小錢外包、換回時間的雜事，試一個月看值不值。</li><li>如果你正猶豫要不要冒一個職涯風險，問自己：最壞的情況是什麼？幾年後再做，成本會更高還是更低？</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>畫出你的時間桶：從現在到八十歲，每十年一格，把想做的事放進去。</li><li>找出父母、孩子身上「有保存期限」的相處方式，把最近的一件排進行事曆。</li><li>回想過去一年最常拿出來講的回憶，看看它們花了多少錢。很多時候答案是很少。</li><li>把「維持健康」當成一筆投資來看：它決定了未來每一格桶子裡還放得下什麼。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「作者叫你把錢花光、及時行樂」</strong>——他明講要先留足生活所需並對沖長壽風險，也主張年輕時就該投資健康。他反對的是沒有目的的過度儲蓄，不是儲蓄本身。</li><li><strong>「歸零是字面意思」</strong>——他承認沒有人能精準做到。歸零是用來校準方向的目標，就像瞄準靶心不代表每一箭都會正中。</li><li><strong>「這是有錢人才能談的話題」</strong>——他的例子確實奢侈，但核心論點其實對資源有限的人更尖銳：錢越少，越需要想清楚每一塊要換成什麼。當然，連基本安全網都還沒有的人，優先順序本來就不同，這點他講得不夠。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《人生4千個禮拜》（柏克曼）：同樣從「人生有限」出發。柏克曼談的是接受時間的有限、放下掌控；柏金斯則是用交易員的腦袋去最佳化它。一個哲學，一個算術，剛好互補。</li><li>《致富心態》（豪瑟）：豪瑟強調存錢買的是安全感與選擇權，「夠了」之後就別再冒險。兩位作者都在談「夠」，但對多出來的錢該怎麼辦，結論相當不同，值得並排思考。</li><li>《論生命之短暫》（塞內卡）：兩千年前的同一個提醒，人不是時間太少，是浪費太多，而且總以為自己會永遠活著。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「人生的事業，就是取得回憶。到頭來，你擁有的就只有這些。」（大意；柏金斯引用影集《唐頓莊園》中的台詞）</li><li>「你過世時每多留下一塊錢，就代表你白白工作了一段換來那塊錢的時間。」（大意）</li><li>「我們每個人在生命結束之前，都會先死去很多次：每一個人生階段都會結束。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>有沒有一段體驗，當時覺得「有點太花錢」或「有點太衝動」，現在回頭看卻慶幸自己做了？它這些年給了你多少「記憶股息」？</li><li>如果把你想做的事放進時間桶，哪一件其實已經快過期了？是什麼讓你一直沒去做？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="die-with-zero" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "die-with-zero";
+      var TITLE = "別把你的錢留到死";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "die-with-zero";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

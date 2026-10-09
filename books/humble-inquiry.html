@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIT最打動人心的溝通課｜拾頁</title>
+<meta name="description" content="你以為專業就是有答案、領導就是下指令？席恩說，在一個沒人能獨自掌握全局的世界，「直接講」正是關係和安全出事的起點——你該練的是問你真的不知道的事。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="humble-inquiry" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-21</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 12 分鐘</span></div>
+  <h1>MIT最打動人心的溝通課</h1>
+  <p class="title-en">Humble Inquiry</p>
+  <p class="byline">艾德加・席恩（Edgar H. Schein）｜2013</p>
+  <p class="hook">你以為專業就是有答案、領導就是下指令？席恩說，在一個沒人能獨自掌握全局的世界，「直接講」正是關係和安全出事的起點——你該練的是問你真的不知道的事。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>謙遜提問＝問你真的不知道答案的問題，出發點是對這個人的好奇與在乎。</li><li>我們活在「告知文化」裡；越需要彼此配合的工作，越得靠提問先把關係建起來。</li><li>謙遜不是自貶：是承認「此時此地，我需要你才做得成這件事」。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>艾德加・席恩是麻省理工學院史隆管理學院的榮譽教授，組織心理學的開山人物之一。「組織文化」這個今天人人掛在嘴邊的詞，很大程度是他在上個世紀八〇年代建立起理論架構的；他提出的「過程諮詢」也改變了顧問這一行——顧問的工作不是帶著答案來，而是幫客戶看清楚自己的問題。</p>
+<p>他一輩子做的事，可以濃縮成一個問題：一個人要怎樣才能真正幫上另一個人的忙？2009 年他寫了一本談「幫助」的書，發現所有有效的幫助都從同一個動作開始——好好地問。於是 2013 年、八十多歲的他，把這個動作單獨拿出來，寫成這本薄薄的小書。</p>
+<p>書的醞釀期正好是幾場重大事故的檢討報告陸續出爐的年代：鑽油平台爆炸、太空梭失事、醫療疏失。席恩讀這些報告時注意到一個共同點：事前幾乎都有基層人員察覺不對勁，但訊息沒有往上傳——或是傳了，上面的人沒在聽。這讓他確信，「會不會問」不只是禮貌問題，而是攸關安全與成敗的事。</p>
+<p>2021 年他與兒子彼得合作推出修訂的第二版；兩年後席恩過世，這本書成了他流傳最廣的作品。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼部屬明明看到問題卻不說？為什麼我明明是想幫忙，對方卻不領情？」</p>
+<p>席恩的診斷是：我們太習慣「講」了。他把美國職場（其實也適用於多數重視績效的環境）稱為一種<strong>告知文化</strong>（culture of Tell）——知道答案代表有能力，發問代表不懂或示弱。於是主管習慣下指示、專家習慣給建議、每個人在談話中都忙著證明自己有料。</p>
+<p>問題是，「講」隱含著一個訊息：我預設你不知道這件事，而且你應該知道。這會讓對方微微矮一截。長期下來，位階低的人學會的是閉嘴、照做、別找麻煩。</p>
+<p>他提出的替代方案就是書名，定義如下：<strong>謙遜提問是一門把人引出來的細膩藝術——問你原本不知道答案的問題，並基於對對方的好奇與興趣來建立關係。</strong></p>
+<p>注意它有兩個部分：一是行為（問真的不知道的事），二是態度（真心對這個人感興趣）。少了後者，前者就只是一種話術。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、謙遜提問長什麼樣：兩個小故事</h3>
+<p>席恩用的例子都非常日常，這是這本書的魅力所在。</p>
+<p>第一個故事發生在他家門口的街上。一位駕駛停下車問他：某某大道怎麼走？他知道路，照理說直接回答就好。但他多問了一句：「你要去哪裡？」對方說要去波士頓市區。原來這位駕駛問的那條大道根本不是好走的路線——席恩指了另一條更直接的路。如果他只回答被問到的問題，等於把人送上一條繞遠的路。</p>
+<p><strong>有用的幫助，常常要先搞清楚對方真正要解決的是什麼。</strong>而這只有問了才知道。</p>
+<p>第二個故事的主角還是他自己，這次是反面教材。他還在念研究所時，有一天關在書房準備重要的考試，特別交代不要打擾。年幼的女兒卻敲門進來，他立刻不耐煩地說了她幾句，女兒哭著跑掉了。後來太太告訴他：是她叫女兒去問爸爸要不要喝杯咖啡、順便說聲晚安的。</p>
+<p>他只要先問一句「怎麼了？」就不會有這場傷害。這個故事他記了一輩子，因為它顯示出我們有多快就從「看到」跳到「判斷」再跳到「行動」，中間完全沒有提問的空間。</p>
+<p><strong>實用價值</strong>：這兩個故事合起來就是全書的口訣——開口之前先問，回答之前也先問。</p>
+<h3>二、三種謙遜：關鍵是「此時此地」的那一種</h3>
+<p>很多人聽到「謙遜」會皺眉：職場上太謙遜不是會被看扁嗎？席恩把謙遜拆成三種，釐清他講的是哪一種。</p>
+<p><strong>基本的謙遜</strong>：對身分地位比自己高的人表示尊重。在講究階級的社會，這是出生就決定的禮數。</p>
+<p><strong>選擇性的謙遜</strong>：面對成就讓我們佩服的人，自然生出的敬意。我們可以選擇要不要待在這些人身邊。</p>
+<p><strong>此時此地的謙遜</strong>（Here-and-now Humility）：<strong>當我要完成一件事、而我得靠你才做得成的時候，我在這一刻是依賴你的。</strong>這跟地位高低無關——事實上，地位高的人更常處在這種依賴之中，只是不習慣承認。</p>
+<p>席恩最愛用的例子是手術室。主刀醫師地位最高，但手術要成功，他需要麻醉科醫師、刷手護理師、流動護理師每個人都把關鍵資訊即時說出來——紗布數量不對、器械有疑慮、病人數值在變。如果醫師平常的作風讓大家不敢開口，再完備的檢查表也救不了他。他另一個比喻是接力賽：四個跑得最快的人不一定贏，贏的是交棒最順的隊伍，而交棒靠的是彼此之間的默契與信任。</p>
+<p>所以對上位者來說，謙遜提問不是美德表演，是風險管理：你的下屬會不會告訴你壞消息，取決於你有沒有先讓他覺得，在你面前說話是安全的。</p>
+<p><strong>常見誤用</strong>：把謙遜理解成說話客氣、姿態放低。席恩講的是承認一個事實——在這件事上，我需要你。</p>
+<h3>三、四種提問：不是所有問句都算謙遜</h3>
+<p>席恩區分了四種提問，差別在於「談話的主導權在誰手上」。</p>
+<p><strong>謙遜提問</strong>：把自己的預設降到最低，讓對方決定要說什麼。「發生了什麼事？」「可以多說一點嗎？」「然後呢？」有時甚至只是安靜地等。</p>
+<p><strong>診斷式提問</strong>：我開始引導方向了，挑我感興趣的部分追問——問感受（「你當時覺得怎樣？」）、問原因（「你覺得為什麼會這樣？」）、問行動（「你做了什麼？」）、或問整個系統裡其他人的反應。這仍然是在問，但對話的路線已經由我在決定。</p>
+<p><strong>質問式提問</strong>：把我自己的想法包成問句。「你那時候不生氣嗎？」「你有沒有想過乾脆直接跟他講？」這其實是在「講」——對方聽得出來你已經有答案了，他只能選擇同意或辯解。</p>
+<p><strong>過程導向的提問</strong>：把焦點從內容轉到我們兩人此刻的互動。「我們這樣談下去有幫助嗎？」「我是不是問得太私人了？」</p>
+<p>四種都有用處，席恩並不是說後三種不好。他的提醒是：<strong>我們常以為自己在問，其實是在講。</strong>「你不覺得……嗎？」幾乎永遠是質問式的。而在關係還沒建立、對方還在觀察你能不能信任的時候，只有第一種能把門打開。</p>
+<h3>四、為什麼做不到：告知文化與腦中的自動判斷</h3>
+<p>知道該問卻問不出口，席恩認為有兩層阻力。</p>
+<p>外層是文化。我們重視「把事情做完」勝過「把關係建好」，認為花時間認識彼此是浪費；我們獎勵有答案的人；我們相信位階高的人理應知道得更多。在這樣的環境裡，上位者發問顯得軟弱，下位者發問顯得無知。席恩還區分了兩種關係：一種是純粹照角色辦事的交易關係，另一種是把對方當成一個完整的人來認識的關係。互相依賴的任務需要後者，而大多數職場只提供前者。</p>
+<p>內層是我們腦袋的運作方式。他用四個字母描述這個迴圈：<strong>觀察（O）→ 反應（R）→ 判斷（J）→ 介入（I）</strong>。我們看到一件事，立刻有情緒反應，根據這個反應做出判斷，然後採取行動。毛病出在第一步——我們看到的本來就不是完整的事實，而是被自己的預期過濾過的版本；接下來的每一步又把這個偏差放大。女兒敲門的故事就是標準示範：看到「被打擾」，感到煩躁，判斷「她不聽話」，然後開口罵人。</p>
+<p>謙遜提問的功能，就是在觀察和判斷之間插入一道查證：我看到的是全貌嗎？我可不可以先問？</p>
+<p>他建議的練習都很樸素：放慢腳步；事後回想自己剛才是在講還是在問；多留意當下；還有刻意創造一些「文化孤島」——把一群需要合作的人帶離平常的場合，暫時放下位階的規矩，聊聊各自的想法與來歷。</p>
+<p><strong>限制在哪</strong>：這本書篇幅短、例子多半來自作者個人經驗，沒有大量數據佐證。另外，真的十萬火急時當然是直接下指令；席恩談的是平時怎麼把關係建好，讓緊急時刻有人敢喊停。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>席恩的推論很乾淨：<strong>現代工作越來越複雜、越來越需要彼此配合</strong> → 配合需要資訊流通，尤其是由下往上的壞消息 → 資訊流不流通<strong>取決於關係裡有沒有信任</strong> → 信任靠的是地位高的那一方先表現出「此時此地的謙遜」，而最直接的表現方式就是<strong>問自己真的不知道的事，並且認真聽</strong> → 但我們的文化獎勵「講」、大腦又習慣跳過查證直接判斷，所以這件事<strong>需要刻意練習</strong>。整本書其實只講一個動作，卻把它為什麼重要、為什麼難、怎麼開始，各講了一遍。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版：</strong></p>
+<ol><li>一對一時把開場的「這件事你應該……」換成「你現在看到的狀況是什麼？」然後忍住，聽完</li><li>新接手團隊或專案，前兩週以問為主。告訴大家：「這裡的事你們比我清楚，我需要你們告訴我。」這就是此時此地的謙遜</li><li>檢查你的問句：如果是「你不覺得……嗎」「為什麼不……」開頭，那是包裝過的建議。改成「你怎麼看？」</li><li>會議結束前加一題過程提問：「有沒有什麼事是大家覺得該講、但還沒講的？」並且對第一個開口的人說謝謝</li></ol>
+<p><strong>生活版：</strong></p>
+<ol><li>家人或朋友向你求助時，先多問一句「你最想解決的是哪個部分？」——還記得那位問路的駕駛</li><li>被打斷、被惹毛的瞬間，試著把第一句話換成「怎麼了？」</li><li>跟長輩或孩子相處時，問一個你真的不知道答案的問題（「你年輕時最怕什麼？」「今天最好玩的是什麼？」），而不是考他的問題</li><li>睡前回想今天的一段對話：我講的多還是問的多？有哪句問話其實是在講？</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「謙遜提問＝多問問題」</strong>——質問式的、誘導式的、明知故問的問題都不算。關鍵是你真的不知道答案，而且真的想知道。</li><li><strong>「這是基層對主管該有的態度」</strong>——恰恰相反。席恩主要是寫給位階高的人看的：權力差距越大，上面的人越要主動問，因為下面的人不敢主動說。</li><li><strong>「謙遜就是否定自己的專業」</strong>——你可以非常專業，同時承認這件事的另一半資訊在別人手上。這兩者不衝突。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《心理安全感的力量》（艾美・艾德蒙森）：拾頁書庫裡談團隊為什麼不敢說真話的那本。艾德蒙森是席恩的學術後輩，她定義了「心理安全感」這個狀態；席恩這本書提供的是製造它的具體動作。</li><li>《你是來帶人，不是幫部屬做事》（麥可・邦吉・史戴尼爾）：書庫裡的教練式提問手冊，給了主管七個可以直接用的問句。席恩講態度與原理，史戴尼爾給現成的工具，搭配剛好。</li><li>《清單革命》（葛文德）：葛文德主張用檢查表降低醫療失誤，席恩補上另一半——如果團隊成員不敢開口，檢查表也只是打勾而已。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「謙遜提問是把人引出來的細膩藝術：問你不知道答案的問題，並基於對對方的好奇與興趣建立關係。」（Humble Inquiry is the fine art of drawing someone out, of asking questions to which you do not already know the answer, of building a relationship based on curiosity and interest in the other person.）</li><li>「我們重視『講』，遠超過重視『問』。」（大意）</li><li>「此時此地的謙遜，是我在依賴你的那一刻所感受到的。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想今天你跟人的對話：講和問的比例大概是多少？有沒有哪個問題其實是「包裝過的建議」？</li><li>在你的工作或家庭裡，誰最可能「看到問題卻不敢告訴你」？你可以問他哪一個問題，讓他知道說出來是安全的？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="humble-inquiry" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "humble-inquiry";
+      var TITLE = "MIT最打動人心的溝通課";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "humble-inquiry";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

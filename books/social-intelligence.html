@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SQ：I-You 共融的社會智能｜拾頁</title>
+<meta name="description" content="你以為情緒是自己的事，關起門來消化就好？高曼說，你的大腦天生就跟身邊的人連著線——別人的臉色，正在悄悄改寫你的身體。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="social-intelligence" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-12-01</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>SQ：I-You 共融的社會智能</h1>
+  <p class="title-en">Social Intelligence</p>
+  <p class="byline">丹尼爾・高曼（Daniel Goleman）｜2006</p>
+  <p class="hook">你以為情緒是自己的事，關起門來消化就好？高曼說，你的大腦天生就跟身邊的人連著線——別人的臉色，正在悄悄改寫你的身體。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>大腦天生為連結而設計：情緒會傳染，每一次互動都在調整彼此的生理狀態。</li><li>社會智能分兩半：「察覺」別人在感受什麼，以及據此「順暢互動」的能力。</li><li>把人當「你」而不是「它」——滋養的關係是健康資產，有毒的關係是慢性壓力。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>丹尼爾・高曼是哈佛心理學博士，曾長年在《紐約時報》寫大腦與行為科學的報導。1995 年他出版《EQ》，把「情緒智商」這個原本只在學術圈流通的概念推到全世界，從此「EQ 比 IQ 重要」成了連不讀書的人都會講的一句話。</p>
+<p>《EQ》談的主要是一個人「裡面」的事：認識自己的情緒、管理衝動、自我激勵。但書出版後的十年間，腦科學出現了一個新分支——社會神經科學。研究者開始不只掃描單獨一顆大腦，而是觀察兩個人互動時，兩顆腦袋之間發生什麼事。鏡像神經元的發現、對杏仁核與前額葉分工更細的理解、關於壓力荷爾蒙與免疫系統的研究，一塊一塊拼出同一幅圖：人的大腦不是一台獨立運作的電腦，比較像一台隨時在跟周圍連線的裝置。</p>
+<p>2006 年的這本書，就是高曼把這批新研究整理給大眾的成果。他自己把它定位成《EQ》的姊妹作：上一本談「一個人的心理學」，這一本談「兩個人之間的心理學」。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼跟某些人相處完整個人輕飄飄，跟另一些人講五分鐘話就累得像跑完操場？」</p>
+<p>我們習慣把這種感受當成主觀印象，高曼卻說它有紮紮實實的生理基礎。他的核心主張只有一句：<strong>我們天生為連結而設計（We are wired to connect）。</strong>每一次面對面的互動，兩個人的大腦都會形成一條看不見的迴路，情緒順著這條線流過去，再流回來，連心跳、荷爾蒙、免疫功能都跟著被調整。</p>
+<p>所以這本書要回答的是兩件事：第一，這條「連線」到底怎麼運作？第二，既然我們每天都在影響別人、也被別人影響，一個人要怎樣才算「懂得跟人相處」——不是油嘴滑舌那種，而是真正讓彼此都變好的那種？</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、情緒會傳染：低路與高路</h3>
+<p>書的開場是一個伊拉克戰爭初期的故事。一隊美軍要去拜訪當地的宗教領袖，請他協助發放救濟物資，卻被一大群居民團團圍住——群眾以為士兵是來逮捕教長或破壞清真寺的，情緒越來越激動。帶隊的軍官做了一個出乎意料的決定：他拿起擴音器，下令士兵單膝跪下、槍口朝地，然後——微笑。群眾的氣氛幾乎是瞬間轉變，有人甚至走上前拍拍士兵的背。</p>
+<p>沒有翻譯、沒有談判，只靠姿勢和表情，就讓幾百個人的情緒掉頭。高曼用這個故事說明：情緒的傳遞走的是一條比語言更快的路。</p>
+<p>他把大腦處理社交訊息的方式分成兩條路線。<strong>低路（low road）</strong>走的是杏仁核等較古老的迴路，速度極快、自動、不經意識——你還沒想清楚對方說了什麼，身體已經先感覺到「他不高興」。<strong>高路（high road）</strong>走的是前額葉皮質，慢、有條理、可以刻意控制——你告訴自己「他只是今天累了，不是針對我」。</p>
+<p>情緒傳染大多發生在低路。書中引用的研究顯示，光是看到一張恐懼或快樂的臉，哪怕呈現時間短到當事人說不出自己看見了什麼，臉部肌肉和情緒也會跟著微微變化。義大利帕爾馬的研究團隊在猴子身上發現的鏡像神經元，被高曼視為這種「感同身受」的可能機制之一：看別人做動作時，我們腦中會有對應的區域跟著活化。</p>
+<p><strong>實用價值</strong>：既然情緒會傳染，那麼「我今天用什麼狀態走進會議室」就不只是我自己的事。主管、老師、父母這些位置的人，情緒的傳染力特別強，因為大家的注意力都在他們身上。</p>
+<p><strong>限制在哪</strong>：鏡像神經元在這本書出版後的十多年裡，被學界認為有被過度解讀的傾向——它在人類同理心裡到底扮演多大角色，至今仍有爭論。讀這一段，把它當成「情緒確實會在人與人之間快速傳遞」的一種解釋方向就好，不必當成定論。</p>
+<h3>二、社會智能的兩個半邊：察覺與能力</h3>
+<p>高曼不滿意過去把「社交能力」簡化成「會說話、懂操作人」的定義。他重新提出一個架構，把社會智能分成兩大塊，每塊各有四個成分。</p>
+<p><strong>社會察覺（social awareness）——你感受到了什麼：</strong></p>
+<ul><li>原始同理心：憑直覺接收到別人的非語言訊號</li><li>同調：全神貫注地聽，而不是一邊聽一邊準備自己要講什麼</li><li>同理的準確度：真的理解對方的想法、感受和意圖</li><li>社會認知：懂得這個場合的遊戲規則怎麼運作</li></ul>
+<p><strong>社交能力（social facility）——你拿這份察覺做什麼：</strong></p>
+<ul><li>同步：在非語言層次上跟對方順暢地互動</li><li>自我呈現：有效地表達自己</li><li>影響力：能夠塑造互動的結果</li><li>關懷：在乎別人的需要，並且付諸行動</li></ul>
+<p>這個架構有兩個值得注意的地方。第一，前幾項屬於低路的能力——原始同理心和同步是「做題目」考不出來的，它們靠的是當下的臨場感。高曼藉此批評傳統的智力觀：太偏重可以用紙筆測量的高路能力。第二，最後一項是「關懷」。一個人就算把前七項練到滿分，如果沒有關懷，他只是高明的操縱者。高曼在書中用一整章談「黑暗三人組」——自戀者、馬基維利型的操弄者、以及心理病態者，他們往往很會讀人，卻把這份能力拿來利用人。</p>
+<p><strong>常見誤用</strong>：把這份清單當成「社交技巧課」。高曼明講，同步感是裝不來的；刻意模仿對方的姿勢，通常只會讓人覺得怪。真正的起點是第二項——把注意力完整地交給對方。</p>
+<h3>三、I-You 與 I-It：你把對方當人，還是當東西</h3>
+<p>中文版書名裡的「I-You」，來自哲學家馬丁・布伯的區分。<strong>I-It（我—它）</strong>的關係裡，對方只是達成我目的的工具，或一個需要處理的問題；<strong>I-You（我—你）</strong>的關係裡，對方是一個有感受、值得我在場的人。</p>
+<p>高曼舉的例子很日常：一邊講電話一邊回信，嘴上「嗯、嗯」敷衍；醫師盯著螢幕問診，從頭到尾沒看病人一眼。這些時刻我們都處在 I-It 模式。它不一定是惡意——現代生活的多工和趕時間，會把我們自動推進這個模式。</p>
+<p>為什麼這件事重要？書中引用研究融洽關係的學者的說法，真正的投契需要三個條件同時出現：<strong>彼此全神貫注、共享正向的感受、以及非語言上的同步</strong>。三者缺一，對方就會隱約覺得「你人在這，心不在」。而這三個條件，沒有一個可以在分心的狀態下達成。</p>
+<p><strong>實用價值</strong>：I-You 不需要長談，它需要的是「完整的幾分鐘」。高曼在書中多次強調，短暫但全然在場的互動，比冗長卻心不在焉的陪伴更能讓人感到被看見。</p>
+<h3>四、關係會進到身體裡：滋養與有毒</h3>
+<p>全書最讓人坐直的部分，是談關係與健康。</p>
+<p>高曼整理了多項研究：長期處在衝突關係中的人，壓力荷爾蒙系統反覆被啟動，對心血管與免疫功能都是負擔；有研究讓受試者接觸感冒病毒，結果發現正陷在長期人際衝突裡的人，發病的機率明顯高於其他人；也有針對夫妻的實驗發現，吵架吵得越敵意，身體小傷口的癒合就越慢。反過來，身邊有支持性關係的人，面對壓力事件時生理反應比較平緩。</p>
+<p>他把這個現象講得很直接：一段關係在我們生活中占的時間越長、情感分量越重，它對身體的影響就越大。有毒的關係像慢性的毒素，滋養的關係像維他命。</p>
+<p>延伸到童年，他借用依附理論的「安全堡壘」概念：一個被穩定回應的孩子，會帶著安全感去探索世界；而大腦的可塑性讓這件事在成年後仍有修補的空間——一段好的伴侶關係、一位好的導師，都可能重新調整一個人的情緒設定。</p>
+<p><strong>限制在哪</strong>：這些健康研究大多是相關性與小規模實驗，高曼身為記者出身的作者，敘事上有時會把結論講得比原始研究更篤定。方向可信，但別把它讀成「跟討厭的同事相處一定會生病」。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>四個概念是一條由下而上的鏈：<strong>大腦天生互相連線</strong>（低路讓情緒在人與人之間自動傳遞）→ 所以<strong>與人相處是一種真實的能力</strong>（察覺加上互動，底層靠臨場感，頂層靠關懷）→ 這份能力的品質取決於<strong>你用哪種態度面對對方</strong>（I-You 還是 I-It）→ 而這個選擇的後果<strong>會累積在雙方的身體與人生裡</strong>（滋養或有毒）。書的後半部再把這條鏈推到教育、醫療、職場與族群關係：如果連結是生理需求，那麼學校、醫院、公司的設計都應該把它算進去。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版：</strong></p>
+<ol><li>進會議室前做一次「情緒檢查」：我現在帶著什麼情緒進去？如果是煩躁，先在門外停三十秒，因為位階越高，你的情緒傳得越遠</li><li>一對一談話時，把手機螢幕朝下、筆電闔上，給對方完整的五分鐘。全神貫注是融洽的第一個條件，也是最容易做到的</li><li>聽的時候抓「同調」：先複述你聽到的感受（「聽起來這件事讓你很挫折」），再談解法</li><li>盤點團隊裡你最常用 I-It 模式對待的人——通常是行政、外包或新人——這週找一次機會好好跟他講幾句話</li></ol>
+<p><strong>生活版：</strong></p>
+<ol><li>回家的頭五分鐘留給人，不留給手機。短而完整，勝過長而分心</li><li>列一張「相處完的感覺」清單：哪些人讓你充電、哪些人讓你耗電？調整你把時間花在誰身上</li><li>跟伴侶起衝突時，留意低路已經接管的訊號（心跳加快、講話變快）。先暫停，等高路上線再談</li><li>對長期有毒、你又離不開的關係，至少增加別處的滋養來源，別讓它成為你生活中唯一的情緒輸入</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「社會智能＝很會社交、很會做人」</strong>——高曼恰恰是要跟這個定義切開。很會讀人卻不在乎人，是書裡「黑暗三人組」的特徵。社會智能的終點是關懷，不是手腕。</li><li><strong>「情緒會傳染，所以我要隨時保持正能量」</strong>——書中談的是真實的在場，不是表演開心。硬擠出來的笑容，低路其實分辨得出來；先誠實處理自己的狀態，才是負責任的做法。</li><li><strong>「鏡像神經元已經證明人天生有同理心」</strong>——這是書出版當年最熱門、後來也最受質疑的一環。同理心牽涉的機制遠比單一類神經元複雜，把它當成有待驗證的線索比較穩當。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《EQ》（高曼）：姊妹作。前一本教你管好自己的情緒，這一本談情緒如何在兩個人之間流動。先讀哪本都可以，但合起來才完整。</li><li>《你都沒在聽》（凱特・墨菲）：拾頁書庫裡談傾聽的那本。高曼講「同調」的原理，墨菲把它寫成一整本書的觀察與練習，適合當這一章的實作延伸。</li><li>《當我們一起》（維偉克・莫西）：同樣主張連結是健康議題，但從公共衛生與孤獨的角度切入。高曼給你腦科學的解釋，莫西給你社會層次的全景。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「我們天生為連結而設計。」（We are wired to connect.）</li><li>「一段關係在情感上對我們越重要，它對我們身體的影響力就越大。」（大意）</li><li>「同理心的前提是注意力：要感受別人，得先把心思從自己身上移開。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想這個禮拜：有沒有哪一次，你明顯「接住」了別人的情緒（好的或壞的）而被影響一整天？那個傳染是怎麼發生的？</li><li>你生活中最常被你用 I-It 模式對待的人是誰？如果給他完整的五分鐘，你覺得會有什麼不一樣？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="social-intelligence" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "social-intelligence";
+      var TITLE = "SQ：I-You 共融的社會智能";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "social-intelligence";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

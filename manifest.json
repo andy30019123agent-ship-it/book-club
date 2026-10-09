@@ -828,6 +828,276 @@
     "url": "https://andy30019123agent-ship-it.github.io/book-club/books/good-strategy-bad-strategy.html"
   },
   {
+    "date": "2026-09-30",
+    "slug": "the-obstacle-is-the-way",
+    "title": "障礙就是道路",
+    "author": "萊恩・霍利得（Ryan Holiday）",
+    "theme": "自我成長",
+    "hook": "你以為要先把擋路的東西移開，才能往前走？斯多噶學派說的剛好相反：擋在路上的那個東西，本身就是你該走的路。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-obstacle-is-the-way.html"
+  },
+  {
+    "date": "2026-09-29",
+    "slug": "algorithms-to-live-by",
+    "title": "決斷的演算",
+    "author": "布萊恩・克里斯汀、湯姆・葛瑞菲斯（Brian Christian & Tom Griffiths）",
+    "theme": "邏輯思考",
+    "hook": "你以為找房、排行程、整理桌面做不好是自己不夠果斷？這些問題電腦科學家算過了，有些連電腦也沒有完美解，但有「夠好」的做法可以直接借來用。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/algorithms-to-live-by.html"
+  },
+  {
+    "date": "2026-09-28",
+    "slug": "youre-not-listening",
+    "title": "你都沒在聽",
+    "author": "凱特・墨菲（Kate Murphy）",
+    "theme": "人際關係",
+    "hook": "你覺得自己是個不錯的聽眾？想想上一次，有人把話講完之前你沒有在心裡準備回應、沒有瞄手機、也沒有急著給建議——是什麼時候的事。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/youre-not-listening.html"
+  },
+  {
+    "date": "2026-09-27",
+    "slug": "the-five-dysfunctions-of-a-team",
+    "title": "克服團隊領導的5大障礙",
+    "author": "派屈克・藍奇歐尼（Patrick Lencioni）",
+    "theme": "職場成長",
+    "hook": "你以為團隊不合是因為人不夠強？藍奇歐尼說，一群聰明人最常敗在開會時沒人吵架——那種和氣不是默契，是誰都不敢說真話。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-five-dysfunctions-of-a-team.html"
+  },
+  {
+    "date": "2026-09-26",
+    "slug": "the-willpower-instinct",
+    "title": "輕鬆駕馭意志力",
+    "author": "凱莉・麥高尼格（Kelly McGonigal）",
+    "theme": "自我成長",
+    "hook": "你以為自制力差是因為對自己不夠狠？研究指向相反的方向：罪惡感和自責會讓你更快破功，了解自己怎麼失控才是起點。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-willpower-instinct.html"
+  },
+  {
+    "date": "2026-09-25",
+    "slug": "how-to-lie-with-statistics",
+    "title": "別讓統計數字騙了你",
+    "author": "達瑞爾・赫夫（Darrell Huff）",
+    "theme": "邏輯思考",
+    "hook": "你以為有數字、有圖表就比較客觀？數字本身可以一個字都不假，卻讓你得出完全錯誤的印象。這本七十年前的小書，把這些手法一招一招拆給你看。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/how-to-lie-with-statistics.html"
+  },
+  {
+    "date": "2026-09-24",
+    "slug": "the-good-life",
+    "title": "美好人生",
+    "author": "羅伯・威丁格、馬克・修茲（Robert Waldinger & Marc Schulz）",
+    "theme": "人際關係",
+    "hook": "你以為人生要過得好，靠的是成就、財富、健康檢查的數字？哈佛追蹤了同一群人超過八十年，答案簡單到讓人有點不甘心：是關係。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-good-life.html"
+  },
+  {
+    "date": "2026-09-23",
+    "slug": "made-to-stick",
+    "title": "創意黏力學",
+    "author": "奇普・希思、丹・希思（Chip Heath & Dan Heath）",
+    "theme": "職場成長",
+    "hook": "為什麼沒根據的都市傳說人人記得，你花三週做的簡報卻沒人記得一頁？問題不在聽眾，在你懂得太多——你已經忘了不懂是什麼感覺。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/made-to-stick.html"
+  },
+  {
+    "date": "2026-09-22",
+    "slug": "the-psychology-of-money",
+    "title": "致富心態",
+    "author": "摩根・豪瑟（Morgan Housel）",
+    "theme": "自我成長",
+    "hook": "你以為理財靠的是聰明、資訊和公式？作者說，一個清潔工可以默默累積數百萬美元，華爾街菁英卻會破產——差別在行為，不在智商。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-psychology-of-money.html"
+  },
+  {
+    "date": "2026-09-21",
+    "slug": "the-scout-mindset",
+    "title": "零盲點思維",
+    "author": "茱莉亞・蓋勒芙（Julia Galef）",
+    "theme": "邏輯思考",
+    "hook": "你以為判斷力不好是因為不夠聰明、知道得不夠多？更常見的原因是你其實不太想知道答案。這本書談的是一種態度：想看清楚，勝過想證明自己對。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-scout-mindset.html"
+  },
+  {
+    "date": "2026-09-20",
+    "slug": "talking-to-strangers",
+    "title": "解密陌生人",
+    "author": "麥爾坎・葛拉威爾（Malcolm Gladwell）",
+    "theme": "人際關係",
+    "hook": "你相信自己看人很準，見一面就知道對方老不老實？葛拉威爾說，法官、情報員、警察都栽在同一件事上：我們根本不擅長讀懂陌生人。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/talking-to-strangers.html"
+  },
+  {
+    "date": "2026-09-19",
+    "slug": "the-hard-thing-about-hard-things",
+    "title": "什麼才是經營最難的事？",
+    "author": "本・霍羅維茲（Ben Horowitz）",
+    "theme": "職場成長",
+    "hook": "管理書都在教你怎麼把事情做對，卻沒人告訴你搞砸之後怎麼辦。霍羅維茲說，真正難的不是訂大目標，是目標落空時親手裁掉你找來的人。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-hard-thing-about-hard-things.html"
+  },
+  {
+    "date": "2026-09-18",
+    "slug": "meditations",
+    "title": "沉思錄",
+    "author": "馬可・奧理略（Marcus Aurelius）",
+    "theme": "自我成長",
+    "hook": "你以為讓你心煩的是那些人、那些事？一位羅馬皇帝在軍營裡寫給自己的筆記說：困擾你的從來不是事情本身，而是你對它下的判斷。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/meditations.html"
+  },
+  {
+    "date": "2026-09-17",
+    "slug": "thinking-in-systems",
+    "title": "系統思考",
+    "author": "唐內拉・梅多斯（Donella H. Meadows）",
+    "theme": "邏輯思考",
+    "hook": "問題反覆出現時，你習慣找「是誰的錯」？這本書說，換一批人問題多半還在，因為行為是結構養出來的。要改結果，得去看存量、回饋和時間差。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/thinking-in-systems.html"
+  },
+  {
+    "date": "2026-09-16",
+    "slug": "thanks-for-the-feedback",
+    "title": "謝謝你的指教",
+    "author": "道格拉斯・史東、席拉・西恩（Douglas Stone & Sheila Heen）",
+    "theme": "人際關係",
+    "hook": "大家都在學怎麼「給」回饋，卻沒人教你怎麼「收」。可是一句話會不會讓你成長，決定權從來不在說的人，而在聽的人。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/thanks-for-the-feedback.html"
+  },
+  {
+    "date": "2026-09-15",
+    "slug": "radical-candor",
+    "title": "徹底坦率",
+    "author": "金・史考特（Kim Scott）",
+    "theme": "職場成長",
+    "hook": "你以為不講重話是體貼同事？史考特說，為了讓場面好看而不說實話，才是對人最殘忍的事——真正的善意是在乎他，所以直接告訴他。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/radical-candor.html"
+  },
+  {
+    "date": "2026-09-14",
+    "slug": "the-subtle-art",
+    "title": "管他的",
+    "author": "馬克・曼森（Mark Manson）",
+    "theme": "自我成長",
+    "hook": "你以為人生卡住是因為不夠正向、不夠努力？其實是因為你在乎太多不值得的事。問題從來不是怎麼避開痛苦，而是選哪一種痛苦。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-subtle-art.html"
+  },
+  {
+    "date": "2026-09-13",
+    "slug": "fooled-by-randomness",
+    "title": "隨機騙局",
+    "author": "納西姆・尼可拉斯・塔雷伯（Nassim Nicholas Taleb）",
+    "theme": "邏輯思考",
+    "hook": "你以為賺到錢的人一定有本事？在運氣成分很重的領域，一長串漂亮戰績可能只說明他還沒遇到那一次。這本書要你別再把運氣錯認成能力。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/fooled-by-randomness.html"
+  },
+  {
+    "date": "2026-09-12",
+    "slug": "getting-to-yes",
+    "title": "哈佛這樣教談判力",
+    "author": "羅傑・費雪、威廉・尤瑞（Roger Fisher & William Ury）",
+    "theme": "人際關係",
+    "hook": "你以為談判只有兩種打法：強硬到底，或是委屈求全？這本書說兩種都錯——你一直在跟「立場」討價還價，卻沒問過對方到底要什麼。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/getting-to-yes.html"
+  },
+  {
+    "date": "2026-09-11",
+    "slug": "getting-things-done",
+    "title": "搞定！",
+    "author": "大衛・艾倫（David Allen）",
+    "theme": "職場成長",
+    "hook": "你以為壓力來自事情太多？艾倫說不是——壓力來自那些你答應了自己卻沒想清楚、只能靠腦袋硬記的事。大腦是拿來想的，不是拿來記的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/getting-things-done.html"
+  },
+  {
+    "date": "2026-09-10",
+    "slug": "four-thousand-weeks",
+    "title": "人生4千個禮拜",
+    "author": "奧利佛・柏克曼（Oliver Burkeman）",
+    "theme": "自我成長",
+    "hook": "你一直相信，只要效率再高一點，總有一天能把事情做完、開始過真正想過的日子。那一天不會來——而這其實是個好消息。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/four-thousand-weeks.html"
+  },
+  {
+    "date": "2026-09-09",
+    "slug": "nudge",
+    "title": "推力",
+    "author": "理查・塞勒、凱斯・桑思坦（Richard H. Thaler & Cass R. Sunstein）",
+    "theme": "邏輯思考",
+    "hook": "你以為選擇是自己做的？表格上哪一格預先打勾、菜擺在哪一層，早就替你決定了大半。沒有所謂中立的設計，差別只在設計的人有沒有想清楚。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/nudge.html"
+  },
+  {
+    "date": "2026-09-08",
+    "slug": "the-five-love-languages",
+    "title": "愛之語",
+    "author": "蓋瑞・巧門（Gary Chapman）",
+    "theme": "人際關係",
+    "hook": "你明明很努力在愛，對方卻說感覺不到？問題可能不是愛得不夠，而是你一直用自己的母語說話，他聽的卻是另一種語言。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-five-love-languages.html"
+  },
+  {
+    "date": "2026-09-07",
+    "slug": "high-output-management",
+    "title": "葛洛夫給經理人的第一課",
+    "author": "安德魯・葛洛夫（Andrew Grove）",
+    "theme": "職場成長",
+    "hook": "你以為主管的成績是自己做了多少事？葛洛夫說錯了——主管的產出，是他帶的團隊加上他影響得到的團隊的產出，其餘都只是活動。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/high-output-management.html"
+  },
+  {
+    "date": "2026-09-06",
+    "slug": "essentialism",
+    "title": "少，但是更好",
+    "author": "葛瑞格・麥基昂（Greg McKeown）",
+    "theme": "自我成長",
+    "hook": "你以為忙是因為事情太多？其實是因為你相信「每件事都重要」。當你不替自己的人生排優先順序，別人就會替你排。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/essentialism.html"
+  },
+  {
+    "date": "2026-09-05",
+    "slug": "predictably-irrational",
+    "title": "誰說人是理性的！",
+    "author": "丹・艾瑞利（Dan Ariely）",
+    "theme": "邏輯思考",
+    "hook": "你以為自己偶爾衝動、大致理性？這本書用一個個小實驗告訴你：你的不理性不是偶發，它有固定方向，固定到商人可以拿來設計價目表。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/predictably-irrational.html"
+  },
+  {
+    "date": "2026-09-04",
+    "slug": "never-split-the-difference",
+    "title": "FBI談判協商術",
+    "author": "克里斯・佛斯（Chris Voss）",
+    "theme": "人際關係",
+    "hook": "你以為談判高手靠的是邏輯和各退一步？FBI 人質談判專家告訴你：人命不能打對折，真正讓對方讓步的，是他覺得「你懂我」的那一刻。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/never-split-the-difference.html"
+  },
+  {
+    "date": "2026-09-03",
+    "slug": "the-effective-executive",
+    "title": "杜拉克談高效能的5個習慣",
+    "author": "彼得・杜拉克（Peter Drucker）",
+    "theme": "職場成長",
+    "hook": "你以為自己很忙就等於有貢獻？杜拉克說，聰明、勤奮、有知識都不保證成果——把「對的事」做完是一種可以練的習慣。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-effective-executive.html"
+  },
+  {
+    "date": "2026-09-02",
+    "slug": "the-power-of-habit",
+    "title": "為什麼我們這樣生活，那樣工作？",
+    "author": "查爾斯・杜希格（Charles Duhigg）",
+    "theme": "自我成長",
+    "hook": "你以為每天的生活是一連串深思熟慮的決定？其實大半是大腦為了省力自動播放的迴路——壞習慣刪不掉，但可以被改寫。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-power-of-habit.html"
+  },
+  {
+    "date": "2026-09-01",
+    "slug": "the-art-of-thinking-clearly",
+    "title": "思考的藝術",
+    "author": "魯爾夫・杜伯里（Rolf Dobelli）",
+    "theme": "邏輯思考",
+    "hook": "你以為想清楚靠的是更聰明，其實靠的是少犯錯。這本書不教你怎麼變天才，只列出大腦固定會踩的坑，讓你至少別每次都掉進同一個。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-art-of-thinking-clearly.html"
+  },
+  {
     "date": "2026-08-31",
     "slug": "i-may-be-wrong",
     "title": "我可能錯了",

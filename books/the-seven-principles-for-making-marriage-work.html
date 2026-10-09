@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>七個讓愛延續的方法｜拾頁</title>
+<meta name="description" content="你以為婚姻會壞，是因為吵太多、溝通技巧太差？高特曼觀察了上千對伴侶後說：幸福的夫妻一樣吵，差別在吵之前，兩個人是不是朋友。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-seven-principles-for-making-marriage-work" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-02</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>七個讓愛延續的方法</h1>
+  <p class="title-en">The Seven Principles for Making Marriage Work</p>
+  <p class="byline">約翰・高特曼（John Gottman）、娜恩・希爾維（Nan Silver）｜1999</p>
+  <p class="hook">你以為婚姻會壞，是因為吵太多、溝通技巧太差？高特曼觀察了上千對伴侶後說：幸福的夫妻一樣吵，差別在吵之前，兩個人是不是朋友。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>婚姻的地基是友誼：熟悉對方的內心世界、保有欣賞、在小事上回應彼此。</li><li>批評、輕蔑、防衛、築牆是關係的「末日四騎士」，其中輕蔑殺傷力最大。</li><li>多數夫妻衝突是一輩子解不掉的；目標不是解決，而是能帶著幽默與尊重談它。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>約翰・高特曼原本是學數學的，後來轉進心理學。這個出身決定了他研究婚姻的方式：不靠直覺、不靠理論，靠量測。1970 年代起，他開始把夫妻請進實驗室，錄下他們的對話，逐秒編碼表情、語氣和用詞，同時量心跳、流汗等生理指標，然後一年一年追蹤，看哪些夫妻還在一起、哪些分開了。</p>
+<p>後來他在西雅圖華盛頓大學附近弄了一間被媒體稱為「愛情實驗室」的公寓：外觀就是普通的度假套房，夫妻在裡面過一個週末，照常做飯、看報、聊天、鬥嘴，只是牆上有攝影機、身上貼著感測器。幾十年下來，他累積了大量夫妻互動的長期資料，並宣稱只要觀察一對夫妻幾分鐘的爭執，就能以相當高的準確率預測他們未來會不會離婚。</p>
+<p>這本書初版於 1999 年，由高特曼與作家娜恩・希爾維合寫，2015 年出過修訂版。它在婚姻書裡的地位很特別：當時多數婚姻諮商教的是「溝通技巧」，高特曼卻拿著資料說——那套東西，幸福的夫妻其實沒在用。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「什麼樣的婚姻撐得下去？」</p>
+<p>在高特曼之前，主流答案是「會溝通的婚姻」：學會積極傾聽，用「我訊息」表達，複述對方的話再回應。高特曼並不是說這些沒用，他的發現是：要一個人在被伴侶數落的當下保持同理、複述、不反擊，那是奧運等級的情緒體操，連婚姻美滿的人也很少做得到。他觀察到的幸福夫妻，吵起來也會大聲、也會翻白眼、也會講不理性的話。</p>
+<p>真正的差別在別處：<strong>幸福的婚姻建立在深厚的友誼上。</strong>兩個人了解彼此、喜歡彼此、在日常裡站在同一邊——這份底氣讓他們在衝突時不至於把對方當敵人。書中的七個原則，前三個都在講友誼，後面才談衝突。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、末日四騎士：婚姻是怎麼壞掉的</h3>
+<p>高特曼先講失敗的樣子。他發現，會走向離婚的夫妻，爭執有可辨認的模式。第一個訊號是「粗暴的開場」：一開口就帶著指責或諷刺的對話，幾乎註定以不愉快收場。接著是四種他借《啟示錄》命名的互動，稱為「末日四騎士」：</p>
+<ul><li><strong>批評</strong>：抱怨是針對一件事（「你昨天沒倒垃圾，我很不高興」），批評是針對一個人（「你就是這麼自私」）。</li><li><strong>輕蔑</strong>：冷笑、嘲諷、翻白眼、取綽號，站在高處看對方。高特曼認為這是四騎士中最毒的一個，因為它傳達的是厭惡，而人不可能在被厭惡的同時解決問題。</li><li><strong>防衛</strong>：「又不是我的錯」「那你自己呢」。看似自保，實際上是把責任丟回去。</li><li><strong>築牆</strong>：乾脆關機，不看、不答、不回應。高特曼的生理資料顯示，築牆的人往往不是不在乎，而是已經「情緒氾濫」——心跳飆高，身體進入戰或逃，根本聽不進任何話。</li></ul>
+<p>四騎士之外還有一個關鍵指標：<strong>修復嘗試</strong>有沒有被接住。吵到一半有人說「等一下，我們重來」、做個鬼臉、伸手碰一下對方——這些踩煞車的小動作，在感情好的夫妻之間會奏效，在感情耗盡的夫妻之間則被當成空氣。</p>
+<p><strong>常見誤用</strong>：把四騎士當成檢舉清單，吵架時指著對方說「你這是輕蔑！」。高特曼說得很清楚，四騎士幾乎在所有婚姻裡都會出現，問題在於它們是否常駐，以及修復是否還有效。</p>
+<h3>二、友誼三原則：愛情地圖、喜愛與讚賞、轉向對方</h3>
+<p><strong>原則一：充實你的愛情地圖。</strong>所謂愛情地圖，是你腦中存放伴侶資訊的那塊區域——他最近在煩什麼、她最好的朋友是誰、他對升遷的真實想法、她小時候最怕的事。高特曼發現，情感聰明的夫妻對彼此的世界瞭若指掌，而且持續更新。這在人生大轉彎時特別重要：他的研究顯示，第一個孩子出生後，許多夫妻的婚姻滿意度會明顯下滑，而那些原本就熟悉彼此內心世界的夫妻，比較不會在這個關卡走散。</p>
+<p><strong>原則二：培養喜愛與讚賞。</strong>高特曼會請夫妻講他們當初怎麼認識的。有趣的是，他聽的不是故事內容，而是語氣——還帶著溫度地回憶，代表喜愛與讚賞的系統還活著；如果連過去都被改寫成「我當初就覺得不對勁」，那是很壞的預兆。喜愛與讚賞是輕蔑的解毒劑：你很難同時打從心底欣賞一個人又鄙視他。</p>
+<p><strong>原則三：彼此靠近，而不是背離。</strong>這是全書最日常的一條。伴侶整天都在發出想要連結的小訊號——「你看窗外那隻鳥」「今天好累」——高特曼稱之為「邀請」。對方可以轉向（「哪裡？喔真的耶」）、背離（繼續滑手機）或對抗（「你很煩耶」）。每一次轉向，都像在「情感銀行帳戶」裡存一筆小錢。浪漫不是靠燭光晚餐撐起來的，是靠在超市裡回應一句「牛奶還有嗎」。帳戶裡存款夠多，吵架時才有東西可以提領——高特曼把這種狀態叫「正向情感凌駕」：對方說了句難聽話，你的第一反應是「他今天大概很累」，而不是「他就是這種人」。</p>
+<p><strong>限制</strong>：這三條聽起來簡單到像廢話，難在它們要求的是長期、低調、沒有掌聲的累積，沒有一次到位的做法。</p>
+<h3>三、接受影響與處理衝突：可解的問題、永久的問題</h3>
+<p><strong>原則四：讓伴侶影響你。</strong>做決定時把對方的意見和感受算進去。高特曼的資料特別點名丈夫：在他的研究裡，妻子即使生氣，多半仍會把先生的意見納入考量；而拒絕與妻子分享權力的丈夫，婚姻出問題的機率高出許多。這不是要誰聽誰的，而是兩個人都得願意「被說動」。</p>
+<p>接著是全書最解放人的一個發現：夫妻之間的衝突分兩種，<strong>可解決的</strong>和<strong>永久的</strong>，而大多數——他的說法是約三分之二——屬於後者。你們十年前吵的那件事，十年後還在吵，只是換了頭髮和衣服。原因是這些衝突根源於兩人性格、價值觀、生活節奏的根本差異，不會消失。</p>
+<p><strong>原則五：解決可以解決的問題。</strong>做法是一套步驟：溫和地開場（抱怨事不批評人）、發出並接住修復嘗試、情緒氾濫時先暫停安撫自己和對方、妥協、包容彼此的缺點。</p>
+<p><strong>原則六：走出僵局。</strong>永久問題一旦卡死，就成了「僵局」——兩人各自堅壁清野，一談就受傷。高特曼的洞見是：僵局底下通常藏著沒被說出口、沒被尊重的<strong>夢想</strong>。吵「錢要存還是要花」的夫妻，一個人背後可能是「我從小看父母為錢擔驚受怕，存款等於安全」，另一個人是「我不想像我爸那樣一輩子沒享受過」。目標不是解決它，而是從僵局退回對話——能夠帶著理解、甚至帶點幽默地談這個永遠不會消失的差異。</p>
+<p><strong>實用價值</strong>：光是知道「這題本來就無解」，許多夫妻就能鬆一口氣，不再把每次重吵當成婚姻失敗的證據。</p>
+<h3>四、創造共同意義</h3>
+<p><strong>原則七</strong>是最高的一層。高特曼說，婚姻不只是分攤家事、養小孩、有性生活，它還可以有屬於這個家的「文化」：固定的儀式（週日早午餐、睡前聊十分鐘、怎麼過年）、對彼此角色的認可、共同的目標、對「家」「錢」「工作」這些字眼代表什麼的理解。兩人不需要事事同調，但要有地方讓各自的夢想被對方看見並且交織在一起。</p>
+<p>書末他還給了一張很務實的清單，後來被稱為「神奇的五小時」：他追蹤參加過工作坊後婚姻持續改善的夫妻，發現他們每週只多花了大約五小時在關係上——早上分開前了解對方今天有什麼事、下班重聚時好好聊一段、每天表達一點欣賞與感謝、有肢體上的親近、每週一次約會。沒有一項是大動作。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>高特曼後來把這套想法畫成一棟「健全關係之屋」，書的順序就是蓋房子的順序：最底下三層是<strong>友誼</strong>（愛情地圖 → 喜愛與讚賞 → 彼此靠近），友誼夠厚就會產生<strong>正向的整體觀感</strong>；有了這個才談得上<strong>權力分享</strong>（接受影響）與<strong>處理衝突</strong>（解決可解的、與永久的共處）；最上面是<strong>共同意義</strong>。四騎士則是屋子正在漏水的警訊。這個順序本身就是論點：先修友誼，再修衝突，倒過來做事倍功半。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（把原則借到共事關係）</strong>：</p>
+<ol><li>溫和開場：開口提問題時，用「我注意到＋具體事件＋我需要」取代「你每次都」。</li><li>更新同事地圖：知道合作最密切的人現在最大的壓力是什麼。</li><li>接受影響：開會前先問自己，「今天有什麼情況下我願意改變主意？」</li><li>發現自己心跳加速、只想反擊時，主動喊暫停二十分鐘再談。</li></ol>
+<p><strong>生活版（給伴侶）</strong>：</p>
+<ol><li>今晚問一個愛情地圖問題：「你最近最掛心的一件事是什麼？」只聽，不給建議。</li><li>練習接住邀請：對方開口時，至少抬頭、給一句回應。</li><li>每天說出一件具體的欣賞（「謝謝你今天先去接小孩」）。</li><li>挑一個吵了很多年的題目，這次不談解法，只輪流講「這件事對我為什麼重要」。</li><li>定一個小儀式：出門前六秒的擁抱，或每週固定一晚的約會。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「幸福的夫妻不吵架」</strong>——高特曼的資料正好相反。有些穩定的夫妻吵得很兇，有些幾乎不吵，重點不在吵的方式，而在正向互動是否遠多於負向互動、修復是否有效。</li><li><strong>「所以溝通技巧沒用」</strong>——他反對的是把「積極傾聽」當成萬靈丹，尤其是要人在被攻擊時還得同理對方。溫和開場、修復嘗試本身就是溝通，只是建立在友誼上才做得出來。</li><li><strong>「這是離婚預測公式，可以拿來算自己的婚姻」</strong>——預測來自實驗室裡系統性的觀察與編碼，不是讀者自我檢查幾題就能套用；學界對其預測準確率的算法也有討論。把它當成警訊清單比當成判決書合適。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《依附》（阿米爾・樂維、瑞秋・赫勒）：從依附類型解釋為什麼有人一吵就追、有人一吵就逃；高特曼的「築牆」和「情緒氾濫」，可以和逃避型、焦慮型的反應互相對照著看。</li><li>《抱緊我》（蘇珊・強森）：本月稍後會讀。強森認為衝突底下是「你還在不在」的依附恐慌，路線比高特曼更往情緒深處走；一本給地圖，一本帶你下潛。</li><li>《非暴力溝通》（馬歇爾・盧森堡）：高特曼的「溫和開場」和盧森堡的「觀察、感受、需要、請求」幾乎是同一件事的兩種說法，後者拆得更細。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「幸福的婚姻建立在深厚的友誼之上。」（Happy marriages are based on a deep friendship.）</li><li>「大多數婚姻裡的爭執是無法解決的。」（大意）</li><li>「婚姻裡的浪漫，是在日常瑣事中一次次轉向對方累積出來的。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>四騎士（批評、輕蔑、防衛、築牆）裡，你自己在親近關係中最常騎的是哪一匹？它通常在什麼情境下出現？</li><li>你和伴侶或家人之間，有沒有一個「吵了很多年」的永久問題？試著猜猜看：對方堅持的背後，藏著什麼樣的夢想或恐懼？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-seven-principles-for-making-marriage-work" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-seven-principles-for-making-marriage-work";
+      var TITLE = "七個讓愛延續的方法";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-seven-principles-for-making-marriage-work";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

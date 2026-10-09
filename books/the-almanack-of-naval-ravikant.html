@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>納瓦爾寶典｜拾頁</title>
+<meta name="description" content="你以為致富靠努力加班、快樂靠得到想要的東西？納瓦爾兩個都反過來講：出租時間賺不到自由，而每一個欲望，都是你跟自己簽的一張不快樂合約。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-almanack-of-naval-ravikant" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-16</span><span class="theme-chip ui-label">自我成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>納瓦爾寶典</h1>
+  <p class="title-en">The Almanack of Naval Ravikant</p>
+  <p class="byline">艾瑞克・喬根森（Eric Jorgenson）｜2020</p>
+  <p class="hook">你以為致富靠努力加班、快樂靠得到想要的東西？納瓦爾兩個都反過來講：出租時間賺不到自由，而每一個欲望，都是你跟自己簽的一張不快樂合約。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>追求財富而不是金錢或地位：擁有睡覺時也在替你賺錢的資產，別只出租自己的時間。</li><li>用獨到知識加上槓桿加上判斷力，並對成果負責；玩長期的遊戲，讓複利發生。</li><li>快樂是可以練的技能：少一點欲望、多一點當下，平靜比興奮更值得追求。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>這本書的結構有點特別：封面上的作者是艾瑞克・喬根森，但書裡的每一句話幾乎都出自另一個人——納瓦爾・拉維肯（Naval Ravikant）。</p>
+<p>納瓦爾出生在印度，小時候隨家人移民到紐約，在一個不寬裕的單親家庭長大。他說自己的童年是在圖書館度過的，因為那裡安全又免費。他後來考進紐約的明星高中，再進達特茅斯學院，畢業後去了矽谷。他創辦過幾家公司，其中最為人知的是 AngelList，一個讓新創公司和天使投資人媒合的平台；他自己也是很早期就投資了多家後來變得很大的科技公司的天使投資人。</p>
+<p>讓他在矽谷之外也出名的，是他在推特上的發言。他寫過一串標題叫「如何不靠運氣致富」的連續貼文，被大量轉傳。他講話的風格是把複雜的想法壓縮成一兩句話，很像格言。</p>
+<p>喬根森是他的讀者之一。他花了很長時間，把納瓦爾十年來散落在推文、播客訪談和文章裡的想法蒐集起來，重新編排成一本有結構的書，2020 年出版，並且在網路上免費公開電子版。書名裡的「寶典」（Almanack）是在向富蘭克林的《窮理查年鑑》致意。全書分成兩大部分：財富與快樂。</p>
+<p>讀這本書要有一個心理準備：它不是一本有論證、有註腳的著作，是一個人的思考筆記。它的價值在於觀點夠銳利，不在於證據夠完整。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>兩個問題：「一個沒有背景的人，怎麼合乎道德地變得富有？」以及「變富有之後（或之前），怎麼才能快樂？」</p>
+<p>納瓦爾把這兩件事分得很開。他認為賺錢是一種可以學的技能，快樂也是，而且是兩種不同的技能。很多人假設前者會自動帶來後者，他說不會。但他也不唱「錢不重要」的高調——他的說法是，錢買不到快樂，但能解決所有跟錢有關的問題，替你買回時間和自由。</p>
+<p>所以這本書適合兩種人讀：覺得自己很努力卻看不到財務出路的人，以及已經有點成績卻發現自己並不開心的人。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、財富、金錢、地位：先搞清楚你在追什麼</h3>
+<p>納瓦爾開頭就做了三個區分。<strong>財富</strong>是在你睡覺時也能替你賺錢的資產——一家公司的股份、一套軟體、一本書、一筆投資。<strong>金錢</strong>只是我們轉移時間和財富的工具。<strong>地位</strong>是你在社會階層裡的位置。</p>
+<p>他說，人類自古就在玩地位遊戲，那是一個零和遊戲：我要上去，就得有人下來。財富遊戲不一樣，它是正和的，你可以替世界創造出原本沒有的東西，自己得到一部分，沒有人因此受損。所以他勸人把力氣放在財富，少花在地位上。</p>
+<p>接著是一個聽了會刺痛的判斷：<strong>靠出租時間，你不會變富有。</strong>不管時薪多高，你的收入跟你投入的時間綁死了，你一停，它就停；而且你沒有辦法在睡覺時賺錢。要得到財務上的自由，你必須擁有某種東西的所有權——一部分的事業。</p>
+<p>這不是說上班不好。他的意思是，如果你的目標是自由，就得設法在工作中取得股份，或是在工作之外慢慢累積屬於自己的資產。</p>
+<p><strong>限制</strong>：這套說法有很重的矽谷色彩，預設你身處一個容易拿到股權、創業成本低的環境。對多數領固定薪水的人來說，「擁有所有權」這條路沒有他講的那麼平。把它當成長期的方向感比較實際：留意哪些累積是「我的」，哪些只是換現金。</p>
+<h3>二、獨到知識、責任、槓桿：致富的三個零件</h3>
+<p>既然要擁有事業，那事業從哪來？納瓦爾給了一個公式般的組合。</p>
+<p><strong>獨到知識</strong>（specific knowledge）。這是學校教不出來的知識——如果能被教出來，就能被別人或機器取代。他描述它的方式很有意思：那件事對你來說像在玩，對別人來說卻像在工作。它通常來自你天生的好奇心和長年的著迷，而不是來自「什麼行業現在最熱」。他建議回頭想想，你小時候或青少年時期不費力就在做的事是什麼。</p>
+<p><strong>責任</strong>（accountability）。用自己的名字去承擔風險。願意把名字掛上去、成敗都由你扛的人，社會才會把資源和回報交給他。躲在組織後面比較安全，但回報也會被組織拿走。</p>
+<p><strong>槓桿</strong>（leverage）。這是他講得最精彩的部分。槓桿有三種。第一種是人力——有人替你工作，這是最古老的一種，但管理人很累。第二種是資本——用錢來放大你的決定，這是上個世紀最主要的致富方式，但你得先說服別人把錢交給你。第三種是他最推崇的：<strong>複製的邊際成本趨近於零的產品</strong>，也就是程式碼和媒體。一段軟體、一本書、一集播客、一支影片，做一次就能服務一百萬人。</p>
+<p>第三種槓桿最大的特點是「不需要誰的許可」。要用人力，得有人願意跟你；要用資本，得有人願意給你錢；但寫程式、寫文章、錄節目，你自己就能開始。他認為這是現代才出現的機會。</p>
+<p>在這些之上還有<strong>判斷力</strong>。當你有了很大的槓桿，方向對不對就比努力不努力重要得多。他說，槓桿時代，一個正確的決定可以勝過多年的苦幹。</p>
+<p><strong>常見誤用</strong>：只聽到「槓桿」就去做內容、開帳號，卻跳過獨到知識。沒有真正懂的東西，槓桿放大的只是空的。</p>
+<h3>三、複利與長期遊戲</h3>
+<p>納瓦爾反覆講一句話：人生中所有的回報，不管是財富、人際關係還是知識，都來自複利。</p>
+<p>複利需要時間，所以他強調「跟長期的人玩長期的遊戲」。當你知道自己會跟某個人合作二十年，你們彼此就不需要每次都斤斤計較、互相防備，信任讓交易的摩擦降到很低，而這份信任本身又會繼續滾大。相反地，每換一次跑道、每毀一次名聲，複利就歸零重算。</p>
+<p>這也連到他對「挑什麼來做」的看法。他主張要找到一件你能做到真正頂尖的事，並且不斷重新定義你在做的事，直到那句話成立為止。而最不會遇到競爭的地方，就是做你自己——沒有人能在「當你」這件事上贏過你。把自己真實的興趣和能力組合成一個別人難以複製的位置，然後待得夠久。</p>
+<p>他對學習的態度也是同一個邏輯。他建議讀原典、讀基礎，數學、科學、哲學這些打底的東西；而養成閱讀習慣的方法是「讀你喜歡的，直到你愛上閱讀」，不要一開始就逼自己啃該讀的書。</p>
+<p><strong>實用價值</strong>：做選擇時多問一句——這件事十年後還在替我累積嗎？這個人我願意合作二十年嗎？這兩個問題能篩掉很多看似划算的短線機會。</p>
+<h3>四、快樂是一種技能，欲望是一張合約</h3>
+<p>書的後半部氣氛完全不同，從創投家變成了半個哲學家。</p>
+<p>納瓦爾說，他年輕時以為快樂是天生的，有人就是樂觀、有人就是悲觀。後來他認為快樂其實是可以訓練的，就像體能。他對快樂的定義也不是興奮或狂喜，而是<strong>一種「不覺得缺少什麼」的狀態</strong>。當你的心不再奔向過去或未來，不再覺得此刻少了什麼，那個安靜下來的狀態就是他說的快樂，也可以叫平靜。</p>
+<p>由此他提出了書中最有名的一句話：欲望是你跟自己簽下的一張合約，約定在得到想要的東西之前，你都不快樂。問題是我們同時簽了太多張。他的建議不是斷絕欲望（他自己也做不到），而是挑選——同一時間只保留一個重大的欲望，其餘的看見了就放下。</p>
+<p>具體怎麼練？他提到的方法都很日常：靜坐，哪怕只是坐著什麼也不做，讓腦中的聲音自己跑完；留意自己什麼時候在評判別人、在抱怨、在跟人比較；養成好的身體習慣，因為身體是底層。他特別強調嫉妒的解法：你不能只挑別人人生的一小塊來羨慕，要換就得整個換——他的身體、他的家庭、他的煩惱全部都要。這樣一想，多數人會發現自己並不想換。</p>
+<p>他還有一句常被引用的話，大意是：平靜的心、健康的身體、充滿愛的家，這三樣東西買不到，只能自己掙來。</p>
+<p><strong>限制</strong>：這一部分是個人體悟，受佛教和斯多噶哲學影響很深，沒有研究支持，也不見得適合每個人。尤其對於正處在明確困境裡的人，「快樂是一種選擇」這種說法聽起來可能很刺耳。把它當成一位過來人的心得，取你用得上的就好。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>上半部談財富，鏈條是：先選對遊戲（追財富不追地位）→ 取得所有權（不只出租時間）→ 組合三個零件（獨到知識、責任、槓桿）→ 用判斷力決定方向 → 待得夠久讓複利發生。</p>
+<p>下半部談快樂，鏈條是：快樂是技能不是命運 → 它的本質是「不缺」的平靜 → 欲望是不快樂的來源，所以要精選 → 靠習慣一點一點練出來。</p>
+<p>兩個部分表面上各講各的，底下其實共用同一個想法：<strong>自由</strong>。財富是為了不必用時間換錢的自由，快樂是不被自己的念頭拖著走的自由。納瓦爾把兩者都看成可以學會的事。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（在上班的同時開始累積「自己的東西」）</strong>：</p>
+<ol><li>盤點獨到知識：列出三件別人常來請教你、你做起來不覺得累的事。</li><li>檢查累積性：你現在的工作裡，哪些成果會跟著你走（技能、作品、名聲、人脈），哪些離職就歸零？</li><li>選一種不需許可的槓桿：每週把你懂的一件事寫成一篇文章或做成一段內容，公開發出去，署自己的名字。</li><li>替自己訂一個時薪：低於這個價值、又能外包或不做的事，試著放掉一件。</li><li>下一個重大決定前問：我願意跟這群人合作十年嗎？</li></ol>
+<p><strong>生活版（把快樂當技能來練）</strong>：</p>
+<ol><li>每天坐十分鐘什麼都不做，不放音樂、不滑手機，讓念頭自己來去。</li><li>寫下你現在所有「得到之後我就會快樂」的事，圈出最重要的一件，其他先劃掉。</li><li>抓到自己在嫉妒誰時，做一次整組交換的思考：他的全部你都要嗎？</li><li>挑一個想養成的身體習慣，放在所有事情的最前面排。</li><li>讀一本你真的想讀的書，不管它「有沒有用」。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這是一本教人快速致富的書」</strong>——納瓦爾明講致富是要花很多年的事，而且沒有保證。他講的是提高機率的原則，不是捷徑。</li><li><strong>「不要出租時間，所以趕快辭職」</strong>——他說的是長期要取得所有權，不是要人立刻跳船。多數人的起點是在工作中磨出獨到知識，那段時間並不是浪費。</li><li><strong>「少一點欲望就是不要有企圖心」</strong>——他的建議是精選，把力氣集中在一個真正重要的欲望上，而不是什麼都不要。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《窮查理的普通常識》（查理・蒙格）：納瓦爾的閱讀方法和「心智模型」的想法，明顯受蒙格影響。蒙格講得更深、更有脈絡，是進階讀物；兩本的書名也都在向富蘭克林致意。</li><li>《從零到一》（彼得・提爾）：提爾說競爭是留給輸家的，要做獨占；納瓦爾說靠真實的自己逃離競爭。同樣出身矽谷，一個從公司的角度、一個從個人的角度講同一件事。</li><li>《當下的力量》（艾克哈特・托勒）：納瓦爾下半部談的「心不往過去未來跑」，在托勒那裡有完整的展開。想知道那份平靜具體怎麼來，托勒是更直接的來源。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「追求財富，而不是金錢或地位。財富是在你睡覺時也能替你賺錢的資產。」（Seek wealth, not money or status. Wealth is having assets that earn while you sleep.）</li><li>「欲望是你跟自己簽訂的合約：在得到想要的東西之前，你都不快樂。」（Desire is a contract that you make with yourself to be unhappy until you get what you want.）</li><li>「平靜的心、健康的身體、充滿愛的家。這些東西買不到，必須自己掙得。」（A calm mind, a fit body, and a house full of love. These things cannot be bought. They must be earned.）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>有沒有哪件事，你做起來像在玩，別人看起來卻像在工作？如果要替它加上一種「不需要誰許可」的槓桿，你會怎麼做？</li><li>你現在跟自己簽了哪幾張「得到之後才准快樂」的合約？如果只能留一張，你會留哪一張？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-almanack-of-naval-ravikant" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-almanack-of-naval-ravikant";
+      var TITLE = "納瓦爾寶典";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-almanack-of-naval-ravikant";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

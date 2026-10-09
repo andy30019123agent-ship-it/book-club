@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>這樣聚會，最成功！｜拾頁</title>
+<meta name="description" content="你以為聚會無聊是因為菜不好吃、場地不夠美？其實是因為沒有人認真回答過那個最基本的問題——我們今天到底為什麼要聚在一起。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-art-of-gathering" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-10</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>這樣聚會，最成功！</h1>
+  <p class="title-en">The Art of Gathering</p>
+  <p class="byline">普里亞・帕克（Priya Parker）｜2018</p>
+  <p class="hook">你以為聚會無聊是因為菜不好吃、場地不夠美？其實是因為沒有人認真回答過那個最基本的問題——我們今天到底為什麼要聚在一起。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>「生日會」「週會」是類別不是目的；先想清楚這次聚會要改變什麼，其他決定才有依據。</li><li>當主人別裝隨和：用「慷慨的權威」保護客人、拉平地位、把人連起來。</li><li>開場和收尾是記憶最深的兩刻，別浪費在宣布事項和謝詞上。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>普里亞・帕克的本行不是活動企劃，是衝突調解。她在維吉尼亞大學、麻省理工學院和哈佛甘迺迪學院受過訓練，長年替企業、政府機關和社區團體主持那種「一群立場不同的人非得坐下來談」的場合，從種族對話到高階主管的策略會議都做過。</p>
+<p>她會對「人怎麼聚在一起」這麼敏感，跟成長背景有關。她的母親是印度人、父親是美國白人，兩人離婚後各自再婚，她每兩週在兩個家之間搬一次：一邊是吃素、帶點佛教與新時代色彩的自由派家庭，一邊是保守的福音派基督徒家庭。兩個家距離不遠，卻像兩個世界。她從小就在練習一件事——觀察一群人是怎麼形成「我們」的，又是什麼讓外人進不來。</p>
+<p>這本書出版於 2018 年，她的觀察是：我們花了大量時間在聚會上——會議、婚禮、生日、研討會、家庭聚餐——但大多數聚會都讓人提不起勁。而我們檢討的方向幾乎都錯了：只問食物、場地、投影片，不問「人」。這本書想把聚會的重心從「東西」拉回「人」。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼我花那麼多心力準備，大家還是滑手機、聊天氣、準時散場，然後什麼都沒留下？」</p>
+<p>帕克的答案是：<strong>因為你把聚會當成一份待辦清單在辦，而不是一次有意圖的設計。</strong>多數人辦聚會是套公式——生日就是蛋糕加蠟燭，部門會議就是輪流報告，婚禮就是那一套流程。公式會讓事情順利，卻不會讓事情有意義。</p>
+<p>這本書不教你擺盤或選酒，它問的是更前面的事：為什麼聚？找誰來、不找誰？主人該管多少？怎麼讓人願意說真話？怎麼開始、怎麼結束？每一題她都給了跟常識相反的答案。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、類別不是目的：先回答「為什麼聚」</h3>
+<p>帕克說，大家最常犯的錯是把「類別」當成「目的」。你問一個人為什麼辦這場聚會，他說「因為是我生日」「因為每週一都要開會」——這是聚會的種類，不是理由。</p>
+<p>她拿自己當例子。懷孕時朋友要幫她辦新生兒派對，她先生也想參加，朋友們卻說這種派對一向只有女生。她這才回頭想：這場聚會到底要做什麼？如果目的是「慶祝媽媽、送禮物」，那照慣例辦就好；但她真正需要的，是幫她和先生兩個人一起準備好成為父母——這樣一來，把先生排除在外就完全沒道理。目的一變，邀誰、做什麼全部跟著變。</p>
+<p>書裡另一個例子是紐約布魯克林的雷德胡克社區司法中心。傳統法庭的形式是對抗式的：法官高高在上，檢辯雙方各據一方。但這個社區法庭的創辦者先問了一個問題：開庭的目的如果不是「判定輸贏」，而是「幫這個社區解決問題」呢？於是整個形式重新設計——法官和當事人的互動方式、可以動用的資源（戒癮、輔導、社區服務）都不一樣了。</p>
+<p>怎麼知道自己的目的夠不夠好？帕克給了幾個檢驗：它要<strong>具體</strong>、要<strong>獨特</strong>（她借用逾越節家宴的提問：今晚和其他所有夜晚有什麼不同？），而且要<strong>有可能被反對</strong>。「大家聚一聚聯絡感情」沒有人會反對，也就幫不了你做任何決定；「讓新舊兩批同事吵出這一季真正的優先順序」會有人不同意，但它立刻告訴你該請誰、該怎麼排流程。</p>
+<p><strong>實用價值</strong>：目的就是聚會的守門員。之後每個決定——人數、場地、流程——都拿它來問一句「這有沒有幫到目的」。</p>
+<h3>二、慷慨的排除，與慷慨的權威</h3>
+<p>有了目的，第二步是關門。帕克的說法很直接：<strong>多多益善是聚會殺手。</strong>不想得罪人所以全都邀，結果是聚會失焦，真正該被照顧的人反而被稀釋。她舉過一個長期一起晨練的小團體，有成員想找朋友來代班，大家為此認真討論後才發現，這個團體的目的根本不是運動，而是彼此陪伴——陌生人一進來，那個東西就沒了。拒絕那位代班者，是在保護這場聚會。她把這叫做「慷慨的排除」。</p>
+<p>場地也是門的一部分。她提醒，空間會替人寫劇本：在會議室人就像在開會，在法庭人就像在打官司。書中有個她稱為「城堡原則」的故事：一樁本來談得不錯的跨國合作，把關鍵會議辦在法國一方的華麗莊園裡，場地本身放大了其中一方的優越感，另一方越坐越不是滋味，最後事情沒談成。場地不是中性的容器。</p>
+<p>進了門之後，主人的角色是什麼？帕克最有名的主張是：<strong>別當「隨和」的主人。</strong>很多人以為好主人就是「大家隨意、別拘束」，然後自己躲去廚房。她說這不是體貼，是棄守——主人一放手，權力不會消失，只會落到最愛講話、最強勢的那個客人手上，其他人只能被綁架。</p>
+<p>她提倡的是「慷慨的權威」：主人要用權力，但是為了客人而用。做三件事——<strong>保護</strong>客人（不被無聊的人、長篇大論的人、手機打擾；她舉的例子是一家會把放映中傳簡訊的觀眾請出去的連鎖電影院）、<strong>拉平</strong>客人（讓頭銜和階級暫時留在門外）、<strong>連結</strong>客人（主動把彼此該認識的人接起來）。</p>
+<p><strong>常見誤用</strong>：把「權威」聽成「控制」。檢驗標準只有一個：你管這件事，是為了客人的體驗，還是為了自己的面子和掌控感？後者是她明白反對的。</p>
+<h3>三、創造一個暫時的另類世界：臨時規則</h3>
+<p>要怎麼讓一場聚會不像平常的日子？帕克的工具是「臨時規則」。</p>
+<p>她區分了禮儀和規則。禮儀是一群背景相同的人從小被教會的默契，不懂的人會被當成沒教養，它天生排外。臨時規則相反：它明說、只在今晚有效、人人都能照做，所以反而能讓背景完全不同的人玩在一起。全球各地舉辦的「白色晚宴」就是這樣——全身穿白、自備桌椅餐點、地點最後一刻才公布，一條條規則疊出一個只存在幾小時的世界。</p>
+<p>她自己和先生、朋友們玩過一種叫「我在這裡」的日子：一群人挑紐約的一個街區，花一整天待在那裡，規則是全程在場、放下手機、整群人只進行同一場對話。規則不多，卻讓一個平凡的星期六變成大家記很久的一天。</p>
+<p>規則還能直接處理現代聚會最大的敵人——分心。與其道德勸說「請大家專心」，不如訂一條有趣的規則，讓放下手機變成遊戲的一部分。</p>
+<p><strong>限制</strong>：規則要服務目的，不是越怪越好。沒有目的撐腰的規則，只會讓人覺得主人在耍花樣。</p>
+<h3>四、真實比完美重要：樹樁演講、良性爭議、開場與收尾</h3>
+<p>帕克替世界經濟論壇這類場合主持過很多晚宴，她的觀察是：越是菁英雲集，大家越只端出「最好的自己」——頭銜、成就、準備好的那套說法。她把這種叫「樹樁演講」（政治人物站在樹樁上講的那套固定講稿），而聚會真正需要的是還在長、還不確定的「嫩芽」。</p>
+<p>為此她和朋友設計了一個晚宴形式叫「十五個祝酒詞」：十五位客人，一個主題（第一次是「美好人生」），每個人要在當晚某個時刻站起來，說一個自己的真實故事再舉杯；什麼時候講自己決定，但有一條規則——最後一個講的人要用唱的。於是大家都搶著先講，而第一個人說出真心話之後，整桌的深度就被定了調。</p>
+<p>她也反對「聚會不要談政治、宗教、性」的老規矩。迴避爭議的結果是聚會安全而乏味。她主張的是「良性爭議」——主人事先設好結構和規則，讓該吵的事被好好吵。她曾替一家卡在方向之爭的建築事務所設計一場像摔角賽的辯論：分兩隊、各自捍衛一個極端立場、有裁判有歡呼，不准和稀泥。平常沒人敢說破的分歧，在遊戲的保護下全攤開了。</p>
+<p>最後是頭尾。帕克說人對一場聚會的記憶集中在開始和結束，偏偏這兩段最常被拿來處理雜事。章名就是她的主張：別用後勤事項為葬禮開場。停車資訊、贊助商名單、流程說明都可以放到別處；開場的第一分鐘要讓客人感到被重視、被震撼一下。收尾同理——不要讓聚會「漸漸散掉」，也不要把謝詞當成最後一句話。她建議像酒保喊「最後點單」那樣宣告尾聲，然後做兩件事：帶大家回頭看一眼今晚發生了什麼，再幫大家把它帶回原本的生活。謝詞可以放在倒數第二。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書其實是一條時間線：<strong>目的</strong>決定一切（為什麼聚）→ <strong>關門</strong>（請誰、在哪）→ <strong>主人用權力照顧客人</strong>（慷慨的權威）→ <strong>用臨時規則造出一個小世界</strong> → <strong>開場把人接住</strong> → <strong>讓真實的自己出場</strong> → <strong>容許有熱度的爭議</strong> → <strong>有意識地收尾</strong>。每一步都回頭問第一步：這有沒有幫到目的？所以它不是八條各自獨立的小撇步，而是一個從「為什麼」推到「怎麼做」的設計流程。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（以「每週例會」為例）</strong>：</p>
+<ol><li>把「週會」這個類別換成一句有可能被反對的目的，例如「這場會只用來決定本週卡關的事誰負責」。</li><li>對照目的重看與會名單：只是「怕他沒被通知」的人，改寄會議紀錄。</li><li>開場第一分鐘不講議程，先請每人用一句話說「這週最需要別人幫忙的是什麼」。</li><li>訂一條臨時規則：筆電闔上，或「不重複別人說過的話」。</li><li>最後五分鐘留給收尾：今天決定了什麼、誰帶走什麼。行政事項用訊息補。</li></ol>
+<p><strong>生活版（以「朋友來家裡吃飯」為例）</strong>：</p>
+<ol><li>邀請時就把目的說出來：「想讓你們幾個終於互相認識」比「來我家吃飯」好。</li><li>人數控制在一桌能進行同一場對話的規模，六到八個人是甜蜜點。</li><li>介紹客人時不報職稱，說一件你欣賞他的事。</li><li>準備一個全桌輪流回答的問題，自己先講，而且講真的。</li><li>別等大家看錶才散：甜點後明說「最後一輪」，請每人說一句今晚記得的事再送客。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這是在教人辦很厲害的派對」</strong>——帕克一再強調，好聚會不需要預算、場地或廚藝，需要的是想清楚。書裡的原則用在十分鐘的站立會議一樣成立。</li><li><strong>「排除別人很沒禮貌」</strong>——她說的是「慷慨的」排除：為了保護聚會的目的和在場的人而關門，不是搞小圈圈。相反地，什麼人都邀、結果誰都沒照顧到，才是對客人不負責。</li><li><strong>「良性爭議＝鼓勵大家吵架」</strong>——關鍵字是「良性」。她要求主人事先設計結構、講好規則、評估值不值得，沒有這些保護的爭議她並不鼓吹。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《如何讓人喜歡我》（凡妮莎・范・愛德華茲）：教的是「你」在社交場合怎麼表現；帕克處理的是更上游的事——這個場合本身怎麼設計。一本管演員，一本管舞台。</li><li>《交心》（查爾斯・杜希格）：杜希格分析一場好對話裡發生了什麼；帕克告訴你怎麼替一群人搭出會發生好對話的環境。兩本一起讀，從一對一到一桌人都有工具。</li><li>《脆弱的力量》（布芮尼・布朗）：帕克要客人把「樹樁演講」留在門外，背後的道理就是布朗講的——人與人的連結來自願意被看見的不完美。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「我們怎麼聚在一起，很重要。」（The way we gather matters.）</li><li>「類別不是目的。」（A category is not a purpose.）</li><li>「所謂隨和的主人，往往只是想卸下當主人的責任。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你參加過最難忘的一場聚會（不一定盛大）：它做對了書裡的哪一件事？反過來，最近一場讓你想提早走的聚會，是缺了哪一件？</li><li>你下一場要主辦的聚會或會議是什麼？試著用一句「有可能被反對」的話寫出它的目的，然後看看：有誰其實不該被邀？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-art-of-gathering" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-art-of-gathering";
+      var TITLE = "這樣聚會，最成功！";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-art-of-gathering";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人間遊戲｜拾頁</title>
+<meta name="description" content="為什麼你和某些人總是吵同一種架、落得同一種下場？伯恩說那不是巧合，是一場雙方都沒察覺、卻都演得很熟的「遊戲」——而且你們各自都從裡面拿到了好處。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="games-people-play" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-18</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>人間遊戲</h1>
+  <p class="title-en">Games People Play</p>
+  <p class="byline">艾瑞克・伯恩（Eric Berne）｜1964</p>
+  <p class="hook">為什麼你和某些人總是吵同一種架、落得同一種下場？伯恩說那不是巧合，是一場雙方都沒察覺、卻都演得很熟的「遊戲」——而且你們各自都從裡面拿到了好處。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>每個人心裡都有父母、成人、兒童三種自我狀態，溝通出錯常是頻道接錯了。</li><li>「心理遊戲」是表面一套、底下一套的重複互動，結局可預期，雙方各有隱藏收穫。</li><li>看穿遊戲是為了有能力不玩，換回覺察、自發與真正的親密。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>艾瑞克・伯恩 1910 年出生於加拿大蒙特婁，父親是醫師。他在麥基爾大學讀完醫學後到美國接受精神科訓練，二戰期間擔任軍醫，戰後定居加州。他原本走的是正統精神分析的路，受過多年訓練，卻始終沒有被精神分析學會接納為正式會員。這次受挫成了轉捩點：他決定走自己的路。</p>
+<p>伯恩對傳統精神分析有兩個不滿。一是太慢，病人躺在躺椅上談好幾年；二是太玄，滿口術語，病人自己聽不懂。他想要一套病人也能使用的語言，於是發展出「交流分析」（Transactional Analysis，簡稱 TA）：不再只挖一個人腦袋裡的潛意識，而是直接觀察兩個人之間一來一往的「交流」。</p>
+<p>《人間遊戲》1964 年出版時，原本是寫給同行看的專業書，印量很小。沒想到書中替各種互動模式取的那些口語化名字太傳神，一般讀者爭相傳閱，最後登上暢銷榜並停留了很長一段時間，累積銷量數百萬冊。「我好，你也好」「撫慰」「心理遊戲」這些詞從此進入日常語言。伯恩於 1970 年過世。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「為什麼人跟人之間，會一再上演明知沒有好結果的戲碼？」</p>
+<p>夫妻每隔一陣子就為同一件事大吵、有人總是求助又否決所有建議、有人一再被同一種老闆「欺負」——這些重複到近乎儀式的互動，用「個性不合」解釋不了。伯恩的答案是：這些是<strong>心理遊戲</strong>，一種有固定步驟、有隱藏動機、有可預期結局的互動。當事人並不是有意識地在算計，但他們確實從中得到了某種好處，所以才會一玩再玩。</p>
+<p>這本書前半部提供分析工具（自我狀態、交流、時間結構），後半部是一本「遊戲圖鑑」，逐一拆解數十種遊戲的玩法、角色和收穫。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、三種自我狀態：父母、成人、兒童</h3>
+<p>伯恩觀察到，同一個人在不同時刻會呈現截然不同的整套狀態——姿勢、語氣、用詞、感受一起變。他把這些歸成三種「自我狀態」：</p>
+<ul><li><strong>父母（Parent）</strong>：從小時候的父母或權威人物身上「錄」下來的一整套。它可以是訓誡、批評的，也可以是呵護、照顧的。當你脫口說出「做人就是應該⋯⋯」而語氣跟你媽一模一樣時，就是它在說話。</li><li><strong>成人（Adult）</strong>：負責處理此時此地資訊的部分。蒐集事實、估算機率、做判斷，像一台不帶情緒的資料處理器。它跟年齡無關，小孩也有成人狀態。</li><li><strong>兒童（Child）</strong>：保留下來的童年自己。直覺、創意、玩心、歡樂都在這裡，害怕、賭氣、討好、叛逆也在這裡。伯恩認為這是人格中非常珍貴的部分。</li></ul>
+<p>三者沒有好壞之分，健康的人能依情境切換；麻煩在於卡在某一個，或是讓某一個假冒另一個（例如把父母狀態的偏見當成成人狀態的客觀事實）。</p>
+<p><strong>限制在哪</strong>：這是一套觀察用的模型，不是大腦裡真的有三個區塊。把它當成地圖很好用，別把它當成解剖圖。此外要留意，這裡的「父母、成人、兒童」是術語，和佛洛伊德的超我、自我、本我有淵源但並不等同——伯恩強調自我狀態是可以直接觀察到的真實行為與感受。</p>
+<h3>二、交流、撫慰與時間結構：我們到底在向彼此要什麼</h3>
+<p>一個人對另一個人說話（刺激），對方回話（反應），這一來一往就是一次「交流」。伯恩把交流分成三種：</p>
+<ul><li><strong>互補交流</strong>：你從成人對我的成人發話，我也從成人回你。（「現在幾點？」「三點。」）或者你用兒童找我的父母，我就用父母回應。箭頭平行，對話可以一直順暢下去。</li><li><strong>交錯交流</strong>：你從成人問「你有看到我的鑰匙嗎？」，我卻用父母對你的兒童回「你自己東西每次都亂丟！」箭頭交叉，溝通當場中斷，接下來吵的就不是鑰匙了。</li><li><strong>隱藏交流</strong>：表面一層、底下一層。表面是成人對成人的客套話，底下是另一個層次的訊息在傳遞。遊戲就建立在這種交流上。</li></ul>
+<p>人為什麼需要交流？伯恩用了一個著名的概念：<strong>撫慰</strong>。嬰兒需要被抱、被摸才能健康成長；長大後，這種對接觸的渴望轉化成對「被認可」的渴望——一個招呼、一個眼神、一句讚美，甚至一句責罵，都是一份撫慰。他有句常被引用的話，大意是：負面的撫慰也比完全沒有撫慰好。這解釋了為什麼有人寧可討罵也不願被忽視。</p>
+<p>除了撫慰，人還有「結構的渴望」——清醒的時間必須被填滿。伯恩列出人們安排時間的幾種方式，親密程度由淺入深：<strong>儀式</strong>（「早安」「吃飽沒」這類固定的互換）、<strong>消遣</strong>（聊車子、聊小孩、罵政府這類有固定話題的閒談）、<strong>活動</strong>（工作等以完成事情為目的的互動）、<strong>遊戲</strong>，以及<strong>親密</strong>。另外還有獨處式的退縮。遊戲的位置很微妙：它給的撫慰比儀式和消遣濃得多，卻又不必冒真正親密的風險。對很多人來說，遊戲是他們所能得到的最強烈的人際接觸。</p>
+<h3>三、心理遊戲：定義與幾個經典</h3>
+<p>伯恩對遊戲的定義是：一連串互補的隱藏交流，朝著一個明確、可預期的結局推進。換成白話，它有幾個要件——表面上看起來合情合理、底下另有動機、中途有個「圈套」、最後有人得到一份心理上的「報償」。它和單純的消遣不同，消遣是坦率的，遊戲基本上是不誠實的，而且結局帶有戲劇性。</p>
+<p>幾個書中最有名的遊戲：</p>
+<p><strong>「要不是因為你」</strong>：伯恩用來示範分析方法的第一個例子。一位太太抱怨先生管太嚴，害她什麼都不能做，例如一直想學跳舞卻學不成。後來先生放手了，她去報名舞蹈課，才發現自己其實非常害怕在人前跳舞。原來她當初選了一個會限制她的伴侶，這樣就不必面對恐懼，還能理直氣壯地抱怨。她的報償是：不用面對自己害怕的事，同時保有「我是被耽誤的」這個說法。</p>
+<p><strong>「你為什麼不⋯⋯是啊，可是」</strong>：聚會裡有人提出一個煩惱，大家熱心給建議，每一個都被「是啊，可是⋯⋯」擋回來，直到所有人無話可說，陷入沉默。這位求助者贏了：他證明了沒有人能告訴他該怎麼辦。表面是成人在徵詢意見，底下是兒童在對一群「父母」說：你們誰也別想指揮我。</p>
+<p><strong>「逮到你了，你這混蛋」</strong>：有人一直等著對方犯一個小錯，一旦抓到，就把累積已久、其實與此無關的怒氣一次倒出來，而且倒得理直氣壯。</p>
+<p><strong>「踢我」</strong>：有人的行為舉止像是背上貼著「請不要踢我」的字條，卻讓人忍不住想踢；被踢之後他哀嘆「為什麼這種事總是發生在我身上？」</p>
+<p><strong>「酒鬼」</strong>：伯恩把它當成多人遊戲來分析——除了酗酒者本人，還有迫害者、拯救者、冤大頭等配角，每個人都從自己的角色得到東西。這個分析在當時頗具爭議，但它帶出一個重要觀點：要停止一場遊戲，光處理主角是不夠的。</p>
+<p><strong>常見誤用</strong>：學會幾個遊戲名稱後，拿來當武器指著別人說「你又在玩是啊可是」。伯恩的分析是為了理解而非羞辱；而且他一再強調，遊戲是雙方合演的——如果你一再被捲進同一種遊戲，你在裡面也有戲份。</p>
+<h3>四、遊戲之外：自主</h3>
+<p>書的最後幾章很短，卻是全書的落點。伯恩問：如果不玩遊戲，人還剩下什麼？他的答案是<strong>自主</strong>，由三種能力的釋放或恢復構成：</p>
+<ul><li><strong>覺察</strong>：用自己的眼睛看、自己的耳朵聽，而不是照著被教導的方式去感知。活在此時此地，不是活在過去的錄音或對未來的盤算裡。</li><li><strong>自發</strong>：能從父母、成人、兒童三種狀態中自由選擇並表達感受，不被迫只能玩那些從小學來的遊戲。</li><li><strong>親密</strong>：一個有覺察的人，不設防、不玩把戲地與另一個人相處的坦率狀態。</li></ul>
+<p>他並不天真。他承認親密有風險，遊戲之所以存在，就是因為它提供了某種安全。對許多人而言，放棄遊戲意味著暫時面對空白與不安。但他認為那是值得的。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>伯恩的推理是一層套一層的：人有對<strong>撫慰</strong>和<strong>結構</strong>的渴望 → 所以要與人<strong>交流</strong>、要填滿時間 → 交流來自三種<strong>自我狀態</strong>，可能互補、交錯或隱藏 → 填時間的方式從儀式、消遣、活動到<strong>遊戲</strong>與親密 → 遊戲以隱藏交流換取濃烈的撫慰，並迴避親密的風險 → 所以人會一玩再玩 → 出路是認出遊戲、讓成人狀態當家，換回<strong>自主</strong>。前半是理論，後半的遊戲圖鑑是這套理論的應用案例。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>開會時聽自己的語氣：「你們應該⋯⋯」是父母、「我不管啦」是兒童、「目前的數字是⋯⋯」是成人。先辨認，不急著改。</li><li>對方用批評的父母狀態對你時，試著不用兒童狀態（辯解或賭氣）回應，改用成人回一個事實或問題：「你希望這件事怎麼處理？」</li><li>遇到「是啊，可是」型的求助，停止給建議，改問：「那你自己打算怎麼做？」</li><li>盤點自己一再遇到的職場劇本（總是被搶功？總是最後一刻救火？），問：我每次是怎麼走進去的？我從中得到什麼？</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>找出你和伴侶或家人最常重播的那場架，把步驟一步步寫下來：誰先說什麼、誰接什麼、怎麼收場。</li><li>問自己：結局時我得到的「報償」是什麼？（證明我是對的？不必去做某件怕的事？得到關注？）</li><li>下次戲開演時，在你通常會接台詞的那一步，改說一句坦白的話：「我發現我們又要走進那個循環了。」</li><li>練習直接要撫慰：想被關心就說「我今天很需要你聽我講十分鐘」，不必繞路。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「玩遊戲的人都是心機重、故意的」</strong>——伯恩講的遊戲大多在意識之外進行，玩家真心相信表面那套說法。把它理解成「算計」，就錯過了重點：遊戲是從小學來的習慣性求生策略。</li><li><strong>「兒童狀態是幼稚的、該被消滅的」</strong>——恰恰相反，伯恩認為兒童狀態是魅力、創造力與快樂的來源。目標是讓成人狀態當好協調者，不是把另外兩個關起來。</li><li><strong>「這本書就是『拯救者、迫害者、受害者』三角」</strong>——那個著名的戲劇三角是伯恩的學生卡普曼後來提出的，書裡只有它的雛形（遊戲中角色會轉換）。另外也要知道，本書的案例帶著 1960 年代的性別與社會觀點，有些描述以今天的眼光看已經過時，讀的時候可以取其分析方法，不必照單全收。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《蛤蟆先生去看心理師》（羅伯特・狄保德）：用童話角色演給你看的交流分析入門，蛤蟆在諮商中認識的三種自我狀態正是出自伯恩。覺得本書太硬，可以先讀那本。</li><li>《我好，你也好》（湯瑪斯・哈里斯）：下個月會讀。哈里斯是伯恩的同道，把交流分析寫得更通俗，並把重心放在四種「人生定位」上。</li><li>《情緒勒索》（蘇珊・佛沃）：佛沃描述的勒索循環，可以看成一種特定遊戲的詳細拆解——同樣是雙方合演，同樣要靠其中一方先停止接招。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「遊戲是一連串互補的隱藏交流，朝著一個明確、可預期的結局推進。」（A game is an ongoing series of complementary ulterior transactions progressing to a well-defined, predictable outcome.）</li><li>「自主的實現，表現為三種能力的釋放或恢復：覺察、自發與親密。」（大意）</li><li>「負面的撫慰，也好過完全沒有撫慰。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>書裡的遊戲（要不是因為你／是啊可是／逮到你了／踢我）中，哪一個讓你最有既視感？你是在別人身上看到，還是在自己身上？</li><li>你最常用哪一種自我狀態面對主管、伴侶、父母？這三個對象得到的是同一個你嗎？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="games-people-play" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "games-people-play";
+      var TITLE = "人間遊戲";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "games-people-play";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

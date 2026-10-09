@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>設限，才有好關係｜拾頁</title>
+<meta name="description" content="你以為自己累是因為事情太多、別人太過分？塔瓦布說，更常見的原因是你從來沒把話講清楚，卻默默期待別人自己發現你的底線在哪。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="set-boundaries-find-peace" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-30</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>設限，才有好關係</h1>
+  <p class="title-en">Set Boundaries, Find Peace</p>
+  <p class="byline">內卓・格洛弗・塔瓦布（Nedra Glover Tawwab）｜2021</p>
+  <p class="hook">你以為自己累是因為事情太多、別人太過分？塔瓦布說，更常見的原因是你從來沒把話講清楚，卻默默期待別人自己發現你的底線在哪。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>界線是讓你在關係裡感到安全自在的期待與需要；倦怠與怨氣是缺界線的警訊。</li><li>設界線只有兩步：清楚說出口，然後用行動守住；說了不做等於沒設。</li><li>罪惡感是正常的副作用，不代表你做錯；別人怎麼反應也不是你的責任。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>內卓・格洛弗・塔瓦布是美國的執業心理治療師，在北卡羅萊納州經營自己的諮商所，做了十多年的關係治療。她會寫這本書，是因為在診療室裡一再看到同一件事：來談的人說的是焦慮、憂鬱、婚姻不順、跟媽媽處不來、工作快把自己壓垮——往下問，問題的根幾乎都通到同一個地方：他們沒有界線，或者不知道怎麼設。</p>
+<p>她自己也是過來人。書裡她提到自己成長於一個界線模糊的家庭，年輕時很難對家人說不，借錢出去、收拾別人的爛攤子，直到讀研究所接觸心理治療，才開始一點一點學會。</p>
+<p>她後來在 Instagram 上用極短的文字分享界線的觀念和可以直接照念的句子，累積了大量追蹤者。2021 年這本書出版時，正值疫情期間——居家辦公讓工作和生活糊成一片，家人整天關在一起，許多人第一次清楚感覺到自己需要界線卻說不出口。這本書因此迅速登上暢銷榜。它的特色是幾乎沒有理論包袱，通篇是分類、判斷標準和範例句。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我知道應該拒絕，但我就是說不出口；好不容易說了，又內疚得要命。怎麼辦？」</p>
+<p>市面上講界線的書不少，多數花大篇幅說明界線為什麼重要。塔瓦布預設你已經知道了，她處理的是卡住人的那幾個實際問題：我怎麼知道自己缺界線？界線有哪些種類？具體要怎麼講？講了對方不理、翻臉、裝可憐怎麼辦？內疚怎麼辦？</p>
+<p>她對界線的定義很樸素：<strong>界線是幫助你在關係中感到安全與自在的期待和需要。</strong>它不是懲罰別人的手段，也不是把人推開的牆，而是告訴別人「怎麼跟我相處」的說明書。她反覆強調一個前提：別人不會讀心。你不說，就不能怪對方踩線。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、你需要界線的訊號，以及三種界線狀態</h3>
+<p>塔瓦布列出一串「你可能缺界線」的訊號：長期覺得不堪負荷、對請你幫忙的人心生怨恨、開始躲某些人的電話、常幻想丟下一切消失、沒有屬於自己的時間、老是在抱怨為別人做了多少卻沒有回報。她特別點名三種情緒當警示燈——<strong>倦怠、怨恨、逃避</strong>。尤其是怨恨：當你對某人越來越不爽，多半是因為你答應了一件其實不想答應的事。</p>
+<p>她把人的界線狀態分成三種：</p>
+<ul><li><strong>鬆散的界線</strong>：過度分享、難以說不、討好、過度涉入別人的問題、把別人的情緒當成自己的責任、害怕被拒絕所以什麼都接受。</li><li><strong>僵硬的界線</strong>：為了保護自己而築牆——不向人求助、不讓人靠近、規則沒有例外、一有摩擦就切斷關係。看似很有原則，其實是另一種不健康，因為它把親密也一併擋在外面。</li><li><strong>健康的界線</strong>：清楚自己的價值觀、聽自己的意見、適度地分享、可以自在地說不，也能平靜地接受別人對你說不。</li></ul>
+<p>同一個人在不同關係裡可能是不同狀態：對同事僵硬，對家人鬆散，這很常見。</p>
+<p><strong>實用價值</strong>：很多人以為界線只有「太少」一種毛病。塔瓦布把「僵硬」也列為問題，提醒那些動不動就封鎖、斷聯的人——那未必是有界線，可能只是用逃避取代了溝通。</p>
+<h3>二、六種界線</h3>
+<p>界線不只是「拒絕別人的要求」。她分出六個領域，幫你定位自己到底是哪一塊被踩：</p>
+<ol><li><strong>身體界線</strong>：個人空間與肢體接觸。不想被擁抱、不喜歡別人站太近、不願意別人評論你的身材，都屬於這裡。</li><li><strong>性界線</strong>：未經同意的碰觸、性暗示、黃色玩笑。她特別強調，孩童不可能對性表示同意，這條線被侵犯是絕對的。</li><li><strong>智識界線</strong>：你有權擁有自己的想法與意見，不被嘲笑或貶低。它也包含「什麼話題適合對誰說」——對年幼的孩子傾訴大人的婚姻問題，就是越過了這條線。</li><li><strong>情緒界線</strong>：你的感受不被否定（「這有什麼好難過的」）、別人不把過量的情緒倒給你、你的私事不被拿去到處說。</li><li><strong>物質界線</strong>：你的錢與東西。借了不還、把你的東西弄壞、把你的慷慨當作理所當然。</li><li><strong>時間界線</strong>：她說這是人們最常出問題的一項。過度承諾、無償加班、隨叫隨到、明明沒空卻答應，都是時間界線失守。</li></ol>
+<p>每一種她都附上「越線的例子」和「可以怎麼說」。例如時間界線：「我星期二之後才有空幫忙」「我沒辦法待到那麼晚」；情緒界線：「我跟你說這些的時候，需要的是你聽，不是建議」。</p>
+<p><strong>常見誤用</strong>：把這份清單當成控訴別人的罪狀表。塔瓦布的用法是倒過來的：先用它找出<strong>你自己</strong>還沒說清楚的地方。</p>
+<h3>三、兩個步驟：說出口，然後做到</h3>
+<p>塔瓦布把設界線簡化成兩步：<strong>溝通</strong>與<strong>行動</strong>。</p>
+<p>第一步的關鍵是用「堅定自信」的方式說。她列出四種行不通的溝通方式：<strong>被動</strong>（不說，默默忍，希望對方自己懂）、<strong>攻擊</strong>（用罵的、羞辱的、威脅的）、<strong>被動攻擊</strong>（嘴上說沒事，卻用擺臉色、拖延、酸言酸語表達）、<strong>操控</strong>（用罪惡感或裝可憐讓對方照做）。堅定自信則是直接、清楚、不帶攻擊地說出你的需要。她給了一個簡單的句型：「我想要⋯⋯」「我需要⋯⋯」「我希望⋯⋯」，後面接具體的事。</p>
+<p>她對「怎麼說」有幾個反直覺的提醒：</p>
+<ul><li><strong>不要過度解釋。</strong>解釋越多，越像在請求批准，也給對方越多可以反駁的空隙。</li><li><strong>不必道歉。</strong>為界線道歉，等於暗示這個界線可以商量。</li><li><strong>盡量當下就說。</strong>拖越久越難開口，也越容易累積成爆炸。</li><li><strong>可以用傳訊息的。</strong>她很務實：當面說當然最好，但如果寫訊息是你唯一做得到的方式，那也比不說強。</li></ul>
+<p>第二步才是多數人失敗的地方：說了，但沒有守。你說「晚上九點後我不回工作訊息」，結果十點照回——對方學到的是你的話不算數。界線要靠你自己的行動來維持，而不是指望對方自律。她也區分了「後果」和「威脅」：健康的後果是你事先說明、自己做得到、也真的會執行的事（「如果你繼續大聲吼，我會掛電話」），不是用來嚇人的空話。</p>
+<p><strong>限制</strong>：書裡的範例句短而直接，很美式。換到比較重視含蓄與輩分的文化裡，句子的包裝得調整，但「說清楚」和「說到做到」這兩個核心不必變。</p>
+<h3>四、別人的反應與你的罪惡感</h3>
+<p>設了界線之後會發生什麼？塔瓦布很誠實：不會太舒服。她列出人們面對別人設界線時的常見反應——<strong>反彈</strong>（「你變了」「你以前不是這樣」）、<strong>試探底線</strong>（故意再犯一次看你是不是認真的）、<strong>無視</strong>（當作你沒說過）、<strong>講理與質疑</strong>（「為什麼不行？這又沒什麼」）、<strong>防衛</strong>（把焦點轉成你在指責他）、<strong>搞消失或冷戰</strong>，當然也有<strong>接受</strong>——她說，其實接受才是最常見的反應，只是我們在腦中預演的總是最壞的那幾種。</p>
+<p>她的提醒是：對方的反應屬於對方。一個人對你的界線大發雷霆，往往正好說明這條界線有多必要——從你沒有界線這件事上得到最多好處的人，通常反對得最大聲。</p>
+<p>至於罪惡感，她的說法大概是全書最讓讀者鬆一口氣的一句：<strong>沒有「零罪惡感」的設界線方法。</strong>尤其是從小被教導「懂事就是配合別人」的人，第一次說不一定會覺得自己很壞。她的建議不是消除罪惡感，而是帶著它照樣去做——把它當成一種感覺，不當成一個判決。感覺會過去，而界線留下來的平靜會累積。</p>
+<p>書中也談到比較嚴重的越界型態，她用「小越界」與「大越界」來分：前者是日常的小摩擦（愛問隱私的親戚、過度分享的同事、讓你內疚的說法），後者則已經侵蝕了關係的結構，例如彼此糾纏不清、分不出誰的事是誰的事的「共融」，以及靠著替對方收爛攤子來維繫的「共依存」。後半本書就按場景一一處理：原生家庭、伴侶、朋友、職場、社群媒體與科技。最後一塊也很重要——<strong>對自己的界線</strong>：花錢、作息、滑手機、對自己說過的話算不算數。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>塔瓦布的鏈條很短：倦怠、怨恨、逃避是<strong>訊號</strong> → 訊號指向某個沒被說出口的<strong>需要</strong> → 用六種界線<strong>定位</strong>是哪一塊 → 用堅定自信的方式<strong>說出來</strong> → 用自己的<strong>行動</strong>守住 → 預期會有<strong>不舒服</strong>（對方的反應、自己的罪惡感）並且撐過去 → 重複。前半本是這條鏈的原理，後半本是把同一條鏈套進家庭、愛情、友誼、工作、科技各個場景。它不是要你變得強硬，是要你變得清楚。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>找出這個月最讓你有怨氣的一件工作，問：我當初答應的時候，其實想說什麼？</li><li>準備一句不帶解釋的回覆並實際用一次：「我目前手上的事排到週四，這件我接不了。」</li><li>設一條時間界線並用行動守住：下班後關掉工作通知，隔天早上再回。</li><li>有人慣性把事丟給你時，把問題還回去：「這部分你打算怎麼處理？」</li><li>被追問理由時，重複原句就好，不加新的解釋。</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>用六種界線掃一遍最讓你疲憊的那段關係，找出被踩得最兇的是哪一種。</li><li>寫下一句「我需要⋯⋯」，短到一口氣能講完，先念給自己聽。</li><li>挑一個風險低的對象先練（朋友、手足），再處理最難的那個人。</li><li>事先想好對方可能的三種反應，以及你要重複的那一句話。</li><li>罪惡感來的時候告訴自己：這是預料中的感覺，不是我做錯的證據。</li><li>給自己設一條界線：例如睡前一小時不看手機，並且真的做到。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「設界線就是學會拒絕、把人推開」</strong>——塔瓦布把「僵硬的界線」也列為問題。界線的目的是讓關係能繼續，而且繼續得不帶怨氣；動輒斷聯往往是不敢溝通的另一種表現。</li><li><strong>「我設了界線，對方就應該改變」</strong>——界線管的是你自己會怎麼做，不是對方必須怎麼做。對方可以不配合，而你決定接下來你要怎麼辦。把界線當成控制別人的工具，就走樣成最後通牒了。</li><li><strong>「說一次就夠了」</strong>——她明講多數界線需要重複說、重複守。對方試探是正常過程，不代表失敗。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《界線》（亨利・克勞德、約翰・湯森德）：書庫八月讀過的經典，談的是界線的觀念與責任歸屬，帶有信仰背景；塔瓦布這本更像操作手冊，句子可以直接拿去用。</li><li>《情緒勒索》（蘇珊・佛沃）：塔瓦布列的「反彈、試探、讓你內疚」，在佛沃那裡有更深入的心理剖析；一本幫你看懂對方的手法，一本幫你準備好要說的話。</li><li>《假性孤兒》（琳賽・吉普森）：月初讀過。對原生家庭設界線最難，因為還抱著對方會改變的期待；先放下期待，塔瓦布的句子才說得出口。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「界線是幫助你在關係中感到安全與自在的期待和需要。」（Boundaries are expectations and needs that help you feel safe and comfortable in your relationships.）</li><li>「別人不知道你要什麼，把它說清楚是你的責任。清楚，才能挽救關係。」（大意）</li><li>「沒有不帶罪惡感的設界線方法。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>倦怠、怨恨、逃避——你最近最明顯的是哪一個？它指向哪一段關係、哪一種界線（身體、性、智識、情緒、物質、時間）？</li><li>寫下一句你一直想對某個人說、卻還沒說的「我需要⋯⋯」。是什麼讓你到現在還沒開口：怕對方的反應，還是怕自己的罪惡感？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="set-boundaries-find-peace" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "set-boundaries-find-peace";
+      var TITLE = "設限，才有好關係";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "set-boundaries-find-peace";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

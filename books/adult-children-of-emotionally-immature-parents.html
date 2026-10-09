@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>假性孤兒｜拾頁</title>
+<meta name="description" content="父母沒打你、沒餓著你，你卻從小覺得孤單，還怪自己不知足？問題可能不在你太敏感，而在他們的情緒從來沒有長大。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="adult-children-of-emotionally-immature-parents" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-06</span><span class="theme-chip ui-label">人際關係</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>假性孤兒</h1>
+  <p class="title-en">Adult Children of Emotionally Immature Parents</p>
+  <p class="byline">琳賽・吉普森（Lindsay C. Gibson）｜2015</p>
+  <p class="hook">父母沒打你、沒餓著你，你卻從小覺得孤單，還怪自己不知足？問題可能不在你太敏感，而在他們的情緒從來沒有長大。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>吃穿不缺不等於被愛到：情感上沒被看見的孩子，會帶著說不出口的孤單長大。</li><li>情緒不成熟的父母有四型：情緒型、驅動型、被動型、拒絕型，共通點是無法真正同理。</li><li>放下「總有一天他們會改變」的療癒幻想，改用觀察者的距離與父母互動。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>琳賽・吉普森是美國的臨床心理師，執業數十年，專長是替成年人做個別心理治療。這本書不是從實驗室出來的，是從診療室出來的。她長期觀察到一類案主：能幹、負責、很會照顧別人，外表看不出什麼問題，卻長年覺得空、覺得累、覺得自己哪裡不對。追問成長過程，他們多半會說「我爸媽其實對我不錯」——有飯吃、有學上、沒有明顯的虐待。但只要往下談，就會出現同一種感受：在自己家裡，沒有人真的懂我。</p>
+<p>吉普森給這種經驗找到一個解釋的框架：這些父母不一定壞，他們是「情緒不成熟」。身體長大了、有了工作和家庭，情緒發展卻停在很早的階段，沒有能力處理自己的感受，更別說接住孩子的。</p>
+<p>這本書 2015 年出版時並沒有大規模宣傳，是靠讀者一個傳一個慢慢賣起來的，幾年後成為長銷書。台灣版把書名譯成《假性孤兒》——父母健在，卻像沒有父母一樣長大——相當準確地抓到了書的核心感受。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我的童年明明不算悲慘，為什麼我一直這麼孤單？」</p>
+<p>吉普森的回答是：因為你缺的東西看不見。身體上的照顧有沒有到位，旁人一眼就看得出來；情感上的連結有沒有到位，連當事人都很難指認。孩子只知道哪裡怪怪的，卻沒有詞彙描述，最後往往得出一個結論——一定是我有問題。</p>
+<p>她把這種感受稱為<strong>情感孤獨</strong>：身邊有人，卻沒有人能在情感上回應你。這本書做三件事：幫你辨認父母的情緒不成熟是什麼樣子、看懂你為了適應它而變成了什麼樣的人、然後找到一種不再受傷的相處方式。它不是要你恨父母，而是要你不再用孩子的眼睛看他們。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、情緒不成熟是什麼樣子</h3>
+<p>吉普森列出情緒不成熟者的一長串特徵，可以歸成幾條主線：</p>
+<ul><li><strong>自我中心</strong>：對話總會繞回他們身上。你說你失戀了，三句之後變成在聽他們當年多辛苦。</li><li><strong>同理心薄弱</strong>：不是完全沒有感情，而是感受不到「你和我是不同的人、你有你自己的內在」。</li><li><strong>害怕真實的情緒</strong>：一碰到深一點的感受就不自在，於是轉移話題、開玩笑、生氣，或直接講道理把你的感受蓋掉。</li><li><strong>反應取代反思</strong>：壓力一來就爆炸或退縮，事後不檢討，也很少真心道歉。出問題永遠是別人的錯。</li><li><strong>角色重於人</strong>：看重「父母就該被尊敬、子女就該聽話」這類角色規範，因為角色讓他們不必面對一個活生生的人。</li><li><strong>情緒會傳染</strong>：他們不安，全家都得跟著不安；孩子變成負責安撫父母的那一方。</li></ul>
+<p>她特別強調一個判斷標準：重點不是父母偶爾失控（每個人都會），而是他們有沒有能力事後回頭、承認、修補。情緒成熟的人能同時顧到自己的感受和別人的感受；不成熟的人只顧得到前者。</p>
+<p><strong>實用價值</strong>：很多讀者說，光是讀到這份清單就哭了——不是因為被責備父母的話語說服，而是終於有人把那種「說不上來」的東西寫成了字。</p>
+<h3>二、四種情緒不成熟的父母</h3>
+<p>吉普森把這類父母分成四型，同一對父母可能混合好幾種：</p>
+<p><strong>情緒型</strong>：情緒起伏劇烈，一下過度涉入、一下突然抽離。全家人都在看他們的臉色過日子，小事也能變成危機。孩子學會的是隨時偵測氣氛。</p>
+<p><strong>驅動型</strong>：看起來最「正常」，甚至最成功。他們忙碌、有目標、凡事力求完美，也很投入孩子的人生——但投入的方式是規劃、督促、糾正。他們關心孩子的成績和前途，卻很少停下來問孩子在想什麼。孩子感受到的是：我做得好才有價值。</p>
+<p><strong>被動型</strong>：四型裡最討人喜歡的一種，溫和、好相處，有時還是孩子最親近的那個大人。但遇到麻煩他們就退場，尤其是當另一半（常常是更強勢的那位）對孩子不合理時，他們選擇視而不見。孩子學到的是：我喜歡的那個人，不會保護我。</p>
+<p><strong>拒絕型</strong>：最明顯的一種。他們像是在自己周圍築了牆，不想被打擾，對孩子的親近表現出不耐煩甚至厭煩。孩子學到的是：我的存在本身就是麻煩。</p>
+<p><strong>常見誤用</strong>：拿到分類就急著幫父母貼標籤，然後停在「原來他是這種人」的憤怒裡。吉普森的用意是讓你能預測他們的反應、調整自己的期待，分類只是工具。</p>
+<h3>三、孩子怎麼適應：療癒幻想、角色自我、內化者與外化者</h3>
+<p>孩子不能換父母，只能換自己。吉普森描述了兩個幾乎人人都會發展出來的東西。</p>
+<p>第一個是<strong>療癒幻想</strong>：一個關於「事情終究會好起來」的故事。小時候它可能是「只要我夠乖、夠優秀，媽媽就會開心，就會好好愛我」；長大後它常常轉移到別的地方——「等我找到對的伴侶就不孤單了」「等我夠成功爸爸就會肯定我」。這個幻想讓孩子撐過童年，卻也讓成年後的他們一次次回到同一口乾掉的井邊打水。</p>
+<p>第二個是<strong>角色自我</strong>：為了在家裡有個位置，孩子會演起一個角色——小大人、開心果、不惹事的隱形人、永遠的照顧者——並且漸漸以為那就是自己。真實的感受和需要（她稱為真實自我）被壓到很深的地方。成年後的倦怠、憂鬱、莫名的煩躁，在吉普森看來常常是真實自我在敲門：這個角色，演不下去了。</p>
+<p>她還區分兩種因應風格。<strong>內化者</strong>相信問題要靠自己解決：他們敏感、自省、責任感過重，習慣反省「我哪裡做得不夠」，很會照顧人，也很容易在關係裡付出過頭而不敢要求。<strong>外化者</strong>相信問題出在外面：他們衝動、期待別人來解決、怪罪環境。吉普森直說，會拿起這本書的多半是內化者；而情緒不成熟的父母本身，很多就是長大了的外化者。內化者的課題不是「再多檢討自己一點」，恰恰是少扛一點。</p>
+<p><strong>限制</strong>：這套描述來自臨床觀察而非大型實證研究，兩種風格也是光譜而不是兩個盒子。當成理解自己的鏡子很好用，當成診斷就過頭了。</p>
+<h3>四、換一種方式相處：觀察、成熟覺察、不再上鉤</h3>
+<p>那麼該怎麼辦？吉普森不主張非得對質，也不主張非得斷絕關係（雖然她承認有些情況保持距離是必要的）。她的核心建議是換一個位置：<strong>從參與者退成觀察者。</strong></p>
+<p>下次和父母互動時，試著像人類學家那樣看：他現在在做什麼？語氣怎麼變的？我身體哪裡緊起來了？一旦你在觀察，就不那麼容易被捲進去。你會發現他們的反應其實很可預測，而且跟你這個人的價值無關。</p>
+<p>在這個基礎上，她提出一套「成熟覺察」的做法，包含三個動作：</p>
+<ol><li><strong>說出來，然後放手</strong>：平靜、簡短地表達你的想法或感受，但不期待對方聽懂、認同或改變。你說是為了對自己誠實，不是為了得到回應。</li><li><strong>聚焦在結果，而不是關係</strong>：每次互動前先想好一個具體、可達成的目標（「確認過年哪天回去」），而不是「這次要讓媽媽理解我」。後者正是療癒幻想。</li><li><strong>管理互動，而不是投入情緒</strong>：設定時間長度、把話題帶回正題、對情緒勒索式的話不接招，客氣而堅定地重複你的立場。</li></ol>
+<p>書的最後幾章轉向未來：如何辨認情緒成熟的人。他們實際、可靠、不把事情都當成針對自己；他們尊重你的界線、願意妥協、說得出抱歉；和他們在一起你不必時時警戒。吉普森提醒，在情緒不成熟的家庭長大的人，往往覺得這種人「沒有火花」，因為熟悉的是那種得費力爭取的愛。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書是一條從「看見」到「鬆綁」的路：先給感受一個名字（情感孤獨）→ 說明它從哪來（父母的情緒不成熟及其四種樣貌）→ 說明你怎麼被它塑形（療癒幻想、角色自我、內化或外化）→ 指出角色崩潰其實是真實自我在醒來 → 教你換位置（觀察者、成熟覺察）→ 最後指向新的關係（找情緒成熟的人，也成為那樣的人）。順序很重要：沒有先放下幻想，後面的技巧都會被拿去「再試一次讓他們改變」。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（面對情緒不成熟的主管或同事）</strong>：</p>
+<ol><li>先觀察、少解讀：把他的暴躁當成天氣資訊，而不是對你的評價。</li><li>每次溝通前寫下一個具體目標（拿到核准、確認期限），達成就收，不追求被認可。</li><li>他情緒上來時不跟著加碼：放慢語速，重述事實和下一步。</li><li>檢查自己是不是又在演「永遠可靠的人」：這週有哪件事其實可以不接？</li></ol>
+<p><strong>生活版（面對父母）</strong>：</p>
+<ol><li>寫下你的療癒幻想：「如果我＿＿，他們就會＿＿。」寫完問自己，這件事等了幾年？</li><li>下次通電話前，先定好時間長度和一個要完成的事。</li><li>互動中發現自己胸口發緊，在心裡默唸「我在觀察」，描述對方的行為而不是反駁。</li><li>想說的話說一次就好，不解釋第二遍，不等他點頭。</li><li>列出身邊讓你「不用小心翼翼」的兩三個人，把更多時間留給他們。</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書在教人怪罪父母」</strong>——吉普森的目的是理解而非定罪。她多次提到這些父母自己多半也是在情感匱乏中長大的；看懂來龍去脈，是為了停止自責，也停止無效的期待。</li><li><strong>「看懂之後就該跟父母攤牌，或者斷聯」</strong>——書裡並不鼓勵用對質來求得道歉，因為情緒不成熟的人很少給得出你要的回應。她主張的是調整期待與互動方式，距離多遠由你依狀況決定。</li><li><strong>「我是內化者，所以我是受害的好人」</strong>——內化者一樣有課題：過度負責、不敢要求、在關係裡默默累積怨氣。看見這些，才是書真正要你做的功課。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《情緒勒索》（蘇珊・佛沃）：佛沃拆解的是對方用恐懼、義務、罪惡感操控你的手法；吉普森往上游走一步，解釋為什麼有些父母只會用這種方式互動。</li><li>《蛤蟆先生去看心理師》（羅伯特・狄保德）：蛤蟆在諮商室裡發現自己還活在「適應型兒童」的狀態，正好是「角色自我」的故事版，兩本可以互相印證。</li><li>《設限，才有好關係》（內卓・塔瓦布）：本月底會讀。吉普森幫你放下幻想，塔瓦布教你把界線實際說出口，是很順的接力。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「情感孤獨來自於和他人缺乏足夠的情感親密。」（大意）</li><li>「你不需要父母改變，也能從這段關係裡得到自由。」（大意）</li><li>「療癒幻想的核心是：只要我變得不一樣，他們就會愛我。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你在原生家庭裡演的是什麼角色（小大人、開心果、隱形人、照顧者……）？現在的生活中，你還在哪些地方繼續演它？</li><li>你心裡有沒有一個放了很久的「療癒幻想」——某個只要你做到，某人就會改變的故事？如果確定它不會成真，你會把那些力氣改放在哪裡？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="adult-children-of-emotionally-immature-parents" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "adult-children-of-emotionally-immature-parents";
+      var TITLE = "假性孤兒";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "adult-children-of-emotionally-immature-parents";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

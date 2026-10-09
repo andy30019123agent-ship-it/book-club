@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>如何閱讀一本書｜拾頁</title>
+<meta name="description" content="你以為識字就等於會讀書？這本書要戳破的是：大多數人讀了一輩子，其實只停在小學程度的閱讀——眼睛掃過去了，理解力卻一點也沒長。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="how-to-read-a-book" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-03</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>如何閱讀一本書</h1>
+  <p class="title-en">How to Read a Book</p>
+  <p class="byline">莫提默・艾德勒、查理・范多倫（Mortimer J. Adler & Charles Van Doren）｜1940</p>
+  <p class="hook">你以為識字就等於會讀書？這本書要戳破的是：大多數人讀了一輩子，其實只停在小學程度的閱讀——眼睛掃過去了，理解力卻一點也沒長。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>閱讀分四個層次：基礎、檢視、分析、主題閱讀，多數人卡在第一層而不自知。</li><li>主動的讀者一路帶著四個問題：整本在談什麼？細節怎麼說？說得對嗎？跟我有什麼關係？</li><li>沒先說得出「我懂了」之前，沒資格說「我同意」或「我反對」。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>莫提默・艾德勒是二十世紀美國最有名的「公共哲學家」之一，但他的求學過程一點也不循規蹈矩：十幾歲輟學去報社打工，後來因為讀到一本哲學家的自傳，才回頭進哥倫比亞大學。他在哥大接觸到「經典名著」課程——一群學生每週讀一本西方經典，圍著桌子討論——從此認定：真正的教育不是聽老師講解，是自己跟最好的書搏鬥。</p>
+<p>之後他到芝加哥大學，與校長哈欽斯（Robert Hutchins）一起推動名著閱讀計畫，後來主編了大英百科出版的《西方世界的經典名著》叢書，並為它編了一套龐大的觀念索引。這本《如何閱讀一本書》初版於 1940 年，一出版就成為暢銷書——在那個收音機與雜誌興起、大家開始擔心「沒人好好讀書」的年代，它打中了很多人的焦慮。</p>
+<p>1972 年，艾德勒與查理・范多倫合作大幅改寫，就是我們今天讀到的版本。范多倫是文學教授，後來長期在大英百科擔任編輯工作。新版最大的差別，是把閱讀明確分成四個層次，並補上「不同種類的書怎麼讀」和最高階的「主題閱讀」。八十多年過去，資訊來源從收音機換成了手機，但書裡談的那個問題——資訊越來越多，理解卻沒有變多——反而更刺眼了。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我明明讀完了，為什麼什麼都沒留下？」艾德勒的回答很不客氣：因為你只是讓字從眼前流過去。他區分兩種閱讀：一種是<strong>為了獲得資訊</strong>——讀跟你程度差不多的東西，讀完知道得更多，但理解力沒變；另一種是<strong>為了增進理解</strong>——讀比你高明的書，靠自己的努力把那個落差補起來。只有第二種會讓你變聰明。</p>
+<p>他用了一個很好記的比喻：閱讀像棒球的捕手。很多人以為寫作的人是主動的、讀的人是被動的，就像投手丟、捕手接。但捕手接球一點也不被動——他要判斷球路、移動手套、接快速球和曲球的方法不同。<strong>閱讀是一種需要技術的主動行為，而技術可以學。</strong>這本書就是那本技術手冊。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、閱讀的四個層次：你卡在哪一層？</h3>
+<p>四個層次是疊加的，高層次包含低層次，不是四選一。</p>
+<p><strong>第一層是基礎閱讀</strong>：認得字、看得懂句子。問的是「這個句子在說什麼？」這是小學完成的事。作者的抱怨是：多數人的閱讀訓練到這裡就停了，之後十幾年的教育再也沒人教你怎麼讀。</p>
+<p><strong>第二層是檢視閱讀</strong>：在有限時間內抓出一本書的重點。問的是「這本書在談什麼？它的架構是什麼？」很多人從來不知道有這一層，拿起書就從第一頁老老實實讀到最後一頁——作者認為這是最大的時間浪費之一。</p>
+<p><strong>第三層是分析閱讀</strong>：沒有時間限制下，把一本書讀到透。作者引用培根的說法：有些書可以淺嚐，有些可以吞下，只有少數需要咀嚼消化——分析閱讀就是咀嚼消化。</p>
+<p><strong>第四層是主題閱讀</strong>：為了一個問題同時讀很多本書，讓它們彼此對話，得出任何單一本書裡都沒有的理解。這是最複雜、也最有收穫的閱讀。</p>
+<p><strong>實用價值</strong>：這個分層最直接的用處是「分配力氣」。不是每本書都值得分析閱讀。先用檢視閱讀判斷一本書值不值得，絕大多數書到這裡就夠了。</p>
+<h3>二、檢視閱讀：先當偵探，再當讀者</h3>
+<p>檢視閱讀有兩個動作。</p>
+<p>第一個是<strong>有系統的略讀</strong>。作者給了很具體的步驟：看書名頁和序、研究目錄、翻索引看哪些詞出現最多、讀出版者的介紹、挑幾個看起來是關鍵的章節讀開頭和結尾、最後隨手翻翻，每處讀一兩段，尤其別漏掉最後兩三頁——作者通常忍不住會在那裡總結。花的時間大概是幾分鐘到一小時，換來的是你知道這是哪一類書、主張大概是什麼、值不值得細讀。</p>
+<p>第二個是<strong>粗淺的閱讀</strong>，這條規則反直覺但非常解放：<strong>頭一次面對一本難讀的書，從頭到尾先讀完一遍，碰到不懂的地方不要停下來查詢或思索。</strong>作者說，很多人讀經典讀不下去，就是因為在第一頁的註腳、第三頁的生字上卡死，耗盡了力氣。先抓住你懂的那一半，再回頭，第二次會懂得更多；如果你堅持每一頁都全懂才往下，你連那一半都得不到。</p>
+<p>作者順帶談了閱讀速度：他不反對速讀，但重點是<strong>變速</strong>——不同的書用不同速度，同一本書裡不同段落也用不同速度。一本書不該讀得比它值得的更慢，也不該快到你無法理解。</p>
+<p><strong>常見誤用</strong>：把檢視閱讀當成「所以不用讀完」的藉口。它是篩選工具與暖身，不是分析閱讀的替代品。</p>
+<h3>三、分析閱讀：三個階段、一串規則</h3>
+<p>這是全書份量最重的部分，可以整理成三個階段。</p>
+<p><strong>第一階段，弄清楚這本書在談什麼。</strong>先分類——這是理論性的書（告訴你事情是什麼）還是實用性的書（告訴你該怎麼做）？然後用一兩句話說出整本書的主旨；再列出主要部分，看它們如何組成整體；最後找出作者想解決的問題。作者有個比喻：一本好書像一棟房子，有很多房間，各有用途，但由門、走道、樓梯連成一體。你要看得到那張平面圖。如果你沒辦法用自己的話、簡短地說出一本書在講什麼，你就還沒讀懂。</p>
+<p><strong>第二階段，詮釋內容。</strong>先與作者「達成共識」——找出書中的關鍵字，弄清楚作者是用哪個意思在用它。同一個詞在不同作者筆下意思可能完全不同，沒對上頻率，後面全是雞同鴨講。接著找出最重要的句子，抓出作者的主張；再把這些主張連成論證；最後判斷作者解決了哪些問題、哪些沒解決。檢驗自己懂沒懂的方法很簡單：<strong>用你自己的話重說一遍，並舉出一個你自己的例子。</strong>只會複述原句，不算懂。</p>
+<p><strong>第三階段，評論。</strong>這裡有全書最有名的一條規矩：<strong>在你能說「我了解了」之前，不要說「我同意」「我不同意」或「我暫緩評論」。</strong>作者形容閱讀是一場對話，而讀者擁有最後發言權——正因如此，更要守禮節。不要為了爭贏而爭；要能分辨「知識」和「個人觀點」，反對時要拿出理由。</p>
+<p>而且反對只能有四種理由：作者的<strong>知識不足</strong>（缺了相關資訊）、<strong>知識有誤</strong>（事實說錯了）、<strong>推論不合邏輯</strong>、或是<strong>分析不夠完整</strong>（問題沒解決完）。如果你一條都指不出來，那麼你就該同意——「我就是不喜歡這個結論」不是反對，是情緒。</p>
+<p><strong>限制</strong>：作者自己也承認，這套規則描述的是理想狀態，沒有人每本書都這樣讀，也沒必要。它像游泳的分解動作，剛學時笨拙彆扭，熟了之後會融成一個連貫的動作。</p>
+<h3>四、主題閱讀：讓書為你服務</h3>
+<p>到了最高層次，主角從「書」換成「你的問題」。假設你想弄懂「進步」這個觀念，沒有哪一本書能給你完整答案，你得同時讀很多本。作者列了五個步驟：</p>
+<ol><li><strong>找出相關章節</strong>：先對書單做檢視閱讀，挑出跟你的問題有關的段落——不是讀完整本書，是讀你需要的部分。</li><li><strong>帶引作者與你達成共識</strong>：分析閱讀時你去適應作者的用語；現在反過來，你要建立一套自己的中立詞彙，把各家說法「翻譯」進來。</li><li><strong>釐清問題</strong>：提出一組你自己的問題，看每位作者如何回答（有些作者根本沒談，那也是資訊）。</li><li><strong>界定議題</strong>：當不同作者對同一個問題給出不同甚至相反的答案，真正的爭點就浮現了。</li><li><strong>分析討論</strong>：把這些問題與爭點排出順序，呈現整個討論的全貌。</li></ol>
+<p>作者強調要保持「辯證的客觀」：呈現各方立場時不偏袒，盡量回到作者的原文，而不是用你的摘要取代。</p>
+<p><strong>實用價值</strong>：這其實就是寫研究報告、做產業分析、做重大決定前該有的讀法。現代人最常做的是它的劣化版——只看一個來源就下結論。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書的地基是一個信念：<strong>閱讀是主動的，越主動收穫越多</strong>。主動的具體表現是邊讀邊問四個問題——這本書整體在談什麼？作者細部說了什麼、怎麼說的？說得有道理嗎，全部還是部分？這本書跟我有什麼關係？</p>
+<p>四個層次就是回答這四個問題的階梯：檢視閱讀初步回答第一題；分析閱讀的三個階段依序把前三題答到底；第四題在實用書是「所以我要怎麼做」，在理論書是「所以我對世界的理解哪裡要改」。主題閱讀則是把同一套問法擴大到一整批書上。書的中段另外示範了如何依書的種類調整——讀實用書要問作者的目的與手段，讀小說要先讓自己進入那個世界再評斷，讀歷史要多讀幾個版本，讀科學與哲學要抓住作者的問題。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（面對一份很厚的報告或一本專業書）</strong>：</p>
+<ol><li>先花 15 分鐘檢視：讀摘要、目錄、每章首尾段、結論，寫下「這份東西的主張是什麼」一句話</li><li>決定要不要細讀；要的話，圈出三到五個關鍵用語，確認作者的定義</li><li>把核心論證寫成「因為 A、B，所以 C」，再自己舉一個公司裡的例子</li><li>開會要反對時，先講「我理解你的意思是……對嗎？」，再明確說是資訊缺漏、事實有誤、推論有洞，還是分析不完整</li><li>做重要決策前做一次小型主題閱讀：至少找三個立場不同的來源，列出它們真正的分歧點</li></ol>
+<p><strong>生活版（把書讀成自己的）</strong>：</p>
+<ol><li>拿筆讀書：畫線、在頁邊寫問題、在書末空白頁列出自己的大綱——作者說，買下書只是擁有它的前奏，寫過才真的是你的</li><li>卡關的難書，允許自己「先讀完一遍不求甚解」</li><li>讀完用三句話講給朋友聽；講不出來就知道哪裡沒懂</li><li>每年挑一兩本「比你高明」的書慢慢啃，其他的放心用檢視閱讀帶過</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這是一本教速讀的書」</strong>——相反。它教的是判斷什麼該快、什麼該慢。作者關心的不是你一年讀幾本，而是有幾本書真的進到你腦子裡。</li><li><strong>「每本書都要照規則分析一遍」</strong>——作者明講絕大多數的書不值得分析閱讀，值得反覆讀的只是極少數。規則是工具箱，不是每次都要全部拿出來。</li><li><strong>「先理解再批評＝不能批評」</strong>——這本書其實非常鼓勵反對作者，它只是要求你的反對打在點上：先能公平複述對方的主張，再指出是哪一種錯。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《快思慢想》（康納曼）：艾德勒要求的「主動閱讀」，用康納曼的話說就是硬把系統二叫起來工作。翻過去就算讀過，是系統一省力的自然傾向；畫線、複述、提問，都是逼自己慢想的機關。</li><li>《思考的框架》（派瑞許）：派瑞許講的多元心智模型，本質上是一場長期的主題閱讀——跨學科蒐集觀念，讓它們彼此對話。這本書提供了「怎麼蒐集」的基本功。</li><li>《金字塔原理》（明托）：一本教你把想法寫成別人看得懂的結構，一本教你把別人的結構從文字裡拆出來。兩本是同一項技能的正反面。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「讀書的重點不在你讀過多少本，而在有多少本真正進到你心裡。」（大意）</li><li>「在你說出『我同意』、『我不同意』或『我暫緩評論』之前，必須先能肯定地說：『我了解了。』」（大意，出自分析閱讀第三階段的規則）</li><li>「一本書不該讀得比它值得的速度更慢，也不該快到你無法滿足與理解。」（大意）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>回想你最近「讀完卻沒留下什麼」的一本書：你當時是用哪個層次在讀？如果重來，你會先做哪一個動作？</li><li>你上一次在討論中反對別人，用的是四種理由裡的哪一種——還是其實只是「不喜歡那個結論」？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="how-to-read-a-book" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "how-to-read-a-book";
+      var TITLE = "如何閱讀一本書";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "how-to-read-a-book";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

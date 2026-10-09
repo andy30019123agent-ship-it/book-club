@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成功，從聚焦一件事開始｜拾頁</title>
+<meta name="description" content="待辦清單越列越長、每件事都很重要？凱勒說這正是你忙到沒成果的原因——真正算數的事極少，其他的都可以晚點再說。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-one-thing" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-21</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 12 分鐘</span></div>
+  <h1>成功，從聚焦一件事開始</h1>
+  <p class="title-en">The ONE Thing</p>
+  <p class="byline">蓋瑞・凱勒、傑伊・巴帕森（Gary Keller & Jay Papasan）｜2013</p>
+  <p class="hook">待辦清單越列越長、每件事都很重要？凱勒說這正是你忙到沒成果的原因——真正算數的事極少，其他的都可以晚點再說。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>事情並不同等重要：把 80/20 一路推到底，找出此刻最關鍵的那一件。</li><li>每天問聚焦問題：做了哪一件事，其他事會變得更容易或不必做？</li><li>把一天中最好的整段時間預先保留給那件事，並守住它。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>蓋瑞・凱勒是美國凱勒威廉不動產公司的共同創辦人。這家公司 1980 年代從德州奧斯汀的一間辦公室起家，後來成長為全美經紀人數最多的房仲體系之一。共同作者傑伊・巴帕森原本是出版社編輯，後來加入公司，兩人合寫過好幾本房地產暢銷書。</p>
+<p>凱勒寫這本書的動機來自自己的一段低潮。公司快速擴張的那幾年，他發現自己和主管們越來越忙、成果卻越來越散。他開始輔導高階主管時，習慣在每次談話最後列出這週要做的幾件事；大家都做完了，但事業沒什麼起色。他把清單越縮越短，最後乾脆只問一句：「這週你能做的哪一件事，會讓其他事變得更容易或沒必要做？」結果成效明顯變好。</p>
+<p>他回頭檢視自己的經歷，發現同一個模式：成果最大的時候，都是他把焦點縮到最小的時候；表現起伏的時候，都是他的焦點散掉的時候。2013 年他把這個觀察寫成書，原文書名只有三個字：The ONE Thing。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我每天都很忙、也很努力，為什麼重要的事還是沒有進展？」</p>
+<p>凱勒的回答是：因為你把力氣平均分給了太多事。他引用一句俄羅斯諺語當全書的題詞——同時追兩隻兔子，你一隻也抓不到。非凡的成果不是靠做更多事得來的，而是靠在更少的事上做得更深。</p>
+<p>書中有個很具體的畫面：骨牌。一位物理學者在 1983 年指出，一張骨牌能推倒比自己大五成的另一張。如果第一張只有五公分高，每一張都比前一張大五成，一路排下去，沒幾十張就會高過摩天大樓。凱勒的意思是：成功是<strong>依序</strong>累積的，不是<strong>同時</strong>進行的。你要做的只有每天找出領頭的那張牌，用力推倒它。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、六個關於成功的謊言</h3>
+<p>書的前三分之一在清場——凱勒認為有六個大家深信不疑的觀念，正是讓人無法聚焦的原因。</p>
+<p><strong>「每件事都一樣重要。」</strong>待辦清單把所有事平等地列在一起，於是我們傾向先做簡單的、先到的、吵得最大聲的。凱勒搬出帕雷托法則：少數的原因造成多數的結果。但他不停在 80/20——從那關鍵的 20% 裡再挑 20%，一直縮到只剩一件。他說你需要的是「成功清單」，一張刻意排過優先順序的短清單。</p>
+<p><strong>「一心多用。」</strong>人腦無法同時專注在兩件需要思考的事情上，所謂多工其實是快速切換，每切一次都有成本。史丹佛大學納斯（Clifford Nass）的研究團隊原本想找出重度多工者的優勢，結果發現他們在過濾干擾、切換任務等各項測驗上表現都比較差。</p>
+<p><strong>「要過自律的生活。」</strong>凱勒認為沒有人需要事事自律。你只需要足夠的自律，撐到一個<strong>習慣</strong>成形為止；之後它就自動運轉，自律可以移去養下一個習慣。他引用倫敦大學學院的研究：養成一個習慣平均約需六十六天，簡單的短一點，困難的長很多。</p>
+<p><strong>「意志力隨傳隨到。」</strong>意志力像手機電量，用了會掉。書中提到史丹佛的一個實驗：被要求記住七位數字的人，比起只記兩位數的人，在點心選擇上更常拿蛋糕而非水果——腦袋多一點負擔，自制力就打折。另一項對以色列假釋審理的研究則發現，法官在剛休息完時最常准予假釋，隨著時間拖長，准許的比例一路下滑。結論很實際：最重要的事要在意志力滿格的時候做，通常是一天的開頭。</p>
+<p><strong>「要過平衡的生活。」</strong>凱勒說平衡是個不存在的中點。做出非凡成果需要長時間專注在一件事上，其他事必然暫時失衡。他主張用「抗衡」取代平衡：工作上，接受為了那一件事而長期冷落其他事；私人生活則相反，不能離開任何一塊太久。他借用作家派特森的比喻——人生像在拋接五顆球：工作、家庭、健康、朋友、誠信。工作是橡皮球，掉了會彈回來；其他四顆是玻璃做的。</p>
+<p><strong>「大就是壞。」</strong>我們害怕想得太大，覺得那代表壓力和失敗。凱勒認為，你把目標定在哪裡，就決定了你會去找什麼樣的做法；想得小，做的事自然也小。</p>
+<p><strong>限制</strong>：這六條是為了「追求特別成果的人」寫的，口氣很絕對。照顧者、需要即時回應的職務、多數基層工作，並沒有把生活切成「一件事」和「其他」的自由。</p>
+<h3>二、聚焦問題：全書唯一的工具</h3>
+<p>清完場，凱勒給的工具只有一個問句：</p>
+<p><strong>「我能做的哪一件事，做了之後會讓其他事變得更容易，或者根本不必做？」</strong></p>
+<p>這句話每一段都有作用。「我能做的」把焦點放在行動，而且是可行的行動。「哪一件」逼你只選一個，不准說「這三個都很重要」。「更容易或不必做」是篩選標準——你要找的是有槓桿的那件事，那張領頭的骨牌。</p>
+<p>這個問題可以用在兩個尺度上。大的尺度問方向：「我這輩子、這份事業最想做成的那一件事是什麼？」小的尺度問行動：「為了那個方向，我<strong>現在</strong>該做的那一件事是什麼？」</p>
+<p>凱勒把兩者接起來的方法叫「從目標倒推到現在」。從「有一天」的目標出發，往回問：為了它，五年內我該做到的那件事是什麼？為了五年目標，今年的那一件事？為了今年，這個月？這週？今天？此刻？像俄羅斯娃娃一層套一層，最裡面那一個，就是你今天要推的那張牌。</p>
+<p>問題要問得好，答案才會好。凱勒建議把問題問得<strong>又大又具體</strong>：「我要怎麼增加業績」太模糊，「我要怎麼在六個月內把業績翻倍」才會逼出不一樣的思考。至於答案，可以分三種：做得到的（你已經會的）、得伸手才搆得到的（需要多查一些資料）、以及可能性的（超出你目前的做法）。他要你找第三種——先去看這個領域做得最好的人怎麼做，以此為起點，再想下一步會往哪走。</p>
+<p><strong>實用價值</strong>：這個問句最好用的時刻，是你面對一長串待辦、不知從何下手的時候。它把「排優先順序」這件難事，換成一個可以直接回答的問題。</p>
+<h3>三、時間區塊：把答案放進行事曆</h3>
+<p>知道那件事是什麼還不夠。凱勒觀察到，成果最好的人和其他人的差別，在於他們替那件事<strong>預約了時間</strong>，並且像赴重要約會一樣遵守。</p>
+<p>他建議的排法有順序。第一，先排<strong>休假</strong>——成功的人是從休息開始規劃一年的，因為他們知道自己需要恢復。第二，排<strong>那一件事</strong>的時間：每天至少四小時，盡量放在一天最早的時段，因為那時意志力最足。第三，每週留一小時做<strong>規劃</strong>，檢視目標與進度。</p>
+<p>時間排了，還要守得住。他提了幾個做法：找個不被打擾的地方；事先把水、點心、資料備好，減少起身的理由；關掉電子郵件和手機；跟同事、家人講清楚這段時間不找你，並說明原因。被打斷時的原則是「若抹掉，就補上」——那個區塊一定要在別處還回來。</p>
+<p>凱勒也老實講了代價：把最好的時間給了一件事，其他事一定會亂。信件會堆著，有些人會不高興。他說這種亂是正常的，你得學著跟它相處，而不是因為受不了而放棄聚焦。</p>
+<p><strong>常見誤用</strong>：把四小時當成硬指標，做不到就全盤放棄。對多數受雇者來說，先守住每天一個不被打擾的整段時間，已經是很大的改變。</p>
+<h3>四、三個承諾與四個小偷</h3>
+<p>書的最後談長期執行。凱勒說，要讓時間區塊真的產出成果，需要三個承諾。</p>
+<p>一是<strong>追求精通</strong>：把那件事當成一條長路，願意年復一年地練。二是<strong>從「憑本能」走到「有目的」</strong>：多數人做事是用天生的方式做到極限，撞到天花板就停了；有目的的人撞到天花板時會去找新的方法、新的系統、新的老師，哪怕新方法一開始比較彆扭。三是<strong>為結果負責</strong>：不把結果推給環境，並且找一位教練或夥伴定期檢視你的進度。他引用一項關於目標的研究：把目標寫下來、並定期向朋友回報進度的人，達成率明顯高於只在心裡想的人。</p>
+<p>另一面是四個會偷走生產力的小偷：<strong>不會說不</strong>（每答應一件事，就是對那一件事說不）、<strong>害怕混亂</strong>（上面提過）、<strong>不顧健康</strong>（他把睡眠、飲食、運動視為生產力的基礎建設）、以及<strong>環境不支持你的目標</strong>（身邊的人和你待的地方，都會把你拉向某個方向）。</p>
+<p>再往上一層，凱勒用一座冰山描述整個結構：露出水面的是<strong>生產力</strong>，水面下支撐它的是<strong>優先順序</strong>，最底層是<strong>人生目的</strong>。知道自己為什麼做，才排得出優先順序；有了優先順序，每天的行動才有依據。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書三段：<strong>先拆</strong>——六個謊言讓你以為每件事都要顧、可以同時顧。<strong>再給</strong>——一個聚焦問題，在大尺度找方向、小尺度找行動，並用「從目標倒推到現在」把兩者連起來。<strong>後守</strong>——用時間區塊把答案放進行事曆，用三個承諾維持品質，防住四個小偷。</p>
+<p>貫穿的假設只有一個：成果的分布極度不平均，所以注意力也該極度不平均。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>今晚寫下明天的待辦，然後問聚焦問題，圈出一件——只圈一件</li><li>明天上班的第一個整段時間（先從九十分鐘開始）只做它，信箱和通訊軟體晚點再開</li><li>做一次倒推：今年最重要的一件事 → 這個月 → 這週，寫在看得見的地方</li><li>跟主管或同事講好你每天哪一段時間不回訊息，以及為什麼</li><li>被打斷了，當天或隔天把那段時間補回來</li><li>每週日晚上花半小時檢視：這週那件事推進了多少？</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>對健康、關係、財務各問一次聚焦問題，例如「我能為睡眠做的哪一件事，會讓其他事更容易？」</li><li>一次只養一個習慣，給它兩個月左右，穩了再加下一個</li><li>行事曆上先畫出今年的休假</li><li>記住玻璃球：家人、健康、朋友、誠信不能放太久不管</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「一輩子只能做一件事」</strong>——凱勒說的是「此時此刻的優先只有一個」。人生各領域都可以有各自的那一件事，而且它會隨時間換。</li><li><strong>「其他事都可以丟著不管」</strong>——書裡對私人生活的態度相當保守，強調不能失衡太久。可以延後的是工作上的雜務，不是家人和健康。</li><li><strong>「每天四小時做不到就沒用」</strong>——四小時是凱勒對自己和頂尖業務的標準。核心是「預先保留、整段不切碎、盡量排早上」，時數可以依現實調整。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《深度工作力》（紐波特）：凱勒告訴你「選哪一件事」和「為它留時間」，紐波特告訴你「在那段時間裡怎麼真正專注」。兩本一前一後剛好接上。</li><li>《少，但是更好》（麥基昂）：同樣主張少做，麥基昂談得更廣，把「專準」當成一種生活哲學，花很多篇幅在怎麼優雅地說不；凱勒則更像一本操作手冊。</li><li>《原子習慣》（克利爾）：凱勒說自律只需要撐到習慣成形，克利爾接手解釋習慣怎麼設計才撐得過那段時間。兩本對「意志力不可靠」的看法一致。</li><li>《OKR：做最重要的事》（杜爾）：OKR 把「少數關鍵目標」做成組織層級的制度，可以看成聚焦問題的團隊版。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「我能做的哪一件事，做了之後會讓其他事變得更容易，或者根本不必做？」（What's the ONE Thing I can do such that by doing it everything else will be easier or unnecessary?）</li><li>「同時追兩隻兔子，你一隻也抓不到。」（If you chase two rabbits, you will not catch either one.）——書中引用的俄羅斯諺語</li><li>「成功是依序累積的，不是同時發生的。」（大意：Success is sequential, not simultaneous.）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>對你現在的工作問一次聚焦問題：哪一件事做了，其他事會變得更容易或不必做？你上週花了多少時間在它上面？</li><li>凱勒說工作是橡皮球，家庭、健康、朋友、誠信是玻璃球。你最近差點摔到的是哪一顆？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-one-thing" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-one-thing";
+      var TITLE = "成功，從聚焦一件事開始";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-one-thing";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

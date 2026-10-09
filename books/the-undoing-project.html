@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>橡皮擦計畫｜拾頁</title>
+<meta name="description" content="你以為改變我們對「人類判斷」理解的，是一套冷冰冰的理論？這本書要戳破的是：那套理論其實長在一段比婚姻還親密、最後卻走到破裂的友誼裡。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="the-undoing-project" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-31</span><span class="theme-chip ui-label">邏輯思考</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>橡皮擦計畫</h1>
+  <p class="title-en">The Undoing Project</p>
+  <p class="byline">麥可・路易士（Michael Lewis）｜2016</p>
+  <p class="hook">你以為改變我們對「人類判斷」理解的，是一套冷冰冰的理論？這本書要戳破的是：那套理論其實長在一段比婚姻還親密、最後卻走到破裂的友誼裡。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>人的直覺判斷不是偶爾出錯，而是照著代表性、可得性、錨定等捷徑系統性地出錯。</li><li>人對「改變」而非「總量」有感，而且損失的痛大於同等獲利的快樂——這就是展望理論。</li><li>最好的想法常出自兩個截然不同的人互相打磨；合作的功勞一旦分配不均，關係就會受傷。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>麥可・路易士是當代最會說故事的非虛構作家之一，寫過華爾街、寫過金融海嘯，也寫過《魔球》——講一支窮球隊如何用數據找出被球探低估的球員。</p>
+<p>這本書的起點正是《魔球》。那本書出版後，經濟學家塞勒與法學家桑思坦合寫了一篇書評，大意是：這個故事很精彩，但作者似乎不知道，<strong>為什麼</strong>專家的眼光會出錯，早就有兩位以色列心理學家解釋過了。路易士承認他當時真的沒聽過丹尼爾・康納曼和阿莫斯・特沃斯基。他去追這條線，一追就是好幾年，2016 年寫成這本書。</p>
+<p>所以這不是一本理論書，而是一本雙人傳記。它和《快思慢想》是很好的搭配：康納曼自己的書講「發現了什麼」，路易士的書講「這些發現是怎麼從兩個人的對話裡長出來的」。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>表面的問題是：人為什麼會做出錯誤的判斷？但路易士真正著迷的是另一個問題：<strong>兩個個性南轅北轍的人，怎麼會合作出誰也無法獨力完成的東西？這樣的關係又為什麼會結束？</strong></p>
+<p>書以休士頓火箭隊的總管莫雷開場。莫雷是數據派的代表人物，但他發現即使有了模型，球探和他自己還是不斷被同樣的陷阱絆倒：看到一個新秀長得像某位球星，就高估他；面試時的第一印象揮之不去；只注意支持自己看法的資訊。資料幫得上忙，但問題出在人的腦袋裡。那麼，是誰最早把這些腦袋裡的毛病畫成地圖的？故事從這裡轉到以色列。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、兩個不可能的搭檔</h3>
+<p><strong>丹尼</strong>（書中對康納曼的稱呼）在巴黎長大，是猶太人。二戰期間納粹占領法國，他們一家四處躲藏，父親在戰爭結束前病逝。他後來常講一段童年記憶：有一天他違反宵禁在街上，被一名德國黨衛軍士兵叫住——那個人卻把他抱起來，給他看自己兒子的照片，還塞錢給他。丹尼從中學到的是：人是複雜的，無窮地耐人尋味。戰後他移居以色列，二十出頭在軍隊的心理單位，被交付設計一套評估新兵的面談方法。他發現面試官的整體直覺很不可靠，於是改成讓面試官針對幾項具體特質分別評分——這套做法據說被以色列軍方沿用了很久。他終其一生的特質是<strong>懷疑</strong>，尤其是懷疑自己。</p>
+<p><strong>阿莫斯</strong>幾乎是他的反面。他在以色列出生，當過傘兵。服役時一次演習中，一名士兵在點燃爆破裝置後呆住了，阿莫斯衝上前把人拖開，自己受了傷，因此獲得英勇勳章。他自信、樂觀、風趣，是任何聚會的中心。同行之間流傳一個說法：你越快發現阿莫斯比你聰明，就代表你越聰明。他的辦公桌上乾乾淨淨；丹尼的辦公室則一團亂。</p>
+<p>1969 年，兩人都在希伯來大學任教。丹尼邀請阿莫斯到他的專題討論課上演講，阿莫斯介紹了當時的主流看法：人大致上是不錯的直覺統計學家。丹尼毫不客氣地反駁——依他在軍中和教學的經驗，人根本不是。平常辯論從沒輸過的阿莫斯，這次被說動了。</p>
+<p>之後的十多年，他們幾乎形影不離。同事經過那間關著門的研究室，聽到的是不停的笑聲。他們一起一句一句地寫，寫到分不清哪個點子是誰的；論文的作者順序據說是丟銅板決定，之後輪流。丹尼說過，他們共享一個腦袋。丹尼提供源源不絕的懷疑和對人心的敏感，阿莫斯提供嚴謹的邏輯與無畏——一個人的想法，另一個人總能看出它更好的樣子。</p>
+<h3>二、捷思與偏誤：直覺是怎麼出錯的</h3>
+<p>他們的第一篇合作論文，問的是連受過訓練的統計學者會不會也犯統計上的錯。答案是會：研究者普遍相信小樣本也能忠實代表母體，他們半開玩笑地稱之為「小數法則」。</p>
+<p>接著他們提出，人在不確定下做判斷時，不是在做機率運算，而是靠幾條省力的心理捷徑，也就是<strong>捷思</strong>：</p>
+<p><strong>代表性</strong>：用「像不像」來判斷機率。最有名的是「琳達問題」：琳達三十一歲，單身，直言不諱，聰明，主修哲學，學生時代關心歧視與社會正義。請問哪一個比較可能：（甲）琳達是銀行出納員；（乙）琳達是銀行出納員，而且積極參與女權運動？大多數人選乙。但乙是甲的子集合，機率不可能比甲高。描述「像」女權運動者，像就壓過了邏輯。這正是莫雷的球探看到「長得像球星」的新秀時犯的錯。</p>
+<p><strong>可得性</strong>：用「容不容易想到」來判斷頻率。容易想起的例子、畫面鮮明的事件，會被高估。</p>
+<p><strong>錨定</strong>：先看到的數字會把估計拉過去，即使那個數字明顯是隨機的——他們在實驗裡轉動一個做了手腳的輪盤，輪盤停在不同的數字，受試者接下來對一個完全無關問題的估計就跟著偏高或偏低。</p>
+<p>1974 年，他們把這些成果寫成一篇刊登在《科學》期刊上的論文，影響遠遠超出心理學。</p>
+<p>書裡有一位重要的配角：加拿大醫師雷德邁爾。他年輕時讀到這篇論文，覺得醫學院沒教的東西全在裡面。後來他與阿莫斯合作，研究醫師的判斷如何被同樣的捷徑誤導。他在多倫多一家大型創傷醫院的工作之一，就是替其他醫師的診斷把關——當大家都盯著車禍傷患最明顯的傷勢時，由他來問：有沒有什麼不那麼顯眼的東西被漏掉了？</p>
+<p><strong>限制</strong>：書中也記錄了學界的批評。有心理學家認為，這些實驗題目是刻意設計來讓人出錯的，在自然環境裡，捷思多半運作得不錯。丹尼與阿莫斯自己也說過，他們研究錯誤，就像研究視錯覺——不是因為視覺很爛，而是錯覺能揭露視覺的運作方式。</p>
+<h3>三、展望理論：我們怕的是失去</h3>
+<p>搞定「判斷」之後，他們轉向「決策」。當時經濟學的標準理論是期望效用：理性的人看的是最終的財富水準，並按機率加權。</p>
+<p>丹尼自認不懂經濟學，這反而成了優勢。他讀到這套理論時的直覺反應是：真的有人這樣想事情嗎？他們開始設計一題又一題的選擇題互相測試，找出理論預測不到的反應。得到的理論在 1979 年發表，取了一個刻意不帶意義的名字「展望理論」。重點有三：</p>
+<p><strong>參考點</strong>：人感受的是相對於某個基準的「得」與「失」，而不是財富的絕對水準。同樣拿到一百萬，原本預期兩百萬的人和原本預期零的人，感受完全相反。</p>
+<p><strong>損失規避</strong>：失去的痛大於得到同等東西的快樂。多數人不願接受「丟銅板，正面贏一百、反面輸一百」的賭局，要贏的金額明顯高於輸的金額才肯下注。</p>
+<p><strong>面對獲利保守、面對損失冒險</strong>：確定拿五百，和一半機率拿一千，多數人選前者；確定賠五百，和一半機率賠一千，多數人卻選擇賭一把。</p>
+<p>由此推出<strong>框架效應</strong>。他們設計了著名的「疾病問題」：一種疾病預計會奪走六百條人命，有兩種方案。如果說成「方案一可以救活兩百人；方案二有三分之一的機率救活全部、三分之二的機率一個也救不了」，多數人選確定救兩百人。如果把同樣的結果改述成「方案一會有四百人死亡；方案二有三分之一的機率無人死亡、三分之二的機率六百人全部死亡」，多數人轉而選擇賭。事實完全一樣，只是把「救活」換成了「死亡」，偏好就翻轉了。</p>
+<p>這對經濟學是很大的衝擊：如果選擇會隨著描述方式改變，那麼「人有一套穩定的偏好」這個根本假設就站不住腳。當時還年輕的塞勒讀到他們的研究，如獲至寶，行為經濟學由此展開。</p>
+<h3>四、橡皮擦計畫，與一段友誼的磨損</h3>
+<p>書名來自他們後期的一個研究構想。丹尼注意到，人在遭遇不幸之後，會在腦中把事情「擦掉重來」——「要是他那天沒有走那條路……」。而且這種擦除有規律：我們比較容易去擦掉不尋常的、最後一刻的、可以由人控制的環節；例行的事、物理的定律，我們不會去想像它改變。這就是他們所說的「撤銷的規則」，也就是心理學後來所稱的反事實思考。後悔與遺憾的強弱，取決於「差一點就不一樣」的想像有多容易。</p>
+<p>諷刺的是，這個計畫差不多也是他們合作走下坡的時期。兩人後來都離開以色列到北美任教——阿莫斯去了史丹佛，丹尼去了加拿大的一所大學。距離只是表面原因。更深的裂痕是<strong>功勞的分配</strong>：外界把兩人共同的成果越來越歸功於阿莫斯一人。阿莫斯獲得了著名的「天才獎」和各種榮譽，邀約不斷；丹尼則覺得自己成了影子。丹尼希望阿莫斯主動說些什麼來糾正外界的印象，阿莫斯卻似乎不覺得有必要——在他看來事情很清楚，何必解釋。</p>
+<p>裂痕一年比一年深。按照書中的敘述，1990 年代中，一次不愉快之後，丹尼終於對阿莫斯說，他們連朋友都不算了。沒過幾天，阿莫斯打電話來：他被診斷出惡性黑色素瘤，醫生說只剩大約半年。他告訴丹尼的大意是：不管你怎麼想，我們是朋友。最後那幾個月，兩人恢復了交談。阿莫斯在 1996 年過世，丹尼在追思會上致詞。</p>
+<p>2002 年，康納曼獲得諾貝爾經濟學獎。這個獎不頒給已故者——書的結尾就停在丹尼等待那通電話的時刻，以及那個他一定想過的反事實：如果阿莫斯還在。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>路易士用敘事鋪出一條思想的演進線：<strong>現象</strong>（專家的判斷不可靠，從球探到醫師皆然）→ <strong>判斷的機制</strong>（代表性、可得性、錨定等捷思，造成系統性而非隨機的偏誤）→ <strong>決策的機制</strong>（展望理論：參考點、損失規避、框架）→ <strong>情緒的機制</strong>（反事實思考與後悔）→ <strong>影響</strong>（醫療、公共政策，以及行為經濟學的誕生）。</p>
+<p>與這條線平行的是一條人的線：兩個互補的心靈相遇、融合、產出、因為名聲的不對等而疏離、在死亡面前和解。兩條線互為註腳——研究人類不理性的兩個人，自己也逃不過嫉妒、自尊與遺憾。</p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版</strong>：</p>
+<ol><li>面試或評估人選時，學丹尼的做法：先列出幾項具體特質分項評分，最後才看整體印象</li><li>發現自己因為「他讓我想到某某人」而喜歡或否定一個人，把這個類比說出來，再問它是否相關</li><li>提案時把同一件事用「獲得」和「損失」兩種說法各寫一遍，看看自己的偏好有沒有翻轉</li><li>團隊裡指定一個雷德邁爾式的角色：當大家都盯著最明顯的問題時，負責問「還有什麼沒看到的？」</li><li>合作的成果，主動、公開地把功勞說清楚——別假設對方不在意</li></ol>
+<p><strong>生活版</strong>：</p>
+<ol><li>估價、談薪水、殺價前，留意誰先丟出了數字：那個錨正在拉你</li><li>陷入「要是當初……」時，辨認這是大腦的擦除機制在運作——它挑的那個環節，未必是真正的原因</li><li>找一個想法跟你很不一樣、卻讓你願意聽的人，定期聊你正在想的事</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「這本書證明人是愚蠢的」</strong>——丹尼與阿莫斯研究的是聰明人、專家，包括他們自己。偏誤是正常運作的心智附帶的產物，就像視錯覺之於視力，不是智力低落。</li><li><strong>「讀了這本就不用讀《快思慢想》」</strong>——這本的強項是人與故事，理論講得比較跳躍。想紮實弄懂概念，仍然要回到康納曼自己寫的那本。</li><li><strong>「兩人的決裂是誰的錯」</strong>——路易士主要取材自丹尼一方與其他人的回憶，阿莫斯無法為自己說話。把它讀成關於合作與名聲的複雜故事，會比急著判誰對誰錯更貼近原書。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《快思慢想》（康納曼）：最直接的搭配。那是成果的總整理，這是成果背後的人生。康納曼把那本書獻給阿莫斯，讀完這本你會知道為什麼。</li><li>《不當行為》（塞勒）：故事的下一棒。塞勒把兩人的發現帶進經濟學，同一段歷史在他筆下是另一個視角，而且好笑得多。</li><li>《雜訊》（康納曼等）：康納曼晚年的作品。偏誤是判斷往同一個方向偏，雜訊則是判斷毫無規律地散開。丹尼年輕時在軍中設計的分項評分面談，在那本書裡發展成完整的方法。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「人們不是選擇事物本身，而是選擇對事物的描述。」（大意，書中對框架效應的總結）</li><li>「對不確定的事情做判斷時，人們不是照著機率的規則走，而是用『像不像』取代了『可不可能』。」（大意）</li><li>「做好研究的祕訣，是永遠讓自己有一點點沒被填滿——浪費幾個小時，才不會浪費好幾年。」（大意，書中引述阿莫斯的話）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>你生命中有沒有一位「跟他聊完，自己的想法會變得更好」的人？你們的差異在哪裡？現在還有保持那樣的對話嗎？</li><li>想一個你至今仍會冒出「要是當初……」的決定。你在腦中擦掉的是哪一個環節？如果照「撤銷的規則」來看，為什麼偏偏是它？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="the-undoing-project" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "the-undoing-project";
+      var TITLE = "橡皮擦計畫";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "the-undoing-project";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

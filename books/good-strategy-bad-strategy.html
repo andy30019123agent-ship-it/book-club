@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>好策略．壞策略｜拾頁</title>
+<meta name="description" content="你們公司那份寫滿願景、使命和成長目標的「策略」，很可能根本不是策略——魯梅特說，沒有診斷、沒有取捨的東西只是許願。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+      --desk-ink: rgba(247, 241, 227, 0.7);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12160F;
+        --ink: #E9E2D0;
+        --ink-soft: #A79E8B;
+        --accent: #E8B84B;
+        --rule: #2A2F24;
+        --card: #1A1F15;
+        --desk: #080A06;
+      }
+    }
+    html[data-theme="dark"] {
+      --paper: #12160F;
+      --ink: #E9E2D0;
+      --ink-soft: #A79E8B;
+      --accent: #E8B84B;
+      --rule: #2A2F24;
+      --card: #1A1F15;
+      --desk: #080A06;
+    }
+    html[data-theme="light"] {
+      --paper: #F7F1E3;
+      --ink: #2B2118;
+      --ink-soft: #6B5D4F;
+      --accent: #8C5A2B;
+      --rule: #E4D9C3;
+      --card: #FFFBF0;
+      --desk: #43362A;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--desk); }
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: "Noto Serif TC", "Songti TC", serif;
+      font-size: 19px;
+      line-height: 1.9;
+      transition: background-color 200ms, color 200ms;
+    }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+    }
+    .sheet {
+      background: var(--paper);
+      border-radius: 24px;
+      margin: clamp(12px, 2.5vw, 28px);
+      transition: background-color 200ms;
+    }
+    .page-shell {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .ui-label {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.4em 1.1em;
+      margin: 0 0 16px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 200ms, color 200ms, border-color 200ms;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle .tt-icon { font-size: 1.1rem; line-height: 1; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6em;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .theme-chip {
+      display: inline-block;
+      border: 1.5px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.15em 0.9em;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+    .title-en {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .byline {
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      margin: 0 0 24px;
+    }
+    .hook {
+      font-weight: 700;
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin: 48px 0 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 32px 0 16px;
+    }
+    p, ul, ol {
+      margin: 0 0 24px;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    section {
+      margin-bottom: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .card-section {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.5rem);
+      margin: 48px 0;
+    }
+    .card-section h2 {
+      margin-top: 0;
+    }
+    .tg-cta {
+      margin-top: 24px;
+    }
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5em 1.2em;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 700;
+      border-bottom: none;
+    }
+    .tg-button:hover {
+      border-bottom: none;
+      opacity: 0.9;
+    }
+    footer {
+      margin: 0 0 clamp(12px, 2.5vw, 28px);
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--desk-ink);
+      font-size: 0.9rem;
+      text-align: center;
+      transition: color 200ms;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer .footer-cite {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    footer a {
+      color: var(--desk-ink);
+      border-bottom-color: transparent;
+    }
+    footer a:hover {
+      border-bottom-color: var(--desk-ink);
+    }
+    .empty-state {
+      color: var(--ink-soft);
+      font-family: "Noto Sans TC", sans-serif;
+    }
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 0;
+      margin: 0;
+    }
+    .archive-list .archive-date {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--ink-soft);
+      border-bottom: none;
+      letter-spacing: 0.08em;
+    }
+    .back-link:hover { color: var(--accent); }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms, border-color 200ms;
+    }
+    .fav-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav { color: var(--accent); border-color: var(--accent); }
+    .fav-btn.is-fav svg { fill: currentColor; }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    li.has-quote-btn { position: relative; padding-right: 2.8rem; }
+    .quote-save-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 200ms;
+    }
+    .quote-save-btn:hover { color: var(--accent); }
+    .quote-save-btn.is-saved { color: var(--accent); }
+    .quote-save-btn.is-saved svg { fill: currentColor; }
+    .quote-hint {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-left: 0.6em;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+    /* 30 秒帶走摘要框 */
+    .takeaways {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: clamp(1rem, 4vw, 1.4rem) clamp(1.1rem, 4vw, 1.5rem);
+      margin: 0 0 48px;
+    }
+    .takeaways-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 0 0 0.7rem;
+    }
+    .takeaways-list {
+      margin: 0;
+      padding-left: 1.15em;
+      list-style: none;
+    }
+    .takeaways-list li {
+      position: relative;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 0.55em;
+    }
+    .takeaways-list li:last-child { margin-bottom: 0; }
+    .takeaways-list li::before {
+      content: "";
+      position: absolute;
+      left: -1.15em;
+      top: 0.82em;
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    /* 章節導航 chips（手機橫向捲動） */
+    .section-nav { margin: 0 0 48px; }
+    .secnav-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+    .secnav-chips {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.2rem;
+    }
+    .secnav-chips::-webkit-scrollbar { display: none; }
+    .secnav-chip {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      border-bottom: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .secnav-chip:hover { color: var(--accent); border-color: var(--accent); border-bottom: none; }
+    /* 讀完打卡 */
+    .markread-wrap {
+      margin: 56px 0 8px;
+      text-align: center;
+    }
+    .mark-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      padding: 0.5em 1.6em;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .mark-read:hover { background: var(--accent); color: var(--paper); }
+    .mark-read .mr-icon { font-size: 1rem; line-height: 1; }
+    .mark-read.is-done { background: var(--accent); color: var(--paper); }
+    .markread-streak {
+      margin: 0.9rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+    /* 段落節奏：段與段之間多爭取換氣 */
+    article > section + section { margin-top: 56px; }
+    /* 手機正文欄寬放寬（保留紙感） */
+    @media (max-width: 480px) {
+      .sheet { margin: 8px; border-radius: 16px; }
+      .page-shell { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="sheet">
+
+<main class="page-shell">
+  <div class="top-bar"><a class="back-link ui-label" href="../index.html">← 書架</a><button type="button" class="fav-btn" data-slug="good-strategy-bad-strategy" aria-label="收藏這本書" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></div>
+  <div class="meta-row"><span class="ui-label">2026-10-01</span><span class="theme-chip ui-label">職場成長</span><span class="ui-label">閱讀 13 分鐘</span></div>
+  <h1>好策略．壞策略</h1>
+  <p class="title-en">Good Strategy Bad Strategy</p>
+  <p class="byline">理查・魯梅特（Richard P. Rumelt）｜2011</p>
+  <p class="hook">你們公司那份寫滿願景、使命和成長目標的「策略」，很可能根本不是策略——魯梅特說，沒有診斷、沒有取捨的東西只是許願。</p>
+  
+  <aside class="takeaways" aria-label="30 秒帶走這本書">
+    <p class="takeaways-label ui-label">30 秒帶走</p>
+    <ul class="takeaways-list"><li>策略不是目標或願景，是針對一個關鍵難題，集中力量的解法。</li><li>好策略有三層核心：診斷問題、定出指導方針、設計彼此協調的行動。</li><li>壞策略的記號是空話、逃避難題、把目標當策略——根源是不敢做取捨。</li></ul>
+  </aside>
+  <nav class="section-nav ui-label" aria-label="本文目錄"><span class="secnav-label">本文目錄</span><div class="secnav-chips"><a class="secnav-chip ui-label" href="#sec-1">作者與時代背景</a><a class="secnav-chip ui-label" href="#sec-2">這本書回答什麼問題</a><a class="secnav-chip ui-label" href="#sec-3">核心概念深講</a><a class="secnav-chip ui-label" href="#sec-4">整本書的邏輯骨架</a><a class="secnav-chip ui-label" href="#sec-5">實作指南：明天就能開始</a><a class="secnav-chip ui-label" href="#sec-6">常見誤讀</a><a class="secnav-chip ui-label" href="#sec-7">延伸對照</a><a class="secnav-chip ui-label" href="#sec-8">金句</a><a class="secnav-chip ui-label" href="#sec-9">討論題</a></div></nav>
+  <article>
+<section id="sec-1"><h2>作者與時代背景</h2>
+<p>理查・魯梅特是加州大學洛杉磯分校（UCLA）安德森管理學院的教授，在策略這個領域是祖師爺等級的人物——《經濟學人》曾把他列為對管理思想最有影響力的人之一，麥肯錫的刊物稱他是「策略家中的策略家」。他早年其實是工程師，在噴射推進實驗室做過系統設計，這段背景讓他看策略的眼光很不一樣：策略對他來說是一種「設計」，像設計一架飛機，各個零件要互相配合才飛得起來。</p>
+<p>這本書出版於 2011 年，背景是他四十年來累積的不耐煩。他發現「策略」這個詞被用爛了：企業、政府、學校，每個組織都有一份策略文件，裡面是願景、使命、價值觀，加上一串財務目標。大家都以為自己有策略，但真正在做策略思考的人少之又少。他寫這本書不是要提出新理論，而是要把「策略」兩個字的意思搶回來。</p></section>
+<section id="sec-2"><h2>這本書回答什麼問題</h2>
+<p>「我們明明有年度策略、有 KPI、有願景，為什麼還是覺得組織沒有方向？」</p>
+<p>魯梅特的回答很不客氣：因為你們手上那份東西不是策略。<strong>策略的本質，是面對一個重大挑戰時，找出關鍵所在，然後把資源和行動集中在那裡。</strong>它的前提是承認困難，它的代價是放棄其他選項。一份文件如果沒說出「我們的難題是什麼」、沒說出「我們決定不做什麼」，寫得再漂亮都只是願望清單。</p>
+<p>他用「好策略」和「壞策略」這麼白的字眼，是故意的。壞策略不是「沒做好的好策略」，它是另一種東西——一種看起來像策略、實際上在迴避思考的文體。</p></section>
+<section id="sec-3"><h2>核心概念深講</h2>
+<h3>一、策略的核心：診斷、指導方針、協調一致的行動</h3>
+<p>魯梅特說，所有好策略底下都有同一副骨架，他稱為「核心」（kernel），由三部分組成：</p>
+<p><strong>診斷</strong>：說清楚「現在到底是怎麼回事」。把一團亂的現實簡化成一個可以下手的問題定義，點出哪幾個因素是關鍵。<strong>指導方針</strong>：針對診斷出的難題，選定一個整體的對付方式。它不是細節，而是像護欄一樣框出方向、排除掉其他做法。<strong>協調一致的行動</strong>：一組互相支援的具體動作，把方針落地。</p>
+<p>他用醫生看病來比喻：診斷是判定病名，指導方針是選定療法，協調一致的行動是開藥、飲食、復健的具體安排。少了任何一層，都不叫治療。</p>
+<p>書中最精彩的案例是 1997 年賈伯斯回到蘋果。當時蘋果離破產只剩幾個月，外界紛紛獻策：授權作業系統、被昇陽併購、拆掉公司。賈伯斯做的事沒有一件稱得上高明——他把十幾款桌上型電腦砍到剩一款，砍掉所有印表機和周邊，砍掉大部分經銷商，把製造移到海外，並談成微軟的一筆投資。這些動作單獨看都很普通，但它們全部指向同一個診斷：蘋果是一家在利基市場裡、產品線過度膨脹的小公司，得先縮到活得下來的大小。</p>
+<p>隔年魯梅特當面問賈伯斯：蘋果被困在小市場裡，長期打算怎麼辦？賈伯斯沒有搬出什麼宏大計畫，只是笑笑說，他要等下一個大機會出現。魯梅特認為這正是懂策略的人的回答——不假裝有答案，先把位置站穩，等機會的窗打開時全力撲上去。後來的事大家都知道了。</p>
+<p><strong>限制</strong>：三層骨架說來簡單，最難的是第一層。多數組織跳過診斷直接談行動，因為診斷等於公開承認「我們哪裡有問題」，這在政治上很痛。</p>
+<h3>二、壞策略的四個記號</h3>
+<p>魯梅特歸納出壞策略的四個特徵，讀的時候很難不想到自己公司的簡報：</p>
+<p><strong>空話。</strong>用艱澀的詞彙包裝顯而易見的事，製造高深思考的假象。他舉過一家銀行的例子，其策略宣稱要做「以客戶為中心的中介服務」——翻成白話就是「我們是銀行，我們做銀行的事」。</p>
+<p><strong>不面對挑戰。</strong>策略是為了克服障礙而存在的，如果連障礙是什麼都沒講，就無從判斷這份策略好不好。他提到農機與卡車大廠國際收割機公司在 1970 年代末做過一份厚厚的策略規劃，市佔、成長目標、各事業部的計畫一應俱全，唯獨沒提公司最要命的問題：效率低落的生產體系和惡劣的勞資關係。幾年後公司就垮了。</p>
+<p><strong>把目標當策略。</strong>「營收每年成長兩成、利潤率達到兩成」——這是期望，不是方法。魯梅特寫過一位執行長，策略就是這種數字口號，被問到要怎麼做到時，回答是靠決心與動力。那是啦啦隊，不是策略。</p>
+<p><strong>糟糕的策略目標。</strong>一種是「大雜燴」：把所有部門想做的事全列上去，稱為策略重點，實際上沒有任何優先順序。另一種是「不切實際」：目標只是把難題換句話說一遍，完全沒交代以現有資源要怎麼達成。</p>
+<p>為什麼壞策略這麼普遍？魯梅特給了三個原因。第一是<strong>不願意選擇</strong>——策略意味著有人的計畫會被犧牲，而共識決的組織最怕得罪人，結果就是人人有份的大雜燴。他舉迪吉多電腦在 1990 年代初的例子：高層對未來走向有三派意見，僵持不下，最後妥協出一句誰都不得罪、也沒有任何內容的宣言，公司則繼續流血。第二是<strong>套模板</strong>——填好願景、使命、價值觀、策略四個格子，就以為完成了策略工作。第三是<strong>正向思考的迷信</strong>——相信只要信念夠強，成功就會到來，於是分析障礙反而被當成「負面」。</p>
+<p><strong>實用價值</strong>：這四個記號是很好用的檢查表。拿你手上的計畫問：它有說難題是什麼嗎？它有說不做什麼嗎？</p>
+<h3>三、力量的來源：集中、槓桿與近程目標</h3>
+<p>好策略的力量從哪來？魯梅特的答案是：來自把力量用在對的點上。書的開場就是一個例子。1805 年特拉法加海戰，英國的納爾遜面對數量占優的法西聯合艦隊。當時海戰的慣例是兩軍排成平行的長線互轟。納爾遜把艦隊分成兩路縱隊，垂直衝進敵方陣線，把它切成幾段。這個打法有風險——衝過去的途中，領頭的船會挨打卻無法還擊。但他判斷對手的砲手訓練不足，在那天的浪況下打不準。結果法西聯軍損失了二十多艘戰艦，英軍一艘未失。納爾遜的優勢不在兵力，而在看出了對方的弱點，並設計出一套讓自己的長處打在那個弱點上的行動。</p>
+<p>另一個魯梅特很強調的工具是<strong>近程目標</strong>：挑一個夠重要、同時也真的做得到的目標，讓組織的力氣有地方集中。甘迺迪的登月計畫常被當成「大膽願景」的範例，魯梅特卻指出它其實是精心挑選過的近程目標——當時的工程專家已經評估過，登月所需的技術美國大致都有把握，而且在這個項目上有機會贏過蘇聯。它聽起來很瘋狂，其實是可行的，這才是它厲害的地方。</p>
+<p>他還提到「鏈狀系統」：有些組織的表現取決於最弱的一環，只補強其中一環是白費力氣，必須整條一起拉起來——這也是為什麼這種優勢一旦建立，對手很難模仿。</p>
+<p><strong>常見誤用</strong>：把「聚焦」理解成口號式的「我們要聚焦」。聚焦的證據是預算、人力和主管的時間真的從別處被抽走了。</p>
+<h3>四、像策略家一樣思考：把策略當成假說</h3>
+<p>書的最後一部分談思考習慣。魯梅特認為，好策略本質上是一個<strong>假說</strong>——關於「什麼會有效」的有根據的猜測，要靠現實檢驗、隨時修正。沒有人能從公式推導出好策略，就像沒有人能從現有知識直接推導出新的科學發現。</p>
+<p>他點出一個每個人都有的毛病：腦中冒出第一個像樣的想法之後，我們就會停止思考，接下來的力氣全拿去替它辯護。他自己的對策是在腦中組一個「虛擬專家小組」，想像幾位他敬重的人會怎麼拆這個想法——賈伯斯會嫌哪裡不夠簡潔？某位老師會問哪個刁鑽的問題？重點是刻意去摧毀自己的第一個答案，逼出第二個、第三個。</p>
+<p>他也提醒要提防群眾與「大家都這麼做」的社會壓力，書中用 2008 年金融危機當例子：那麼多聰明人一起相信房價不會跌，靠的不是分析，而是彼此都這麼相信。</p></section>
+<section id="sec-4"><h2>整本書的邏輯骨架</h2>
+<p>全書分三步走：第一步<strong>劃清界線</strong>——策略不是願景、目標或口號，並教你辨認壞策略的四個記號與三個成因。第二步<strong>給出骨架</strong>——診斷、指導方針、協調一致的行動，缺一不可。第三步<strong>說明力量從哪來</strong>——槓桿、聚焦、近程目標、鏈狀系統等，其實全是同一件事的變奏：把有限的力量集中到最有效果的點上。最後收在思考方法：策略是假說，要用懷疑的態度對待自己的第一個想法。</p>
+<p>貫穿全書的那條線是：<strong>好策略稀少，不是因為它複雜，而是因為它要求誠實和取捨。</strong></p></section>
+<section id="sec-5"><h2>實作指南：明天就能開始</h2>
+<p><strong>職場版（檢查並重寫你手上的計畫）</strong>：</p>
+<ol><li>拿出部門的年度計畫，用螢光筆標出「目標」和「行動」——如果通篇只有前者，那還不是策略</li><li>用一句話寫診斷：「我們現在最關鍵的難題是＿＿，因為＿＿」。寫不出來，先別談做法</li><li>寫指導方針時附上「所以我們不做＿＿」；列不出放棄的東西，代表還沒選擇</li><li>檢查行動之間有沒有互相打架：行銷主打高端，業務獎金卻獎勵衝量，就是不協調</li><li>挑一個九十天內做得到的近程目標，讓團隊有具體的東西可以集中力氣</li></ol>
+<p><strong>生活版（以「想轉職」為例）</strong>：</p>
+<ol><li>診斷：卡住你的到底是技能不足、人脈不夠，還是根本不確定想去哪？三種的解法完全不同</li><li>指導方針：選一條路，例如「先靠作品證明能力，暫不考證照」</li><li>協調行動：下班後的時間、進修預算、社交場合，全部指向同一個方向</li><li>對自己的第一個答案挑毛病：想像一位你敬重的前輩會怎麼質疑它</li></ol></section>
+<section id="sec-6"><h2>常見誤讀</h2>
+<ol><li><strong>「策略就是遠大的願景」</strong>——魯梅特認為願景與企圖心是動力，不是策略。策略從承認眼前的障礙開始，而不是從描繪終點開始。</li><li><strong>「好策略一定很聰明、很複雜」</strong>——書裡的好策略多半樸素得驚人，像賈伯斯砍產品線。難的是下決心，不是想出來。</li><li><strong>「這本書反對設目標」</strong>——他反對的是「只有目標」。目標應該是診斷與方針的產物，而不是憑空喊出的數字。</li></ol></section>
+<section id="sec-7"><h2>延伸對照</h2>
+<ul><li>《從零到一》（提爾）：提爾問「有什麼重要的真相是多數人不同意你的」，魯梅特問「關鍵難題在哪裡」。兩人都相信優勢來自獨到的洞察，而不是比別人更努力。</li><li>《OKR：做最重要的事》（杜爾）：OKR 是把方向拆成可衡量結果的工具，但它不替你決定方向。先用魯梅特的三層骨架想清楚，再用 OKR 落地，才不會把「目標」誤當成「策略」。</li><li>《藍海策略》（金偉燦、莫伯尼）：同樣談取捨——藍海的「消除、減少」就是魯梅特說的「決定不做什麼」。差別在藍海給的是一套找新市場的工具，魯梅特給的是判斷任何策略好壞的標準。</li></ul></section>
+<section id="sec-8" class="card-section"><h2>金句</h2>
+<ol><li>「策略的核心包含三個要素：診斷、指導方針，以及協調一致的行動。」（The kernel of a strategy contains three elements: a diagnosis, a guiding policy, and coherent action.）</li><li>「壞策略不只是缺少好策略而已，它有自己的生命與邏輯。」（大意：Bad strategy is not simply the absence of good strategy.）</li><li>「好策略會誠實承認眼前的挑戰，並提出克服它的方法。」（大意：A good strategy honestly acknowledges the challenges being faced and provides an approach to overcoming them.）</li></ol></section>
+<section id="sec-9" class="card-section"><h2>討論題（回訊息聊聊）</h2>
+<ol><li>用一句話寫下你的工作（或你們公司）現在最關鍵的難題。寫的時候，你發現自己最想迴避的是哪一塊？</li><li>你最近一次為了集中力量而「決定不做」的事是什麼？如果想不到，你覺得是什麼讓你難以放棄？</li></ol></section>
+  
+  <div class="markread-wrap">
+    <button type="button" id="mark-read" class="mark-read ui-label" data-slug="good-strategy-bad-strategy" aria-pressed="false">
+      <span class="mr-icon" aria-hidden="true">✓</span><span class="mr-label">標記讀完</span>
+    </button>
+    <p class="markread-streak ui-label" id="mark-read-streak" hidden></p>
+  </div>
+  </article>
+</main>
+</div>
+<footer>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換日夜模式"><span class="tt-icon">☾</span><span class="tt-label">切換夜間</span></button>
+  <p><a href="../index.html">← 所有書</a></p>
+</footer>
+<script>
+(function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var attr = root.getAttribute('data-theme');
+        if (attr === 'dark') return true;
+        if (attr === 'light') return false;
+        return matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function setIcon() {
+        if (!btn) return;
+        var toLight = isDark();
+        var ic = btn.querySelector('.tt-icon');
+        var lb = btn.querySelector('.tt-label');
+        if (ic) ic.textContent = toLight ? '☀' : '☾';
+        if (lb) lb.textContent = toLight ? '切換日間' : '切換夜間';
+      }
+      setIcon();
+      if (btn) btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setIcon();
+      });
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      });
+    })();
+</script>
+<script>
+
+    (function () {
+      var KEY = 'yedu-favs';
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+      }
+      function save(favs) { localStorage.setItem(KEY, JSON.stringify(favs)); }
+      function refresh(btn) {
+        var on = load().indexOf(btn.getAttribute('data-slug')) !== -1;
+        btn.classList.toggle('is-fav', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? '取消收藏' : '收藏這本書');
+      }
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.fav-btn'));
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+      }
+      var THEME_KEY = { '自我成長': 'growth', '職場成長': 'career', '人際關係': 'people', '邏輯思考': 'logic' };
+      var shelfExpanded = false;
+      function renderShelf() {
+        var strip = document.getElementById('myshelf-strip');
+        var list = document.getElementById('myshelf-list');
+        var empty = document.getElementById('myshelf-empty');
+        var allBtn = document.getElementById('myshelf-all');
+        if (!strip || !list || !window.__books) return;
+        var favs = load();
+        var mine = window.__books.filter(function (b) { return favs.indexOf(b.slug) !== -1; });
+        var has = mine.length > 0;
+        // 空狀態：整個「我的書櫃」區塊收起，第一次收藏才浮現（靠 [hidden]）
+        var section = document.getElementById('myshelf');
+        if (section) section.hidden = !has;
+        empty.hidden = has;
+        allBtn.hidden = !has;
+        strip.hidden = !has || shelfExpanded;
+        list.hidden = !has || !shelfExpanded;
+        allBtn.textContent = shelfExpanded ? '收合' : '觀看全部';
+        allBtn.setAttribute('aria-expanded', shelfExpanded ? 'true' : 'false');
+        if (!has) { strip.innerHTML = ''; list.innerHTML = ''; return; }
+        strip.innerHTML = mine.map(function (b) {
+          return '<a class="strip-card cover-' + (THEME_KEY[b.theme] || 'growth') + '" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="strip-title">' + esc(b.title) + '</span>' +
+            '<span class="strip-author ui-label">' + esc(b.author) + '</span>' +
+            '<span class="strip-theme ui-label">' + esc(b.theme) + '</span></a>';
+        }).join('');
+        list.innerHTML = mine.map(function (b) {
+          return '<li class="myshelf-row">' +
+            '<a class="myshelf-link" href="books/' + esc(b.slug) + '.html">' +
+            '<span class="myshelf-name">' + esc(b.title) + '</span>' +
+            '<span class="myshelf-author ui-label">' + esc(b.author) + '・' + esc(b.theme) + '</span></a>' +
+            '<button type="button" class="fav-btn fav-btn--row is-fav" data-slug="' + esc(b.slug) + '" aria-label="從書櫃移除" aria-pressed="true">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></button></li>';
+        }).join('');
+      }
+      window.__renderShelf = renderShelf;
+      var shelfAllBtn = document.getElementById('myshelf-all');
+      if (shelfAllBtn) {
+        shelfAllBtn.addEventListener('click', function () {
+          shelfExpanded = !shelfExpanded;
+          renderShelf();
+        });
+      }
+      function toggle(slug) {
+        var favs = load();
+        var i = favs.indexOf(slug);
+        if (i === -1) favs.push(slug); else favs.splice(i, 1);
+        save(favs);
+        btns.forEach(refresh);
+        renderShelf();
+        if (window.__applyShelf) window.__applyShelf();
+      }
+      btns.forEach(function (btn) {
+        refresh(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      });
+      var shelfList = document.getElementById('myshelf-list');
+      if (shelfList) {
+        shelfList.addEventListener('click', function (e) {
+          var btn = e.target.closest ? e.target.closest('.fav-btn--row') : null;
+          if (!btn) return;
+          e.preventDefault();
+          toggle(btn.getAttribute('data-slug'));
+        });
+      }
+      renderShelf();
+    })();
+  
+    (function () {
+      var KEY = 'yedu-quotes';
+      var SLUG = "good-strategy-bad-strategy";
+      var TITLE = "好策略．壞策略";
+      function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+      function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.card-section'));
+      sections.forEach(function (sec) {
+        var h2 = sec.querySelector('h2');
+        if (!h2 || h2.textContent.indexOf('金句') === -1) return;
+        if (!h2.querySelector('.quote-hint')) {
+          var hint = document.createElement('span');
+          hint.className = 'quote-hint';
+          hint.textContent = '點書籤收藏 →';
+          h2.appendChild(hint);
+        }
+        Array.prototype.slice.call(sec.querySelectorAll('li')).forEach(function (li) {
+          var text = li.textContent.trim();
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'quote-save-btn';
+          btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg>';
+          function refresh() {
+            var on = load().some(function (x) { return x.slug === SLUG && x.q === text; });
+            btn.classList.toggle('is-saved', on);
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.setAttribute('aria-label', on ? '從金句集移除' : '收藏這句金句');
+          }
+          btn.addEventListener('click', function () {
+            var qs = load();
+            var idx = -1;
+            qs.forEach(function (x, i) { if (x.slug === SLUG && x.q === text) idx = i; });
+            if (idx === -1) qs.push({ slug: SLUG, title: TITLE, q: text }); else qs.splice(idx, 1);
+            save(qs);
+            refresh();
+          });
+          refresh();
+          li.classList.add('has-quote-btn');
+          li.appendChild(btn);
+        });
+      });
+    })();
+  
+    (function () {
+      var KEY = 'yedu-streak';
+      var SLUG = "good-strategy-bad-strategy";
+      function today() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+      function prevDay(d) {
+        var t = new Date(d + 'T00:00:00Z');
+        t.setUTCDate(t.getUTCDate() - 1);
+        return t.toISOString().slice(0, 10);
+      }
+      function load() {
+        try {
+          var s = JSON.parse(localStorage.getItem(KEY)) || {};
+          if (!Array.isArray(s.readSlugs)) s.readSlugs = [];
+          if (typeof s.streak !== 'number') s.streak = 0;
+          return s;
+        } catch (e) { return { lastReadDate: null, streak: 0, readSlugs: [] }; }
+      }
+      var btn = document.getElementById('mark-read');
+      var note = document.getElementById('mark-read-streak');
+      if (!btn) return;
+      function paint() {
+        var s = load();
+        var done = s.readSlugs.indexOf(SLUG) !== -1;
+        btn.classList.toggle('is-done', done);
+        btn.setAttribute('aria-pressed', done ? 'true' : 'false');
+        var lb = btn.querySelector('.mr-label');
+        if (lb) lb.textContent = done ? '已讀完' : '標記讀完';
+        if (note) {
+          if (s.streak > 0 && (s.lastReadDate === today() || s.lastReadDate === prevDay(today()))) {
+            note.textContent = '連續閱讀 ' + s.streak + ' 天';
+            note.hidden = false;
+          } else {
+            note.hidden = true;
+          }
+        }
+      }
+      btn.addEventListener('click', function () {
+        var s = load();
+        var td = today();
+        if (s.lastReadDate === td) {
+          // 同一天重複標記：不重複加天數，只確保收錄本書
+        } else if (s.lastReadDate === prevDay(td)) {
+          s.streak = s.streak + 1;
+        } else {
+          s.streak = 1; // 首次或中斷後歸 1
+        }
+        s.lastReadDate = td;
+        if (s.readSlugs.indexOf(SLUG) === -1) s.readSlugs.push(SLUG);
+        localStorage.setItem(KEY, JSON.stringify(s));
+        paint();
+      });
+      paint();
+    })();
+  
+</script>
+</body>
+</html>

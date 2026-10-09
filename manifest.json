@@ -1,5 +1,284 @@
 [
   {
+    "date": "2026-10-31",
+    "slug": "the-undoing-project",
+    "title": "橡皮擦計畫",
+    "author": "麥可・路易士（Michael Lewis）",
+    "theme": "邏輯思考",
+    "hook": "你以為改變我們對「人類判斷」理解的，是一套冷冰冰的理論？這本書要戳破的是：那套理論其實長在一段比婚姻還親密、最後卻走到破裂的友誼裡。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-undoing-project.html"
+  },
+  {
+    "date": "2026-10-30",
+    "slug": "set-boundaries-find-peace",
+    "title": "設限，才有好關係",
+    "author": "內卓・格洛弗・塔瓦布（Nedra Glover Tawwab）",
+    "theme": "人際關係",
+    "hook": "你以為自己累是因為事情太多、別人太過分？塔瓦布說，更常見的原因是你從來沒把話講清楚，卻默默期待別人自己發現你的底線在哪。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/set-boundaries-find-peace.html"
+  },
+  {
+    "date": "2026-10-29",
+    "slug": "blue-ocean-strategy",
+    "title": "藍海策略",
+    "author": "金偉燦、芮妮・莫伯尼（W. Chan Kim & Renée Mauborgne）",
+    "theme": "職場成長",
+    "hook": "你以為做生意就是比對手便宜一點、好一點？金偉燦說那片殺到見血的紅海不值得待——贏的方法是讓競爭變得不重要。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/blue-ocean-strategy.html"
+  },
+  {
+    "date": "2026-10-28",
+    "slug": "the-happiness-advantage",
+    "title": "哈佛最受歡迎的快樂工作學",
+    "author": "尚恩・艾科爾（Shawn Achor）",
+    "theme": "自我成長",
+    "hook": "你一直相信「等我成功了就會快樂」？艾科爾說這條公式寫反了：是先有正向的狀態，大腦才表現得更好，成功是跟在快樂後面來的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-happiness-advantage.html"
+  },
+  {
+    "date": "2026-10-27",
+    "slug": "black-box-thinking",
+    "title": "失敗的力量",
+    "author": "馬修・席德（Matthew Syed）",
+    "theme": "邏輯思考",
+    "hook": "你以為成功的人和組織是因為很少犯錯？這本書要戳破的是：差別不在犯不犯錯，而在犯錯之後——有人把它裝進黑盒子拆開來學，有人把它埋起來假裝沒發生。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/black-box-thinking.html"
+  },
+  {
+    "date": "2026-10-26",
+    "slug": "pre-suasion",
+    "title": "鋪梗力",
+    "author": "羅伯特・席爾迪尼（Robert Cialdini）",
+    "theme": "人際關係",
+    "hook": "你以為說服力取決於你說了什麼？席爾迪尼發現高手贏在更早的地方：開口之前，他們先決定了你腦子裡正在想什麼。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/pre-suasion.html"
+  },
+  {
+    "date": "2026-10-25",
+    "slug": "creativity-inc",
+    "title": "創意電力公司",
+    "author": "艾德・卡特莫爾、艾美・華萊士（Ed Catmull & Amy Wallace）",
+    "theme": "職場成長",
+    "hook": "你以為皮克斯靠的是一群天才和源源不絕的好點子？卡特莫爾說他們每部片一開始都很爛，厲害的是把爛片救起來的那套做法。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/creativity-inc.html"
+  },
+  {
+    "date": "2026-10-24",
+    "slug": "the-road-less-traveled",
+    "title": "心靈地圖",
+    "author": "史考特・派克（M. Scott Peck）",
+    "theme": "自我成長",
+    "hook": "你以為日子過得辛苦是哪裡出了錯？派克開頭第一句就說「人生苦難重重」——接受這件事的人，問題才開始變得可以解決。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-road-less-traveled.html"
+  },
+  {
+    "date": "2026-10-23",
+    "slug": "misbehaving",
+    "title": "不當行為",
+    "author": "理查・塞勒（Richard H. Thaler）",
+    "theme": "邏輯思考",
+    "hook": "你以為自己花錢很理性？這本書要戳破的是：經濟學教科書裡那個精打細算的「理性人」根本不存在，而你我那些可預測的犯傻，足以撼動整個市場與政策。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/misbehaving.html"
+  },
+  {
+    "date": "2026-10-22",
+    "slug": "hold-me-tight",
+    "title": "抱緊我",
+    "author": "蘇珊・強森（Sue Johnson）",
+    "theme": "人際關係",
+    "hook": "你們吵的從來不是碗誰洗、錢怎麼花。每一場架底下，都是同一句沒問出口的話：我需要你的時候，你會在嗎？",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/hold-me-tight.html"
+  },
+  {
+    "date": "2026-10-21",
+    "slug": "the-one-thing",
+    "title": "成功，從聚焦一件事開始",
+    "author": "蓋瑞・凱勒、傑伊・巴帕森（Gary Keller & Jay Papasan）",
+    "theme": "職場成長",
+    "hook": "待辦清單越列越長、每件事都很重要？凱勒說這正是你忙到沒成果的原因——真正算數的事極少，其他的都可以晚點再說。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-one-thing.html"
+  },
+  {
+    "date": "2026-10-20",
+    "slug": "stumbling-on-happiness",
+    "title": "快樂為什麼不幸福？",
+    "author": "丹尼爾・吉伯特（Daniel Gilbert）",
+    "theme": "自我成長",
+    "hook": "你確定升職、買房、搬去那個城市之後會比較快樂？哈佛心理學家吉伯特說，人類預測自己未來感受的能力差得驚人，而且錯的方式很固定。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/stumbling-on-happiness.html"
+  },
+  {
+    "date": "2026-10-19",
+    "slug": "super-thinking",
+    "title": "超級思維",
+    "author": "蓋布瑞・溫伯格、蘿倫・麥肯（Gabriel Weinberg & Lauren McCann）",
+    "theme": "邏輯思考",
+    "hook": "你以為想得好要靠天生聰明？這本書要戳破的是：厲害的人不是腦袋轉得比較快，而是口袋裡多了幾百個別人早就想好的「思考捷徑」，遇到問題直接拿出來套。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/super-thinking.html"
+  },
+  {
+    "date": "2026-10-18",
+    "slug": "games-people-play",
+    "title": "人間遊戲",
+    "author": "艾瑞克・伯恩（Eric Berne）",
+    "theme": "人際關係",
+    "hook": "為什麼你和某些人總是吵同一種架、落得同一種下場？伯恩說那不是巧合，是一場雙方都沒察覺、卻都演得很熟的「遊戲」——而且你們各自都從裡面拿到了好處。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/games-people-play.html"
+  },
+  {
+    "date": "2026-10-17",
+    "slug": "originals",
+    "title": "反叛，改變世界的力量",
+    "author": "亞當・格蘭特（Adam Grant）",
+    "theme": "職場成長",
+    "hook": "你以為改變世界的人都是天生大膽、說辭職就辭職的冒險家？格蘭特發現他們其實跟你一樣怕，而且多半留著正職當後路。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/originals.html"
+  },
+  {
+    "date": "2026-10-16",
+    "slug": "the-almanack-of-naval-ravikant",
+    "title": "納瓦爾寶典",
+    "author": "艾瑞克・喬根森（Eric Jorgenson）",
+    "theme": "自我成長",
+    "hook": "你以為致富靠努力加班、快樂靠得到想要的東西？納瓦爾兩個都反過來講：出租時間賺不到自由，而每一個欲望，都是你跟自己簽的一張不快樂合約。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-almanack-of-naval-ravikant.html"
+  },
+  {
+    "date": "2026-10-15",
+    "slug": "skin-in-the-game",
+    "title": "不對稱陷阱",
+    "author": "納西姆・尼可拉斯・塔雷伯（Nassim Nicholas Taleb）",
+    "theme": "邏輯思考",
+    "hook": "你以為判斷一個建議好不好，要看說話的人多聰明、頭銜多高？這本書要戳破的是：該看的只有一件事——如果他說錯了，他自己會不會痛。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/skin-in-the-game.html"
+  },
+  {
+    "date": "2026-10-14",
+    "slug": "the-culture-map",
+    "title": "文化地圖",
+    "author": "艾琳・梅爾（Erin Meyer）",
+    "theme": "人際關係",
+    "hook": "你覺得那個外國同事沒禮貌、那個客戶講話不老實？多半不是人品問題，是你們各自帶著一張看不見的文化地圖，而你以為自己那張就是世界本身。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-culture-map.html"
+  },
+  {
+    "date": "2026-10-13",
+    "slug": "the-innovators-dilemma",
+    "title": "創新的兩難",
+    "author": "克雷頓・克里斯汀生（Clayton M. Christensen）",
+    "theme": "職場成長",
+    "hook": "大公司被新對手幹掉，你以為是主管昏庸、不聽客戶？克里斯汀生說正好相反——它們是因為把每件事都做對了才倒下的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-innovators-dilemma.html"
+  },
+  {
+    "date": "2026-10-12",
+    "slug": "digital-minimalism",
+    "title": "深度數位大掃除",
+    "author": "卡爾・紐波特（Cal Newport）",
+    "theme": "自我成長",
+    "hook": "你以為問題是自制力不夠，所以關通知、設時間限制？紐波特說這些小技巧擋不住被設計來讓你上癮的產品，你需要的是一套完整的使用哲學。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/digital-minimalism.html"
+  },
+  {
+    "date": "2026-10-11",
+    "slug": "freakonomics",
+    "title": "蘋果橘子經濟學",
+    "author": "李維特、杜伯納（Steven D. Levitt & Stephen J. Dubner）",
+    "theme": "邏輯思考",
+    "hook": "你以為人是照道德、照規定在行動？這本書要戳破的是：人其實是照「誘因」在行動，而大家深信不疑的常識，常常只是聽起來舒服、沒人去查過資料的說法。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/freakonomics.html"
+  },
+  {
+    "date": "2026-10-10",
+    "slug": "the-art-of-gathering",
+    "title": "這樣聚會，最成功！",
+    "author": "普里亞・帕克（Priya Parker）",
+    "theme": "人際關係",
+    "hook": "你以為聚會無聊是因為菜不好吃、場地不夠美？其實是因為沒有人認真回答過那個最基本的問題——我們今天到底為什麼要聚在一起。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-art-of-gathering.html"
+  },
+  {
+    "date": "2026-10-09",
+    "slug": "the-first-90-days",
+    "title": "從新主管到頂尖主管",
+    "author": "麥可・瓦金斯（Michael D. Watkins）",
+    "theme": "職場成長",
+    "hook": "你以為升官、換工作靠的是過去那套本事？瓦金斯說，害你在新位子上跌倒的，往往正是讓你走到這裡的那套強項。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-first-90-days.html"
+  },
+  {
+    "date": "2026-10-08",
+    "slug": "designing-your-life",
+    "title": "做自己的生命設計師",
+    "author": "比爾・柏內特、戴夫・埃文斯（Bill Burnett & Dave Evans）",
+    "theme": "自我成長",
+    "hook": "你一直在等自己「想清楚要做什麼」再出發？兩位史丹佛設計師說，人生不是想出來的，是做出原型試出來的——而且好的版本不只一個。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/designing-your-life.html"
+  },
+  {
+    "date": "2026-10-07",
+    "slug": "the-checklist-manifesto",
+    "title": "清單革命",
+    "author": "葛文德（Atul Gawande）",
+    "theme": "邏輯思考",
+    "hook": "你以為出錯是因為懂得不夠多？這本書要戳破的是：現代專業最致命的失誤，多半發生在「我們明明知道、卻沒做到」的地方，而解藥是一張看起來很蠢的紙。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-checklist-manifesto.html"
+  },
+  {
+    "date": "2026-10-06",
+    "slug": "adult-children-of-emotionally-immature-parents",
+    "title": "假性孤兒",
+    "author": "琳賽・吉普森（Lindsay C. Gibson）",
+    "theme": "人際關係",
+    "hook": "父母沒打你、沒餓著你，你卻從小覺得孤單，還怪自己不知足？問題可能不在你太敏感，而在他們的情緒從來沒有長大。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/adult-children-of-emotionally-immature-parents.html"
+  },
+  {
+    "date": "2026-10-05",
+    "slug": "so-good-they-cant-ignore-you",
+    "title": "深度職場力",
+    "author": "卡爾・紐波特（Cal Newport）",
+    "theme": "職場成長",
+    "hook": "「追隨你的熱情」聽起來很美，卻讓一整代人對工作更焦慮。紐波特說順序搞反了——熱情是把事情做到很強之後才長出來的。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/so-good-they-cant-ignore-you.html"
+  },
+  {
+    "date": "2026-10-04",
+    "slug": "self-compassion",
+    "title": "寬容，讓自己更好",
+    "author": "克莉絲汀・聶夫（Kristin Neff）",
+    "theme": "自我成長",
+    "hook": "你以為對自己狠一點才會進步？聶夫的研究說剛好相反：自我批評讓人更怕失敗、更容易放棄，真正撐得久的人，是懂得善待自己的人。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/self-compassion.html"
+  },
+  {
+    "date": "2026-10-03",
+    "slug": "how-to-read-a-book",
+    "title": "如何閱讀一本書",
+    "author": "莫提默・艾德勒、查理・范多倫（Mortimer J. Adler & Charles Van Doren）",
+    "theme": "邏輯思考",
+    "hook": "你以為識字就等於會讀書？這本書要戳破的是：大多數人讀了一輩子，其實只停在小學程度的閱讀——眼睛掃過去了，理解力卻一點也沒長。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/how-to-read-a-book.html"
+  },
+  {
+    "date": "2026-10-02",
+    "slug": "the-seven-principles-for-making-marriage-work",
+    "title": "七個讓愛延續的方法",
+    "author": "約翰・高特曼（John Gottman）、娜恩・希爾維（Nan Silver）",
+    "theme": "人際關係",
+    "hook": "你以為婚姻會壞，是因為吵太多、溝通技巧太差？高特曼觀察了上千對伴侶後說：幸福的夫妻一樣吵，差別在吵之前，兩個人是不是朋友。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/the-seven-principles-for-making-marriage-work.html"
+  },
+  {
+    "date": "2026-10-01",
+    "slug": "good-strategy-bad-strategy",
+    "title": "好策略．壞策略",
+    "author": "理查・魯梅特（Richard P. Rumelt）",
+    "theme": "職場成長",
+    "hook": "你們公司那份寫滿願景、使命和成長目標的「策略」，很可能根本不是策略——魯梅特說，沒有診斷、沒有取捨的東西只是許願。",
+    "url": "https://andy30019123agent-ship-it.github.io/book-club/books/good-strategy-bad-strategy.html"
+  },
+  {
     "date": "2026-08-31",
     "slug": "i-may-be-wrong",
     "title": "我可能錯了",
